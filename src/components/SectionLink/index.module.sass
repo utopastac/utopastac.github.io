@@ -1,0 +1,40 @@
+@import 'styles/site.sass'
+
+.Main
+  cursor: pointer
+  position: relative
+  @include animate(0.1s)
+  flex: 1
+  display: flex
+  flex-direction: column
+  align-items: space-bettween
+  justify-content: space-between
+  color: currentColor
+  border-bottom: $border-width solid transparent  
+  padding-bottom: units(3)
+  
+  header
+    display: block !important
+
+    h5
+      @extend %heading-m
+    
+    p
+      @extend %body-s
+      margin-top: units(1)
+  
+  .cta
+    @extend %body-m
+    @extend %bold
+    margin-top: units(6)
+    //background: transparent url(../../images/icons/icon-navigation-arrow.png) no-repeat center right
+    background-size: auto units(3)
+    @include animate(0.5s)
+
+  &:hover
+    border-color: currentColor  
+    h5
+      text-decoration: underline
+    .cta
+      background-position: right units(3) center
+      //text-decoration: underline

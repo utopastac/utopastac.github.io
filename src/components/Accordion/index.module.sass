@@ -1,0 +1,50 @@
+@import 'styles/site.sass'
+
+.Main
+  border-bottom: $border-lightest
+  padding: 0 bigUnits(1)
+  border-left: 4px solid transparent
+
+  header
+    cursor: pointer
+    padding: units(7) 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    &:after
+      content: ""
+      width: units(4)
+      height: units(4)
+      @include cover-background(url(../images/icons/ICON-chevron-down.png))
+
+    h4
+      @extend %body-l
+      color: $black
+
+  &.active
+    // background: $grey-100
+    // border-left-color: $black
+
+.section
+  padding: size(24) 0
+  border-top: 1px solid $grey-300
+
+  h6
+    @extend %heading-m
+    margin-bottom: units(3)
+
+  .link
+    @extend %body-s
+    padding: units(1) 0
+    display: flex
+    align-items: flex-start
+    justify-content: flex-start
+
+    span
+      width: size(40)
+      color: $black
+
+    &:hover
+      color: $orange-dark
+      text-decoration: underline

@@ -1,0 +1,24 @@
+@import 'styles/site.sass'
+$nav-bottom-border: 3px
+
+.Main
+  cursor: pointer
+  @extend %heading-m
+  display: inline-flex
+  align-items: center
+  @include animate(0.1s)
+  height: bigUnits(2)
+  background: $grey-300
+  padding: 0 units(8)
+  opacity: 0.8
+
+  &:hover
+    opacity: 1
+
+  &:before
+    content: ""
+    width: units(5)
+    height: units(5)
+    // @include cover-background(url(../images/icons/ICON-navicon.png))
+    z-index: 0
+    margin-right: units(1)

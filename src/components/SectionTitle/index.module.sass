@@ -1,0 +1,18 @@
+@import 'styles/site.sass'
+
+.Main
+  flex: 1
+  max-width: units(70)
+  @include min($screen-m)
+    padding-right: $space-l
+  
+  @include max($screen-l)
+    padding-bottom: units(8)
+  
+  .block
+    width: $block-width
+    height: units(3)
+    margin-bottom: units(3)
+    background: $black
+  h1
+    @extend %heading-xl

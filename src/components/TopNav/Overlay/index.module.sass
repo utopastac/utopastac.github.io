@@ -1,0 +1,30 @@
+@import 'styles/site.sass'
+
+.Main
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: $white
+  z-index: $z-overlay
+  @include min($screen-m)
+    padding: $border-m
+  @include min($screen-l)
+    padding: $border-l
+  
+  .content
+    width: 100%
+    height: 100%
+    overflow-y: scroll
+    -webkit-overflow-scrolling: touch
+    background: $black
+    color: $white
+    padding: $space-s
+    @include min($screen-l)
+      padding: $space-m
+      display: flex
+      justify-content: center
+      align-items: center
+    
+    @extend %site-links

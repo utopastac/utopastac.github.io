@@ -1,0 +1,11 @@
+@import 'styles/site'
+
+.App
+  padding: $border-m 0 0 0
+  @include min($screen-m)
+    padding: $border-m
+  @include min($screen-l)
+    padding: $border-l
+    
+  .content
+    overflow-x: hidden

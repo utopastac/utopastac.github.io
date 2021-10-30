@@ -1,0 +1,74 @@
+@import 'styles/site.sass'
+
+.Main
+  
+  
+  .content
+    border-top: $border-width solid currentColor
+    padding: $space-s 0
+    @include min($screen-l)
+      padding: $space-m 0
+    @include min($screen-m)
+      display: flex
+      align-items: flex-start
+      justify-content: flex-end
+      ///grid-template-columns: 0.75fr 1fr 1fr
+    
+  .block
+    //flex: 1
+    @include min($screen-m)
+      width: 33%
+    // &:first-child
+    //   flex: 0.75
+    @include max($screen-l)
+      &:not(:last-child)
+        margin-bottom: units(5)
+      
+    h5
+      @extend %heading-m
+      margin-bottom: units(1)
+      
+    p
+      @extend %body-m
+    
+
+  li
+    cursor: pointer
+    position: relative
+    @extend %body-m
+    display: flex
+    align-items: center
+    height: units(5)
+    @extend %links   
+    
+    &.notSub 
+    
+    &.sub
+      margin-left: units(3)
+      
+      &+.notSub
+        margin-top: units(4)
+        padding-top: units(1)
+        
+        &:before
+          content: ""
+          display: block
+          position: absolute
+          top: -units(1)
+          left: 0
+          width: units(20)
+          height: size(1)
+          background: currentColor
+      
+      
+      &:after
+        width: units(0.75)
+        display: block !important
+      &:hover
+        opacity: 1
+        &:after
+          width: units(2)
+          left: -units(4)
+    
+    &:after
+      left: -units(3)

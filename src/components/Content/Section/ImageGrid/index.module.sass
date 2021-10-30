@@ -1,0 +1,14 @@
+@import 'styles/site.sass'
+
+.Main
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  @include min($screen-m)
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+  @include min($screen-l)
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+  grid-gap: units(1)
+  padding: units(2) 0
+  
+  .image
+    width: 100%

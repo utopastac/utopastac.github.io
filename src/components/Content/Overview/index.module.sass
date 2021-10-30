@@ -1,0 +1,29 @@
+@import 'styles/site.sass'
+
+.Main
+  @include min($screen-l)
+    display: flex
+    min-height: 80vh
+
+.content
+  padding: $space-s $space-xs
+  background: $peach-200
+  color: $black
+  display: flex
+  align-items: center
+  justify-content: center
+  
+  @include min($screen-l)
+    margin-left: -$space-s
+    flex: 1
+    padding: $space-m
+    
+  .inner
+    max-width: bigUnits(14)
+
+.image
+  @include max($screen-l)
+    height: 40vh
+    width: 100%
+  flex: 0.5
+  @include cover-background(url(../images/pixel/p50.PNG))

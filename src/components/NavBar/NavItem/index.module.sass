@@ -1,0 +1,75 @@
+@import 'styles/site.sass'
+
+.Main
+  @extend %body-s
+  @extend %medium
+  // padding: 0 units(6)
+  position: relative
+  color: $black
+
+  .block
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    height: $tab-active-border-width
+    //background: $black
+    opacity: 0
+
+  &.stuck
+    
+    border-left: 1px solid transparent
+    border-right: 1px solid transparent
+    
+    &:hover
+      background: $white
+      border-left: 1px solid $grey-300
+      border-right: 1px solid $grey-300
+      
+    .block
+      background-color: $black !important
+    
+    span
+      height: $nav-bar-active-height
+      color: $black
+    .bar
+      background-color: $black !important
+
+  &:hover
+    background: $white
+
+    .bar
+      display: none !important
+    .block
+      opacity: 1
+    span
+      opacity: 1
+      color: $black
+
+  &.active
+    .bar
+      display: block
+    span
+      opacity: 1
+
+  .content
+    pointer-events: none
+    padding: 0 units(6)
+
+  span
+    position: relative
+    display: flex
+    height: $nav-bar-height
+    justify-content: center
+    align-items: center
+    opacity: 0.9
+    @include animate(0.1s)
+  
+  .bar
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    height: $tab-active-border-width
+    background: $black
+    display: none

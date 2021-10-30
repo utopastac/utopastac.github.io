@@ -1,0 +1,68 @@
+@import 'styles/site.sass'
+
+.Main
+  position: fixed
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+  z-index: $z-overlay
+
+.backer
+  position: absolute
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+  background: $overlay-bg
+  cursor: pointer
+
+
+.content
+  position: absolute
+  top: 0
+  bottom: 0
+  right: 0
+  background: $white
+  overflow: hidden
+  min-width: 70%
+
+  header
+    position: absolute
+    width: 100%
+    height: units(18)
+    display: flex
+    align-items: center
+    justify-content: space-between
+    border-bottom: $border-lightest
+    background: $white
+
+    .header
+      display: flex
+      align-items: center
+
+      h6
+        @extend %heading-m
+        color: $black
+        
+
+    .close
+      width: size(100)
+      height: size(40)
+      cursor: pointer
+      display: flex
+      align-items: center
+      justify-content: center
+      &:before
+        content: ''
+        display: block
+        width: size(36)
+        height: size(36)
+        @include cover-background(url(../images/icons/ICON-back.png))
+
+
+  > div
+    padding: $space-l size(100) $space-m size(100)
+    margin: 0 auto
+    height: 100%
+    overflow-y: scroll

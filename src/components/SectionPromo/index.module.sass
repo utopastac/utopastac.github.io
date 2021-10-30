@@ -1,0 +1,111 @@
+@import 'styles/site.sass'
+
+.Main
+  cursor: pointer
+  display: flex
+  position: relative
+  color: $black
+
+  .backer
+    @include background-block($grey-300, -size(40))
+    display: none
+
+  &:hover
+    .backer
+      display: block
+
+  .image
+    background: $grey-100
+    width: 40%
+    img
+      width: 100%
+      display: block
+
+  p
+    opacity: 0.7
+
+  .cta
+    margin-top: $space-s
+    @extend %button-l
+
+  .content
+    flex: 1
+    padding-left: $space-s
+
+  &.large
+    max-width: size(840)
+    .image
+      width: 40%
+    .content
+      padding-left: size(40)
+    h2
+      @extend %heading-m
+      margin-bottom: units(3)
+    p
+      @extend %body-m
+  
+  &.medium
+    max-width: size(712)
+    .backer
+      @include background-block($grey-300, -size(32))
+
+    .image
+      width: 33%
+    .content
+      padding-left: size(32)
+    h2
+      @extend %heading-m
+      margin-bottom: units(2)
+    p
+      @extend %body-s
+
+  &.small
+    max-width: size(544)
+    margin-bottom: size(40)
+    .backer
+      @include background-block($grey-300, -size(20))
+
+    .image
+      width: size(160)
+      height: size(120)
+    .content
+      padding-left: size(24)
+    h2
+      @extend %heading-m
+      margin-bottom: units(1)
+    p
+      @extend %body-s
+      overflow: hidden
+      text-overflow: ellipsis
+      display: -webkit-box
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+    .cta
+      display: none
+  
+  &.tiny
+    max-width: size(380)
+    .backer
+      @include background-block($grey-300, -size(20))
+    .image
+      width: size(120)
+      height: size(90)
+    .content
+      padding-left: size(24)
+    h2
+      @extend %heading-m
+      margin-bottom: units(1)
+      overflow: hidden
+      text-overflow: ellipsis
+      display: -webkit-box
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+    p
+      @extend %body-s
+      overflow: hidden
+      text-overflow: ellipsis
+      display: -webkit-box
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+    .cta
+      display: none

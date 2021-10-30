@@ -1,0 +1,27 @@
+@import 'styles/site.sass'
+
+.Main
+  color: $peach-500
+  max-width: $text-max-width
+  
+  p
+    @extend %body-m
+    margin-bottom: units(2)
+    
+  h5
+    @extend %heading-m
+    
+  &:not(:last-child)
+    h5
+      margin-bottom: $space-m
+      @include min($screen-l)
+        margin-bottom: $space-l
+      
+    .block
+      //display: block
+    
+  .block
+    height: units(1)
+    background: $peach-200
+    width: $block-width
+    display: none

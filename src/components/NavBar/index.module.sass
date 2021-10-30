@@ -1,0 +1,84 @@
+@import 'styles/site.sass'
+
+.Main
+  position: sticky
+  top: 0
+  z-index: $z-navigation
+  height: $nav-bar-height
+  background-color: transparent
+  @include animate(0.2s)
+  margin-bottom: -$nav-bar-height
+  @include animate(0.1s)
+  
+  @include max($screen-l)
+    display: none
+
+  &:hover
+    .line
+      opacity: 0.5
+  
+
+  .content
+    // mix-blend-mode: multiply
+    display: flex
+    align-items: center
+    justify-content: space-between
+    position: relative
+
+  &.active
+    height: $nav-bar-active-height
+    margin-bottom: -$nav-bar-active-height
+    background-color: $white
+
+    .content
+      mix-blend-mode: normal
+
+    .line
+      opacity: 1
+      background-color: $grey-300 !important
+    
+    .MainLogo
+      font-size: 18px
+
+  .Spacer
+    flex: 1
+
+  .nav
+    display: flex
+    align-items: center
+
+  .navList
+    display: flex
+    flex: 1
+    align-items: center
+
+  .line
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    height: size(1)
+    background: $black
+    opacity: 0.1
+    mix-blend-mode: multiply
+    pointer-events: none
+    @include animate(0.1s)
+  
+  .block
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    top: 0
+    background: $black
+    opacity: 0
+    pointer-events: none
+    @include animate(0.1s)
+
+.sentinel
+  position: absolute
+  top: -$nav-bar-height
+  left: 0
+  right: 0
+  height: $nav-bar-height
+  pointer-events: none

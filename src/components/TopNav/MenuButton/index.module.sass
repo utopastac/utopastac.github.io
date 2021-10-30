@@ -1,0 +1,32 @@
+@import 'styles/site.sass'
+
+.Main
+  z-index: $z-overlay
+  width: $border-m
+  height: $border-m
+  @include min($screen-l)
+    width: $border-l
+    height: $border-l
+    
+  display: flex
+  align-items: center
+  justify-content: center
+  position: fixed
+  top: 0
+  right: 0
+  background: $white
+  cursor: pointer
+  @include animate(0.3s)
+
+  &:after
+    content: ""
+    width: units(2)
+    height: size(14)
+    background-image: url(../../../images/icons/icon-menu.png)
+    background-size: 100% 100%
+    @include animate(0.3s)
+    
+  &:hover
+    background: $grey-100
+    &:after
+      width: units(3)

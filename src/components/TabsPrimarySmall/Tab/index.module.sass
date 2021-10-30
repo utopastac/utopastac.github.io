@@ -1,0 +1,45 @@
+@import 'styles/site.sass'
+
+.Main
+  cursor: pointer
+  @extend %body-m
+  color: $black
+  position: relative
+  @include animate(0.1s)
+
+  &.stuck
+    @extend %body-s
+
+    span
+      height: units(9)
+      border-bottom-color: transparent !important
+
+  &:before
+    content: ""
+    position: absolute
+    top: -units(1)
+    bottom: -units(1)
+    left: -units(2)
+    right: -units(2)
+    z-index: 0
+
+  span
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    height: units(14)
+    border-bottom: $tab-active-border-width solid transparent
+    @include animate(0.1s)
+
+  &:hover
+    color: $orange-dark
+    span
+      border-bottom-color: $orange-dark
+
+  &.active
+    @extend %bold
+    @extend %body-bold
+    color: $black
+    span
+      border-bottom-color: $black

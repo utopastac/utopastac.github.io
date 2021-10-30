@@ -1,0 +1,44 @@
+@import 'styles/site.sass'
+
+$grid-color: $black
+
+.Main
+  margin: 0 auto
+  max-width: size(1220)
+
+  ul.rules
+    margin-top: units(10)
+    
+
+  li.section
+    display: grid
+    grid-template-columns: size(240) 1fr
+    grid-column-gap: $space-m
+    margin-bottom: size(100)
+
+    &:not(:last-child)
+      border-bottom: 1px solid $grey-300
+
+    header
+      position: sticky
+      top: $space-l
+      height: size(40)
+      padding-bottom: $space-m
+
+    h6
+      color: $black
+      @extend %heading-m
+      // text-align: center
+    
+    ul
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-column-gap: $space-m
+      // grid-row-gap: size(24)
+      padding-bottom: size(100)
+
+  &.singleColumn
+    max-width: size(940)
+    li.section
+      ul
+        grid-template-columns: 1fr
