@@ -88,7 +88,7 @@ export const DATA = {
       title: 'Team overview',
       copy: `
 #### I worked across many different teams, providing strategic direction and storytelling alongside tactical delivery work. I co-authored the internal Spotify design process which all teams use as a benchmark, focused on discovery, alignment, and delivery.
-&nbsp  
+&nbsp;  
 #### I am extremely proud of the reputation and relationships I developed in my time at Spotify, driving success by helping others to succeed.
 `
     },

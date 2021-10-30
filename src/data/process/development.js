@@ -51,7 +51,7 @@ At Circles, I led the front end work for our websites and landing pages (static 
       path: '#why',
       copy: `
 #### I know when to use the power of data-led prototypes to help inform and communicate design decisions. I code in HTML (Haml), CSS (Sass), and Javascript (Typescript), including frameworks like React (Redux), React Native, Angular, GSAP, and Polymer. I am extremely comfortable learning new languages and techniques.  
-&nbsp  
+&nbsp;  
 #### I enjoy thinking about design systematically, and focusing on development forces you to think that way. I love experimenting in code, learning, developing my skills and actually making things.
 `
     },

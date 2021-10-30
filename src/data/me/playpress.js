@@ -39,7 +39,7 @@ export const DATA = {
           type: 'copy',
           copy: `
 I started helping Matthew refine his designs and attempt to build a market strategy. I helped find manufacturing partners, develop a cohesive illustration style, and advise on the brand direction.  
-&nbsp  
+&nbsp;  
 We have since turned Playpress into a viable, profitable business that is stocked around the world. We produce all of our products in the UK to minimise air miles and have stayed true to our love of creativity. Playpress is a family-owned business, and care and quality really matter to us. Playpress is sold in the Science Museum, the Grenwich museum, the RA and lots of retailers around the UK and Europe. Our bespoke toy for the RNLI won a licensed Toy of the Year award.
           `
         },
@@ -86,7 +86,7 @@ We have since turned Playpress into a viable, profitable business that is stocke
           type: 'copy',
           copy: `
   We currently sell an increasing range in several large retailers, as well as hundreds of small shops. We have worked with incredible brands like The Gruffalo, Jojo Maman Bebe, The Science Museum and others to create beautiful products that fit into our brand.
-  &nbsp;
+  &nbsp;  
   ### Sustainability & quality  
   We created Playpress with the belief that quality toys need to cost the earth. That’s why we put care into every part of our product, from the sourcing of our materials through to responsible manufacturing and design.
           `

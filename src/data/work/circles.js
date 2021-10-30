@@ -26,9 +26,9 @@ export const DATA = {
           copy: `
   ### The role
   I joined Circles at the beginning, as a founding member, in October 2016. Having spent the evenings for a few months prior bootstrapping a discovery process, we dived in to build an MVP. After a year of research insight, we are currently committed to building the right product to launch in September.  
-&nbsp  
+&nbsp;  
 At Circles, I have run a full, iterative UX process, including over 150 1-1 user interviews, creative workshops and many design and product iterations.  
-&nbsp  
+&nbsp;  
 I also managed the front-end development in our early days, releasing the app cross platform with feature parity using React Native.  
           `
         },
@@ -61,7 +61,7 @@ I also managed the front-end development in our early days, releasing the app cr
           copy: `
   ### The App
   The app has been tested with several cohorts of users and has gone through several iterations. Working closely with our users, we followed a highly iterative approach to the product design, releasing early and often.  
-&nbsp  
+&nbsp;  
 By taking a research first approach to product development, we iterated through several propositions. Circles now offers short, online only, group-based practical learning programmes based around mental health. These courses are designed by experts and delivered by experienced peer mentors to small groups of 4-8 people. The courses are designed to be collaborative, giving a sense of purpose to the group in order to try and develop a connection that they can rely on in the future.
           `
         },
@@ -89,9 +89,9 @@ By taking a research first approach to product development, we iterated through 
           copy: `
   ### Research
   Over the course of building our product over the first 10 months, I conducted 100 targeted 1-1 interviews, 10 group workshops, and managed remote research.  
-  &nbsp  
+  &nbsp;  
 Due to the nature of the product, it was especially important to try and understand where the gaps in peoples care really lies.  
-&nbsp  
+&nbsp;  
 Feeding this insight back into product design process has been a vital part of feeling confident in the company direction.  
           `
         },
@@ -113,7 +113,7 @@ Feeding this insight back into product design process has been a vital part of f
           copy: `
   ### Front end development
   The core of the app was built using React Native and Redux to ensure we could launch with feature parity across iOS and Android. In the early days of the company, I built all of the front-end of the app. As we hired more engineers, I have taken to just being involved in complex interaction design and UI development.  
-  &nbsp  
+  &nbsp;  
 I have also created many html and rails based prototypes for testing purposes. It has been important at many stages of development to have high fidelity (in interaction terms) prototypes for both our investors and for research.
           `
         },        

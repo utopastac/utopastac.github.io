@@ -84,7 +84,7 @@ export const DATA = {
       title: 'Team overview',
       copy: `
 #### At Google, cross functional alignment is critical. I worked extremely closely with partners in all disciplines in London and California to make sure we were all pushing in the same direction.
-&nbsp  
+&nbsp;  
 #### I loved my time at Google. I spent many hours in interview panels, volunteering as a mentor, retrospectives for other teams, and won an award for contribution to the culture in the London office.
 `
     },

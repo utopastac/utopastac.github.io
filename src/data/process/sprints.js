@@ -22,7 +22,7 @@ export const DATA = {
           copy: `
   ### Planning
   A great deal of research has gone into the design sprints I have run. When working at M&S, we ran several sprints, one with our Basket and Checkout team.  
-&nbsp  
+&nbsp;  
 To prepare for the week, we spent a week before doing a thorough competitor and heuristic analysis, with an emphasis on future trends.
           `
         },
@@ -43,7 +43,7 @@ To prepare for the week, we spent a week before doing a thorough competitor and 
           copy: `
   ### Challenging the team
   I worked with the content and editorial team on a sprint focused around content discovery. The team was made up of everyone from junior picture editors to the directors.  
-&nbsp  
+&nbsp;  
 It's important in a sprint to make sure everyone's voice is heard and heard equally, and we managed to facilitate a very diverse team by challenging their relationships with each other. Tasks were designed to enable people to draw on their experience whilst also being challenged by possibilities they hadn't even considered.
           `
         },
@@ -59,7 +59,7 @@ It's important in a sprint to make sure everyone's voice is heard and heard equa
           copy: `
   ### Creative facilitation at M&S
   At Marks and Spencer, I facilitated many workshops involving teams from small, implementation focused groups all the way to heads of department.  
-&nbsp  
+&nbsp;  
 I helped several senior management teams during a company wide innovation project, designing workshops to encourage collaboration, creative thinking, empathy and a 'disagree and commit' attitude.
           `
         },
@@ -94,7 +94,7 @@ I helped several senior management teams during a company wide innovation projec
           copy: `
   ### Research
   The whole point of running design sprints is to get closer to user groups. In every instance of running a sprint, our users are recruited well in advance in order to answer some relevant behavioural questions.  
-&nbsp  
+&nbsp;  
 By starting the week having the team focus on the real people they are designing for, we made sure that everything was designed with a real use case and purpose.
           `
         },
@@ -129,7 +129,7 @@ By starting the week having the team focus on the real people they are designing
           copy: `
   ### Getting in front of users
   The content team at M&S only had a vague, persona led grasp on their true audience, so having real users in front of them testing their own ideas was very important.  
-&nbsp  
+&nbsp;  
 By having the same 5 users at the end as were introduced at the start of the week, the team could see how their preconceptions matched to reality. Seeing work go from idea to live, interactive test in under a week was genuinely shocking for some.
           `
         },

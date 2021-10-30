@@ -57,7 +57,7 @@ This can take the form of follow up sessions, short, easily digestible presentat
           copy: `
   ### Creative facilitation at M&S
   At Marks and Spencer, I facilitated many workshops involving teams from small, implementation focused groups all the way to heads of department.  
-&nbsp  
+&nbsp;  
 I helped several senior management teams during a company wide innovation project, designing workshops to encourage collaboration, creative thinking, empathy and a 'disagree and commit' attitude.
           `
         },
@@ -83,7 +83,7 @@ I helped several senior management teams during a company wide innovation projec
           copy: `
   ### Circles founding meetings
   I was first involved with Circles in a consultancy role. Having met the main founder, I helped him synthesise his ideas using co-creative workshops with potential service users and experts in their fields.  
-&nbsp  
+&nbsp;  
 As an outcome of these workshops and analysis of previous research, I helped take what was a collection of vague thoughts into a well funded startup with a strong sense of product direction.
           `
         },

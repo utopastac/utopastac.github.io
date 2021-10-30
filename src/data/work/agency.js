@@ -24,7 +24,7 @@ export const DATA = {
           copy: `
   ### Syzygy
   I started as a junior designer in [Syzygy](https://www.syzygy.de), working mainly with Mazda and Mercedes as clients. I worked on the digital campaigns for major car launches, and worked closely with excellent creative developers.  
-&nbsp  
+&nbsp;  
 I caught the programming bug, and started experimenting with creating games in Actionscript 3. I quickly progressed to a role as a creative technologist, where I was working on both design and development, in-between the creative teams and the technical teams.
           `
         },
@@ -46,7 +46,7 @@ I caught the programming bug, and started experimenting with creating games in A
           copy: `
   ### VML London
   When I joined [VML](https://www.vmlyr.com/en-gb/united-kingdom) (Good Technology), I was part of a small team as a 'Hypermedia designer'. The team's role was, essentially, to provide inspiration and advice to the technical and creative teams to make their ideas better.  
-&nbsp  
+&nbsp;  
 We sat directly between the two, creating prototypes, interaction designs, animations, and sometimes full products for clients like Audi and Microsoft.
           `
         },
@@ -73,7 +73,7 @@ We sat directly between the two, creating prototypes, interaction designs, anima
           copy: `
   ### Southpaw
   At [Southpaw](https://southpawagency.com) (Nexus|H) I was brought on as the beginning point of an in house digital team. In my role as Interactive art director, I was responsible for the digital output of the company.  
-&nbsp  
+&nbsp;  
 I lead a team of 4 which spanned both design and technical roles. We worked on everything from full ad campaigns, to expansive pitches for Honda, to full site design projects for Suzuki.
           `
         },
