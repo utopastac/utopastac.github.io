@@ -7,7 +7,7 @@ export default function Markdown(props) {
   const { copy } = props;
   return (
     <div className={styles.Main}>
-      <ReactMarkdown source={copy} />
+      <ReactMarkdown children={copy} />
     </div>
   );
 }
