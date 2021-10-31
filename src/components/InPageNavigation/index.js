@@ -58,12 +58,14 @@ export default function InPageNavigation(props) {
       <MainContent>
         <div className={styles.content}>
           {blocks}
-          <div className={styles.block}>
-            <h5>Contents</h5>
-            <ul>
-              {sectionList}
-            </ul>
-          </div>
+          {sections.length > 1  &&
+            <div className={styles.block}>
+              <h5>Contents</h5>
+              <ul>
+                {sectionList}
+              </ul>
+            </div>
+          }
         </div>
       </MainContent>
     </div>

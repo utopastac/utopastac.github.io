@@ -15,9 +15,9 @@ export const TITLE_BLOCK = {
 
 export const PAGES = [
   {
-    title: 'Twitter',
-    date: '2021 - now',
-    intro: 'At Twitter, I have recently joined as a Staff product designer in the revenue diversity team.',
+    title: 'Incoming @ Twitter',
+    date: 'Late 2021',
+    intro: 'At Twitter, I am soon joining as a Staff product designer in the revenue diversity team.',
     subtitle: "#### I'm excited to join Twitter at a time of accelerating product change to help lead design in the revenue diversity space.",
     path: `/twitter`,
     data: Twitter.DATA

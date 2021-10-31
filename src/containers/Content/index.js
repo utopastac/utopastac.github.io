@@ -78,7 +78,7 @@ function Content(props) {
       <PageHeader
         data={{title: title, subtitle:subtitle}}
       />
-      {pages.length > 1 &&
+      {(pages.length > 1 || meta.length > 1) &&
         <InPageNavigation
           sections={pages}
           active={active}
