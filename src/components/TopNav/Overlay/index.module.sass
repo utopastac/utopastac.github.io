@@ -23,8 +23,19 @@
     padding: $space-s
     @include min($screen-l)
       padding: $space-m
-      display: flex
-      justify-content: center
-      align-items: center
+      //display: flex
+      //justify-content: center
+      //align-items: center
+
+    a h5
+      &:hover
+        text-decoration: underline
+
+    .homeLink
+      a h5
+        @extend %heading-l
+
+      @include min($screen-l)
+        margin-bottom: units(10)
     
     @extend %site-links

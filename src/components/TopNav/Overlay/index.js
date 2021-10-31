@@ -29,10 +29,11 @@ export default function Overlay(props) {
     <Animated show={show} type={RIGHT}>
       <div className={styles.Main}>
         <div className={styles.content}>
+          <div className={`${styles.linkBlock} ${styles.homeLink}`}>
+            <Link to={Data.HOME.path}><h5>Home</h5></Link>
+          </div>
           <section className={styles.links}>
-            <div className={styles.linkBlock}>
-              <Link to={Data.HOME.path}><h5>Home</h5></Link>
-            </div>
+            
             {content}
           </section>
         </div>

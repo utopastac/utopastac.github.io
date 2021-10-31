@@ -1,3 +1,4 @@
+import * as Twitter from 'data/work/twitter';
 import * as Facebook from 'data/work/facebook';
 import * as Spotify from 'data/work/spotify';
 import * as Google from 'data/work/google';
@@ -13,6 +14,14 @@ export const TITLE_BLOCK = {
 };
 
 export const PAGES = [
+  {
+    title: 'Twitter',
+    date: '2021 - now',
+    intro: 'At Twitter, I have recently joined as a Staff product designer in the revenue diversity team.',
+    subtitle: "#### I'm excited to join Twitter at a time of accelerating product change to help lead design in the revenue diversity space.",
+    path: `/twitter`,
+    data: Twitter.DATA
+  },
   {
     title: 'Facebook',
     date: '2020 - now',

@@ -91,8 +91,8 @@ function Content(props) {
       </section>
       
       {overlayOpen &&
-        <Overlay close={()=>setOverlayOpen(false)} title={title} subtitle='Policy details'>
-          <Markdown copy={data.policyDetails.copy} />
+        <Overlay close={()=>setOverlayOpen(false)} title={title} subtitle=''>
+          <Markdown copy={'Hi'} />
         </Overlay>
       }
         
