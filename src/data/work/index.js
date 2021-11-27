@@ -15,8 +15,8 @@ export const TITLE_BLOCK = {
 
 export const PAGES = [
   {
-    title: 'Incoming @ Twitter',
-    date: 'Late 2021',
+    title: 'Twitter',
+    date: 'Late 2021 - now',
     intro: 'At Twitter, I am soon joining as a Staff product designer in the revenue diversity team.',
     subtitle: "#### I'm excited to join Twitter at a time of accelerating product change to help lead design in the revenue diversity space.",
     path: `/twitter`,
@@ -24,9 +24,9 @@ export const PAGES = [
   },
   {
     title: 'Facebook',
-    date: '2020 - now',
-    intro: 'At Facebook, I currently lead design for part of the wider Community Integrity team, working across the Oversight Board and Legitimacy pillars.',
-    subtitle: '#### As the lead designer in the Community Integrity legitimacy team, I am responsible for setting product vision and moving the mission forward with thoughtful design output.',
+    date: '2020 - late 2021',
+    intro: 'At Facebook, I led design for part of the wider Community Integrity team, working across the Oversight Board and Legitimacy pillars.',
+    subtitle: '#### As the lead designer in the Community Integrity legitimacy team, I was responsible for setting product vision and moving the mission forward with thoughtful design output.',
     path: `/facebook`,
     data: Facebook.DATA
   },

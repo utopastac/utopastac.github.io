@@ -3,7 +3,7 @@ import image1 from 'images/content/google-retention.jpg';
 
 export const DATA = {
   meta: [
-    {title: 'Year', content: '2020 - now'},
+    {title: 'Year', content: '2020 - late 2021'},
     {title: 'Role', content: 'Lead product designer'}
   ],
   pages: [
