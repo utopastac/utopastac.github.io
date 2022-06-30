@@ -53,8 +53,8 @@
       opacity: 1
 
   .content
-    pointer-events: none
-    padding: 0 units(6)
+    //pointer-events: none
+    //padding: 0 units(6)
 
   span
     position: relative
@@ -64,6 +64,10 @@
     align-items: center
     opacity: 0.9
     @include animate(0.1s)
+    padding: 0 units(6)
+
+    &:hover
+      text-decoration: underline
   
   .bar
     position: absolute

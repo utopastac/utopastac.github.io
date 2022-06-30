@@ -17,8 +17,8 @@ export const PAGES = [
   {
     title: 'Twitter',
     date: 'Late 2021 - now',
-    intro: 'At Twitter, I am soon joining as a Staff product designer in the revenue diversity team.',
-    subtitle: "#### I'm excited to join Twitter at a time of accelerating product change to help lead design in the revenue diversity space.",
+    intro: 'At Twitter, I am leading design for subscriptions as a Staff product designer in the revenue diversity team.',
+    subtitle: "#### I joined Twitter at a time of accelerating product change to help lead design in the revenue diversity space. I am primarily focused on imprving on consumer subscription product, Twitter Blue.",
     path: `/twitter`,
     data: Twitter.DATA
   },
