@@ -86,7 +86,7 @@ export const DATA = {
       ...SECTIONS.overview,
       title: 'Team overview',
       copy: `
-#### I work as part of a large multi-disciplinary team, covering policy, legal, and operations. I collaborate constantly with our engineers, and regularly present future directions to people at the highest levels in the company. Making sure we have broad alignment and shared goals is key in what is a very ambiguous space.
+#### I worked as part of a large multi-disciplinary team, covering policy, legal, and operations. I collaborate constantly with our engineers, and regularly present future directions to people at the highest levels in the company. Making sure we have broad alignment and shared goals is key in what is a very ambiguous space.
 `
     },
   ]

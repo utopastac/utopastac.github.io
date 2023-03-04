@@ -5,6 +5,7 @@ import * as Google from 'data/work/google';
 import * as Circles from 'data/work/circles';
 import * as Marks from 'data/work/marks';
 import * as Agency from 'data/work/agency';
+import * as UISamples from 'data/work/ui-samples';
 
 export const TITLE_BLOCK = {
   title: 'Work',
@@ -72,5 +73,14 @@ export const PAGES = [
     cta: 'Do this',
     path: `/advertising-and-agency`,
     data: Agency.DATA
+  },
+  {
+    title: 'UI samples',
+    
+    intro: 'A selection of UI samples from the last few years, spanning a few different companies.',
+    subtitle: '#### A selection of UI samples from the last few years, spanning a few different companies.',
+    cta: 'Do this',
+    path: `/ui-samples`,
+    data: UISamples.DATA
   },
 ]

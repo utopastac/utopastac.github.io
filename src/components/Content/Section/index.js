@@ -4,6 +4,7 @@ import MainContent from "containers/MainContent";
 import Copy from 'components/Content/Section/Copy';
 import SectionImage from 'components/Content/Section/SectionImage';
 import ImageGrid from 'components/Content/Section/ImageGrid';
+import ImageList from 'components/Content/Section/ImageList';
 import styles from "./index.module.sass";
 
 export default function Section(props) {
@@ -21,6 +22,9 @@ export default function Section(props) {
         break;
       case 'imageGrid':
         element = (<ImageGrid {...item} key={key} />);
+        break;
+      case 'imageList':
+        element = (<ImageList {...item} key={key} />);
         break;
     }
     return element;
