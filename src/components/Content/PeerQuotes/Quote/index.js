@@ -1,4 +1,5 @@
 import React from "react";
+import Markdown from 'components/Markdown';
 import PropTypes from 'prop-types';
 import styles from "./index.module.sass";
 
@@ -8,7 +9,7 @@ export default function Quote(props) {
   
   return (
     <div className={styles.Main}>
-      <p>{content}</p>
+      <Markdown copy={content} />
       <h5>{attribution}</h5>
       <div className={styles.block}></div>
     </div>

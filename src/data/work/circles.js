@@ -1,11 +1,11 @@
 import {SECTIONS} from 'data/work/pageBasics';
 import image1 from 'images/content/circles-main.jpg';
-import image2 from 'images/content/circles-avatars.jpg';
-import image3 from 'images/content/circles-feed.jpg';
+import image2 from 'images/content/circles-events.jpg';
+import image3 from 'images/content/circles-chat.jpg';
 import image4 from 'images/content/circles-onboarding.jpg';
 import image5 from 'images/content/circles-structure.jpg';
 import image6 from 'images/content/circles-old-screens-2.jpg';
-import image7 from 'images/content/circles-1.png';
+import image7 from 'images/content/circles-design-system.jpg';
 
 export const DATA = {
   meta: [
@@ -35,7 +35,8 @@ I also managed the front-end development in our early days, releasing the app cr
         {
           type: 'image',
           img: image7,
-          alt: 'Circles work example'
+          alt: 'Circles work example',
+          caption: ``
         },
         {
           type: 'image',
@@ -67,15 +68,15 @@ By taking a research first approach to product development, we iterated through 
         },
         {
           type: 'image',
-          img: image2,
-          alt: 'Circles work example',
-          caption: `We created sets of avatars so people could remain anonymous.`
-        },
-        {
-          type: 'image',
           img: image3,
           alt: 'Circles work example',
           caption: `The app is structured like a super-powered chat application. Each Circle has an expert peer mentor who sets activities for the groups.`
+        },
+        {
+          type: 'image',
+          img: image2,
+          alt: 'Circles work example',
+          caption: `We adde din events for users to take part in.`
         },
       ]
     },

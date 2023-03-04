@@ -9,7 +9,7 @@ import * as Agency from 'data/work/agency';
 export const TITLE_BLOCK = {
   title: 'Work',
   subtitle: `
-#### I am lucky enough to have worked on some amazing projects at incredible companies. I'm currently at Facebook, thinking about the future of Oversight for the internet.
+#### I am lucky enough to have worked on some amazing projects at incredible companies. I'm currently at Twitter, thinking about the future of revenue diversity and subscriptions.
 `,
 };
 
@@ -23,11 +23,11 @@ export const PAGES = [
     data: Twitter.DATA
   },
   {
-    title: 'Facebook',
+    title: 'Meta',
     date: '2020 - late 2021',
-    intro: 'At Facebook, I led design for part of the wider Community Integrity team, working across the Oversight Board and Legitimacy pillars.',
+    intro: 'At Meta, I led design for part of the wider Community Integrity team, working across the Oversight Board and Legitimacy pillars.',
     subtitle: '#### As the lead designer in the Community Integrity legitimacy team, I was responsible for setting product vision and moving the mission forward with thoughtful design output.',
-    path: `/facebook`,
+    path: `/meta`,
     data: Facebook.DATA
   },
   {

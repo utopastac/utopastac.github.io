@@ -1,5 +1,8 @@
 import {SECTIONS} from 'data/work/pageBasics';
-import image1 from 'images/content/google-retention.jpg';
+import image1 from 'images/content/meta-data-transparency.jpg';
+import image2 from 'images/content/meta-ob-ds.jpg';
+import image3 from 'images/content/meta-ob-ds-case.jpg';
+import image4 from 'images/content/meta-ob-ds-user.jpg';
 
 export const DATA = {
   meta: [
@@ -19,8 +22,26 @@ export const DATA = {
           type: 'copy',
           copy: `
   ### Oversight
-  Working on the Oversight Board, an international body of experts that has independent decision making power, I am responsible for defining strategy and improving the experience for Facebook users and Board Staff.
+  Working on the Oversight Board, an international body of experts that has independent decision making power, I was responsible for defining strategy and improving the experience for Meta users and Board Staff. I focused on understanding and improving the value exchange between the different people involved in the process, as well as tactical and end-to-end experience design.
           `
+        },
+        {
+          type: 'image',
+          img: image2,
+          alt: 'Meta work example',
+          caption: `We worked to implment a new design system designed to help the board members do their work.`
+        },
+        {
+          type: 'image',
+          img: image4,
+          alt: 'Meta work example',
+          caption: `We worked to improve user perception of independence of the board.`
+        },
+        {
+          type: 'image',
+          img: image3,
+          alt: 'Meta work example',
+          caption: `The case management system was designed for imprving case operations.`
         },
       ]
     },
@@ -35,6 +56,12 @@ export const DATA = {
   ### Legitimacy
   Inside the Community Integrity team, I work to make sure products are defensible and legitimate by promoting transparency, co-design, and accountability. I set the vision of the team and drive practical outcomes, such as the Transparency hub, and oter experiences to involve external stakeolders in the rule making and safe guarding processes.
           `
+        },
+        {
+          type: 'image',
+          img: image1,
+          alt: 'Meta work example',
+          caption: `We released a data transparency platform that allowed access to our policies and enforcement information.`
         },
       ]
     },
