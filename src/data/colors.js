@@ -12,11 +12,11 @@ export const SLATE          = '#006D8F';
 export const YOLK           = '#FFC700';
 //
 export const WHITE_THEME    = {text: BLACK, bg: GREY_100};
-export const PEACH_THEME    = {text: MINT_800, bg: PEACH_500};
-export const SLATE_THEME    = {text: PEACH_500, bg: SLATE};
+export const PEACH_THEME    = {text: BLACK, bg: PEACH_200};//{text: MINT_800, bg: PEACH_500};
+export const SLATE_THEME    = {text: BLACK, bg: GREY_100};//{text: PEACH_500, bg: SLATE};
 export const YOLK_THEME     = {text: BLACK, bg: YOLK};
-export const UMBER_THEME    = {text: MINT_200, bg: UMBER};
-export const BLACK_THEME    = {text: PEACH_500, bg: BLACK};
+export const UMBER_THEME    = {text: BLACK, bg: GREY_100};//{text: MINT_200, bg: UMBER};
+export const BLACK_THEME    = {text: PEACH_200, bg: BLACK};
 //
 export const THEMES = [
   WHITE_THEME,
