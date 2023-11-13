@@ -20,7 +20,6 @@ function App(props) {
         <ScrollController />
         <TopNav></TopNav>
         <NavBar></NavBar>
-        <p>Bec</p>
         <div className={styles.content}>
           <Routes
             appProps={
