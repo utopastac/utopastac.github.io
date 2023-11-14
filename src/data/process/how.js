@@ -40,8 +40,7 @@ export const DATA = {
   ### Strengths & Motivations
   I bring out the best in other people and can make other people’s ideas better, especially when facilitating small groups. I work very fast and, love to share very early, and am not precious or dogmatic. I am good at pushing teams to think beyond their existing thinking. I excell when working strategically on open ended and ambiguous things.
   &nbsp;  
-  **I am motivated by:** People. Velocity. Change. New Information.
-          `
+  **I am motivated by:** People. Velocity. Change. New Information.`
         },
       ]
     },

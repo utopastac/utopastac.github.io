@@ -1,3 +1,4 @@
+import * as Personio from 'data/work/personio';
 import * as Twitter from 'data/work/twitter';
 import * as Facebook from 'data/work/facebook';
 import * as Spotify from 'data/work/spotify';
@@ -10,14 +11,22 @@ import * as UISamples from 'data/work/ui-samples';
 export const TITLE_BLOCK = {
   title: 'Work',
   subtitle: `
-#### I am lucky enough to have worked on some amazing projects at incredible companies. I'm currently at Twitter, thinking about the future of revenue diversity and subscriptions.
+#### I am lucky enough to have worked on some amazing projects at incredible companies. I'm currently at Personio, thinking about the future of HR.
 `,
 };
 
 export const PAGES = [
   {
+    title: 'Personio',
+    date: 'Early 2023 - now',
+    intro: 'At Personio, I am leading design for the apps team, where new products are incubated.',
+    subtitle: "#### As staff designer for apps, I am helping one of Europe's leading unicorn companies with design practice in a time of enormous growth and change. I am focused on uplevelling our experience and craft, whilst launching new 0-1 products.",
+    path: `/twitter`,
+    data: Personio.DATA
+  },
+  {
     title: 'Twitter',
-    date: 'Late 2021 - now',
+    date: 'Late 2021 - 2023',
     intro: 'At Twitter, I am leading design for subscriptions as a Staff product designer in the revenue diversity team.',
     subtitle: "#### I joined Twitter at a time of accelerating product change to help lead design in the revenue diversity space. I am primarily focused on imprving on consumer subscription product, Twitter Blue.",
     path: `/twitter`,
