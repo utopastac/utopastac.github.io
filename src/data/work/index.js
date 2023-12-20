@@ -21,7 +21,7 @@ export const PAGES = [
     date: 'Early 2023 - now',
     intro: 'At Personio, I am leading design for the apps team, where new products are incubated.',
     subtitle: "#### As staff designer for apps, I am helping one of Europe's leading unicorn companies with design practice in a time of enormous growth and change. I am focused on uplevelling our experience and craft, whilst launching new 0-1 products.",
-    path: `/twitter`,
+    path: `/personio`,
     data: Personio.DATA
   },
   {

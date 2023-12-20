@@ -25,7 +25,9 @@ export default function PageHeader(props) {
     <section className={styles.Main} style={{color: theme.text, backgroundColor: theme.bg}}>
       <MainContent>
         <header>
-          <SectionTitle title={data.title} color={theme.text} />
+          <div>
+            <SectionTitle title={data.title} color={theme.text} home={data.home} />
+          </div>
           <div className={styles.content}>
             <Markdown copy={data.subtitle} />
           </div>

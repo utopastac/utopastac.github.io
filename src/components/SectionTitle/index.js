@@ -4,11 +4,16 @@ import styles from "./index.module.sass";
 import * as Colors from 'data/colors';
 
 export default function SectionTitle(props) {
-  const { title, color } = props;
+  const { title, color, home } = props;
 
   return (
     <section className={styles.Main}>
       <div className={styles.block} style={{background: color}}/>
+      {home &&
+        <div className={styles.peter}>
+          <h4>{ home }</h4>
+        </div>
+      }
       <h1 style={{color: color}}>{title}</h1>
     </section>
   );
