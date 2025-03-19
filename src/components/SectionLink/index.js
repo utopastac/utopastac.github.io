@@ -15,7 +15,7 @@ export default function SectionLink(props) {
         <p>{subtitle}</p>
       </header>
       
-      <div class={styles.cta}>{cta}</div>
+      <div className={styles.cta}>{cta}</div>
     </a>
   );
 }

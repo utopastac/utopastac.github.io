@@ -1,3 +1,4 @@
+import * as CashApp from 'data/work/cash-app';
 import * as Personio from 'data/work/personio';
 import * as Twitter from 'data/work/twitter';
 import * as Facebook from 'data/work/facebook';
@@ -11,14 +12,22 @@ import * as UISamples from 'data/work/ui-samples';
 export const TITLE_BLOCK = {
   title: 'Work',
   subtitle: `
-#### I am lucky enough to have worked on some amazing projects at incredible companies. I'm currently at Personio, thinking about the future of HR.
+#### I am lucky enough to have worked on some amazing projects at incredible companies. I'm currently at Cash app, thinking about the future of trust for fintechs.
 `,
 };
 
 export const PAGES = [
   {
+    title: 'Cash app',
+    date: 'Early 2024 - now',
+    intro: 'At Cash app, I am a principle designer in the trust space, responsible for a wide range of product areas.',
+    subtitle: "#### Trust at cash app is a vital part of the business, loking after users privacy, safety, and security whilst working alongside regulatory partners. As a principle designer, I have a broad scope of work I am responsible for and take an active role in uplevelling quality across the team. I am proud to work really closely with some of our earlier career team members.",
+    path: `/cash-app`,
+    data: CashApp.DATA
+  },
+  {
     title: 'Personio',
-    date: 'Early 2023 - now',
+    date: 'Early 2023 - 2024',
     intro: 'At Personio, I am leading design for the apps team, where new products are incubated.',
     subtitle: "#### As staff designer for apps, I am helping one of Europe's leading unicorn companies with design practice in a time of enormous growth and change. I am focused on uplevelling our experience and craft, whilst launching new 0-1 products.",
     path: `/personio`,

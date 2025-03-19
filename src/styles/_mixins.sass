@@ -6,6 +6,10 @@ $screen-l: 1080px
 $screen-xl: 1200px
 $screen-xxl: 1400px
 //
+$radius-section-l: 80px
+$radius-section-m: 50px
+$radius-section-s: 40px
+//
 
 @mixin contain-background($image)
   background-size: contain
@@ -84,9 +88,12 @@ $bigUnits: 40
         
 %links
   position: relative
+  opacity: 0.8
       
   &:hover
     text-decoration: underline
+    opacity: 1
+
     &:after
       width: units(2)
       display: block
@@ -135,6 +142,13 @@ $bigUnits: 40
   > *:not(.full-width)
     display: flex
     flex-wrap: wrap
+
+%round-section
+  border-radius: $radius-section-s
+  @include min($screen-m)
+    border-radius: $radius-section-m
+  @include min($screen-l)
+    border-radius: $radius-section-l
 
 %site-links
   .links

@@ -1,10 +1,17 @@
 @import 'styles/site.sass'
 
 .Main
-  
+  @extend %round-section
+  position: relative
+  &::after
+    position: absolute
+    content: ""
+    top: 0
+    left: 0
+    right: 0
+    border-top: 1px solid rgba(255, 255, 255, 0.2)
   
   .content
-    border-top: $border-width solid currentColor
     padding: $space-s 0
     @include min($screen-l)
       padding: $space-m 0
@@ -39,7 +46,7 @@
     display: flex
     align-items: center
     height: units(5)
-    @extend %links   
+    @extend %links 
     
     &.notSub 
     

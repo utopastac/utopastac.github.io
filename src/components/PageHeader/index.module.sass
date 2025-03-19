@@ -1,6 +1,12 @@
 @import 'styles/site.sass'
 
 .Main
+  border-radius: 20px 20px $radius-section-s $radius-section-s
+  @include min($screen-m)
+    border-radius: 20px 20px $radius-section-m $radius-section-m
+  @include min($screen-l)
+    border-radius: 20px 20px $radius-section-l $radius-section-l
+
   position: relative
   background: $peach-200
   color: $yolk
@@ -32,10 +38,11 @@
       max-width: units(70)
     
 .links
-  padding: $space-m 0
-  border-top: $border-width solid currentColor
+  padding: $space-s 0
+  @include min($screen-l)
+    padding: $space-m 0
+  // border-top: $border-width solid currentColor
   // border-bottom: $border-width solid currentColor
-  margin-top: $space-l
   
   > h5
     @extend %heading-m
@@ -43,5 +50,7 @@
     
   > div
     display: grid
-    grid-gap: units(10) 
-    grid-template-columns: 1fr 1fr 1fr
+
+    @include min($screen-l)
+      grid-template-columns: 1fr 1fr 1fr
+    

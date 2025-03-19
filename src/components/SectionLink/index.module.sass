@@ -7,34 +7,49 @@
   flex: 1
   display: flex
   flex-direction: column
-  align-items: space-bettween
+  align-items: space-between
   justify-content: space-between
   color: currentColor
   border-bottom: $border-width solid transparent  
   padding-bottom: units(3)
+  // background: $white
+  // border-radius: 20px
+  padding: size(30) 0
+  &:not(:first-child)
+    border-top: 1px solid rgba(0,0,0, 0.2)
+  
+
+  @include min($screen-l)
+    padding: 0 size(50)
+
+    &:not(:first-child)
+      border-top: none
+      border-left: 1px solid rgba(0,0,0, 0.2)
+
+    .cta
+      margin-top: units(6)
   
   header
     display: block !important
 
     h5
-      @extend %heading-m
+      @extend %body-s
+      @extend %bold
+      margin-bottom: units(2)
+      display: none
     
     p
       @extend %body-s
-      margin-top: units(1)
   
   .cta
     @extend %body-s
     @extend %bold
-    margin-top: units(6)
-    //background: transparent url(../../images/icons/icon-navigation-arrow.png) no-repeat center right
-    background-size: auto units(3)
-    @include animate(0.5s)
+    margin-top: units(2)
 
   &:hover
-    border-color: currentColor  
+
     h5
       text-decoration: underline
     .cta
       background-position: right units(3) center
-      //text-decoration: underline
+      text-decoration: underline
