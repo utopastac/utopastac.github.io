@@ -19,13 +19,13 @@ export const TITLE_BLOCK = {
       subtitle: 'Product teams think ‘agile’ and ‘lean’ are really fast. They’re nice words, but they should try working in advertising.',
       cta: 'Read on Medium',
       path: 'https://medium.com/@utopastac/how-to-make-good-things-while-being-good-to-each-other-3a98236529da'
-    },
-    {
-      title: 'Anxiety in the workplace',
-      subtitle: 'I suffer, or have variously suffered in the past, from various anxiety related problems and conditions.',
-      cta: 'Read on Medium',
-      path: 'https://medium.com/@utopastac/how-to-make-good-things-while-being-good-to-each-other-3a98236529da'
-    },
+    }
+    // {
+    //   title: 'Anxiety in the workplace',
+    //   subtitle: 'I suffer, or have variously suffered in the past, from various anxiety related problems and conditions.',
+    //   cta: 'Read on Medium',
+    //   path: 'https://medium.com/@utopastac/how-to-make-good-things-while-being-good-to-each-other-3a98236529da'
+    // },
   ]
 };
 
