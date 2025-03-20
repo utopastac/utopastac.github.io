@@ -4,6 +4,7 @@ import image2 from 'images/content/workshop-2.jpg';
 import image3 from 'images/content/workshop-3.jpg';
 
 export const DATA = {
+  doNotShowNavigation: true,
   meta: [
   ],
   pages: [
@@ -88,6 +89,9 @@ As an outcome of these workshops and analysis of previous research, I helped tak
           `
         },
       ]
+    },
+    {
+      ...SECTIONS.sectionEnd
     },
     {
       ...SECTIONS.overview,

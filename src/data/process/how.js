@@ -2,6 +2,7 @@ import {SECTIONS} from 'data/process/pageBasics';
 import image1 from 'images/content/how-1.png';
 
 export const DATA = {
+  doNotShowNavigation: true,
   meta: [
   ],
   pages: [
@@ -60,6 +61,9 @@ I have high expectations of how people interact with each other, and hugely valu
           `
         },
       ]
+    },
+    {
+      ...SECTIONS.sectionEnd
     },
     {
       ...SECTIONS.overview,

@@ -1,0 +1,12 @@
+@import 'styles/site.sass'
+
+.Main
+  height: $radius-section-s
+  border-radius:  0 0 $radius-section-s $radius-section-s
+  @include min($screen-m)
+    height: $radius-section-m
+    border-radius:  0 0 $radius-section-m $radius-section-m
+  @include min($screen-l)
+    height: $radius-section-l
+    border-radius:  0 0 $radius-section-l $radius-section-l
+  background: $grey-100

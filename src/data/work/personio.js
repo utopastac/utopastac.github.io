@@ -32,6 +32,9 @@ export const DATA = {
       ]
     },
     {
+      ...SECTIONS.sectionEnd
+    },
+    {
       ...SECTIONS.peerQuotes,
       quotes: [
         {

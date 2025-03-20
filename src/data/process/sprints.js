@@ -4,6 +4,7 @@ import image2 from 'images/content/design-sprint-2.jpg';
 import image3 from 'images/content/design-sprint-3.jpg';
 
 export const DATA = {
+  doNotShowNavigation: true,
   meta: [
   ],
   pages: [
@@ -148,6 +149,9 @@ By having the same 5 users at the end as were introduced at the start of the wee
           `
         },
       ]
+    },
+    {
+      ...SECTIONS.sectionEnd
     },
     {
       ...SECTIONS.overview,

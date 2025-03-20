@@ -106,6 +106,9 @@ I lead a team of 4 which spanned both design and technical roles. We worked on e
       ]
     },
     {
+      ...SECTIONS.sectionEnd
+    },
+    {
       ...SECTIONS.overview,
       title: 'Team overview',
       copy: `

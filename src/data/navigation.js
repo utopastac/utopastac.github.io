@@ -21,7 +21,7 @@ export const NOT_FOUND = {
 //
 //
 export const WORK_THEME = Colors.BLACK_THEME;
-export const PROCESS_THEME = Colors.WHITE_THEME;
+export const PROCESS_THEME = Colors.PEACH_THEME;
 export const ME_THEME = Colors.BLACK_THEME;
 //
 //

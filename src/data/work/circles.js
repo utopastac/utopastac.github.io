@@ -127,6 +127,9 @@ I have also created many html and rails based prototypes for testing purposes. I
       ]
     },
     {
+      ...SECTIONS.sectionEnd
+    },
+    {
       ...SECTIONS.overview,
       title: 'Team overview',
       copy: `

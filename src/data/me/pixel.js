@@ -51,7 +51,9 @@ import p49 from 'images/pixel/p49.PNG';
 import p50 from 'images/pixel/p50.PNG';
 
 export const DATA = {
+  doNotShowNavigation: true,
   meta: [
+    
   ],
   pages: [
     {
@@ -72,6 +74,9 @@ export const DATA = {
           alt: 'Animated Cat'
         },
       ]
+    },
+    {
+      ...SECTIONS.sectionEnd
     },
   ]
 }

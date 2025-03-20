@@ -12,7 +12,7 @@ import UseSetTheme from 'hooks/UseSetTheme';
 function Content(props) {
   
   const {match, history, location, data, title, subtitle, theme, related } = props;
-  const { pages, meta } = data;
+  const { pages, meta, doNotShowNavigation } = data;
 
   const [active, setActive] = useState();
   const [overlayOpen, setOverlayOpen] = useState(false);
@@ -78,7 +78,7 @@ function Content(props) {
       <PageHeader
         data={{title: title, subtitle:subtitle}}
       />
-      {(pages.length > 1 || meta.length > 1) &&
+      {(pages.length > 1 && !doNotShowNavigation || meta.length > 1) &&
         <InPageNavigation
           sections={pages}
           active={active}

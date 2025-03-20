@@ -13,23 +13,23 @@ $font-medium-weight: 500 !default
 $font-bold-weight: 600 !default
 $font-extra-bold-weight: 700 !default
 //
-$font-heading-weight: $font-bold-weight
+$font-heading-weight: $font-medium-weight
 //
 // TYPOGRAPHY
 //
-$type-size-xl: 48 
+$type-size-xl: 52 
 $type-size-l: 32 
 $type-size-m: 24 
 $type-size-s: 20
 $type-size-xs: 16
 //
-$type-size-xl-mobile: 32 
+$type-size-xl-mobile: 36 
 $type-size-l-mobile: 24 
 $type-size-m-mobile: 20
 $type-size-s-mobile: 18
 $type-size-xs-mobile: 15
 //
-$heading-line-height: 120%
+$heading-line-height: 110%
 $body-line-height: 140%
 //
 $heading-letter-spacing: -0.03
@@ -89,6 +89,7 @@ $all-caps-letter-spacing: 0.1
 
 %heading-m
   @extend %heading
+  @extend %bold
   @include fontSize($type-size-m-mobile, $heading-line-height, $heading-letter-spacing)
   @include min($screen-l)
     @include fontSize($type-size-m, $heading-line-height, $heading-letter-spacing)

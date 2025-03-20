@@ -11,6 +11,8 @@ import image8 from 'images/content/playpress-8.jpg';
 
 export const DATA = {
   meta: [
+    {title: 'Year Founded', content: '2012'},
+    {title: 'Current involvement', content: 'Design and advice'}
   ],
   pages: [
     {
@@ -102,6 +104,9 @@ We have since turned Playpress into a viable, profitable business that is stocke
           alt: 'Playpress toys example'
         },
       ]
+    },
+    {
+      ...SECTIONS.sectionEnd
     },
   ]
 }

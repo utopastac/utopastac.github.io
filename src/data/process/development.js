@@ -1,6 +1,7 @@
 import {SECTIONS} from 'data/process/pageBasics';
 
 export const DATA = {
+  doNotShowNavigation: true,
   meta: [
   ],
   pages: [
@@ -44,6 +45,9 @@ At Circles, I led the front end work for our websites and landing pages (static 
           `
         },
       ]
+    },
+    {
+      ...SECTIONS.sectionEnd
     },
     {
       ...SECTIONS.overview,

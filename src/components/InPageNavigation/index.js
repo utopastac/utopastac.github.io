@@ -29,6 +29,7 @@ export default function InPageNavigation(props) {
 
     const { title, path } = section;
     const activeSection = active===path ? styles.active : '';
+    if(!path) return;
     const sub = section.sub ? styles.sub : styles.notSub;
     
     

@@ -56,5 +56,8 @@ export const DATA = {
         },
       ]
     },
+    {
+      ...SECTIONS.sectionEnd
+    },
   ]
 }

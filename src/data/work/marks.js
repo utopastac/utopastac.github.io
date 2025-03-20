@@ -156,6 +156,9 @@ I created a Google Polymer based style guide and prototyping system to keep a tr
       ]
     },
     {
+      ...SECTIONS.sectionEnd
+    },
+    {
       ...SECTIONS.overview,
       title: 'Team overview',
       copy: `
