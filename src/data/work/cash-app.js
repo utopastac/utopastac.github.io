@@ -28,19 +28,6 @@ export const DATA = {
   &nbsp;  
   Transfers is now seen as the torch carrier for a new way of working within trust, and has developed a greater degree of autonomy. The future direction is being socialised and adopted around the company.
           `
-        },
-        {
-          type: 'image',
-          img: image1,
-          alt: 'Twitter work example',
-          caption: ``
-        },
-        
-        {
-          type: 'image',
-          img: image2,
-          alt: 'Twitter work example',
-          caption: `Our vision focused around news and access.`
         }
       ]
     },
@@ -53,24 +40,8 @@ export const DATA = {
           type: 'copy',
           copy: `
   ### Access
-  I have been helping the transfers org set a future vision and a new way of working. Transfers is one of the most revenue sensitive areas of the business, and I have worked with the leadership to implement a new experimental appraoch, whilst working extremely closely with the designer to foster a long term future vision.
-  &nbsp;  
-  &nbsp;  
-  Transfers is now seen as the torch carrier for a new way of working within trust, and has developed a greater degree of autonomy. The future direction is being socialised and adopted around the company.
+  Access and security control the front door into our products. I am helping to define a lasting strategic direction for both that covers both consumer and business use cases by visualising and prototyping different directions.
           `
-        },
-        {
-          type: 'image',
-          img: image1,
-          alt: 'Twitter work example',
-          caption: ``
-        },
-        
-        {
-          type: 'image',
-          img: image2,
-          alt: 'Twitter work example',
-          caption: `Our vision focused around news and access.`
         }
       ]
     },
@@ -83,24 +54,8 @@ export const DATA = {
           type: 'copy',
           copy: `
   ### Disputes
-  I have been helping the transfers org set a future vision and a new way of working. Transfers is one of the most revenue sensitive areas of the business, and I have worked with the leadership to implement a new experimental appraoch, whilst working extremely closely with the designer to foster a long term future vision.
-  &nbsp;  
-  &nbsp;  
-  Transfers is now seen as the torch carrier for a new way of working within trust, and has developed a greater degree of autonomy. The future direction is being socialised and adopted around the company.
+  Working on disputes means working closely with regulation to help make sure we get the best outcomes for the customer. I have been helping the disputes team imagine different futures and visualise new experiences.
           `
-        },
-        {
-          type: 'image',
-          img: image1,
-          alt: 'Twitter work example',
-          caption: ``
-        },
-        
-        {
-          type: 'image',
-          img: image2,
-          alt: 'Twitter work example',
-          caption: `Our vision focused around news and access.`
         }
       ]
     },
