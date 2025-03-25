@@ -2,14 +2,15 @@
 
 .Main
   display: grid
-  grid-gap: units(1)
+  grid-gap: size(4)
   grid-template-columns: 1fr 1fr 1fr
   @include min($screen-m)
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr
   @include min($screen-l)
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr
-    grid-gap: units(2)
-  padding: units(2) 0
+    grid-gap: size(4)
   
   .image
     width: 100%
+    background: white;
+    border-radius: $border-m

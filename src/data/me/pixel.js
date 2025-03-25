@@ -57,6 +57,10 @@ export const DATA = {
   ],
   pages: [
     {
+      ...SECTIONS.sectionHeader,
+      title: ""
+    },
+    {
       ...SECTIONS.section,
       title: 'Image',
       path: '#Image',

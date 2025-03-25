@@ -21,8 +21,8 @@ export const NOT_FOUND = {
 //
 //
 export const WORK_THEME = Colors.BLACK_THEME;
-export const PROCESS_THEME = Colors.PEACH_THEME;
-export const ME_THEME = Colors.BLACK_THEME;
+export const PROCESS_THEME = Colors.CORAL_THEME;
+export const ME_THEME = Colors.GREEN_THEME;
 //
 //
 //
@@ -34,7 +34,7 @@ export const NAV_ITEMS = [
     path: WORK_PATH,
     links: (<LinkSet data={WorkData} basePath={WORK_PATH} />),
     theme: WORK_THEME,
-    landingTheme: Colors.PEACH_THEME
+    landingTheme: Colors.BLUE_THEME
   },
   {
     title: 'Process',
@@ -43,7 +43,7 @@ export const NAV_ITEMS = [
     path: PROCESS_PATH,
     links: (<LinkSet data={ProcessData} basePath={PROCESS_PATH} />),
     theme: PROCESS_THEME,
-    landingTheme: Colors.PEACH_THEME
+    landingTheme: Colors.CORAL_THEME
   },
   {
     title: 'Me',
@@ -52,6 +52,6 @@ export const NAV_ITEMS = [
     path: ME_PATH,
     links: (<LinkSet data={MeData} basePath={ME_PATH} />),
     theme: ME_THEME,
-    landingTheme: Colors.PEACH_THEME
+    landingTheme: Colors.GREEN_THEME
   }
 ];

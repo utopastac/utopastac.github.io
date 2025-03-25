@@ -9,7 +9,9 @@ export default function SectionHeader(props) {
   return (
     <div className={styles.Main}>
       <MainContent>
-        <SectionTitle title={title} />
+        {title.length > 0 &&
+          <SectionTitle title={title} />
+        }
       </MainContent>
     </div>
   );
