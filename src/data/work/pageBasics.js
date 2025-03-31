@@ -19,8 +19,7 @@ export const SECTIONS = {
   },
   sectionHeader: {
     component: Content.SectionHeader,
-    title: 'Contributions',
-    path: '#contributions',
+    title: '',
   },
   sectionEnd: {
     component: Content.SectionEnd

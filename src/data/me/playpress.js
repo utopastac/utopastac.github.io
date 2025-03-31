@@ -17,8 +17,7 @@ export const DATA = {
   pages: [
     {
       ...SECTIONS.sectionHeader,
-      title: 'Building a toy company',
-      path: '#building-a-toy-company',
+      title: '',
     },
     {
       ...SECTIONS.section,

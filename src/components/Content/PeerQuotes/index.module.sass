@@ -3,10 +3,19 @@
 .Main
   @extend %round-section
   background: $black
-  padding: units(15) 0
+  color: $peach-200
+  padding: units(8) 0
+  @include min($screen-m)
+    padding: units(15) 0
+
+  h2
+    @extend %heading-l
+    margin-bottom: $space-m
   
   .content
-    display: flex
-    flex-direction: column
-    justify-content: flex-end
-    align-items: flex-end
+    display: grid
+    grid-gap: $space-m 
+    @include min($screen-m)
+      grid-template-columns: 1fr 1fr
+      // justify-content: flex-end
+      // align-items: flex-end

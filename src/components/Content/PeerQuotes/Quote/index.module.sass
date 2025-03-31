@@ -1,21 +1,26 @@
 @import 'styles/site.sass'
 
 .Main
-  color: $peach-500
+  color: currentColor
   max-width: $text-max-width
+  //border-top: 4px solid currentColor
+  //background: white
+  //border-radius: 40px
+  //padding: 40px
+  padding-top: $space-s
   
   p
-    @extend %body-m
+    @extend %body-s
     margin-bottom: units(2)
     
   h5
-    @extend %heading-m
+    @extend %heading-s
     
   &:not(:last-child)
     h5
-      margin-bottom: $space-m
-      @include min($screen-l)
-        margin-bottom: $space-l
+      // margin-bottom: $space-m
+      // @include min($screen-l)
+      //   margin-bottom: $space-l
       
     .block
       //display: block

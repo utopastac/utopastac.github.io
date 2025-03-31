@@ -7,8 +7,7 @@ export const DATA = {
   pages: [
     {
       ...SECTIONS.sectionHeader,
-      title: 'Process',
-      path: '#process',
+      title: '',
     },
     {
       ...SECTIONS.section,

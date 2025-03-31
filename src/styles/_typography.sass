@@ -105,6 +105,14 @@ $all-caps-letter-spacing: 0.1
   @include fontSize($type-size-xs-mobile, $heading-line-height, $heading-letter-spacing)
   @include min($screen-l)
     @include fontSize($type-size-xs, $heading-line-height, $heading-letter-spacing)
+
+%heading-block
+  @extend %heading
+  @extend %bold
+  text-transform: uppercase
+  @include fontSize($type-size-m-mobile, $heading-line-height, $heading-letter-spacing)
+  @include min($screen-l)
+    @include fontSize($type-size-m, $heading-line-height, $heading-letter-spacing)
 //
 //
 //

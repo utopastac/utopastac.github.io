@@ -20,7 +20,7 @@ export default function PeerQuotes(props) {
     <div className={styles.Main}>
       <MainContent>
         <header>
-          <SectionTitle title='Peer Quotes' color={Colors.PEACH_500} />
+          <h2>Peer Quotes</h2>
         </header>
         <div className={styles.content}>
           {quoteElements}
