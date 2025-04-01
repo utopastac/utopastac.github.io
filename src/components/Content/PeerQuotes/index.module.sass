@@ -1,10 +1,12 @@
 @import 'styles/site.sass'
 
 .Main
-  @extend %round-section
-  background: $black
-  color: $peach-200
+  // @extend %round-section
+  background: $white
+  color: $black
   padding: units(8) 0
+  border-top: 1px solid rgba(black, 0.2)
+
   @include min($screen-m)
     padding: units(15) 0
 
@@ -14,7 +16,7 @@
   
   .content
     display: grid
-    grid-gap: $space-m 
+    grid-gap: $space-l 
     @include min($screen-m)
       grid-template-columns: 1fr 1fr
       // justify-content: flex-end

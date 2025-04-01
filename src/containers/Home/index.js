@@ -32,7 +32,7 @@ export default function Home(props) {
       <section className={styles.resume}>
         <MainContent>
           <header>
-            <SectionTitle title='Resumé' color={Colors.BLACK} />
+            <SectionTitle title='' color={Colors.BLACK} />
           </header>
           <div className={styles.content}>
             {resumeElements}

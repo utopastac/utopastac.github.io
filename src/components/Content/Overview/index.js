@@ -9,10 +9,11 @@ export default function PoliciesList(props) {
   const { copy, img } = props;
 
   const theme = useContext(ThemeContext);
+  // style={{background: theme.text, color: theme.bg}}
 
   return (
     <div className={styles.Main}>
-      <section className={styles.content} style={{background: theme.text, color: theme.bg}}>
+      <section className={styles.content}>
         <div class={styles.inner}><Markdown copy={copy} /></div>
       </section>
       {img &&
