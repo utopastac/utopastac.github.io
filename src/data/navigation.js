@@ -28,7 +28,7 @@ export const ME_THEME = Colors.GREEN_THEME;
 //
 export const NAV_ITEMS = [
   {
-    title: 'Work',
+    title: 'Resumé',
     component: Pages.Landing,
     data: WorkData,
     path: WORK_PATH,
@@ -36,15 +36,15 @@ export const NAV_ITEMS = [
     theme: WORK_THEME,
     landingTheme: Colors.BLUE_THEME
   },
-  {
-    title: 'Process',
-    component: Pages.Landing,
-    data: ProcessData,
-    path: PROCESS_PATH,
-    links: (<LinkSet data={ProcessData} basePath={PROCESS_PATH} />),
-    theme: PROCESS_THEME,
-    landingTheme: Colors.CORAL_THEME
-  },
+  // {
+  //   title: 'Process',
+  //   component: Pages.Landing,
+  //   data: ProcessData,
+  //   path: PROCESS_PATH,
+  //   links: (<LinkSet data={ProcessData} basePath={PROCESS_PATH} />),
+  //   theme: PROCESS_THEME,
+  //   landingTheme: Colors.CORAL_THEME
+  // },
   {
     title: 'Me',
     component: Pages.Landing,

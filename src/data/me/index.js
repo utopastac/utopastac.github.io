@@ -1,4 +1,5 @@
 import * as About from 'data/me/about';
+import * as How from 'data/me/how';
 import * as Playpress from 'data/me/playpress';
 import * as Pixel from 'data/me/pixel';
 
@@ -37,6 +38,13 @@ export const PAGES = [
   //   path: `/about-me`,
   //   data: About.DATA
   // },
+  {
+    title: 'How I work',
+    intro: 'How I like to work, what value I can add, and things you should know about me.',
+    subtitle: "#### How I like to work, what value I can add, and things you should know about me.",
+    path: `/how-i-work`,
+    data: How.DATA
+  },
   {
     title: 'Playpress',
     intro: 'Playpress is a toy company I founded with my brother, creating award-winning, eco-friendly playsets.',

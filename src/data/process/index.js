@@ -1,7 +1,7 @@
 import * as Workshops from 'data/process/workshops';
 import * as Sprints from 'data/process/sprints';
 import * as Development from 'data/process/development';
-import * as How from 'data/process/how';
+// import * as How from 'data/process/how';
 
 export const TITLE_BLOCK = {
   title: 'Process',
@@ -11,13 +11,13 @@ export const TITLE_BLOCK = {
 };
 
 export const PAGES = [
-  {
-    title: 'How I work',
-    intro: 'How I like to work, what value I can add, and things you should know about me.',
-    subtitle: "#### How I like to work, what value I can add, and things you should know about me. 'Silly' is a lofty compliment!",
-    path: `/how-i-work`,
-    data: How.DATA
-  },
+  // {
+  //   title: 'How I work',
+  //   intro: 'How I like to work, what value I can add, and things you should know about me.',
+  //   subtitle: "#### How I like to work, what value I can add, and things you should know about me. 'Silly' is a lofty compliment!",
+  //   path: `/how-i-work`,
+  //   data: How.DATA
+  // },
   {
     title: 'Workshops',
     intro: 'Facilitating group sessions is one of the joys of my job. I get energy from inspiring teams to push beyond their existing thinking.',
