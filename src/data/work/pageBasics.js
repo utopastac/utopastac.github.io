@@ -17,6 +17,11 @@ export const SECTIONS = {
       }
     ]
   },
+  sectionWideImage: {
+    component: Content.SectionWideImage,
+    img: cat,
+    alt: 'Portfolio image'
+  },
   sectionHeader: {
     component: Content.SectionHeader,
     title: '',
@@ -42,7 +47,7 @@ As the lead designer in the Community Integrity legitimacy team, I am responsibl
       {
         type: 'image',
         img: cat,
-        alt: 'Animated Cat'
+        alt: 'Portfolio image'
       },
     ]
   },

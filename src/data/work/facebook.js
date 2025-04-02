@@ -11,6 +11,10 @@ export const DATA = {
   ],
   pages: [
     {
+      ...SECTIONS.sectionWideImage,
+      img: image1
+    },
+    {
       ...SECTIONS.sectionHeader,
     },
     {
