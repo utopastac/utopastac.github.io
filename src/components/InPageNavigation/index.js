@@ -53,9 +53,10 @@ export default function InPageNavigation(props) {
       </li>
     )
   });
+  //style={{color: theme.text, backgroundColor: theme.bg, borderColor: theme.text}}
 
   return (
-    <div className={styles.Main} style={{color: theme.text, backgroundColor: theme.bg, borderColor: theme.text}}>
+    <div className={styles.Main} >
       <MainContent>
         <div className={styles.content}>
           {blocks}
