@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
+import { useLocation } from "react-router-dom"; // Use useLocation hook
 import ThemeContext from "containers/ThemeContext";
-import { withRouter } from "react-router-dom";
 import NavItem from 'components/NavBar/NavItem';
 import Home from 'components/NavBar/Home';
 import styles from "./index.module.sass";
@@ -8,9 +8,8 @@ import UseIntersect from "hooks/UseIntersect";
 
 import * as Data from 'data/navigation';
 
-function NavBar(props) {
-
-  const {location} = props;
+function NavBar() {
+  const location = useLocation(); // Directly use useLocation hook
 
   const theme = useContext(ThemeContext);
 
@@ -28,16 +27,14 @@ function NavBar(props) {
     />
   );
 
-  const navItems = Data.NAV_ITEMS.map((navItem, i) => {
-    return (
-      <NavItem
-        {...navItem}
-        active={location.pathname.includes(`${navItem.path}/w`)}
-        stuck={stuck}
-        key={`navItem${i}`}
-      />
-    )
-  });
+  const navItems = Data.NAV_ITEMS.map((navItem, i) => (
+    <NavItem
+      {...navItem}
+      active={location.pathname.includes(`${navItem.path}/w`)}
+      stuck={stuck}
+      key={`navItem${i}`}
+    />
+  ));
 
   return (
     <div className={`${styles.Main} ${stuck ? styles.active : ''}`}>
@@ -57,4 +54,4 @@ function NavBar(props) {
   );
 }
 
-export default withRouter(NavBar);
+export default NavBar;

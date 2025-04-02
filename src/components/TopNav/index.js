@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { useLocation } from "react-router-dom"; // use useLocation hook
 import MenuButton from 'components/TopNav/MenuButton';
 import Overlay from 'components/TopNav/Overlay';
 import styles from "./index.module.sass";
 
-function NavBar(props) {
-
-  const {location} = props;
-  
-  useEffect(() => {
-    setActive(false)
-  },[location]);
-  
+function NavBar() {
+  const location = useLocation(); // Access location directly
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    setActive(false);
+  }, [location]);
 
   return (
     <div className={styles.Main}>
@@ -22,4 +20,4 @@ function NavBar(props) {
   );
 }
 
-export default withRouter(NavBar);
+export default NavBar;

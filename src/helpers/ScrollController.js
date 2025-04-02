@@ -1,27 +1,27 @@
-import React, { useEffect } from 'react'
-import { withRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 
-const ScrollController = (props) => {
+const ScrollController = () => {
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
-    console.log(props);
-
-    if (props.history.action === 'POP') {
+    if (history.action === 'POP') {
       return;
     }
     // In all other cases, check fragment/scroll to top
-    let hash = props.location.hash;
+    const hash = location.hash;
     if (hash) {
-      let element = document.querySelector(hash);
+      const element = document.querySelector(hash);
       if (element) {
-        element.scrollIntoView({block: 'start', behavior: 'smooth'});
+        element.scrollIntoView({ block: 'start', behavior: 'smooth' });
       }
     } else {
       window.scrollTo(0, 0);
     }
-  });
+  }, [history, location]);
 
   return null;
 };
 
-export default withRouter(ScrollController);
+export default ScrollController;
