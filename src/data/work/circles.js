@@ -6,6 +6,7 @@ import image4 from 'images/content/circles-onboarding.jpg';
 import image5 from 'images/content/circles-structure.jpg';
 import image6 from 'images/content/circles-old-screens-2.jpg';
 import image7 from 'images/content/circles-design-system.jpg';
+import banner from 'images/content/circles-banner.jpg';
 
 export const DATA = {
   meta: [
@@ -13,6 +14,10 @@ export const DATA = {
     {title: 'Role', content: 'Head of product design'}
   ],
   pages: [
+    {
+      ...SECTIONS.sectionWideImage,
+      img: banner
+    },
     {
       ...SECTIONS.sectionHeader,
     },
