@@ -16,7 +16,7 @@ export default function Home(props) {
 
   const { TITLE_BLOCK } = Data;
 
-  UseSetTheme(props.appProps.setTheme, Colors.ORANGE_THEME);
+  UseSetTheme(props.appProps.setTheme, Colors.randomTheme());
 
   const resumeElements = WorkData.PAGES.map((page, i) => {
     return (

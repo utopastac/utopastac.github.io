@@ -3,18 +3,24 @@
 .Main
   color: currentColor
   max-width: $text-max-width
-  // border-top: 1px solid currentColor
+  
   //background: white
   //border-radius: 40px
   //padding: 40px
-  // padding-top: $space-s
+  margin-bottom: size(56)
+  break-inside: avoid
+
+  @include min($screen-m)
+    //border-left: 1px solid currentColor
+    padding-left: size(20)
+    
   
   p
-    @extend %body-m
+    @extend %body-s
     margin-bottom: units(2)
     
   h5
-    @extend %heading-m
+    @extend %heading-s
     
   &:not(:last-child)
     h5
