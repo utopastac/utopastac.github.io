@@ -3,6 +3,7 @@
 //
 //
 $font-heading: 'Inter','NotoSans','NotoSansJP','NotoSansKR',sans-serif
+$font-display: serif
 $font-paragraph: 'Inter', 'NotoSans','NotoSansJP','NotoSansKR',sans-serif
 $font-paragraph-bold: 'Inter', 'NotoSans','NotoSansJP','NotoSansKR',sans-serif
 $font-paragraph-extra-bold: 'Inter', 'NotoSans','NotoSansJP','NotoSansKR',sans-serif
@@ -17,12 +18,14 @@ $font-heading-weight: $font-medium-weight
 //
 // TYPOGRAPHY
 //
+$type-size-xxl: 72 
 $type-size-xl: 52 
 $type-size-l: 32 
 $type-size-m: 24 
 $type-size-s: 20
 $type-size-xs: 16
 //
+$type-size-xxl-mobile: 42 
 $type-size-xl-mobile: 36 
 $type-size-l-mobile: 24 
 $type-size-m-mobile: 20
@@ -77,9 +80,12 @@ $all-caps-letter-spacing: 0.1
 //
 %heading-xl
   @extend %heading
-  @include fontSize($type-size-xl-mobile, $heading-line-height, $heading-letter-spacing)
-  @include min($screen-l)
+  font-family: $font-display
+  @include fontSize($type-size-xxl-mobile, $heading-line-height, $heading-letter-spacing)
+  @include min($screen-m)
     @include fontSize($type-size-xl, $heading-line-height, $heading-letter-spacing)
+  @include min($screen-l)
+    @include fontSize($type-size-xxl, 100%, $heading-letter-spacing)
 
 %heading-l
   @extend %heading

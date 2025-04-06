@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.99f18d39.chunk.css",
+    "main.css": "/static/css/main.240d4194.chunk.css",
     "main.js": "/static/js/main.93c7d2c7.chunk.js",
     "main.js.map": "/static/js/main.93c7d2c7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.ccbbb45a.js",
@@ -8,7 +8,7 @@
     "static/js/2.4553f887.chunk.js": "/static/js/2.4553f887.chunk.js",
     "static/js/2.4553f887.chunk.js.map": "/static/js/2.4553f887.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.99f18d39.chunk.css.map": "/static/css/main.99f18d39.chunk.css.map",
+    "static/css/main.240d4194.chunk.css.map": "/static/css/main.240d4194.chunk.css.map",
     "static/js/2.4553f887.chunk.js.LICENSE.txt": "/static/js/2.4553f887.chunk.js.LICENSE.txt",
     "static/media/agency-a4.d8d2c969.jpg": "/static/media/agency-a4.d8d2c969.jpg",
     "static/media/agency-authonomy.0fa50150.jpg": "/static/media/agency-authonomy.0fa50150.jpg",
@@ -110,7 +110,7 @@
   "entrypoints": [
     "static/js/runtime-main.ccbbb45a.js",
     "static/js/2.4553f887.chunk.js",
-    "static/css/main.99f18d39.chunk.css",
+    "static/css/main.240d4194.chunk.css",
     "static/js/main.93c7d2c7.chunk.js"
   ]
 }
