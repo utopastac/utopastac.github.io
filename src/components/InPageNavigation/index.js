@@ -2,6 +2,7 @@ import React, { useContext }  from "react";
 import ThemeContext from "containers/ThemeContext";
 import PropTypes from 'prop-types';
 import MainContent from "containers/MainContent";
+import AnimatedBackgroundCanvas from "components/AnimatedBackgroundCanvas";
 import * as Content from 'components/Content';
 import styles from "./index.module.sass";
 
@@ -58,6 +59,7 @@ export default function InPageNavigation(props) {
   return (
     <div className={styles.Main} >
       <MainContent>
+        <AnimatedBackgroundCanvas />
         <div className={styles.content}>
           {blocks}
           {sections.length > 1  &&
