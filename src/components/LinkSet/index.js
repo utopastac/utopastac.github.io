@@ -27,6 +27,6 @@ export default function LinkSet(props) {
 }
 
 LinkSet.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired,
   basePath: PropTypes.string.isRequired
 };

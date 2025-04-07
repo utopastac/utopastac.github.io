@@ -42,7 +42,7 @@ export default function NavItem(props) {
 NavItem.propTypes = {
   title: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
-  links: PropTypes.array.isRequired,
+  links: PropTypes.object.isRequired,
   active: PropTypes.bool.isRequired,
   stuck: PropTypes.bool.isRequired,
 };

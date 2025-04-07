@@ -13,5 +13,5 @@ export default function Markdown(props) {
 }
 
 Markdown.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
 };

@@ -75,8 +75,8 @@ export default function InPageNavigation(props) {
 }
 
 InPageNavigation.propTypes = {
-  section: PropTypes.object.isRequired,
-  active: PropTypes.string.isRequired,
+  section: PropTypes.object,
+  active: PropTypes.string,
   meta: PropTypes.array.isRequired,
   setActive: PropTypes.func.isRequired,
 };

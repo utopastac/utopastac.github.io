@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import PropTypes from 'prop-types';
 import Markdown from 'components/Markdown';
+import AnimatedBackgroundCanvas from "components/AnimatedBackgroundCanvas";
 import styles from "./index.module.sass";
 import ThemeContext from "containers/ThemeContext";
 
-export default function PoliciesList(props) {
+export default function Overview(props) {
 
   const { copy, img } = props;
 
@@ -13,8 +14,9 @@ export default function PoliciesList(props) {
 
   return (
     <div className={styles.Main}>
+      {/* <AnimatedBackgroundCanvas /> */}
       <section className={styles.content}>
-        <div class={styles.inner}><Markdown copy={copy} /></div>
+        <div className={styles.inner}><Markdown copy={copy} /></div>
       </section>
       {img &&
         <section className={styles.image} />
@@ -23,7 +25,7 @@ export default function PoliciesList(props) {
   );
 }
 
-PoliciesList.propTypes = {
+Overview.propTypes = {
   copy: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
+  img: PropTypes.string,
 };

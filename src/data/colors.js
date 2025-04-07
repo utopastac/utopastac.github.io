@@ -30,7 +30,6 @@ export const ORANGE_THEME   = {text: BLACK, bg: ORANGE};
 export const THEMES = [
   WHITE_THEME,
   PEACH_THEME,
-  SLATE_THEME,
   CORAL_THEME,
   GREEN_THEME,
   MINT_THEME,

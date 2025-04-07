@@ -12,7 +12,7 @@ export default function PeerQuotes(props) {
   
   const quoteElements = quotes.map((quote, index)=>{
     return (
-      <Quote content={quote.content} attribution={quote.attribution} />
+      <Quote content={quote.content} attribution={quote.attribution} key={`Quote ${index}`} />
     )
   });
   

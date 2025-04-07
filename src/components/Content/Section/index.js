@@ -42,5 +42,5 @@ export default function Section(props) {
 }
 
 Section.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.array.isRequired
 };

@@ -18,6 +18,5 @@ export default function SectionHeader(props) {
 }
 
 SectionHeader.propTypes = {
-  img: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
