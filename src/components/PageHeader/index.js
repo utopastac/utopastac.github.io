@@ -5,6 +5,7 @@ import MainContent from "containers/MainContent";
 import Markdown from 'components/Markdown';
 import SectionLink from 'components/SectionLink';
 import SectionTitle from 'components/SectionTitle';
+import AnimatedBackground from "components/AnimatedBackground";
 import styles from "./index.module.sass";
 
 export default function PageHeader(props) {
@@ -24,6 +25,7 @@ export default function PageHeader(props) {
   return (
     <div>
       <section className={styles.Main} style={{color: theme.text, backgroundColor: theme.bg}}>
+        <AnimatedBackground />
         <MainContent>
           <header>
             <div>
