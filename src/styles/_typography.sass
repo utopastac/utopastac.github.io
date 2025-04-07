@@ -25,7 +25,7 @@ $type-size-m: 24
 $type-size-s: 20
 $type-size-xs: 16
 //
-$type-size-xxl-mobile: 42 
+$type-size-xxl-mobile: 48 
 $type-size-xl-mobile: 36 
 $type-size-l-mobile: 24 
 $type-size-m-mobile: 20
@@ -89,16 +89,17 @@ $all-caps-letter-spacing: 0.1
 
 %heading-l
   @extend %heading
-  @include fontSize($type-size-l-mobile, $heading-line-height, $heading-letter-spacing)
+  font-family: $font-display
+  @include fontSize(calc($type-size-l-mobile * 1.4), $heading-line-height, $heading-letter-spacing)
   @include min($screen-l)
-    @include fontSize($type-size-l, $heading-line-height, $heading-letter-spacing)
+    @include fontSize(calc($type-size-l * 1.4), $heading-line-height, $heading-letter-spacing)
 
 %heading-m
   @extend %heading
-  @extend %bold
-  @include fontSize($type-size-m-mobile, $heading-line-height, $heading-letter-spacing)
+  font-family: $font-display
+  @include fontSize(calc($type-size-m-mobile * 1.3), $heading-line-height, $heading-letter-spacing)
   @include min($screen-l)
-    @include fontSize($type-size-m, $heading-line-height, $heading-letter-spacing)
+    @include fontSize(calc($type-size-m * 1.4), $heading-line-height, $heading-letter-spacing)
     
 %heading-s
   @extend %heading

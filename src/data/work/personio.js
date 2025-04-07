@@ -17,7 +17,7 @@ export const DATA = {
     {
       ...SECTIONS.section,
       title: 'Personio apps',
-      path: '#personio apps',
+      path: '#personio-apps',
       data: [
         {
           type: 'copy',
