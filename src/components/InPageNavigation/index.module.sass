@@ -3,15 +3,15 @@
 .Main
   @extend %round-section
   position: relative
-  background: $black
-  color: $peach-200
+  // background: $black
+  color: $black//$peach-200
   &::after
     position: absolute
     content: ""
     top: 0
     left: 0
     right: 0
-    border-top: 1px solid rgba(255, 255, 255, 0.2)
+    border-top: 1px solid $black
   
   .content
     padding: $space-m 0
@@ -40,7 +40,7 @@
       margin-bottom: units(1)
       
     p
-      @extend %body-m
+      @extend %body-s
     
 
   li

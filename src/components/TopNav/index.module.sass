@@ -2,3 +2,25 @@
 
 .Main
   z-index: $z-overlay
+
+  .logo
+    position: fixed
+    z-index: $z-overlay
+    top: 0
+    width: 100vh
+    left: 40px
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    padding: 20px
+
+    h4
+      font-size: 12px
+      @extend %medium
+      //transform: rotate(-90deg)
+    
+    h5
+      font-size: 14px
+      font-family: $font-display
+      @extend %medium
+      //transform: rotate(-90deg)

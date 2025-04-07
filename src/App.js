@@ -4,6 +4,7 @@ import ScrollController from 'helpers/ScrollController';
 import TopNav from 'components/TopNav';
 import NavBar from 'components/NavBar';
 import Footer from 'components/Footer';
+
 import styles from "./App.module.sass";
 import { ThemeContextProvider } from 'containers/ThemeContext';
 import * as Colors from "data/colors";

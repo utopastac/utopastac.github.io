@@ -10,10 +10,11 @@ export default function LinkBlock(props) {
     <Link to={`${basePath}${path}`} className={styles.Main}>
       <div className={styles.backer} />
       <header>
+        
+        <h4>{title}</h4>
         {date &&
           <h5>{date}</h5>
         }
-        <h4>{title}</h4>
       </header>
       <p>{intro}</p>
       <div className={styles.block}></div>

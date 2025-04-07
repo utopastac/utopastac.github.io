@@ -21,7 +21,7 @@ export const PAGES = [
     title: 'Cash app',
     date: 'Early 2024 - now',
     intro: 'At Cash app, I am a principle designer in the trust space, responsible for a wide range of product areas.',
-    subtitle: "#### Trust at cash app is a vital part of the business, loking after users privacy, safety, and security whilst working alongside regulatory partners. As a principle designer, I have a broad scope of work I am responsible for and take an active role in uplevelling quality across the team. I am proud to work really closely with some of our earlier career team members.",
+    subtitle: "#### Trust at cash app is a vital part of the business, looking after users privacy, safety, and security whilst working alongside regulatory partners. As a principle designer, I have a broad scope of work I am responsible for and take an active role in uplevelling quality across the team. I am proud to work really closely with some of our earlier career team members.",
     path: `/cash-app`,
     data: CashApp.DATA
   },

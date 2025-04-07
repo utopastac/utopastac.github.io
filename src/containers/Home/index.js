@@ -4,6 +4,7 @@ import MainContent from "containers/MainContent";
 import PageHeader from "components/PageHeader";
 import SectionTitle from 'components/SectionTitle';
 import LinkBlock from "components/LinkBlock";
+import AnimatedBackgroundCanvas from "components/AnimatedBackgroundCanvas";
 
 import * as Data from 'data/home';
 import * as WorkData from 'data/work';
@@ -16,7 +17,7 @@ export default function Home(props) {
 
   const { TITLE_BLOCK } = Data;
 
-  UseSetTheme(props.appProps.setTheme, Colors.randomTheme());
+  UseSetTheme(props.appProps.setTheme, Colors.TRANSPARENT_THEME);//Colors.randomTheme()
 
   const resumeElements = WorkData.PAGES.map((page, i) => {
     return (
@@ -32,7 +33,7 @@ export default function Home(props) {
       <section className={styles.resume}>
         <MainContent>
           <header>
-            <SectionTitle title='' color={Colors.BLACK} />
+            <SectionTitle title='Resumé' color={Colors.BLACK} small={true} />
           </header>
           <div className={styles.content}>
             {resumeElements}

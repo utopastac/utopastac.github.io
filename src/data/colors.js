@@ -14,18 +14,20 @@ export const UMBER          = '#A24545'
 export const SLATE          = '#006D8F';
 export const YOLK           = '#FFC700';
 export const ORANGE         = '#EE8465';//#FF3D02';
+export const TRANSPARENT    = 'transparent';//#FF3D02';
 //
-export const WHITE_THEME    = {text: BLACK, bg: WHITE};
-export const PEACH_THEME    = {text: BLACK, bg: PEACH_500};
-export const SLATE_THEME    = {text: PEACH_200, bg: BLACK};
-export const CORAL_THEME    = {text: BLACK, bg: CORAL};
-export const GREEN_THEME    = {text: BLACK, bg: GREEN};
-export const MINT_THEME     = {text: PEACH_200, bg: MINT_800};
-export const BLUE_THEME     = {text: BLACK, bg: BLUE};
-export const YOLK_THEME     = {text: BLACK, bg: YOLK};
-export const UMBER_THEME    = {text: BLACK, bg: GREY_100};//{text: MINT_200, bg: UMBER};
-export const BLACK_THEME    = {text: PEACH_200, bg: BLACK};
-export const ORANGE_THEME   = {text: BLACK, bg: ORANGE};
+export const WHITE_THEME        = {text: BLACK, bg: WHITE};
+export const PEACH_THEME        = {text: BLACK, bg: PEACH_500};
+export const SLATE_THEME        = {text: PEACH_200, bg: BLACK};
+export const CORAL_THEME        = {text: BLACK, bg: CORAL};
+export const GREEN_THEME        = {text: BLACK, bg: GREEN};
+export const MINT_THEME         = {text: PEACH_200, bg: MINT_800};
+export const BLUE_THEME         = {text: BLACK, bg: BLUE};
+export const YOLK_THEME         = {text: BLACK, bg: YOLK};
+export const UMBER_THEME        = {text: BLACK, bg: GREY_100};//{text: MINT_200, bg: UMBER};
+export const BLACK_THEME        = {text: PEACH_200, bg: BLACK};
+export const ORANGE_THEME       = {text: BLACK, bg: ORANGE};
+export const TRANSPARENT_THEME  = {text: BLACK, bg: TRANSPARENT};
 //
 export const THEMES = [
   WHITE_THEME,
@@ -37,7 +39,8 @@ export const THEMES = [
   YOLK_THEME,
   UMBER_THEME,
   BLACK_THEME,
-  ORANGE_THEME
+  ORANGE_THEME,
+  TRANSPARENT_THEME
 ];
 //
 export function randomTheme(){

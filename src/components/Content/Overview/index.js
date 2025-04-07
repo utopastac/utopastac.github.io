@@ -17,7 +17,7 @@ export default function Overview(props) {
     <div className={styles.Main}>
       {/* <AnimatedBackgroundCanvas /> */}
       <section className={styles.content}>
-        <GradientTimeBackground width={800} height={600} />
+        {/* <GradientTimeBackground width={800} height={600} /> */}
         <div className={styles.inner}><Markdown copy={copy} /></div>
       </section>
       {img &&

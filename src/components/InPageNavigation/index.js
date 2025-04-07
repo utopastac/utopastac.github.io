@@ -59,7 +59,7 @@ export default function InPageNavigation(props) {
   return (
     <div className={styles.Main} >
       <MainContent>
-        <AnimatedBackgroundCanvas />
+        {/* <AnimatedBackgroundCanvas /> */}
         <div className={styles.content}>
           {blocks}
           {sections.length > 1  &&
