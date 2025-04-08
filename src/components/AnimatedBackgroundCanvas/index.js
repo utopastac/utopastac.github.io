@@ -11,6 +11,7 @@ const AnimatedBackgroundCanvas = ({ colors }) => {
         const circles = [];
         const circleCount = 10; // Number of circles
         const speed = 5;
+        const colorsSet = colors[Math.floor(Math.random() * colors.length)]
         
         // Initialize canvas size to match the window
         canvas.width = window.innerWidth;
@@ -25,14 +26,14 @@ const AnimatedBackgroundCanvas = ({ colors }) => {
 
         // Generate initial positions and properties for circles
         for (let i = 0; i < circleCount; i++) {
-            const radius = Math.random() * 500 + 250;
+            const radius = (Math.random() * (window.innerWidth/4)) + window.innerWidth/8;
             circles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 dx: (Math.random() - 0.5) * speed, // Movement speed and direction
                 dy: (Math.random() - 0.5) * speed,
                 radius,
-                color: colors[Math.floor(Math.random() * colors.length)],
+                color: colorsSet[Math.floor(Math.random() * colorsSet.length)],
                 baseRadius: radius, // Save initial radius for scaling
                 scale: Math.random() * 0.05 + 0.95 // Random scale factor around 1
             });
@@ -50,7 +51,7 @@ const AnimatedBackgroundCanvas = ({ colors }) => {
                 
                 ctx.arc(circle.x, circle.y, scaledRadius, 0, Math.PI * 2, false);
                 ctx.fillStyle = circle.color;
-                ctx.globalAlpha = 0.5; // Making circles slightly transparent
+                ctx.globalAlpha = 0.9; // Making circles slightly transparent
                 // ctx.filter = 'blur(8px)'; // Applying blur for overlap effect
                 ctx.fill();
                 ctx.closePath();
@@ -84,11 +85,28 @@ const AnimatedBackgroundCanvas = ({ colors }) => {
 };
 
 AnimatedBackgroundCanvas.propTypes = {
-    colors: PropTypes.arrayOf(PropTypes.string)
+    colors: PropTypes.arrayOf(PropTypes.array)
 };
 
 AnimatedBackgroundCanvas.defaultProps = {
-    colors: ['rgba(255, 100, 100, 0.3)', 'rgba(100, 255, 100, 0.3)', 'rgba(100, 100, 255, 0.3)', 'rgba(255, 255, 100, 0.3)', 'rgba(255, 100, 255, 0.3)']
+    colors: [
+        [
+            'rgba(255, 100, 100, 0.8)',
+            'rgba(100, 255, 100, 0.8)',
+            'rgba(100, 100, 255, 0.8)',
+            'rgba(255, 255, 100, 0.8)',
+            'rgba(255, 100, 255, 0.8)',
+            'rgba(255, 255, 255, 0.5)'
+        ],
+        [
+            'rgba(255, 100, 100, 0.8)',
+            'rgba(100, 255, 100, 0.8)',
+            'rgba(100, 100, 255, 0.8)',
+            'rgba(255, 255, 100, 0.8)',
+            'rgba(255, 100, 255, 0.8)',
+            'rgba(255, 255, 255, 0.5)'
+        ]
+    ]
 };
 
 export default AnimatedBackgroundCanvas;

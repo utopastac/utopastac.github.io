@@ -10,7 +10,7 @@ import * as Agency from 'data/work/agency';
 import * as UISamples from 'data/work/ui-samples';
 
 export const TITLE_BLOCK = {
-  title: 'Work',
+  title: 'From agencies to startups to big tech.',
   subtitle: `
 #### I am lucky enough to have worked on some amazing projects at incredible companies. I'm currently at Cash app, thinking about the future of trust for fintechs.
 `,

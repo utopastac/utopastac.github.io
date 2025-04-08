@@ -4,7 +4,7 @@ import * as Playpress from 'data/me/playpress';
 import * as Pixel from 'data/me/pixel';
 
 export const TITLE_BLOCK = {
-  title: 'Me',
+  title: 'I love to make things, playfully.',
   subtitle: `
 #### How I like to work, what value I can add, and things you should know about me. 'Silly' is a lofty compliment!
 `,

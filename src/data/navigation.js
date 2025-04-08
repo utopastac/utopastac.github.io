@@ -28,7 +28,7 @@ export const ME_THEME = Colors.TRANSPARENT_THEME;
 //
 export const NAV_ITEMS = [
   {
-    title: 'Resumé',
+    title: 'Work',
     component: Pages.Landing,
     data: WorkData,
     path: WORK_PATH,

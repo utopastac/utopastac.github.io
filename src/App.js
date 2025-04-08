@@ -15,12 +15,13 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <AnimatedBackgroundCanvas />
+      
       <ThemeContextProvider value={theme}>
         <ScrollController />
         <TopNav />
         <NavBar />
         <div className={styles.content}>
+          <AnimatedBackgroundCanvas />
           <Routes
             appProps={{
               app: true,
