@@ -20,6 +20,7 @@
 
   .content
     // mix-blend-mode: multiply
+    padding: 0 calc($border-l + $space-s)
     display: flex
     align-items: center
     justify-content: space-between
@@ -28,16 +29,16 @@
   &.active
     height: $nav-bar-active-height
     margin-bottom: -$nav-bar-active-height
-    background-color: rgba(255, 255, 255, 0.8)
-    backdrop-filter: blur(20px)
-    -webkit-backdrop-filter: blur(20px)
+    background-color: rgba(255, 255, 255, 0.0001)
+    backdrop-filter: blur(200px)
+    -webkit-backdrop-filter: blur(200px)
 
     .content
       mix-blend-mode: normal
 
     .line
-      opacity: 1
-      background-color: $grey-300 !important
+      opacity: 0
+      // background-color: $grey-300 !important
     
     .MainLogo
       font-size: 18px

@@ -4,6 +4,7 @@ import ScrollController from 'helpers/ScrollController';
 import TopNav from 'components/TopNav';
 import NavBar from 'components/NavBar';
 import Footer from 'components/Footer';
+import AnimatedBackgroundCanvas from "components/AnimatedBackgroundCanvas";
 
 import styles from "./App.module.sass";
 import { ThemeContextProvider } from 'containers/ThemeContext';
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className={styles.App}>
+      <AnimatedBackgroundCanvas />
       <ThemeContextProvider value={theme}>
         <ScrollController />
         <TopNav />

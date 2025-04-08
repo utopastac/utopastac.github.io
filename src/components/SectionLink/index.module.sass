@@ -20,11 +20,11 @@
   
 
   @include min($screen-l)
-    padding: 0 size(50)
+    padding: 0 0
 
     &:not(:first-child)
       border-top: none
-      border-left: 1px solid rgba(0,0,0, 0.2)
+      // border-left: 1px solid rgba(0,0,0, 0.2)
 
     .cta
       margin-top: units(6)
@@ -33,16 +33,16 @@
     display: block !important
 
     h5
-      @extend %body-s
+      @extend %body-xs
       @extend %bold
       margin-bottom: units(2)
       display: none
     
     p
-      @extend %body-s
+      @extend %body-xs
   
   .cta
-    @extend %body-s
+    @extend %body-xs
     @extend %bold
     margin-top: units(2)
 

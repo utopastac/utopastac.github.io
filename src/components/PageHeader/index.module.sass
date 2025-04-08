@@ -46,7 +46,7 @@
   padding: $space-s 0
   @include min($screen-l)
     padding: $space-m 0
-  // border-top: $border-width solid currentColor
+  border-top: 1px solid currentColor
   // border-bottom: $border-width solid currentColor
   
   > h5
@@ -55,6 +55,7 @@
     
   > div
     display: grid
+    grid-gap: $space-l
 
     @include min($screen-l)
       grid-template-columns: 1fr 1fr 1fr

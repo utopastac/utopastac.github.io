@@ -5,10 +5,10 @@
 .pages
   @extend %round-section
   padding: $space-l 0
-  background: $grey-100
+  //background: $grey-100
   
   .content
-    display: flex
-    flex-direction: column
-    justify-content: flex-end
-    align-items: flex-end
+    @include min($screen-m)
+      display: grid
+      grid-gap: $space-l
+      grid-template-columns: 1fr 1fr 1fr

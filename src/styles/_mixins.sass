@@ -10,6 +10,8 @@ $radius-section-l: 80px
 $radius-section-m: 50px
 $radius-section-s: 40px
 //
+$border-m: 40px
+$border-l: 56px
 
 @mixin contain-background($image)
   background-size: contain
@@ -146,11 +148,14 @@ $bigUnits: 40
 
 %round-section
   border-radius: 0//$radius-section-s
-  overflow: hidden
+  overflow: hidden    
+
   @include min($screen-m)
     border-radius: $radius-section-m
+    margin: 0 $border-m
   @include min($screen-l)
     border-radius: $radius-section-l
+    margin: 0 $border-l
 
 %site-links
   .links

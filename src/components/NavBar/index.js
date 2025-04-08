@@ -40,7 +40,7 @@ function NavBar() {
     <div className={`${styles.Main} ${stuck ? styles.active : ''}`}>
       <div className={styles.sentinel} ref={ref} />
       <div className={styles.block} style={{background: theme.bg}} />
-      <div className={styles.line} style={{background: theme.text}} />
+      {/* <div className={styles.line} style={{background: theme.text}} /> */}
       <div className={styles.content}>
         <div className={styles.nav}>
           <ul className={styles.navList}>
