@@ -8,10 +8,4 @@
   //background: $grey-100
   
   .content
-    margin-top: $space-m
-    @include min($screen-m)
-      display: grid
-      grid-gap: $space-l
-      grid-template-columns: 1fr 1fr 1fr
-
-    @include min($screen-l)
+    @extend %link-grid

@@ -157,6 +157,18 @@ $bigUnits: 40
     border-radius: $radius-section-l
     margin: 0 $border-l
 
+%link-grid
+  display: grid
+  grid-gap: 64px
+
+  @include min($screen-m)
+    margin-top: 40px
+    grid-template-columns: 1fr 1fr
+    grid-gap: 120px
+
+  @include min($screen-l)
+    grid-template-columns: 1fr 1fr 1fr
+
 %site-links
   .links
     @include min($screen-l)

@@ -8,7 +8,4 @@
   //background: $grey-100
   
   .content
-    @include min($screen-m)
-      display: grid
-      grid-gap: $space-l
-      grid-template-columns: 1fr 1fr 1fr
+    @extend %link-grid

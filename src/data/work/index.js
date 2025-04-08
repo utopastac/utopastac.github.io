@@ -20,7 +20,7 @@ export const PAGES = [
   {
     title: 'Cash app',
     date: 'Early 2024 - now',
-    intro: 'At Cash app, I am a principle designer in the trust space, responsible for a wide range of product areas.',
+    intro: 'I am a principle designer in the trust space, responsible for a wide range of product areas.',
     subtitle: "#### Trust at cash app is a vital part of the business, looking after users privacy, safety, and security whilst working alongside regulatory partners. As a principle designer, I have a broad scope of work I am responsible for and take an active role in uplevelling quality across the team. I am proud to work really closely with some of our earlier career team members.",
     path: `/cash-app`,
     data: CashApp.DATA
@@ -28,23 +28,23 @@ export const PAGES = [
   {
     title: 'Personio',
     date: 'Early 2023 - 2024',
-    intro: 'At Personio, I am leading design for the apps team, where new products are incubated.',
-    subtitle: "#### As staff designer for apps, I am helping one of Europe's leading unicorn companies with design practice in a time of enormous growth and change. I am focused on uplevelling our experience and craft, whilst launching new 0-1 products.",
+    intro: 'Design lead for the apps team, where new products were incubated.',
+    subtitle: "#### As staff designer for apps, I helped one of Europe's leading unicorn companies with design practice in a time of enormous growth and change. I focused on uplevelling our experience and craft, whilst launching new 0-1 products.",
     path: `/personio`,
     data: Personio.DATA
   },
   {
     title: 'Twitter',
     date: 'Late 2021 - 2023',
-    intro: 'At Twitter, I am leading design for subscriptions as a Staff product designer in the revenue diversity team.',
-    subtitle: "#### I joined Twitter at a time of accelerating product change to help lead design in the revenue diversity space. I am primarily focused on imprving on consumer subscription product, Twitter Blue.",
+    intro: 'I led design for subscriptions as a Staff product designer in the revenue diversity team.',
+    subtitle: "#### I joined Twitter at a time of accelerating product change to help lead design in the revenue diversity space. I was primarily focused on imprving on consumer subscription product, Twitter Blue.",
     path: `/twitter`,
     data: Twitter.DATA
   },
   {
     title: 'Meta',
     date: '2020 - late 2021',
-    intro: 'At Meta, I led design for part of the wider Community Integrity team, working across the Oversight Board and Legitimacy pillars.',
+    intro: 'Design lead for part of the wider Community Integrity team, working across the Oversight Board and Legitimacy pillars.',
     subtitle: '#### As the lead designer in the Community Integrity legitimacy team, I was responsible for setting product vision and moving the mission forward with thoughtful design output.',
     path: `/meta`,
     data: Facebook.DATA
@@ -52,7 +52,7 @@ export const PAGES = [
   {
     title: 'Spotify',
     date: '2019 - 2020',
-    intro: 'As one of few Principal designers at Spotify, I currently lead design for part of the Premium mission, focusing our team on lean experimentation and creative process.',
+    intro: 'Principal designer focusing our team on lean experimentation and creative process.',
     subtitle: '#### As an Associate principal product designer in the premium mission, I am responsible for driving design strategy and craft in our focus area. I am through practice to make the output of those I work with better.',
     path: `/spotify`,
     data: Spotify.DATA
@@ -60,7 +60,7 @@ export const PAGES = [
   {
     title: 'Google',
     date: '2018 - 2019',
-    intro: 'At Google I worked across a number of teams, including maps and Wear OS in metric-driven design and facilitation roles.',
+    intro: 'I worked across a number of teams, including maps and Wear OS in metric-driven design and facilitation roles.',
     subtitle: '#### In my time at Google, I worked across 3 different teams on countless projects. As a lead interaction designer, I was responsible for delivering strategy and product design that had a real effect on our metrics. I ran lots of creative working sessions, and mentored many less senior designers.',
     path: `/google`,
     data: Google.DATA
