@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Markdown from 'components/Markdown';
 import AnimatedBackgroundCanvas from "components/AnimatedBackgroundCanvas";
 import GradientTimeBackground from "components/GradientTimeBackground";
+import InteractiveCircleCanvas from "components/InteractiveCircleCanvas";
 import styles from "./index.module.sass";
 import ThemeContext from "containers/ThemeContext";
 
@@ -16,9 +17,11 @@ export default function Overview(props) {
   return (
     <div className={styles.Main}>
       {/* <AnimatedBackgroundCanvas /> */}
+      
       <section className={styles.content}>
-        {/* <GradientTimeBackground width={800} height={600} /> */}
+        
         <div className={styles.inner}><Markdown copy={copy} /></div>
+        <InteractiveCircleCanvas />
       </section>
       {img &&
         <section className={styles.image} />

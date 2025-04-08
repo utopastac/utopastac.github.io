@@ -81,7 +81,7 @@ const AnimatedBackgroundCanvas = ({ colors }) => {
     }, [colors]);
 
     return (
-        <div  className={styles.backgroundContainer}>
+        <div className={styles.backgroundContainer}>
             <canvas ref={canvasRef} style={{ display: 'block', width: '120%', height: '100%' }} />
         </div>
     );
