@@ -24,9 +24,12 @@ const AnimatedBackgroundCanvas = ({ colors }) => {
         };
         window.addEventListener('resize', resizeCanvas);
 
+        const minRadius = Math.max(window.innerWidth/8, 150);
+        const maxRadiusRange = Math.min(window.innerWidth/4, 700);
+
         // Generate initial positions and properties for circles
         for (let i = 0; i < circleCount; i++) {
-            const radius = (Math.random() * (window.innerWidth/4)) + window.innerWidth/8;
+            const radius = (Math.random() * maxRadiusRange) + minRadius;
             circles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
@@ -79,7 +82,7 @@ const AnimatedBackgroundCanvas = ({ colors }) => {
 
     return (
         <div  className={styles.backgroundContainer}>
-            <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
+            <canvas ref={canvasRef} style={{ display: 'block', width: '120%', height: '100%' }} />
         </div>
     );
 };
@@ -90,22 +93,38 @@ AnimatedBackgroundCanvas.propTypes = {
 
 AnimatedBackgroundCanvas.defaultProps = {
     colors: [
-        [
-            'rgba(255, 100, 100, 0.8)',
-            'rgba(100, 255, 100, 0.8)',
-            'rgba(100, 100, 255, 0.8)',
-            'rgba(255, 255, 100, 0.8)',
-            'rgba(255, 100, 255, 0.8)',
-            'rgba(255, 255, 255, 0.5)'
-        ],
-        [
-            'rgba(255, 100, 100, 0.8)',
-            'rgba(100, 255, 100, 0.8)',
-            'rgba(100, 100, 255, 0.8)',
-            'rgba(255, 255, 100, 0.8)',
-            'rgba(255, 100, 255, 0.8)',
-            'rgba(255, 255, 255, 0.5)'
-        ]
+        // Inspired by Aurora Borealis
+        ["#3B9C9C", "#72C2C2", "#A4D8D8", "#D4E3F2", "#0E4D92"],
+                
+        // Celestial Glow
+        //["#3B9C9C", "#035E7B", "#1FB5B0", "#62D2A2", "#A0CCD4"],
+        
+        // Warm Sunset
+        //["#FF5E78", "#FF8A5C", "#FFBD4A", "#FFDA6C", "#F2EC85"],----
+        
+        // Ocean Breeze
+        ["#003D5B", "#04756F", "#54B2A9", "#A0E8AF", "#F4F1BB"],
+        
+        // Coastal Calm
+        //["#016064", "#028482", "#93E9BE", "#B3E2D3", "#E8FFFF"],
+        
+        // Vintage Rose
+        //["#C9ADA7", "#E2A2B8", "#E7BB7E", "#807E7E", "#4A444E"],----
+
+        // Pastel Morning
+        //["#FFB3BA", "#FFDFBA", "#FFFFBA", "#BAFFC9", "#BAE1FF"],----
+        
+        // Calm Horizon
+        //["#D3EEDD", "#F1E0B0", "#F3D2C1", "#D3BBDD", "#B0D6F1"],----
+
+        // Deep Sea
+        //["#013A63", "#036280", "#028090", "#00A896", "#02C39A"],----
+        
+        // Ocean Wave
+        ["#005F73", "#0A9396", "#94D2BD", "#E9D8A6", "#EE9B00"],
+
+        // Sunrise Glow
+        //["#FFB6AB", "#FFD3B6", "#FFFACD", "#ADE8F4", "#D7E1FF"],----
     ]
 };
 
