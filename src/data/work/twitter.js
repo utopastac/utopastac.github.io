@@ -6,6 +6,9 @@ import image4 from 'images/content/twitter-cta.jpg';
 import image5 from 'images/content/twitter-nav.jpg';
 
 export const DATA = {
+  pageTitle: `
+    Growth at an iconic company.
+  `,
   meta: [
     {title: 'Year', content: '2021 - now'},
     {title: 'Role', content: 'Staff product designer'}

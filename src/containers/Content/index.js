@@ -14,7 +14,10 @@ function Content(props) {
   const location = useLocation();
   
   const { data, title, subtitle, theme, related } = props;
-  const { pages, meta, doNotShowNavigation } = data;
+  const { pageTitle, pages, meta, doNotShowNavigation } = data;
+
+  const newTitle = pageTitle ? pageTitle : title;
+  const sub = pageTitle ? title : null;
 
   const [active, setActive] = useState();
   const [overlayOpen, setOverlayOpen] = useState(false);
@@ -61,7 +64,7 @@ function Content(props) {
 
   return (
     <div className={styles.Main}>
-      <PageHeader data={{title, subtitle}} />
+      <PageHeader data={{title: newTitle, subtitle, sub}} />
       {((pages.length > 1 && !doNotShowNavigation) || meta.length > 1) && (
         <InPageNavigation
           sections={pages}

@@ -2,6 +2,9 @@ import {SECTIONS} from 'data/work/pageBasics';
 import image1 from 'images/content/spotify-1.png';
 
 export const DATA = {
+  pageTitle: `
+    Driving subscribers with innovation.
+  `,
   meta: [
     {title: 'Year', content: '2019 - 2020'},
     {title: 'Role', content: 'Associate Principal product designer'}

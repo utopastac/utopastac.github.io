@@ -6,6 +6,9 @@ import image4 from 'images/content/twitter-cta.jpg';
 import image5 from 'images/content/twitter-nav.jpg';
 
 export const DATA = {
+  pageTitle: `
+    Innovation for employees and employers.
+  `,
   meta: [
     {title: 'Year', content: '2023 - now'},
     {title: 'Role', content: 'Staff product designer'}

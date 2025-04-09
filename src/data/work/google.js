@@ -2,6 +2,9 @@ import {SECTIONS} from 'data/work/pageBasics';
 import image1 from 'images/content/google-retention.jpg';
 
 export const DATA = {
+  pageTitle: `
+    Hardware and software for billions of people.
+  `,
   meta: [
     {title: 'Year', content: '2018 - 2019'},
     {title: 'Role', content: 'Lead Interaction designer'}

@@ -29,7 +29,7 @@ export default function PageHeader(props) {
         <MainContent>
           <header>
             <div>
-              <SectionTitle title={data.title} color={theme.text} home={data.home} />
+              <SectionTitle title={data.title} color={theme.text} sub={data.sub} />
             </div>
             <div className={styles.content}>
               <Markdown copy={data.subtitle} />

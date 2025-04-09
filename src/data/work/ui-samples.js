@@ -9,13 +9,16 @@ import image7 from 'images/content/twitter-nav.jpg';
 import image8 from 'images/content/circles-initial.jpg';
 
 export const DATA = {
+  doNotShowNavigation: true,
+  pageTitle: `
+    Pixels and prototypes.
+  `,
   meta: [
   ],
   pages: [
     {
       ...SECTIONS.section,
-      title: 'UI Samples',
-      path: '#uisamples',
+      title: '',
       data: [
         {
           type: 'imageList',

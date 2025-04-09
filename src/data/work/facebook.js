@@ -5,6 +5,9 @@ import image3 from 'images/content/meta-ob-ds-case.jpg';
 import image4 from 'images/content/meta-ob-ds-user.jpg';
 
 export const DATA = {
+  pageTitle: `
+    Legitimacy at planet scale.
+  `,
   meta: [
     {title: 'Year', content: '2020 - late 2021'},
     {title: 'Role', content: 'Lead product designer'}

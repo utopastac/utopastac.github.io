@@ -6,6 +6,9 @@ import image4 from 'images/content/agency-authonomy.jpg';
 import image5 from 'images/content/agency-iaaf.jpg';
 
 export const DATA = {
+  pageTitle: `
+    My formative career years, learning about design and code.
+  `,
   meta: [
     {title: 'Year', content: '2005 - 2013'},
     {title: 'Role', content: 'Various'}

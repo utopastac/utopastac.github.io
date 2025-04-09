@@ -9,6 +9,9 @@ import image7 from 'images/content/circles-design-system.jpg';
 import banner from 'images/content/circles-banner.jpg';
 
 export const DATA = {
+  pageTitle: `
+    Deign as a co-founder of a VC backed startup.
+  `,
   meta: [
     {title: 'Year', content: '2016 - 2018'},
     {title: 'Role', content: 'Head of product design'}

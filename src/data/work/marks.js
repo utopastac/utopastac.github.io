@@ -6,6 +6,9 @@ import image4 from 'images/content/marks-handbags.jpg';
 import image5 from 'images/content/marks-sparks.jpg';
 
 export const DATA = {
+  pageTitle: `
+    Creativity in a 130 year old company.
+  `,
   meta: [
     {title: 'Year', content: '2013 - 2016'},
     {title: 'Role', content: 'Lead product designer'}
