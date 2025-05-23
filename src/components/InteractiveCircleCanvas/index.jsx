@@ -40,11 +40,11 @@ const InteractiveCircleCanvas = () => {
 
           let scale = Math.max(1 - distance / 500, 0.1); // Example of scaling formula
           let newRadius = circleRadius * scale;
-          let alpha = Math.max(1 - distance / 1400, 0.4);
+          let alpha = Math.max(1 - distance / 1400, 0.01);
 
           context.beginPath();
           context.arc(x, y, newRadius, 0, Math.PI * 2, true);
-          context.fillStyle = `rgb(1, 70, 40, ${alpha})`; // Circle color
+          context.fillStyle = `rgb(40, 40, 40, ${alpha})`; // Circle color
           context.fill();
         }
       }
