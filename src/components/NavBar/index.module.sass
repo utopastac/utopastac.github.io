@@ -29,9 +29,19 @@
   &.active
     height: $nav-bar-active-height
     margin-bottom: -$nav-bar-active-height
-    background-color: rgba(255, 255, 255, 0.0001)
-    backdrop-filter: blur(200px)
-    -webkit-backdrop-filter: blur(200px)
+    
+
+    &::before
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-color: rgba(255, 255, 255, 0.99)
+      backdrop-filter: blur(40px)
+      -webkit-backdrop-filter: blur(40px)
+      z-index: -1
 
     .content
       mix-blend-mode: normal
