@@ -27,15 +27,15 @@ export const ME_THEME = Colors.TRANSPARENT_THEME;
 //
 //
 export const NAV_ITEMS = [
-  {
-    title: 'Work',
-    component: Pages.Landing,
-    data: WorkData,
-    path: WORK_PATH,
-    links: (<LinkSet data={WorkData} basePath={WORK_PATH} />),
-    theme: WORK_THEME,
-    landingTheme: Colors.TRANSPARENT_THEME
-  },
+  // {
+  //   title: 'Work',
+  //   component: Pages.Landing,
+  //   data: WorkData,
+  //   path: WORK_PATH,
+  //   links: (<LinkSet data={WorkData} basePath={WORK_PATH} />),
+  //   theme: WORK_THEME,
+  //   landingTheme: Colors.TRANSPARENT_THEME
+  // },
   // {
   //   title: 'Process',
   //   component: Pages.Landing,

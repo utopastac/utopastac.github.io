@@ -70,11 +70,6 @@ export const PAGES = [
     path: `https://www.linkedin.com/in/utopastac/`,
   },
   {
-    title: 'Twitter',
-    type: 'link',
-    path: `https://twitter.com/utopastac`,
-  },
-  {
     title: 'Medium',
     type: 'link',
     path: `https://medium.com/@utopastac`,
