@@ -28,9 +28,10 @@ export const JOBS: readonly JobEntry[] = [
     date: '2023',
     jobTitle: 'Senior Staff Product Designer',
     company: 'Personio',
-    backgroundColor: '#fafaf8',
+    backgroundColor: '#000000',
+    textColor: '#00CCFF',
     description:
-      'At Personio I lead design for Apps - add ons to the core HR product for performance management and compensation. I am responsible for the quality of craft and the product that ships to customers, as well as developing and updating a future experience vision. I work closely with extremely senior stakeholders across the company.',
+      'At Personio I led design for Apps - add ons to the core HR product for performance management and compensation. I am responsible for the quality of craft and the product that ships to customers, as well as developing and updating a future experience vision. I work closely with extremely senior stakeholders across the company.',
   },
   {
     id: 'twitter',
@@ -48,7 +49,7 @@ export const JOBS: readonly JobEntry[] = [
     company: 'Facebook',
     backgroundColor: '#e5e5e0',
     description:
-      "At Facebook, I am leading the company wide efforts for Community Integrity Legitimacy - a highly complex strategic initiative to develop defensible, viable patterns for the company to follow. This includes driving design work for The Oversight Board and Facebook's transparency efforts.",
+      "At Facebook, I led the company wide efforts for Community Integrity Legitimacy - a highly complex strategic initiative to develop defensible, viable patterns for the company to follow. This includes driving design work for The Oversight Board and Facebook's transparency efforts.",
   },
   {
     id: 'spotify',

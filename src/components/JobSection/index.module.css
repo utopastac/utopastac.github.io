@@ -6,8 +6,7 @@
   text-align: left;
 
   .meta {
-    margin: 0 0 var(--space_0_75);
-    @mixin caption;
+    @mixin heading-lg;
     color: var(--section-text-color, var(--color-text));
   }
 
@@ -25,15 +24,15 @@
     color: var(--section-text-color, var(--color-text));
 
     .separator {
-      @mixin body-sm;
+      @mixin body;
       margin: 0 var(--space_1);
       opacity: 0.6;
     }
   }
 
   .company {
-    margin: 0 0;
-    @mixin heading-xl;
+    @mixin display;
+    margin-bottom: var(--space_3);
     color: var(--section-text-color, var(--color-text));
   }
 

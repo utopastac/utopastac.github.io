@@ -4,6 +4,7 @@ import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
 import { IntroHero } from '@/components/IntroHero'
 import { JobSection } from '@/components/JobSection'
+import { Modal } from '@/components/Modal'
 import { PageNav } from '@/components/PageNav'
 import { QuotesSection } from '@/components/QuotesSection'
 import { ScrollDownArrow } from '@/components/ScrollDownArrow'
@@ -27,10 +28,19 @@ export function App() {
 
   const ctx = useContext(SectionBackgroundContext)
   const backgroundColor = ctx?.backgroundColor ?? 'var(--color-bg)'
+  const activeSection = SECTIONS.find((s) => s.id === ctx?.activeSectionId)
+  const cornerTextColor = activeSection?.textColor ?? 'var(--color-text)'
   const jobMap = new Map(JOBS.map((j) => [j.id, j]))
 
   return (
-    <div className={styles.root} style={{ backgroundColor }}>
+    <div
+      className={styles.root}
+      style={{
+        backgroundColor,
+        ['--corner-text-color' as string]: cornerTextColor,
+      }}
+    >
+      <Modal />
       <CornerOverlay />
       <ScrollDownArrow sectionIds={SECTIONS.map((s) => s.id)} />
       <PageNav
@@ -69,7 +79,15 @@ export function App() {
           }
           return (
             <Section key={id} id={id} backgroundColor={bg} textColor={textColor}>
-              <div className={styles.sectionContent}>{content}</div>
+              <div
+                className={
+                  isQuotes
+                    ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
+                    : styles.sectionContent
+                }
+              >
+                {content}
+              </div>
             </Section>
           )
         })}

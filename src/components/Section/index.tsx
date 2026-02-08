@@ -13,6 +13,8 @@ type SectionProps = {
 export function Section({ id, backgroundColor, textColor, children }: SectionProps) {
   const ctx = useContext(SectionBackgroundContext)
   const ref = useRef<HTMLElement>(null)
+  const isActive = ctx?.activeSectionId === id
+  const isInactive = ctx?.activeSectionId != null && !isActive
 
   const setRef = useCallback(
     (node: HTMLElement | null) => {
@@ -29,7 +31,12 @@ export function Section({ id, backgroundColor, textColor, children }: SectionPro
     : undefined
 
   return (
-    <section ref={setRef} id={id} className={styles.root} style={style}>
+    <section
+      ref={setRef}
+      id={id}
+      className={`${styles.root} ${isInactive ? styles.inactive : ''}`}
+      style={style}
+    >
       {children}
     </section>
   )

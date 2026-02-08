@@ -1,0 +1,101 @@
+@import '@styles/typography.css';
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0;
+  background: var(--color-bg);
+  animation: fadeIn 0.2s ease-out;
+
+  &.closing {
+    animation: fadeOut 0.2s ease-out forwards;
+  }
+
+  .panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .closeButtonFade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35vh;
+    pointer-events: none;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 80%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 80%);
+    mask-size: 100% 100%;
+    -webkit-mask-size: 100% 100%;
+    mask-position: 0 0;
+    -webkit-mask-position: 0 0;
+  }
+
+  .body {
+    z-index: 0;
+  }
+
+  .closeButton {
+    position: absolute;
+    bottom: var(--space_8);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space_1) var(--space_4);
+    border: none;
+    border-radius: 9999px;
+    background: var(--color-text);
+    color: var(--color-text-on-dark);
+    @mixin heading-sm;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: var(--color-text);
+      color: var(--color-bg);
+    }
+  }
+
+  .body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: var(--space_4) var(--space_3) var(--space_3);
+    padding-bottom: 35vh;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

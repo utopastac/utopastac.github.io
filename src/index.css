@@ -1,35 +1,7 @@
 /* Global CSS variables and reset – base rem = 8px */
-:root {
-  /* Typography (1rem = 8px) */
-  --font-sans: futura-pt, sans-serif;
-  /* Futura 100 Book: 400 normal */
-  --font-serif: "jaf-lapture", sans-serif;
-  /* Engria: 400 normal, 400 italic */
-  --font-display: futura-pt, sans-serif;
-  /* Futura 100 display: 500 medium, 600 demibold, 700 bold */
-  --font-fun: "flegrei", sans-serif;
-  /* Flegrei: normal */
-  --font-chunky: "kuhlman-vf",sans-serif;
-  /* Kuhlman VF: variable */
-  --font-mono: "inconsolata", monospace;
-  /* Inconsolata: normal */
-  --font-size-xs: 1.5rem;   /* 12px */
-  --font-size-sm: 1.75rem;  /* 14px */
-  --font-size-base: 2rem;   /* 16px */
-  --font-size-md: 2.25rem;  /* 18px */
-  --font-size-lg: 2.5rem;   /* 20px */
-  --font-size-xl: 3rem;     /* 24px */
-  --font-size-2xl: 4rem;    /* 32px */
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --line-height-tight: 1.25;
-  --line-height-snug: 1.375;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
-  --letter-spacing-tight: -0.025em;
+@import './styles/typography.css';
 
+:root {
   /* Spacing (multipliers of base unit 1rem = 8px) */
   --space_0_25: 0.25rem;
   --space_05: 0.5rem;

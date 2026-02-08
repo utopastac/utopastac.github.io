@@ -8,7 +8,7 @@
     position: absolute;
     padding: var(--space_2);
     font-size: var(--font-size-sm);
-    color: var(--color-text);
+    color: var(--corner-text-color, var(--color-text));
     pointer-events: auto;
 
     &:focus-visible {
@@ -18,12 +18,12 @@
   }
 
   & a {
-    color: var(--color-text);
+    color: var(--corner-text-color, var(--color-text));
     text-decoration: underline;
     font-weight: var(--font-weight-semibold);
 
     &:hover {
-      color: var(--color-accent);
+      color: var(--corner-accent-color, var(--color-accent));
     }
   }
 

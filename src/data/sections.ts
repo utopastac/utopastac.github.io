@@ -38,7 +38,8 @@ export const SECTIONS: readonly SectionData[] = [
   {
     id: 'quotes',
     title: 'What people say',
-    backgroundColor: '#e0e0dc',
+    backgroundColor: '#000000',
+    textColor: '#FFFFFF',
     isQuotes: true,
   },
 ] as const

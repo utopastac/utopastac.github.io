@@ -1,4 +1,46 @@
-/* Typography mixins – @import this in components that use @mixin */
+/* Typography variables and mixins – @import this in components that use @mixin */
+
+:root {
+  /* Font families */
+  --font-sans: futura-pt, sans-serif;
+  --font-serif: "jaf-lapture", sans-serif;
+  --font-display: futura-pt, sans-serif;
+  --font-fun: "flegrei", sans-serif;
+  --font-chunky: "kuhlman-vf", sans-serif;
+  --font-mono: "inconsolata", monospace;
+
+  /* Font sizes (1rem = 8px) */
+  --font-size-xs: 1.5rem;
+  --font-size-sm: 1.75rem;
+  --font-size-base: 2rem;
+  --font-size-md: 2.25rem;
+  --font-size-lg: 2.5rem;
+  --font-size-xl: 3rem;
+  --font-size-2xl: 4rem;
+
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* Letter spacing */
+  --letter-spacing-tight: -0.025em;
+}
+
+@define-mixin display {
+  font-family: var(--font-display);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
 
 @define-mixin heading-xl {
   font-family: var(--font-display);
@@ -38,6 +80,13 @@
 
 @define-mixin body {
   font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+@define-mixin body-serif {
+  font-family: var(--font-serif);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);

@@ -34,12 +34,13 @@
 .root {
   position: absolute;
   top: 50%;
+  left: 0;
   right: 0;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  padding: var(--space_1);
-  padding-right: var(--space_8); /* 24px from right edge */
+  padding-left: var(--space_3); /* inset panel from left edge of backdrop */
+  padding-right: var(--space_8);
 
   & .menuIcon {
     position: absolute;
@@ -66,12 +67,9 @@ ul.panel {
   display: flex;
   flex-direction: column;
   gap: var(--space_0_75);
-  margin-left: var(--space_1);
   padding-left: var(--space_1);
-  /* border-left: 2px solid var(--color-border); */
   list-style: none;
   opacity: 0;
-  filter: blur(8px);
   pointer-events: none;
 
   & li {

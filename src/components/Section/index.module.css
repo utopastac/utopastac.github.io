@@ -2,4 +2,13 @@
   width: 100vw;
   min-height: 100vh;
   box-sizing: border-box;
+  transition: opacity 0.4s ease-out;
+
+  &.inactive {
+    opacity: 0;
+  }
+
+  &:not(.inactive) {
+    opacity: 1;
+  }
 }
