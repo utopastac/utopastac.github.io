@@ -1,0 +1,123 @@
+/* Global CSS variables and reset – base rem = 8px */
+:root {
+  /* Typography (1rem = 8px) */
+  --font-sans: futura-pt, sans-serif;
+  /* Futura 100 Book: 400 normal */
+  --font-serif: "engria", sans-serif;
+  /* Engria: 400 normal, 400 italic */
+  --font-display: futura-pt, sans-serif;
+  /* Futura 100 display: 500 medium, 600 demibold, 700 bold */
+  --font-fun: "flegrei", sans-serif;
+  /* Flegrei: normal */
+  --font-chunky: "kuhlman-vf",sans-serif;
+  /* Kuhlman VF: variable */
+  --font-mono: "inconsolata", monospace;
+  /* Inconsolata: normal */
+  --font-size-xs: 1.5rem;   /* 12px */
+  --font-size-sm: 1.75rem;  /* 14px */
+  --font-size-base: 2rem;   /* 16px */
+  --font-size-md: 2.25rem;  /* 18px */
+  --font-size-lg: 2.5rem;   /* 20px */
+  --font-size-xl: 3rem;     /* 24px */
+  --font-size-2xl: 4rem;    /* 32px */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --letter-spacing-tight: -0.025em;
+
+  /* Spacing (multipliers of base unit 1rem = 8px) */
+  --space_0_25: 0.25rem;
+  --space_05: 0.5rem;
+  --space_0_75: 0.75rem;
+  --space_1: 1rem;
+  --space_1_25: 1.25rem;
+  --space_1_5: 1.5rem;
+  --space_2: 2rem;
+  --space_2_5: 2.5rem;
+  --space_3: 3rem;
+  --space_4: 4rem;
+  --space_5: 5rem;
+  --space_6: 6rem;
+  --space_8: 8rem;
+  --space-10: 10rem;
+
+  /* Colors */
+  --color-text: #1a1a1a;
+  --color-text-muted: #6b7280;
+  --color-bg: #ffffff;
+  --color-border: #e5e7eb;
+  --color-accent: #2563eb;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Basic reset */
+html {
+  font-size: 8px; /* base rem unit */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd, ul, ol {
+  margin: 0;
+}
+
+ul, ol {
+  padding-left: var(--space_1_5);
+  list-style: none;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding-left: 0;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-variation-settings: 'wdth' 100, 'SEED' 0;
+}
+
+#root {
+  min-height: 100vh;
+}

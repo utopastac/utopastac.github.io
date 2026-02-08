@@ -1,0 +1,49 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+
+  & > * {
+    position: absolute;
+    padding: var(--space_2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    pointer-events: auto;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+  }
+
+  & a {
+    color: var(--color-text);
+    text-decoration: underline;
+    font-weight: var(--font-weight-semibold);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  & .topLeft {
+    top: 0;
+    left: 0;
+  }
+
+  & .topRight {
+    top: 0;
+    right: 0;
+  }
+
+  & .bottomLeft {
+    bottom: 0;
+    left: 0;
+  }
+
+  & .bottomRight {
+    bottom: 0;
+    right: 0;
+  }
+}

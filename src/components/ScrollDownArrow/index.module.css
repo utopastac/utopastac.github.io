@@ -1,0 +1,36 @@
+@import '@styles/typography.css';
+
+.arrow {
+  position: fixed;
+  bottom: var(--space_2);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    color: var(--color-accent);
+    transform: translateX(-50%) translateY(2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}

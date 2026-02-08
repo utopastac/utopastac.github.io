@@ -1,0 +1,24 @@
+@import '@styles/typography.css';
+
+.root {
+  min-height: 100vh;
+  min-width: 100vw;
+  transition: background-color 0.3s ease-out;
+}
+
+.main {
+  flex: 1;
+}
+
+.sectionContent {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space_2);
+
+  & > h1 {
+    @mixin heading-xl;
+    margin: 0;
+  }
+}

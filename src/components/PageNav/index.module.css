@@ -1,0 +1,102 @@
+@import '@styles/typography.css';
+
+/* Invisible hit area: far right 10% of viewport; expands when menu open so panel is hoverable */
+.triggerZone {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 10vw;
+  height: 100vh;
+  z-index: 10;
+
+  &[data-open="true"] {
+    width: 25vw;
+  }
+}
+
+/* Blurs the background behind the nav when panel is open; fades in from the left */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  mask-image: linear-gradient(to right, transparent 0%, black 40%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%);
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-position: 0 0;
+  -webkit-mask-position: 0 0;
+}
+
+.root {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  padding: var(--space_1);
+  padding-right: var(--space_8); /* 24px from right edge */
+
+  & .menuIcon {
+    position: absolute;
+    right: var(--space_2);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space_2_5);
+    height: var(--space_2_5);
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    cursor: pointer;
+  }
+
+}
+
+ul.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space_0_75);
+  margin-left: var(--space_1);
+  padding-left: var(--space_1);
+  /* border-left: 2px solid var(--color-border); */
+  list-style: none;
+  opacity: 0;
+  filter: blur(8px);
+  pointer-events: none;
+
+  & li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & span {
+      @mixin fancy;
+      display: block;
+    }
+
+    & button {
+      @mixin body;
+      display: block;
+      padding: var(--space_0_25) 0;
+      border: none;
+      background: transparent;
+      color: var(--color-text);
+      cursor: pointer;
+      text-align: left;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
