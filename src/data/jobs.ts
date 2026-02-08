@@ -9,6 +9,8 @@ export type JobEntry = {
   company: string
   description: string
   backgroundColor: string
+  /** Optional text color (e.g. var(--color-text-on-dark) for dark backgrounds). */
+  textColor?: string
 }
 
 export const JOBS: readonly JobEntry[] = [
@@ -66,19 +68,19 @@ export const JOBS: readonly JobEntry[] = [
     description:
       'A strong cross-functional partner in developing strategies and alignment, trusted with highly complex problems. Working with Geo (Maps) and Wearables/Health, I drove a user-first, questions led process, and mentored several designers across different teams.',
   },
-  {
-    id: 'ten-group',
-    date: '2017 – 2018',
-    jobTitle: 'Head of Product Design',
-    company: 'Ten Group',
-    backgroundColor: '#ebebe8',
-    description:
-      'Full time head of a team of 5 designers, managing the full design process for an online concierge platform.',
-  },
+  // {
+  //   id: 'ten-group',
+  //   date: '2017 – 2018',
+  //   jobTitle: 'Head of Product Design',
+  //   company: 'Ten Group',
+  //   backgroundColor: '#ebebe8',
+  //   description:
+  //     'Full time head of a team of 5 designers, managing the full design process for an online concierge platform.',
+  // },
   {
     id: 'findcircles',
     date: '2016 – 2017',
-    jobTitle: 'Head of Product Design',
+    jobTitle: 'Founder & Designer',
     company: 'FindCircles',
     backgroundColor: '#f5f5f2',
     description:
@@ -94,39 +96,48 @@ export const JOBS: readonly JobEntry[] = [
       "Full time UI/UX and product development role within one of the UK's oldest and most loved high street retailers. At M&S digital labs, I worked in a small team that used lean startup techniques to validate and kickstart new innovations, defining the experience within all products and championing the user at all points within the process.",
   },
   {
-    id: 'haymarket',
-    date: '2010 – 2013',
-    jobTitle: 'Lead Designer',
-    company: 'Haymarket Network',
+    id: 'agency',
+    date: '2005 – 2013',
+    jobTitle: 'Various roles',
+    company: 'Advertising and agency',
     backgroundColor: '#f7f7f4',
     description:
-      'Full time UI design, art direction and development role within a large editorial agency, working with internal magazine ranges as well as external clients, as well as managing a small team.',
+      'Constant creative, design, and development input into adward winning work from concept to deployment for major blue-chip clients such as Mazda, Mercedes and Channel 4. Managed small teams of designers and creative technologists.',
   },
-  {
-    id: 'nexus-h',
-    date: '2008 – 2010',
-    jobTitle: 'Lead Interaction Designer',
-    company: 'Nexus|H',
-    backgroundColor: '#efefeb',
-    description:
-      'Full time design manager and interactive art direction for Nexus|H, an integrated advertising agency and the UK branch of Hakuhodo, mentoring a small team of digital designers/developers on advertising and design briefs.',
-  },
-  {
-    id: 'vml',
-    date: '2007 – 2008',
-    jobTitle: 'Hypermedia Designer',
-    company: 'VML London',
-    backgroundColor: '#e0e0dc',
-    description:
-      'Creative Technologist working closely with various creative and technical teams to produce high quality, award winning work for a leading design and advertising agency (Revolution Agency of the Year 2008). I had constant creative and technical input in some outstanding projects, including mentoring junior designers.',
-  },
-  {
-    id: 'syzygy',
-    date: '2006 – 2007',
-    jobTitle: 'Designer / Flash Designer',
-    company: 'Syzygy',
-    backgroundColor: '#f5f5f0',
-    description:
-      'Full time role within a large digital design and advertising agency. Constant creative input into work from concept to deployment for major blue-chip clients such as Mazda, Mercedes and Channel 4.',
-  },
+  // {
+  //   id: 'haymarket',
+  //   date: '2010 – 2013',
+  //   jobTitle: 'Lead Designer',
+  //   company: 'Haymarket Network',
+  //   backgroundColor: '#f7f7f4',
+  //   description:
+  //     'Full time UI design, art direction and development role within a large editorial agency, working with internal magazine ranges as well as external clients, as well as managing a small team.',
+  // },
+  // {
+  //   id: 'nexus-h',
+  //   date: '2008 – 2010',
+  //   jobTitle: 'Lead Interaction Designer',
+  //   company: 'Nexus|H',
+  //   backgroundColor: '#efefeb',
+  //   description:
+  //     'Full time design manager and interactive art direction for Nexus|H, an integrated advertising agency and the UK branch of Hakuhodo, mentoring a small team of digital designers/developers on advertising and design briefs.',
+  // },
+  // {
+  //   id: 'vml',
+  //   date: '2007 – 2008',
+  //   jobTitle: 'Hypermedia Designer',
+  //   company: 'VML London',
+  //   backgroundColor: '#e0e0dc',
+  //   description:
+  //     'Creative Technologist working closely with various creative and technical teams to produce high quality, award winning work for a leading design and advertising agency (Revolution Agency of the Year 2008). I had constant creative and technical input in some outstanding projects, including mentoring junior designers.',
+  // },
+  // {
+  //   id: 'syzygy',
+  //   date: '2006 – 2007',
+  //   jobTitle: 'Designer / Flash Designer',
+  //   company: 'Syzygy',
+  //   backgroundColor: '#f5f5f0',
+  //   description:
+  //     'Full time role within a large digital design and advertising agency. Constant creative input into work from concept to deployment for major blue-chip clients such as Mazda, Mercedes and Channel 4.',
+  // },
 ] as const

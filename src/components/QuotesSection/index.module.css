@@ -9,7 +9,7 @@
   .title {
     margin: 0 0 var(--space_3);
     @mixin heading-lg;
-    color: var(--color-text);
+    color: var(--section-text-color, var(--color-text));
   }
 
   .list {
@@ -45,7 +45,7 @@
     margin: 0 0 var(--space_0_75);
     @mixin body;
     font-style: italic;
-    color: var(--color-text);
+    color: var(--section-text-color, var(--color-text));
     line-height: var(--line-height-relaxed);
 
     &::before {

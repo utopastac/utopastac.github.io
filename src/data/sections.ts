@@ -10,6 +10,8 @@ export type SectionData = {
   id: string
   title: string
   backgroundColor: string
+  /** Optional text color for section content (e.g. var(--color-text-on-dark) for dark backgrounds). */
+  textColor?: string
   /** When set, this section renders JobSection with the given job id from JOBS. */
   jobId?: string
   /** When set, this section renders EducationSection (id must match EDUCATION.id). */
@@ -24,6 +26,7 @@ export const SECTIONS: readonly SectionData[] = [
     id: job.id,
     title: job.company,
     backgroundColor: job.backgroundColor,
+    ...(job.textColor != null && { textColor: job.textColor }),
     jobId: job.id,
   })),
   {

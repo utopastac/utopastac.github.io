@@ -1,35 +1,52 @@
 @import '@styles/typography.css';
 
 .root {
-  max-width: 42rem;
+  max-width: 64rem;
   margin: 0 auto;
   text-align: left;
 
   .meta {
     margin: 0 0 var(--space_0_75);
     @mixin caption;
-    color: var(--color-text-muted);
+    color: var(--section-text-color, var(--color-text));
   }
 
-  .date,
-  .company {
+  .date {
     font-variant-numeric: tabular-nums;
   }
 
-  .separator {
-    opacity: 0.6;
+  .companyContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin: 0 0 var(--space_1_5);
+    @mixin heading-xl;
+    color: var(--section-text-color, var(--color-text));
+
+    .separator {
+      @mixin body-sm;
+      margin: 0 var(--space_1);
+      opacity: 0.6;
+    }
+  }
+
+  .company {
+    margin: 0 0;
+    @mixin heading-xl;
+    color: var(--section-text-color, var(--color-text));
   }
 
   .title {
-    margin: 0 0 var(--space_1_5);
+    margin: 0 0;
     @mixin heading-lg;
-    color: var(--color-text);
+    color: var(--section-text-color, var(--color-text));
   }
 
   .description {
     margin: 0;
-    @mixin body;
-    color: var(--color-text);
+    @mixin body-serif;
+    color: var(--section-text-color, var(--color-text));
     line-height: var(--line-height-relaxed);
   }
 }

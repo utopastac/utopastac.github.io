@@ -22,13 +22,13 @@
   .title {
     margin: 0 0 var(--space_1_5);
     @mixin heading-lg;
-    color: var(--color-text);
+    color: var(--section-text-color, var(--color-text));
   }
 
   .details {
     margin: 0;
     @mixin body;
-    color: var(--color-text);
+    color: var(--section-text-color, var(--color-text));
     line-height: var(--line-height-relaxed);
   }
 }

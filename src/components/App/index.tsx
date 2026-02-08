@@ -37,7 +37,7 @@ export function App() {
         sections={SECTIONS.map(({ id, title }) => ({ id, label: title }))}
       />
       <main className={styles.main}>
-        {SECTIONS.map(({ id, backgroundColor: bg, title, jobId, educationId, isQuotes }) => {
+        {SECTIONS.map(({ id, backgroundColor: bg, textColor, title, jobId, educationId, isQuotes }) => {
           let content: React.ReactNode
           if (id === 'intro') {
             content = <IntroHero />
@@ -68,7 +68,7 @@ export function App() {
             content = <h1>{title}</h1>
           }
           return (
-            <Section key={id} id={id} backgroundColor={bg}>
+            <Section key={id} id={id} backgroundColor={bg} textColor={textColor}>
               <div className={styles.sectionContent}>{content}</div>
             </Section>
           )
