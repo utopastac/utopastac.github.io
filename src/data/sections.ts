@@ -1,20 +1,32 @@
 /**
  * Section data: single source of truth for section content, title, background, etc.
- * Edit this file to add, reorder, or change sections (~12 sections expected).
+ * Includes intro, one section per job (from JOBS), and a quotes section at the end.
  */
+
+import { JOBS } from './jobs'
 
 export type SectionData = {
   id: string
   title: string
   backgroundColor: string
-  /** Reserved for future: body copy, images, links, layout, etc. */
-  // content?: string
-  // image?: string
-  // links?: { label: string; href: string }[]
+  /** When set, this section renders JobSection with the given job id from JOBS. */
+  jobId?: string
+  /** When true, this section renders QuotesSection. */
+  isQuotes?: boolean
 }
 
 export const SECTIONS: readonly SectionData[] = [
-  { id: 'intro', title: 'LinkedIn', backgroundColor: '#f5f5f0' },
-  { id: 'work', title: 'Block [Cash app]', backgroundColor: '#e8e8e0' },
-  { id: 'about', title: 'Personio', backgroundColor: '#fafaf8' },
+  { id: 'intro', title: 'intro', backgroundColor: '#f5f5f0' },
+  ...JOBS.map((job) => ({
+    id: job.id,
+    title: job.company,
+    backgroundColor: job.backgroundColor,
+    jobId: job.id,
+  })),
+  {
+    id: 'quotes',
+    title: 'What people say',
+    backgroundColor: '#e0e0dc',
+    isQuotes: true,
+  },
 ] as const

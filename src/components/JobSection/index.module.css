@@ -1,0 +1,35 @@
+@import '@styles/typography.css';
+
+.root {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: left;
+
+  .meta {
+    margin: 0 0 var(--space_0_75);
+    @mixin caption;
+    color: var(--color-text-muted);
+  }
+
+  .date,
+  .company {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .separator {
+    opacity: 0.6;
+  }
+
+  .title {
+    margin: 0 0 var(--space_1_5);
+    @mixin heading-lg;
+    color: var(--color-text);
+  }
+
+  .description {
+    margin: 0;
+    @mixin body;
+    color: var(--color-text);
+    line-height: var(--line-height-relaxed);
+  }
+}

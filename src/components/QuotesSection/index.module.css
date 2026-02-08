@@ -1,0 +1,65 @@
+@import '@styles/typography.css';
+
+.root {
+  width: 70vw;
+  max-width: 70vw;
+  margin: 0 auto;
+  text-align: left;
+
+  .title {
+    margin: 0 0 var(--space_3);
+    @mixin heading-lg;
+    color: var(--color-text);
+  }
+
+  .list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    column-count: 1;
+    column-gap: var(--space_3);
+
+    @media (min-width: 480px) {
+      column-count: 2;
+    }
+
+    @media (min-width: 720px) {
+      column-count: 3;
+    }
+  }
+
+  .quoteItem {
+    break-inside: avoid;
+    margin-bottom: var(--space_2);
+    padding: var(--space_2);
+    background: var(--color-bg);
+    border-radius: var(--space_0_75);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .quote {
+    margin: 0 0 var(--space_0_75);
+    @mixin body;
+    font-style: italic;
+    color: var(--color-text);
+    line-height: var(--line-height-relaxed);
+
+    &::before {
+      content: '"';
+    }
+
+    &::after {
+      content: '"';
+    }
+  }
+
+  .cite {
+    @mixin caption;
+    color: var(--color-text-muted);
+    font-style: normal;
+  }
+}

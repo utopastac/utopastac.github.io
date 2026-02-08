@@ -1,8 +1,14 @@
 import { useContext, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { SectionBackgroundContext } from '../../context/SectionBackgroundContext'
 import styles from './index.module.css'
 
-const PEEK_PX = 100
+gsap.registerPlugin(ScrollToPlugin)
+
+const PEEK_PX = 50
+const PEEK_DURATION = 0.8
+const PEEK_EASE = 'power2.inOut'
 
 type ScrollDownArrowProps = {
   sectionIds: readonly string[]
@@ -20,20 +26,31 @@ export function ScrollDownArrow({ sectionIds }: ScrollDownArrowProps) {
 
   const handleClick = () => {
     if (!nextId) return
+    gsap.killTweensOf(window) // stop peek animation so scrollIntoView can take over
+    scrollYOnPeekRef.current = null // don't restore scroll on mouse leave after a click
     document.getElementById(nextId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleMouseEnter = () => {
     if (isLastSection) return
-    scrollYOnPeekRef.current = window.scrollY
-    window.scrollBy({ top: PEEK_PX, behavior: 'smooth' })
+    const fromY = window.scrollY
+    scrollYOnPeekRef.current = fromY
+    gsap.to(window, {
+      duration: PEEK_DURATION,
+      ease: PEEK_EASE,
+      scrollTo: { y: fromY + PEEK_PX },
+    })
   }
 
   const handleMouseLeave = () => {
     const saved = scrollYOnPeekRef.current
     scrollYOnPeekRef.current = null
     if (saved != null) {
-      window.scrollTo({ top: saved, behavior: 'smooth' })
+      gsap.to(window, {
+        duration: PEEK_DURATION,
+        ease: PEEK_EASE,
+        scrollTo: { y: saved },
+      })
     }
   }
 
