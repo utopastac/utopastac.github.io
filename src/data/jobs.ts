@@ -43,13 +43,13 @@ export const JOBS: readonly JobEntry[] = [
       'At Twitter, I led design for a large area within the Revenue Diversity initiative, focused on future subscription offerings. I was responsible for driving strategy and execution, alongside mentorship of more junior designers. This included driving design and strategy for Twitter consumer and business subscriptions.',
   },
   {
-    id: 'facebook',
+    id: 'Meta',
     date: '2020 – 2021',
     jobTitle: 'Product Design Lead',
-    company: 'Facebook',
+    company: 'Meta',
     backgroundColor: '#e5e5e0',
     description:
-      "At Facebook, I led the company wide efforts for Community Integrity Legitimacy - a highly complex strategic initiative to develop defensible, viable patterns for the company to follow. This includes driving design work for The Oversight Board and Facebook's transparency efforts.",
+      "At Meta, I led the company wide efforts for Community Integrity Legitimacy - a highly complex strategic initiative to develop defensible, viable patterns for the company to follow. This includes driving design work for The Oversight Board and Meta's transparency efforts.",
   },
   {
     id: 'spotify',
@@ -79,10 +79,10 @@ export const JOBS: readonly JobEntry[] = [
   //     'Full time head of a team of 5 designers, managing the full design process for an online concierge platform.',
   // },
   {
-    id: 'findcircles',
+    id: 'Circles',
     date: '2016 – 2017',
     jobTitle: 'Founder & Designer',
-    company: 'FindCircles',
+    company: 'Circles',
     backgroundColor: '#f5f5f2',
     description:
       'Founding member of a VC backed startup focused on delivering peer support for mental health.',

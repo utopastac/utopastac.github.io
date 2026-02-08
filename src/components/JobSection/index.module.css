@@ -19,7 +19,7 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: flex-start;
-    margin: 0 0 var(--space_1_5);
+    margin: 0 0 var(--space_3);
     @mixin heading-xl;
     color: var(--section-text-color, var(--color-text));
 
@@ -32,7 +32,7 @@
 
   .company {
     @mixin display;
-    margin-bottom: var(--space_3);
+    margin-bottom: var(--space_05);
     color: var(--section-text-color, var(--color-text));
   }
 

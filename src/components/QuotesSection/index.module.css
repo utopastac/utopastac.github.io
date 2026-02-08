@@ -23,9 +23,9 @@
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 
   .title {
-    margin: 0 0 var(--space_3);
+    margin: var(--space_8) 0 var(--space_5);
     flex-shrink: 0;
-    @mixin heading-lg;
+    @mixin display;
     color: var(--section-text-color, var(--color-text));
   }
 
