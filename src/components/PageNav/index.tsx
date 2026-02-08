@@ -33,8 +33,8 @@ export function PageNav({ sections }: PageNavProps) {
       panelRef.current.style.pointerEvents = 'auto'
       gsap.fromTo(
         panelRef.current,
-        { opacity: 0, filter: 'blur(8px)' },
-        { opacity: 1, filter: 'blur(0px)', duration: 0.35, ease: 'power2.out' }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.35, ease: 'power2.out' }
       )
     }
     // if (iconRef.current) {
@@ -60,7 +60,7 @@ export function PageNav({ sections }: PageNavProps) {
     if (panelRef.current) {
       gsap.to(panelRef.current, {
         opacity: 0,
-        filter: 'blur(8px)',
+        // filter: 'blur(8px)',
         duration: 0.25,
         ease: 'power2.in',
         onComplete: () => {
@@ -71,14 +71,14 @@ export function PageNav({ sections }: PageNavProps) {
     } else {
       setIsOpen(false)
     }
-    if (iconRef.current) {
-      gsap.to(iconRef.current, {
-        opacity: 1,
-        filter: 'blur(0px)',
-        duration: 0.3,
-        ease: 'power2.out',
-      })
-    }
+    // if (iconRef.current) {
+    //   gsap.to(iconRef.current, {
+    //     opacity: 1,
+    //     filter: 'blur(0px)',
+    //     duration: 0.3,
+    //     ease: 'power2.out',
+    //   })
+    // }
   }, [isOpen])
 
   return (
@@ -110,10 +110,20 @@ export function PageNav({ sections }: PageNavProps) {
           className={styles.panel}
           role="list"
         >
+          {sections.length > 0 && (
+            <li key={sections[0].id} role="listitem">
+              <button
+                type="button"
+                onClick={() => scrollToSection(sections[0].id)}
+              >
+                {sections[0].label}
+              </button>
+            </li>
+          )}
           <li role="listitem">
             <span>2026</span>
           </li>
-          {sections.map(({ id, label }) => (
+          {sections.slice(1, -1).map(({ id, label }) => (
             <li key={id} role="listitem">
               <button type="button" onClick={() => scrollToSection(id)}>
                 {label}
@@ -123,6 +133,18 @@ export function PageNav({ sections }: PageNavProps) {
           <li role="listitem">
             <span>2001</span>
           </li>
+          {sections.length > 1 && (
+            <li key={sections[sections.length - 1].id} role="listitem">
+              <button
+                type="button"
+                onClick={() =>
+                  scrollToSection(sections[sections.length - 1].id)
+                }
+              >
+                {sections[sections.length - 1].label}
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </div>

@@ -60,6 +60,16 @@ Single-page site composed of full-viewport sections. The viewport background ref
   - **Content width**: The main content column for the cards is **70vw** wide (centered).
   - **Card style**: Each quote is a card with padding, light background, subtle shadow, and rounded corners; quote text in italics with optional company cite below.
 
+### Simplified experience for small viewports
+
+- **Switch at App level**: For viewport widths below a single breakpoint (e.g. 640px), the app renders a **drastically simplified** page instead of the full one-page scrolling experience. The full site is not made responsive at that size; we switch to a separate, minimal UI.
+- **Breakpoint**: One media query (e.g. `max-width: 639px`) is used in App; when it matches, only the simple page is rendered (no sections, nav, corner overlay, or scroll arrow).
+- **Simple page content**:
+  - **Top left**: Site owner name and current year next to it (e.g. “Peter Wright 2026”), using caption/muted styling.
+  - **Main title**: “principal designer” (lowercase), prominent heading.
+  - **Under the title**: Two links only — Email (mailto) and LinkedIn (opens in new tab), stacked vertically.
+- **SimplePage component**: Dedicated component and CSS module; uses existing CSS variables (typography, spacing, colors). No shared chrome (no corner overlay, no nav); minimal layout (centered content, name+year absolutely positioned top-left).
+
 ### Corner overlay (site chrome)
 
 - **Position**: Fixed overlay on top of all other content (high z-index), covering the four corners of the viewport. Does not block interaction with the rest of the page (pointer-events: none on the overlay container; pointer-events: auto on the corner elements so links are clickable).
@@ -128,6 +138,9 @@ Single-page site composed of full-viewport sections. The viewport background ref
 13. **Quotes section**  
    As a user, I see a final section “What people say” with testimonial quotes in a multi-column, card-based layout (Pinterest-style), in a 70vw-wide content area.
 
+14. **Simplified small viewport**  
+   As a user on a small browser (e.g. narrow width), I see a single simple page with the owner’s name and year in the top left, the title “principal designer”, and Email and LinkedIn links under the title — not the full scrolling site.
+
 ## Technical approach
 
 - **Context**: A provider wraps the app and holds the current “active” section background color; sections register (e.g. id + color + ref) and an `IntersectionObserver` updates the active color when a section enters view.
@@ -138,6 +151,7 @@ Single-page site composed of full-viewport sections. The viewport background ref
 - **App**: Renders the provider, a global wrapper that applies the context background color, the CornerOverlay, the PageNav (with section config), the ScrollDownArrow (with section list and active section from context), and the scrollable content composed of Section wrappers. Section config (id, title, backgroundColor, etc.) is imported from data files (e.g. `src/data/sections.ts`), not defined in the component. Intro section renders IntroHero; sections with `jobId` render JobSection (job looked up from `src/data/jobs.ts`); section with `isQuotes` renders QuotesSection with data from `src/data/quotes.ts`.
 - **Job sections**: `SECTIONS` is built from intro + JOBS (each job contributes id, title, backgroundColor from job, jobId) + quotes section. Job backgroundColor is stored on each job entry in `jobs.ts`.
 - **Quotes section**: QuotesSection uses CSS columns (responsive column-count), 70vw width, quote cards with break-inside: avoid.
+- **Small viewport**: App uses `useMediaQuery('(max-width: 639px)')`; when true, renders only `SimplePage` (name + year top-left, “principal designer” title, Email and LinkedIn links). No full-site tree on small viewports.
 
 ## Changelog
 
@@ -152,3 +166,5 @@ Single-page site composed of full-viewport sections. The viewport background ref
 - PRD: Job sections (one section per job from CV; JobSection component; job data with id, date, jobTitle, company, description, backgroundColor in `src/data/jobs.ts`); user story 12.
 - PRD: Quotes section (testimonials at end of page; QuotesSection with multi-column Pinterest-style layout, 70vw content width, quote cards; data in `src/data/quotes.ts`); user story 13.
 - Implemented: JobSection and QuotesSection components; jobs.ts and quotes.ts; sections built from JOBS with backgroundColor on each job; quotes in columns (70vw width).
+- PRD: Simplified experience for small viewports (switch at App level; SimplePage with name+year top-left, “principal designer” title, Email and LinkedIn links only); user story 14.
+- Implemented: SimplePage component; useMediaQuery hook; App switches to SimplePage when viewport ≤639px.

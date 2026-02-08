@@ -1,0 +1,39 @@
+@import '@styles/typography.css';
+
+.root {
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: var(--space_2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+
+  .nameYear {
+    position: absolute;
+    top: var(--space_2);
+    left: var(--space_2);
+    margin: 0;
+    @mixin caption;
+    color: var(--color-text-muted);
+  }
+
+  .title {
+    margin: 0 0 var(--space_2);
+    @mixin heading-xl;
+    text-transform: lowercase;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space_1);
+
+    & a {
+      @mixin body;
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
+  }
+}

@@ -2,7 +2,7 @@
  * Testimonial quotes from colleagues, for the quotes section.
  */
 
-import type { QuoteItem } from '../components/QuotesSection'
+import type { QuoteItem } from '@/components/QuotesSection'
 
 export const QUOTES: readonly QuoteItem[] = [
   {

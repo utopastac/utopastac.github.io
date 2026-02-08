@@ -1,9 +1,10 @@
 /**
  * Section data: single source of truth for section content, title, background, etc.
- * Includes intro, one section per job (from JOBS), and a quotes section at the end.
+ * Includes intro, one section per job (from JOBS), education, and a quotes section at the end.
  */
 
-import { JOBS } from './jobs'
+import { EDUCATION } from '@/data/education'
+import { JOBS } from '@/data/jobs'
 
 export type SectionData = {
   id: string
@@ -11,6 +12,8 @@ export type SectionData = {
   backgroundColor: string
   /** When set, this section renders JobSection with the given job id from JOBS. */
   jobId?: string
+  /** When set, this section renders EducationSection (id must match EDUCATION.id). */
+  educationId?: string
   /** When true, this section renders QuotesSection. */
   isQuotes?: boolean
 }
@@ -23,6 +26,12 @@ export const SECTIONS: readonly SectionData[] = [
     backgroundColor: job.backgroundColor,
     jobId: job.id,
   })),
+  {
+    id: EDUCATION.id,
+    title: 'Education',
+    backgroundColor: EDUCATION.backgroundColor,
+    educationId: EDUCATION.id,
+  },
   {
     id: 'quotes',
     title: 'What people say',

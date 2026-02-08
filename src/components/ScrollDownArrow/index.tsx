@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { SectionBackgroundContext } from '../../context/SectionBackgroundContext'
+import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import styles from './index.module.css'
 
 gsap.registerPlugin(ScrollToPlugin)

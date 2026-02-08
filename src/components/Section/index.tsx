@@ -1,5 +1,5 @@
 import { useCallback, useContext, useRef } from 'react'
-import { SectionBackgroundContext } from '../../context/SectionBackgroundContext'
+import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import styles from './index.module.css'
 
 type SectionProps = {
