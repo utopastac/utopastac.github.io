@@ -1,6 +1,9 @@
 .root {
   width: 100vw;
+  height: 100vh;
   min-height: 100vh;
+  max-height: 100vh;
+  flex: 0 0 100vh;
   box-sizing: border-box;
   transition: opacity 0.4s ease-out;
 

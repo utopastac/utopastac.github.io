@@ -49,14 +49,15 @@ Single-page site composed of full-viewport sections. The viewport background ref
   - **company** (string): Company name (also used as section title in nav).
   - **description** (string): First paragraph of the job description (body copy for the section).
   - **backgroundColor** (string): Section/site background when this section is in view (defined on the job entry, not in section config).
-- **JobSection component**: Renders a single job: date and company as meta line, job title as heading, description as body. Uses CSS module and design tokens. Section list is built from `JOBS`; each job section uses that job’s `backgroundColor`.
+  - **images** (optional, string[]): Paths for the left-column image stack (e.g. `/images/spotify-1.png`). When present, layout is two columns and clicking the image column opens a modal with all images.
+- **JobSection component**: Renders a single job in a two-column layout when the job has **images** (optional `images` array of paths in job data). Left column: vertical stack of images (cropped to 100vh, centered); right column: company, date/title, description (content max-width 30vw, vertically centered). Job sections are 100vh; image column is wider than content column. **Click to open modal**: Clicking the image column opens a modal that shows all of that job’s images in one long scrollable list (company name as modal title). Uses CSS module and design tokens. Section list is built from `JOBS`; each job section uses that job’s `backgroundColor`.
 
 ### Modal system
 
 - **Reusable modals**: A single modal system is used across the site so that any section or component can open overlay dialogs (e.g. “View all quotes”, future “Read more” for a job, etc.).
 - **Context**: `ModalContext` provides `openModal(content)`, `closeModal()`, and `content` (the currently shown React node, or null). `ModalProvider` wraps the app (e.g. in `main.tsx`).
 - **Modal UI**: A single `Modal` component (rendered once in App) renders the current modal content in a portal: backdrop (dimmed), panel (scrollable body), close button, and close on backdrop click or Escape. Body scroll is locked while a modal is open.
-- **Section-triggered modals**: Sections (or their content) can open modals by calling `openModal(<AnyContent />)` from context. For example, the quotes section opens a full-list modal on click; other sections may later open their own modals (e.g. extended job description, education details).
+- **Section-triggered modals**: Sections (or their content) can open modals by calling `openModal(<AnyContent />)` from context. For example, the quotes section opens a full-list modal on click; the job section’s image column opens a modal with all job images in a scrollable list; other sections may open their own modals (e.g. education details).
 
 ### Quotes section
 
@@ -141,7 +142,7 @@ Single-page site composed of full-viewport sections. The viewport background ref
    As a developer, I can add, reorder, or change sections (title, background color, content, etc.) by editing TypeScript data files only; the app and nav reflect the data without hardcoded section lists.
 
 12. **Job sections**  
-   As a user, I see a full-viewport section for each job (date, company, job title, first-paragraph description); each job section has its own background color defined on the job data.
+   As a user, I see a full-viewport (100vh) section for each job with a two-column layout when the job has images: left column is a vertically centered, cropped stack of images (wider than the content column); right column has company, date/title, description (content constrained to 30vw, vertically centered). Clicking the image column opens a modal with all of that job’s images in one long scrollable list (company name as title). Each job section has its own background color defined on the job data.
 
 13. **Quotes section**  
    As a user, I see a final section “What people say” that is 100vh tall, with testimonial quotes in a multi-column layout that fades out at the bottom (gradient crop). Clicking the section opens a modal with the full scrollable list of quotes; I can close the modal via the close button, clicking outside, or Escape.
@@ -150,7 +151,7 @@ Single-page site composed of full-viewport sections. The viewport background ref
    As a user on a small browser (e.g. narrow width), I see a single simple page with the owner’s name and year in the top left, the title “principal designer”, and Email and LinkedIn links under the title — not the full scrolling site.
 
 15. **Modal system**  
-   As a developer, I can open a modal from any part of the app (e.g. a section) by calling `openModal(content)` from `ModalContext`; the modal is shown in a portal with backdrop, close button, and scrollable body, and can be closed programmatically or by the user (Escape, backdrop click). Sections may trigger modals (e.g. quotes section opens full quotes list on click).
+   As a developer, I can open a modal from any part of the app (e.g. a section) by calling `openModal(content)` from `ModalContext`; the modal is shown in a portal with backdrop, close button, and scrollable body, and can be closed programmatically or by the user (Escape, backdrop click). Sections may trigger modals (e.g. quotes section opens full quotes list on click; job section image column opens modal with all job images in a scrollable list).
 
 ## Technical approach
 
@@ -160,7 +161,7 @@ Single-page site composed of full-viewport sections. The viewport background ref
 - **CornerOverlay component**: Fixed overlay (high z-index) with four corner elements (name, LinkedIn link, current year, email link); container uses pointer-events: none so it doesn’t block clicks, corner elements use pointer-events: auto for links.
 - **Scroll-down arrow**: Fixed bottom center; reads active section from context (or section list) to scroll to next section on click; on hover, smoothly scrolls down a small amount (peek) and scrolls back on mouse leave; hidden on last section.
 - **App**: Renders the provider, a global wrapper that applies the context background color, the CornerOverlay, the PageNav (with section config), the ScrollDownArrow (with section list and active section from context), and the scrollable content composed of Section wrappers. Section config (id, title, backgroundColor, etc.) is imported from data files (e.g. `src/data/sections.ts`), not defined in the component. Intro section renders IntroHero; sections with `jobId` render JobSection (job looked up from `src/data/jobs.ts`); section with `isQuotes` renders QuotesSection with data from `src/data/quotes.ts`.
-- **Job sections**: `SECTIONS` is built from intro + JOBS (each job contributes id, title, backgroundColor from job, jobId) + quotes section. Job backgroundColor is stored on each job entry in `jobs.ts`.
+- **Job sections**: `SECTIONS` is built from intro + JOBS (each job contributes id, title, backgroundColor from job, jobId) + quotes section. Job backgroundColor is stored on each job entry in `jobs.ts`. JobSection uses two-column grid when job has `images`; image column is clickable and opens a modal with `JobImagesModalContent` (scrollable list of all job images, company as title). Job sections use full-height section wrapper (100vh).
 - **Modal system**: `ModalContext` + `ModalProvider` in `src/context/ModalContext.tsx`; `Modal` component in `src/components/Modal/` renders `context.content` in a portal (backdrop, panel, close button). Sections or children call `openModal(<ReactNode />)` to show content; `closeModal()` and Escape/backdrop close. Body scroll locked while open.
 - **Quotes section**: QuotesSection is 100vh tall; content lives in a crop wrapper with `mask-image: linear-gradient(...)` so the bottom fades. Clicking the area opens a modal with `QuotesModalContent` (full list, single column, scrollable). Uses `ModalContext` for open/close.
 - **Small viewport**: App uses `useMediaQuery('(max-width: 639px)')`; when true, renders only `SimplePage` (name + year top-left, “principal designer” title, Email and LinkedIn links). No full-site tree on small viewports.
@@ -183,3 +184,5 @@ Single-page site composed of full-viewport sections. The viewport background ref
 - PRD: Modal system (reusable modals via ModalContext; openModal/closeModal; Modal component with portal, backdrop, scrollable body; section-triggered modals); user story 15.
 - PRD: Quotes section 100vh height, gradient crop for content, click opens modal with full scrollable quotes list.
 - Implemented: ModalContext + ModalProvider; Modal component (portal, backdrop, close button, Escape/backdrop close); QuotesSection 100vh + crop wrapper with mask-image gradient; QuotesModalContent; click on quotes area opens modal; PRD updated.
+- PRD: Job section image column click opens modal with all job images in one long scrollable list; JobSection two-column layout (images left, content right), 100vh, content 30vw.
+- Implemented: JobImagesModalContent component; JobSection image column clickable (ModalContext), opens modal with full image list; PRD updated.

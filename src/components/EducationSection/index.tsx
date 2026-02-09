@@ -17,7 +17,7 @@ export function EducationSection({
     <article className={styles.root}>
       <p className={styles.meta}>
         <span className={styles.date}>{date}</span>
-        <span className={styles.separator}> · </span>
+        <span className={styles.separator}> / </span>
         <span>{institution}</span>
       </p>
       <h2 className={styles.title}>{degree}</h2>

@@ -7,8 +7,8 @@
 
   .meta {
     margin: 0 0 var(--space_0_75);
-    @mixin caption;
-    color: var(--color-text-muted);
+    @mixin heading-lg;
+    color: var(--color-text);
   }
 
   .date {
@@ -17,17 +17,18 @@
 
   .separator {
     opacity: 0.6;
+    @mixin body;
   }
 
   .title {
     margin: 0 0 var(--space_1_5);
-    @mixin heading-lg;
+    @mixin display;
     color: var(--section-text-color, var(--color-text));
   }
 
   .details {
     margin: 0;
-    @mixin body;
+    @mixin body-serif;
     color: var(--section-text-color, var(--color-text));
     line-height: var(--line-height-relaxed);
   }

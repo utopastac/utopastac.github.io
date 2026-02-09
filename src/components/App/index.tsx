@@ -1,5 +1,6 @@
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
+import { BlurStrips } from '@/components/BlurStrips'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
 import { IntroHero } from '@/components/IntroHero'
@@ -31,6 +32,7 @@ export function App() {
   const activeSection = SECTIONS.find((s) => s.id === ctx?.activeSectionId)
   const cornerTextColor = activeSection?.textColor ?? 'var(--color-text)'
   const jobMap = new Map(JOBS.map((j) => [j.id, j]))
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   return (
     <div
@@ -41,12 +43,22 @@ export function App() {
       }}
     >
       <Modal />
+      {/* <BlurStrips /> */}
       <CornerOverlay />
-      <ScrollDownArrow sectionIds={SECTIONS.map((s) => s.id)} />
+      <ScrollDownArrow
+        sectionIds={SECTIONS.map((s) => s.id)}
+        scrollContainerRef={scrollContainerRef}
+      />
       <PageNav
         sections={SECTIONS.map(({ id, title }) => ({ id, label: title }))}
       />
-      <main className={styles.main}>
+      <div
+        ref={scrollContainerRef}
+        className={styles.scrollWrapper}
+        role="region"
+        aria-label="Page content"
+      >
+      <main className={styles.main} style={{ height: `${SECTIONS.length * 100}vh` }}>
         {SECTIONS.map(({ id, backgroundColor: bg, textColor, title, jobId, educationId, isQuotes }) => {
           let content: React.ReactNode
           if (id === 'intro') {
@@ -70,6 +82,7 @@ export function App() {
                 date={job.date}
                 description={job.description}
                 jobTitle={job.jobTitle}
+                images={job.images}
               />
             ) : (
               <h1>{title}</h1>
@@ -81,7 +94,7 @@ export function App() {
             <Section key={id} id={id} backgroundColor={bg} textColor={textColor}>
               <div
                 className={
-                  isQuotes
+                  isQuotes || jobId
                     ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
                     : styles.sectionContent
                 }
@@ -92,6 +105,7 @@ export function App() {
           )
         })}
       </main>
+      </div>
     </div>
   )
 }

@@ -1,7 +1,5 @@
+import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
 import styles from './index.module.css'
-
-const LINKEDIN_URL = 'https://www.linkedin.com/in/peterwright'
-const EMAIL = 'mailto:peter@example.com'
 
 export function CornerOverlay() {
   const year = new Date().getFullYear()
@@ -18,7 +16,7 @@ export function CornerOverlay() {
         LinkedIn
       </a>
       <div className={styles.bottomLeft}>{year}</div>
-      <a className={styles.bottomRight} href={EMAIL}>
+      <a className={styles.bottomRight} href={EMAIL_URL}>
         Email
       </a>
     </div>
