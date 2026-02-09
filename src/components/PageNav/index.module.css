@@ -20,9 +20,9 @@
   inset: 0;
   opacity: 0;
   pointer-events: none;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
   /* mask-image: linear-gradient(to right, transparent 0%, black 40%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%);
   mask-size: 100% 100%;
@@ -56,7 +56,7 @@
     padding: 0;
     border: none;
     background: transparent;
-    color: var(--color-text);
+    color: var(--corner-text-color, var(--color-text));
     font-size: var(--font-size-xl);
     cursor: pointer;
   }
@@ -67,7 +67,7 @@ ul.panel {
   display: flex;
   flex-direction: column;
   gap: var(--space_0_75);
-  padding-left: var(--space_1);
+  padding-left: var(--space_5);
   list-style: none;
   opacity: 0;
   pointer-events: none;
@@ -80,6 +80,7 @@ ul.panel {
     & span {
       @mixin fancy;
       display: block;
+      color: var(--corner-text-color, var(--color-text));
     }
 
     & button {
@@ -88,7 +89,78 @@ ul.panel {
       padding: var(--space_0_25) 0;
       border: none;
       background: transparent;
-      color: var(--color-text);
+      color: var(--corner-text-color, var(--color-text));
+      cursor: pointer;
+      text-align: left;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  & .dateSectionStart {
+    position: relative;
+    padding-top: var(--space_0_75);
+
+    /* &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: var(--corner-text-color, var(--color-text));
+      opacity: 0.4;
+    } */
+  }
+
+  & .dateSectionEnd {
+    position: relative;
+    padding-bottom: var(--space_0_75);
+    margin-bottom: var(--space_1);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: var(--corner-text-color, var(--color-text));
+      opacity: 0.4;
+    }
+  }
+
+  & .submenu {
+    position: relative;
+    display: block;
+    padding-left: 0;
+    justify-content: stretch;
+  }
+
+  & .dateLine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--corner-text-color, var(--color-text));
+    opacity: 0.4;
+  }
+
+  & .submenuLinks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space_0_75);
+    padding-left: 24px;
+
+    & button {
+      @mixin body;
+      padding: var(--space_0_25) 0;
+      border: none;
+      background: transparent;
+      color: var(--corner-text-color, var(--color-text));
       cursor: pointer;
       text-align: left;
 

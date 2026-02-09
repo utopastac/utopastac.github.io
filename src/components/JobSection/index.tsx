@@ -1,18 +1,23 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { ModalContext } from '@/context/ModalContext'
+import type { JobImage } from '@/data/jobs'
+import { getCaptionFromPath } from '@/data/jobs'
+import { JOB_IMAGE_CAPTIONS } from '@/data/job-image-captions.generated'
 import { JobImagesModalContent } from './JobImagesModalContent'
 import styles from './index.module.css'
 
 type JobSectionProps = {
+  jobId: string
   date: string
   jobTitle: string
   company: string
   description: string
-  /** Optional image paths for the left column (vertical stack). */
-  images?: readonly string[]
+  /** Optional images for the left column (vertical stack). */
+  images?: readonly JobImage[]
 }
 
 export function JobSection({
+  jobId,
   date,
   jobTitle,
   company,
@@ -22,13 +27,10 @@ export function JobSection({
   const modal = useContext(ModalContext)
   const hasImages = images && images.length > 0
 
-  const openImagesModal = () => {
-    if (hasImages) {
-      modal?.openModal(
-        <JobImagesModalContent images={images!} />
-      )
-    }
-  }
+  const openImagesModal = useCallback(() => {
+    if (!hasImages) return
+    modal?.openModal(<JobImagesModalContent jobId={jobId} />)
+  }, [jobId, hasImages, modal])
 
   return (
     <article className={styles.root}>
@@ -43,15 +45,19 @@ export function JobSection({
             aria-label={`View all images for ${company}`}
           >
             <div className={styles.imageStack}>
-              {images!.map((src, i) => (
-                <img
-                  key={i}
-                  className={styles.image}
-                  src={src}
-                  alt=""
-                  loading="lazy"
-                />
-              ))}
+              {images!.map((img) => {
+                const alt = JOB_IMAGE_CAPTIONS[img.src] ?? img.caption ?? getCaptionFromPath(img.src)
+                return (
+                  <img
+                    key={img.src}
+                    className={styles.image}
+                    src={img.src}
+                    alt={alt}
+                    title={alt}
+                    loading="lazy"
+                  />
+                )
+              })}
             </div>
           </div>
         )}

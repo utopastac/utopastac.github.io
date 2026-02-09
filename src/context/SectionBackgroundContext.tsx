@@ -14,6 +14,8 @@ type SectionBackgroundContextValue = {
   activeSectionId: string | null
   registerSection: (id: string, color: string, node: HTMLElement) => void
   unregisterSection: (id: string) => void
+  /** Call when navigating to a section (e.g. nav click) so that section stays active until scroll settles. */
+  navigateToSection: (id: string, color?: string) => void
 }
 
 export const SectionBackgroundContext = createContext<SectionBackgroundContextValue | null>(null)
@@ -28,10 +30,13 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
   const [backgroundColor, setBackgroundColor] = useState<string>('var(--color-bg)')
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null)
   const sectionMapRef = useRef<Map<HTMLElement, SectionInfo>>(new Map())
+  const ratioMapRef = useRef<Map<string, number>>(new Map())
+  const pinnedSectionIdRef = useRef<string | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
 
   const registerSection = useCallback((id: string, color: string, node: HTMLElement) => {
     sectionMapRef.current.set(node, { id, color })
+    ratioMapRef.current.set(id, 0)
     observerRef.current?.observe(node)
   }, [])
 
@@ -40,26 +45,60 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
       if (info.id === id) {
         observerRef.current?.unobserve(node)
         sectionMapRef.current.delete(node)
+        ratioMapRef.current.delete(id)
+        if (pinnedSectionIdRef.current === id) pinnedSectionIdRef.current = null
         break
       }
     }
   }, [])
 
+  const navigateToSection = useCallback((id: string, color?: string) => {
+    for (const info of sectionMapRef.current.values()) {
+      if (info.id === id) {
+        pinnedSectionIdRef.current = id
+        setBackgroundColor(info.color)
+        setActiveSectionId(id)
+        return
+      }
+    }
+    pinnedSectionIdRef.current = id
+    if (color) setBackgroundColor(color)
+    setActiveSectionId(id)
+  }, [])
+
   useEffect(() => {
     observerRef.current = new IntersectionObserver((entries) => {
+      const sectionMap = sectionMapRef.current
+      const ratioMap = ratioMapRef.current
+      const pinnedId = pinnedSectionIdRef.current
+      for (const entry of entries) {
+        const info = sectionMap.get(entry.target as HTMLElement)
+        if (info) {
+          const ratio = entry.isIntersecting ? entry.intersectionRatio : 0
+          ratioMap.set(info.id, ratio)
+        }
+      }
+      if (pinnedId !== null) {
+        const pinnedRatio = ratioMap.get(pinnedId) ?? 0
+        if (pinnedRatio >= 0.99) {
+          pinnedSectionIdRef.current = null
+        } else {
+          return
+        }
+      }
       let maxRatio = 0
       let best: SectionInfo | null = null
-      for (const entry of entries) {
-        const info = sectionMapRef.current.get(entry.target as HTMLElement)
-        if (info && entry.isIntersecting && entry.intersectionRatio > maxRatio) {
-          maxRatio = entry.intersectionRatio
+      for (const [node, info] of sectionMap) {
+        const r = ratioMap.get(info.id) ?? 0
+        if (r > maxRatio) {
+          maxRatio = r
           best = info
         }
       }
       if (best) {
-      setBackgroundColor(best.color)
-      setActiveSectionId(best.id)
-    }
+        setBackgroundColor(best.color)
+        setActiveSectionId(best.id)
+      }
     }, observerOptions)
 
     const map = sectionMapRef.current
@@ -76,6 +115,7 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
     activeSectionId,
     registerSection,
     unregisterSection,
+    navigateToSection,
   }
 
   return (

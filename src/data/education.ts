@@ -9,6 +9,7 @@ export type EducationEntry = {
   date: string
   details?: string
   backgroundColor: string
+  textColor?: string
 }
 
 export const EDUCATION: EducationEntry = {
@@ -17,5 +18,6 @@ export const EDUCATION: EducationEntry = {
   institution: 'University of Reading',
   date: '2001 – 2005',
   details: 'Courses in Economics, Maths and Statistics.',
-  backgroundColor: '#e8e4e0',
+  backgroundColor: '#b8744c',
+  textColor: '#f4f1ea',
 }

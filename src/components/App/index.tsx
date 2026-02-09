@@ -1,12 +1,15 @@
-import { useContext, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { BlurStrips } from '@/components/BlurStrips'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
+import { EndPage } from '@/components/EndPage'
 import { IntroHero } from '@/components/IntroHero'
 import { JobSection } from '@/components/JobSection'
 import { Modal } from '@/components/Modal'
 import { PageNav } from '@/components/PageNav'
+import { PixelPortraitsSection } from '@/components/PixelPortraitsSection'
+import { PlaypressSection } from '@/components/PlaypressSection'
 import { QuotesSection } from '@/components/QuotesSection'
 import { ScrollDownArrow } from '@/components/ScrollDownArrow'
 import { Section } from '@/components/Section'
@@ -22,6 +25,15 @@ const SMALL_VIEWPORT_MEDIA = '(max-width: 639px)'
 
 export function App() {
   const isSmallViewport = useMediaQuery(SMALL_VIEWPORT_MEDIA)
+
+  // Preload all job section images so they don’t jump in when scrolling into view
+  useEffect(() => {
+    const urls = JOBS.flatMap((job) => (job.images ?? []).map((img) => img.src))
+    urls.forEach((src) => {
+      const img = new Image()
+      img.src = src
+    })
+  }, [])
 
   if (isSmallViewport) {
     return <SimplePage />
@@ -50,7 +62,12 @@ export function App() {
         scrollContainerRef={scrollContainerRef}
       />
       <PageNav
-        sections={SECTIONS.map(({ id, title }) => ({ id, label: title }))}
+        sections={SECTIONS.map(({ id, title, backgroundColor: bg, navPlacement }) => ({
+          id,
+          label: title,
+          backgroundColor: bg,
+          navPlacement,
+        }))}
       />
       <div
         ref={scrollContainerRef}
@@ -63,6 +80,12 @@ export function App() {
           let content: React.ReactNode
           if (id === 'intro') {
             content = <IntroHero />
+          } else if (id === 'outro') {
+            content = <EndPage />
+          } else if (id === 'playpress') {
+            content = <PlaypressSection />
+          } else if (id === 'pixel-portraits') {
+            content = <PixelPortraitsSection />
           } else if (isQuotes) {
             content = <QuotesSection quotes={QUOTES} title={title} />
           } else if (educationId) {
@@ -78,6 +101,7 @@ export function App() {
             const job = jobMap.get(jobId)
             content = job ? (
               <JobSection
+                jobId={jobId}
                 company={job.company}
                 date={job.date}
                 description={job.description}
@@ -94,7 +118,7 @@ export function App() {
             <Section key={id} id={id} backgroundColor={bg} textColor={textColor}>
               <div
                 className={
-                  isQuotes || jobId
+                  isQuotes || jobId || id === 'pixel-portraits' || id === 'playpress'
                     ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
                     : styles.sectionContent
                 }

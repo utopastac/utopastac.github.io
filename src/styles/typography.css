@@ -19,6 +19,7 @@
   --font-size-2xl: 7rem;
 
   /* Font weights */
+  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -108,7 +109,7 @@
 
 @define-mixin fancy {
   font-family: var(--font-serif);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-normal);
   font-style: normal;
   line-height: var(--line-height-relaxed);

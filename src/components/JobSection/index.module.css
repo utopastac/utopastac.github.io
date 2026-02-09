@@ -136,6 +136,14 @@
     gap: var(--space_4);
   }
 
+  .jobImagesModalFigure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space_1);
+  }
+
   .jobImagesModalImage {
     max-width: 65vw;
     width: 100%;
@@ -143,5 +151,11 @@
     display: block;
     border-radius: var(--space_0_5);
     object-fit: contain;
+  }
+
+  .jobImagesModalCaption {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-align: center;
   }
 }

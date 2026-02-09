@@ -1,51 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
+import { ScaledHero } from '@/components/ScaledHero'
 import styles from './index.module.css'
 
-const MEASURE_FONT_SIZE = 100
-const SIZE_ANCHOR_WORD = 'DESIGNER'
-const SIZE_ANCHOR_FONT = 'var(--font-display)'
-
 const ROTATING_ITEMS = [
-  { word: 'PRINCIPAL', font: 'var(--font-display)', fontWeight: 'var(--font-weight-bold)', fontStyle: 'normal', color: 'var(--color-text)' },
-  { word: 'System', font: 'var(--font-serif)', fontWeight: 'var(--font-weight-normal)', fontStyle: 'italic', color: 'var(--color-text-muted)' },
+  { word: 'PRINCIPAL', font: 'var(--font-display)', fontWeight: 'var(--font-weight-bold)', fontStyle: 'normal', color: '#304C89' },
+  { word: 'SYSTEM', font: 'var(--font-serif)', fontWeight: 'var(--font-weight-normal)', fontStyle: 'italic', color: '#6F8F7A' },
   { word: 'TOY', font: 'var(--font-fun)', fontWeight: 'var(--font-weight-semibold)', fontStyle: 'normal', color: 'var(--color-accent)' },
-  { word: 'PRODUCT', font: 'var(--font-display)', fontWeight: 'var(--font-weight-normal)', fontStyle: 'normal', color: 'var(--color-text)' },
+  { word: 'PRODUCT', font: 'var(--font-display)', fontWeight: 'var(--font-weight-light)', fontStyle: 'normal', color: '#D1603D' },
 ] as const
 const CHAR_MS = 80
 const PAUSE_MS = 3000
-
-function useFontSizeToFillWidth() {
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const measureRef = useRef<HTMLSpanElement>(null)
-  const [fontSize, setFontSize] = useState<number | null>(null)
-
-  useEffect(() => {
-    const wrapper = wrapperRef.current
-    const measureEl = measureRef.current
-    if (!wrapper || !measureEl) return
-
-    const updateFontSize = () => {
-      const targetWidth = wrapper.offsetWidth
-      measureEl.style.fontSize = `${MEASURE_FONT_SIZE}px`
-      void measureEl.offsetWidth // force reflow
-      const measuredWidth = measureEl.offsetWidth
-      measureEl.style.fontSize = ''
-      if (measuredWidth > 0) {
-        const newSize = (MEASURE_FONT_SIZE * targetWidth) / measuredWidth
-        setFontSize(newSize)
-      }
-    }
-
-    updateFontSize()
-
-    const resizeObserver = new ResizeObserver(updateFontSize)
-    resizeObserver.observe(wrapper)
-
-    return () => resizeObserver.disconnect()
-  }, [])
-
-  return { wrapperRef, measureRef, fontSize }
-}
 
 type Phase = 'in' | 'pause' | 'out'
 
@@ -95,38 +59,27 @@ function useRotatingTyping() {
 
 export function IntroHero() {
   const { displayText: firstLineText, wordIndex } = useRotatingTyping()
-  const { wrapperRef, measureRef, fontSize } = useFontSizeToFillWidth()
   const currentItem = ROTATING_ITEMS[wordIndex]
 
   return (
-    <div ref={wrapperRef} className={styles.wrapper}>
+    <ScaledHero
+      measureText="DESIGNER"
+      ariaLabel={`${firstLineText || currentItem.word} Designer`}
+      titleClassName={styles.title}
+    >
       <span
-        ref={measureRef}
-        className={styles.measure}
-        style={{ fontFamily: SIZE_ANCHOR_FONT }}
-        aria-hidden
+        className={styles.line}
+        style={{
+          fontFamily: currentItem.font,
+          ...(currentItem.fontWeight !== undefined && { fontWeight: currentItem.fontWeight }),
+          ...(currentItem.fontStyle !== undefined && { fontStyle: currentItem.fontStyle }),
+          ...(currentItem.color !== undefined && { color: currentItem.color }),
+        }}
+        aria-live="polite"
       >
-        {SIZE_ANCHOR_WORD}
+        {firstLineText}
       </span>
-      <h1
-        className={styles.title}
-        aria-label={`${firstLineText || currentItem.word} Designer`}
-        style={fontSize !== null ? { fontSize: `${fontSize}px` } : undefined}
-      >
-        <span
-          className={styles.line}
-          style={{
-            fontFamily: currentItem.font,
-            ...(currentItem.fontWeight !== undefined && { fontWeight: currentItem.fontWeight }),
-            ...(currentItem.fontStyle !== undefined && { fontStyle: currentItem.fontStyle }),
-            ...(currentItem.color !== undefined && { color: currentItem.color }),
-          }}
-          aria-live="polite"
-        >
-          {firstLineText}
-        </span>
-        <span className={styles.line}>DESIGNER</span>
-      </h1>
-    </div>
+      <span className={styles.line}>DESIGNER</span>
+    </ScaledHero>
   )
 }

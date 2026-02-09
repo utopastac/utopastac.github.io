@@ -84,8 +84,8 @@
   max-width: 40vw;
 
   .modalTitle {
-    margin: 0 0 var(--space_3);
-    @mixin heading-lg;
+    margin: var(--space_8) 0 var(--space_5);
+    @mixin display;
   }
 
   .modalList {

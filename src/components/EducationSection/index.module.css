@@ -8,7 +8,7 @@
   .meta {
     margin: 0 0 var(--space_0_75);
     @mixin heading-lg;
-    color: var(--color-text);
+    color: var(--section-text-color, var(--color-text));
   }
 
   .date {

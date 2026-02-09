@@ -2,6 +2,25 @@
  * Job entries for CV sections: date, title, company, and first-paragraph description.
  */
 
+/** Single image with optional caption (used for alt, title, and visible caption). */
+export type JobImage = {
+  src: string
+  /** Optional caption; when omitted, derived from filename (e.g. "Cashapp accounts" from path). */
+  caption?: string
+}
+
+/** Derives a human-readable caption from an image path for alt/title when caption is not set. */
+export function getCaptionFromPath(src: string): string {
+  try {
+    const name = src.split('/').pop() ?? src
+    const withoutExt = name.replace(/\.[a-z0-9]+$/i, '')
+    const decoded = decodeURIComponent(withoutExt)
+    return decoded.replace(/[-_]+/g, ' ').trim() || name
+  } catch {
+    return src
+  }
+}
+
 export type JobEntry = {
   id: string
   date: string
@@ -11,8 +30,8 @@ export type JobEntry = {
   backgroundColor: string
   /** Optional text color (e.g. var(--color-text-on-dark) for dark backgrounds). */
   textColor?: string
-  /** Optional list of image paths (e.g. /images/spotify-1.png) for the left column. */
-  images?: readonly string[]
+  /** Optional list of images for the left column; caption is used for alt, title, and modal caption. */
+  images?: readonly JobImage[]
 }
 
 export const JOBS: readonly JobEntry[] = [
@@ -22,7 +41,12 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Principal Product Designer',
     company: 'Cash App',
     backgroundColor: '#FFFFFF',
-    images: ['/images/Cashapp%20accounts.jpg', '/images/Cashapp%20cg.jpg', '/images/Cashapp%20settings.jpg', '/images/Cashapp%20transfers.jpg'],
+    images: [
+      { src: '/images/Cashapp%20accounts.jpg' },
+      { src: '/images/Cashapp%20cg.jpg' },
+      { src: '/images/Cashapp%20settings.jpg' },
+      { src: '/images/Cashapp%20transfers.jpg' },
+    ],
     description:
       'Trust at cash app is a vital part of the business, looking after users privacy, safety, and security whilst working alongside regulatory partners. As a principle designer, I have a broad scope of work I am responsible for and take an active role in uplevelling quality across the team. I am proud to work really closely with some of our earlier career team members.',
   },
@@ -32,7 +56,14 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Senior Staff Product Designer',
     company: 'Personio',
     backgroundColor: '#FFFFFF',
-    images: ['/images/Personio1.jpg', '/images/Personio2.jpg', '/images/Personio3.jpg', '/images/Personio4.jpg', '/images/Personio5.jpg', '/images/Personio6.jpg'],
+    images: [
+      { src: '/images/Personio1.jpg' },
+      { src: '/images/Personio2.jpg' },
+      { src: '/images/Personio3.jpg' },
+      { src: '/images/Personio4.jpg' },
+      { src: '/images/Personio5.jpg' },
+      { src: '/images/Personio6.jpg' },
+    ],
     description:
       'At Personio I led design for Apps - add ons to the core HR product for performance management and compensation. I am responsible for the quality of craft and the product that ships to customers, as well as developing and updating a future experience vision. I work closely with extremely senior stakeholders across the company.',
   },
@@ -42,7 +73,12 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Staff Product Designer',
     company: 'Twitter',
     backgroundColor: '#FFFFFF',
-    images: ['/images/twitter-1.jpg', '/images/twitter-1-1.jpg', '/images/twitter-news.jpg', '/images/twitter-news-b.jpg'],
+    images: [
+      { src: '/images/twitter-1.jpg' },
+      { src: '/images/twitter-1-1.jpg' },
+      { src: '/images/twitter-news.jpg' },
+      { src: '/images/twitter-news-b.jpg' },
+    ],
     description:
       'At Twitter, I led design for a large area within the Revenue Diversity initiative, focused on future subscription offerings. I was responsible for driving strategy and execution, alongside mentorship of more junior designers. This included driving design and strategy for Twitter consumer and business subscriptions.',
   },
@@ -52,7 +88,11 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Product Design Lead',
     company: 'Meta',
     backgroundColor: '#FFFFFF',
-    images: ['/images/meta-ob-ds.jpg', '/images/meta-ob-ds-case.jpg', '/images/meta-ob-ds-user.jpg'],
+    images: [
+      { src: '/images/meta-ob-ds.jpg' },
+      { src: '/images/meta-ob-ds-case.jpg' },
+      { src: '/images/meta-ob-ds-user.jpg' },
+    ],
     description:
       "At Meta, I led the company wide efforts for Community Integrity Legitimacy - a highly complex strategic initiative to develop defensible, viable patterns for the company to follow. This includes driving design work for The Oversight Board and Meta's transparency efforts.",
   },
@@ -62,7 +102,7 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Principal Product Designer',
     company: 'Spotify',
     backgroundColor: '#FFFFFF',
-    images: ['/images/spotify-1.png'],
+    images: [{ src: '/images/spotify-1.png' }],
     description:
       'As one of few Principal designers at Spotify, I led design for part of the Premium mission, focusing the team on lean experimentation and a creative process.',
   },
@@ -72,7 +112,7 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Lead Interaction Designer',
     company: 'Google',
     backgroundColor: '#FFFFFF',
-    images: ['/images/google-retention.jpg'],
+    images: [{ src: '/images/google-retention.jpg' }],
     description:
       'A strong cross-functional partner in developing strategies and alignment, trusted with highly complex problems. Working with Geo (Maps) and Wearables/Health, I drove a user-first, questions led process, and mentored several designers across different teams.',
   },
@@ -91,7 +131,14 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Founder & Designer',
     company: 'Circles',
     backgroundColor: '#FFFFFF',
-    images: ['/images/circles-initial.jpg', '/images/circles-onboarding.jpg', '/images/circles-chat.jpg', '/images/circles-events.jpg', '/images/circles-structure.jpg', '/images/circles-design-system.jpg'],
+    images: [
+      { src: '/images/circles-initial.jpg' },
+      { src: '/images/circles-onboarding.jpg' },
+      { src: '/images/circles-chat.jpg' },
+      { src: '/images/circles-events.jpg' },
+      { src: '/images/circles-structure.jpg' },
+      { src: '/images/circles-design-system.jpg' },
+    ],
     description:
       'Founding member of a VC backed startup focused on delivering peer support for mental health.',
   },
@@ -101,7 +148,13 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Lead Product Designer',
     company: 'M&S',
     backgroundColor: '#FFFFFF',
-    images: ['/images/marks-cook-app.jpg', '/images/marks-handbags.jpg', '/images/marks-socks.jpg', '/images/marks-sparks.jpg', '/images/marks-tuesday.jpg'],
+    images: [
+      { src: '/images/marks-cook-app.jpg' },
+      { src: '/images/marks-handbags.jpg' },
+      { src: '/images/marks-socks.jpg' },
+      { src: '/images/marks-sparks.jpg' },
+      { src: '/images/marks-tuesday.jpg' },
+    ],
     description:
       "Full time UI/UX and product development role within one of the UK's oldest and most loved high street retailers. At M&S digital labs, I worked in a small team that used lean startup techniques to validate and kickstart new innovations, defining the experience within all products and championing the user at all points within the process.",
   },
@@ -111,7 +164,11 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Various roles',
     company: 'Advertising & agency',
     backgroundColor: '#FFFFFF',
-    images: ['/images/agency-a4.jpg', '/images/agency-honda.jpg', '/images/agency-network.jpg'],
+    images: [
+      { src: '/images/agency-a4.jpg' },
+      { src: '/images/agency-honda.jpg' },
+      { src: '/images/agency-network.jpg' },
+    ],
     description:
       'Constant creative, design, and development input into adward winning work from concept to deployment for major blue-chip clients such as Mazda, Mercedes and Channel 4. Managed small teams of designers and creative technologists.',
   },
