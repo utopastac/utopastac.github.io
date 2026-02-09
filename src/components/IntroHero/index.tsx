@@ -4,12 +4,13 @@ import styles from './index.module.css'
 
 const ROTATING_ITEMS = [
   { word: 'PRINCIPAL', font: 'var(--font-display)', fontWeight: 'var(--font-weight-bold)', fontStyle: 'normal', color: '#304C89' },
-  { word: 'SYSTEM', font: 'var(--font-serif)', fontWeight: 'var(--font-weight-normal)', fontStyle: 'italic', color: '#6F8F7A' },
+  { word: 'SYSTEM', font: 'var(--font-deco)', fontWeight: 'var(--font-weight-normal)', fontStyle: 'normal', color: '#6F8F7A' },
   { word: 'TOY', font: 'var(--font-fun)', fontWeight: 'var(--font-weight-semibold)', fontStyle: 'normal', color: 'var(--color-accent)' },
+  { word: 'ai', font: 'var(--font-script)', fontWeight: 'var(--font-weight-normal)', fontStyle: 'normal', color: '#E09f3E' },
   { word: 'PRODUCT', font: 'var(--font-display)', fontWeight: 'var(--font-weight-light)', fontStyle: 'normal', color: '#D1603D' },
 ] as const
-const CHAR_MS = 80
-const PAUSE_MS = 3000
+const CHAR_MS = 70
+const PAUSE_MS = 2750
 
 type Phase = 'in' | 'pause' | 'out'
 

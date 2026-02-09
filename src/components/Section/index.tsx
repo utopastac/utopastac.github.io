@@ -7,10 +7,12 @@ type SectionProps = {
   backgroundColor: string
   /** Optional text color for section content (sets --section-text-color). */
   textColor?: string
+  /** Optional navigation panel background color (rgba value). */
+  navPanelBackgroundColor?: string
   children: React.ReactNode
 }
 
-export function Section({ id, backgroundColor, textColor, children }: SectionProps) {
+export function Section({ id, backgroundColor, textColor, navPanelBackgroundColor, children }: SectionProps) {
   const ctx = useContext(SectionBackgroundContext)
   const ref = useRef<HTMLElement>(null)
   const isActive = ctx?.activeSectionId === id
@@ -21,9 +23,9 @@ export function Section({ id, backgroundColor, textColor, children }: SectionPro
       if (!ctx) return
       if (ref.current) ctx.unregisterSection(id)
       ref.current = node
-      if (node) ctx.registerSection(id, backgroundColor, node)
+      if (node) ctx.registerSection(id, backgroundColor, node, navPanelBackgroundColor)
     },
-    [id, backgroundColor, ctx]
+    [id, backgroundColor, navPanelBackgroundColor, ctx]
   )
 
   const style = textColor

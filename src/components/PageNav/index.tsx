@@ -13,13 +13,14 @@ export type SectionLink = {
 
 type PageNavProps = {
   sections: SectionLink[]
+  navPanelBackgroundColor?: string | null
 }
 
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-export function PageNav({ sections }: PageNavProps) {
+export function PageNav({ sections, navPanelBackgroundColor }: PageNavProps) {
   const sectionCtx = useContext(SectionBackgroundContext)
   const iconRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLUListElement>(null)
@@ -125,41 +126,49 @@ export function PageNav({ sections }: PageNavProps) {
           id="page-nav-list"
           className={styles.panel}
           role="list"
+          style={
+            navPanelBackgroundColor
+              ? ({ '--nav-panel-bg': navPanelBackgroundColor } as React.CSSProperties)
+              : undefined
+          }
         >
-          <li role="listitem" className={styles.dateSectionStart}>
-            <span>2026</span>
+          <li role="listitem">
+            <span>2021–2026</span>
           </li>
-          <li role="listitem" className={styles.submenu}>
-            <div className={styles.dateLine} aria-hidden />
-            <div className={styles.submenuLinks}>
-              {sections
-                .filter((s) => s.navPlacement === 'dated-submenu')
-                .map(({ id, label, backgroundColor }) => (
-                  <button
-                    key={id}
-                    type="button"
+          <div role="listitem" className={styles.submenu}>
+            {sections
+              .filter((s) => s.navPlacement === 'dated-submenu')
+              .map(({ id, label, backgroundColor }) => (
+                <li key={id} role="listitem">
+                <button
+                  type="button"
+                  className={styles.linkButton}
                     onClick={() => handleSectionClick(id, backgroundColor)}
                   >
                     {label}
                   </button>
-                ))}
-            </div>
+                </li>
+              ))}
+          </div>
+          <div className={styles.gap} />
+          <li role="listitem">
+            <span>Other</span>
           </li>
-          <li role="listitem" className={styles.dateSectionEnd}>
-            <span>2001</span>
-          </li>
-          {sections
-            .filter((s) => s.navPlacement === 'top-level')
-            .map(({ id, label, backgroundColor }) => (
-              <li key={id} role="listitem">
-                <button
-                  type="button"
-                  onClick={() => handleSectionClick(id, backgroundColor)}
-                >
-                  {label}
-                </button>
-              </li>
-            ))}
+          <div className={styles.submenu}>
+            {sections
+              .filter((s) => s.navPlacement === 'top-level')
+              .map(({ id, label, backgroundColor }) => (
+                <li key={id} role="listitem">
+                  <button
+                    type="button"
+                    className={styles.linkButton}
+                    onClick={() => handleSectionClick(id, backgroundColor)}
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+          </div>
         </ul>
       </nav>
     </div>

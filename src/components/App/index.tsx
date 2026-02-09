@@ -41,6 +41,7 @@ export function App() {
 
   const ctx = useContext(SectionBackgroundContext)
   const backgroundColor = ctx?.backgroundColor ?? 'var(--color-bg)'
+  const navPanelBackgroundColor = ctx?.navPanelBackgroundColor ?? null
   const activeSection = SECTIONS.find((s) => s.id === ctx?.activeSectionId)
   const cornerTextColor = activeSection?.textColor ?? 'var(--color-text)'
   const jobMap = new Map(JOBS.map((j) => [j.id, j]))
@@ -68,6 +69,7 @@ export function App() {
           backgroundColor: bg,
           navPlacement,
         }))}
+        navPanelBackgroundColor={navPanelBackgroundColor}
       />
       <div
         ref={scrollContainerRef}
@@ -76,7 +78,7 @@ export function App() {
         aria-label="Page content"
       >
       <main className={styles.main} style={{ height: `${SECTIONS.length * 100}vh` }}>
-        {SECTIONS.map(({ id, backgroundColor: bg, textColor, title, jobId, educationId, isQuotes }) => {
+        {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }) => {
           let content: React.ReactNode
           if (id === 'intro') {
             content = <IntroHero />
@@ -115,7 +117,7 @@ export function App() {
             content = <h1>{title}</h1>
           }
           return (
-            <Section key={id} id={id} backgroundColor={bg} textColor={textColor}>
+            <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg}>
               <div
                 className={
                   isQuotes || jobId || id === 'pixel-portraits' || id === 'playpress'

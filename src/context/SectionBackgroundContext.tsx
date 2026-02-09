@@ -7,15 +7,16 @@ import {
   type ReactNode,
 } from 'react'
 
-type SectionInfo = { id: string; color: string }
+type SectionInfo = { id: string; color: string; navPanelBackgroundColor?: string }
 
 type SectionBackgroundContextValue = {
   backgroundColor: string
+  navPanelBackgroundColor: string | null
   activeSectionId: string | null
-  registerSection: (id: string, color: string, node: HTMLElement) => void
+  registerSection: (id: string, color: string, node: HTMLElement, navPanelBackgroundColor?: string) => void
   unregisterSection: (id: string) => void
   /** Call when navigating to a section (e.g. nav click) so that section stays active until scroll settles. */
-  navigateToSection: (id: string, color?: string) => void
+  navigateToSection: (id: string, color?: string, navPanelBackgroundColor?: string) => void
 }
 
 export const SectionBackgroundContext = createContext<SectionBackgroundContextValue | null>(null)
@@ -28,14 +29,15 @@ const observerOptions: IntersectionObserverInit = {
 
 export function SectionBackgroundProvider({ children }: { children: ReactNode }) {
   const [backgroundColor, setBackgroundColor] = useState<string>('var(--color-bg)')
+  const [navPanelBackgroundColor, setNavPanelBackgroundColor] = useState<string | null>(null)
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null)
   const sectionMapRef = useRef<Map<HTMLElement, SectionInfo>>(new Map())
   const ratioMapRef = useRef<Map<string, number>>(new Map())
   const pinnedSectionIdRef = useRef<string | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
 
-  const registerSection = useCallback((id: string, color: string, node: HTMLElement) => {
-    sectionMapRef.current.set(node, { id, color })
+  const registerSection = useCallback((id: string, color: string, node: HTMLElement, navPanelBackgroundColor?: string) => {
+    sectionMapRef.current.set(node, { id, color, navPanelBackgroundColor })
     ratioMapRef.current.set(id, 0)
     observerRef.current?.observe(node)
   }, [])
@@ -52,17 +54,20 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
     }
   }, [])
 
-  const navigateToSection = useCallback((id: string, color?: string) => {
+  const navigateToSection = useCallback((id: string, color?: string, navPanelBg?: string) => {
     for (const info of sectionMapRef.current.values()) {
       if (info.id === id) {
         pinnedSectionIdRef.current = id
         setBackgroundColor(info.color)
+        setNavPanelBackgroundColor(info.navPanelBackgroundColor ?? null)
         setActiveSectionId(id)
         return
       }
     }
     pinnedSectionIdRef.current = id
     if (color) setBackgroundColor(color)
+    if (navPanelBg) setNavPanelBackgroundColor(navPanelBg)
+    else setNavPanelBackgroundColor(null)
     setActiveSectionId(id)
   }, [])
 
@@ -97,6 +102,7 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
       }
       if (best) {
         setBackgroundColor(best.color)
+        setNavPanelBackgroundColor(best.navPanelBackgroundColor ?? null)
         setActiveSectionId(best.id)
       }
     }, observerOptions)
@@ -112,6 +118,7 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
 
   const value: SectionBackgroundContextValue = {
     backgroundColor,
+    navPanelBackgroundColor,
     activeSectionId,
     registerSection,
     unregisterSection,

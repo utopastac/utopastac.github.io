@@ -3,7 +3,9 @@
 :root {
   /* Font families */
   --font-sans: "futura-pt", sans-serif;
-  --font-serif: "jaf-lapture", sans-serif;
+  --font-serif: "jaf-lapture", serif;
+  --font-deco: "fiona", sans-serif;
+  --font-script: "deseo", serif;
   --font-display: futura-pt, sans-serif;
   --font-fun: "flegrei", sans-serif;
   --font-chunky: "kuhlman-vf", sans-serif;
@@ -26,7 +28,7 @@
   --font-weight-bold: 700;
 
   /* Line heights */
-  --line-height-tight: 1;
+  --line-height-tight: 0.9;
   --line-height-snug: 1.2;
   --line-height-normal: 1.375;
   --line-height-relaxed: 1.55;

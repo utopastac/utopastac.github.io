@@ -17,6 +17,8 @@ export type SectionData = {
   navPlacement: NavPlacement
   /** Optional text color for section content (e.g. var(--color-text-on-dark) for dark backgrounds). */
   textColor?: string
+  /** Optional navigation panel background color (rgba value). */
+  navPanelBackgroundColor?: string
   /** When set, this section renders JobSection with the given job id from JOBS. */
   jobId?: string
   /** When set, this section renders EducationSection (id must match EDUCATION.id). */
@@ -51,12 +53,24 @@ export const SECTIONS: readonly SectionData[] = [
     isQuotes: true,
     navPlacement: 'top-level',
   },
-  { id: 'playpress', title: 'Playpress', backgroundColor: '#f5f5f0', navPlacement: 'top-level' },
+  { 
+    id: 'playpress',
+    title: 'Playpress',
+    backgroundColor: '#f5f5f0',
+    navPlacement: 'top-level',
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.5)'
+  },
   {
     id: 'pixel-portraits',
     title: 'Pixel portraits',
     backgroundColor: '#f5f5f0',
     navPlacement: 'top-level',
   },
-  { id: 'outro', title: 'outro', backgroundColor: '#106452', textColor: '#FFFFFF', navPlacement: 'hidden' },
+  { 
+    id: 'outro',
+    title: 'outro',
+    backgroundColor: '#106452',
+    textColor: '#FFFFFF',
+    navPlacement: 'hidden'
+  },
 ] as const

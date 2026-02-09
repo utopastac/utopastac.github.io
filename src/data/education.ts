@@ -16,8 +16,8 @@ export const EDUCATION: EducationEntry = {
   id: 'education',
   degree: 'BA hons Design for Communication',
   institution: 'University of Reading',
-  date: '2001 – 2005',
-  details: 'Courses in Economics, Maths and Statistics.',
+  date: '2001–2005',
+  details: 'I studied typography at the dapartment of Typography and graphic communication. Courses in Economics, Maths and Statistics.',
   backgroundColor: '#b8744c',
   textColor: '#f4f1ea',
 }
