@@ -93,6 +93,7 @@ export const JOBS: readonly JobEntry[] = [
       { src: '/images/Meta-2.jpg' },
       { src: '/images/Meta-3.jpg' },
       { src: '/images/Meta-4.jpg' },
+      { src: '/images/Meta-5.jpg' },
     ],
     description:
       "At Meta, I led the company wide efforts for Community Integrity Legitimacy - a highly complex strategic initiative to develop defensible, viable patterns for the company to follow. This includes driving design work for The Oversight Board and Meta's transparency efforts.",
