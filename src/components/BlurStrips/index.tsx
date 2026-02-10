@@ -7,7 +7,7 @@ import styles from './index.module.css'
 export function BlurStrips() {
   return (
     <>
-      <div className={styles.blurTop} aria-hidden />
+      {/* <div className={styles.blurTop} aria-hidden /> */}
       <div className={styles.blurBottom} aria-hidden />
     </>
   )

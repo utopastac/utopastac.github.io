@@ -56,7 +56,7 @@ export function App() {
       }}
     >
       <Modal />
-      {/* <BlurStrips /> */}
+      <BlurStrips />
       <CornerOverlay />
       <ScrollDownArrow
         sectionIds={SECTIONS.map((s) => s.id)}

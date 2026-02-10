@@ -15,17 +15,33 @@
 }
 
 .blurBottom {
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100vw;
-  height: 20vh;
+  height: 35vh;
   pointer-events: none;
   z-index: 5;
   background: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(48px);
   -webkit-backdrop-filter: blur(48px);
   mask-image: linear-gradient(to top, black 20%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 20%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 20%, transparent 100%); */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35vh;
+  pointer-events: none;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 80%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 80%);
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-position: 0 0;
+  -webkit-mask-position: 0 0;
 }
