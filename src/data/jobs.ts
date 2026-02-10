@@ -104,7 +104,10 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Principal Product Designer',
     company: 'Spotify',
     backgroundColor: '#FFFFFF',
-    images: [{ src: '/images/spotify-1.png' }],
+    images: [
+      { src: '/images/Spotify-1.jpg' },
+      { src: '/images/spotify-1.png' }
+    ],
     description:
       'As one of few Principal designers at Spotify, I led design for part of the Premium mission, focusing the team on lean experimentation and a creative process.',
   },
@@ -114,7 +117,10 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Lead Interaction Designer',
     company: 'Google',
     backgroundColor: '#FFFFFF',
-    images: [{ src: '/images/google-retention.jpg' }],
+    images: [
+      { src: '/images/Google-1.jpg' },
+      { src: '/images/google-retention.jpg' }
+    ],
     description:
       'A strong cross-functional partner in developing strategies and alignment, trusted with highly complex problems. Working with Geo (Maps) and Wearables/Health, I drove a user-first, questions led process, and mentored several designers across different teams.',
   },
@@ -151,10 +157,10 @@ export const JOBS: readonly JobEntry[] = [
     company: 'M&S',
     backgroundColor: '#FFFFFF',
     images: [
-      { src: '/images/marks-cook-app.jpg' },
       { src: '/images/marks-handbags.jpg' },
-      { src: '/images/marks-socks.jpg' },
       { src: '/images/marks-sparks.jpg' },
+      { src: '/images/marks-cook-app.jpg' },
+      { src: '/images/marks-socks.jpg' },
       { src: '/images/marks-tuesday.jpg' },
     ],
     description:
