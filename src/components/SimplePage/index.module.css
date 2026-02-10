@@ -11,28 +11,41 @@
   color: var(--color-text);
 
   .nameYear {
-    position: absolute;
-    top: var(--space_2);
-    left: var(--space_2);
-    margin: 0;
-    @mixin caption;
+    padding-top: var(--space_2);
+    @mixin body-sm;
     color: var(--color-text-muted);
   }
 
+  .titleWrapper {
+    flex: 1;
+  }
+
   .title {
-    margin: 0 0 var(--space_2);
-    @mixin heading-xl;
-    text-transform: lowercase;
+    margin: var(--space_8) 0 var(--space_6);
+    @mixin display;
+  }
+
+  .workExperience {
+    display: block;
+    @mixin body;
+    color: var(--color-text);
+
+    & .divider {
+      @mixin body-sm;
+      color: var(--color-text-subtle);
+      padding: 0 var(--space_0_25);
+    }
   }
 
   .links {
     display: flex;
     flex-direction: column;
     gap: var(--space_1);
+    padding-bottom: var(--space_3);
 
     & a {
       @mixin body;
-      color: var(--color-accent);
+      color: var(--color-text);
       text-decoration: underline;
     }
   }
