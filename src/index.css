@@ -4,7 +4,7 @@
 :root {
   /* Spacing (multipliers of base unit 1rem = 8px) */
   --space_0_25: 0.25rem;
-  --space_05: 0.5rem;
+  --space_0_5: 0.5rem;
   --space_0_75: 0.75rem;
   --space_1: 1rem;
   --space_1_25: 1.25rem;

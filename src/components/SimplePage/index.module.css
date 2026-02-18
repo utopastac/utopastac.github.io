@@ -1,14 +1,15 @@
 @import '@styles/typography.css';
 
 .root {
-  min-height: 100vh;
+  height: 100vh;
   min-width: 100vw;
   padding: var(--space_2);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background-color: var(--color-bg);
   color: var(--color-text);
+  overflow-y: auto;
+
 
   .nameYear {
     padding-top: var(--space_2);
@@ -26,22 +27,16 @@
   }
 
   .workExperience {
-    display: block;
-    @mixin body;
-    color: var(--color-text);
-
-    & .divider {
-      @mixin body-sm;
-      color: var(--color-text-subtle);
-      padding: 0 var(--space_0_25);
-    }
+    display: flex;
+    flex-direction: column;
+    gap: var(--space_0_75);
   }
 
   .links {
     display: flex;
     flex-direction: column;
     gap: var(--space_1);
-    padding-bottom: var(--space_3);
+    padding: var(--space_5) 0 var(--space_3);
 
     & a {
       @mixin body;

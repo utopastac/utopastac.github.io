@@ -1,5 +1,8 @@
 import { useCallback, useContext, useRef, useState } from 'react'
 import type { NavPlacement } from '@/data/sections'
+import { JOBS } from '@/data/jobs'
+import { EDUCATION } from '@/data/education'
+import { JobRow } from '@/components/JobRow'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import gsap from 'gsap'
 import styles from './index.module.css'
@@ -15,6 +18,8 @@ type PageNavProps = {
   sections: SectionLink[]
   navPanelBackgroundColor?: string | null
 }
+
+const JOBS_BY_ID = new Map(JOBS.map((job) => [job.id, job]))
 
 function scrollToSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -110,6 +115,11 @@ export function PageNav({ sections, navPanelBackgroundColor }: PageNavProps) {
         ref={backdropRef}
         className={styles.backdrop}
         aria-hidden
+        style={
+          navPanelBackgroundColor
+            ? ({ '--nav-panel-bg': navPanelBackgroundColor } as React.CSSProperties)
+            : undefined
+        }
       />
       <nav className={styles.root}>
         <button
@@ -126,35 +136,33 @@ export function PageNav({ sections, navPanelBackgroundColor }: PageNavProps) {
           id="page-nav-list"
           className={styles.panel}
           role="list"
-          style={
-            navPanelBackgroundColor
-              ? ({ '--nav-panel-bg': navPanelBackgroundColor } as React.CSSProperties)
-              : undefined
-          }
         >
-          <li role="listitem">
-            <span>2021–2026</span>
-          </li>
-          <div role="listitem" className={styles.submenu}>
+          <div role="listitem">
             {sections
               .filter((s) => s.navPlacement === 'dated-submenu')
-              .map(({ id, label, backgroundColor }) => (
-                <li key={id} role="listitem">
-                <button
-                  type="button"
-                  className={styles.linkButton}
-                    onClick={() => handleSectionClick(id, backgroundColor)}
-                  >
-                    {label}
-                  </button>
-                </li>
-              ))}
+              .map(({ id, label, backgroundColor }) => {
+                const job = JOBS_BY_ID.get(id)
+                const isEducation = id === EDUCATION.id
+
+                const left = job?.date ?? (isEducation ? EDUCATION.date : '')
+                const middle = job?.company ?? (isEducation ? EDUCATION.institution : label)
+                const right = job?.jobTitle ?? (isEducation ? EDUCATION.degreeShort : '')
+
+                return (
+                  <li key={id} role="listitem">
+                    <JobRow
+                      asButton
+                      date={left}
+                      company={middle}
+                      title={right}
+                      onClick={() => handleSectionClick(id, backgroundColor)}
+                    />
+                  </li>
+                )
+              })}
           </div>
           <div className={styles.gap} />
-          <li role="listitem">
-            <span>Other</span>
-          </li>
-          <div className={styles.submenu}>
+          <div>
             {sections
               .filter((s) => s.navPlacement === 'top-level')
               .map(({ id, label, backgroundColor }) => (

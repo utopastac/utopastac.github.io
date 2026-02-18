@@ -69,7 +69,7 @@ export const JOBS: readonly JobEntry[] = [
   },
   {
     id: 'twitter',
-    date: '2021 – 2023',
+    date: '2021',
     jobTitle: 'Staff Product Designer',
     company: 'Twitter',
     backgroundColor: '#FFFFFF',
@@ -84,7 +84,7 @@ export const JOBS: readonly JobEntry[] = [
   },
   {
     id: 'Meta',
-    date: '2020 – 2021',
+    date: '2020',
     jobTitle: 'Product Design Lead',
     company: 'Meta',
     backgroundColor: '#FFFFFF',
@@ -100,7 +100,7 @@ export const JOBS: readonly JobEntry[] = [
   },
   {
     id: 'spotify',
-    date: '2019 – 2020',
+    date: '2019',
     jobTitle: 'Principal Product Designer',
     company: 'Spotify',
     backgroundColor: '#FFFFFF',
@@ -113,7 +113,7 @@ export const JOBS: readonly JobEntry[] = [
   },
   {
     id: 'google',
-    date: '2018 – 2019',
+    date: '2018',
     jobTitle: 'Lead Interaction Designer',
     company: 'Google',
     backgroundColor: '#FFFFFF',
@@ -135,7 +135,7 @@ export const JOBS: readonly JobEntry[] = [
   // },
   {
     id: 'Circles',
-    date: '2016 – 2017',
+    date: '2016',
     jobTitle: 'Founder & Designer',
     company: 'Circles',
     backgroundColor: '#FFFFFF',
@@ -152,7 +152,7 @@ export const JOBS: readonly JobEntry[] = [
   },
   {
     id: 'ms',
-    date: '2013 – 2016',
+    date: '2013',
     jobTitle: 'Lead Product Designer',
     company: 'M&S',
     backgroundColor: '#FFFFFF',
@@ -168,9 +168,9 @@ export const JOBS: readonly JobEntry[] = [
   },
   {
     id: 'agency',
-    date: '2005 – 2013',
+    date: '2005',
     jobTitle: 'Various roles',
-    company: 'Advertising & agency',
+    company: 'Agency',
     backgroundColor: '#FFFFFF',
     images: [
       { src: '/images/agency-a4.jpg' },

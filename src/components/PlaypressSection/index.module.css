@@ -6,7 +6,7 @@
   min-height: 0;
   width: 100%;
   box-sizing: border-box;
-  padding: var(--space_05);
+  padding: var(--space_0_5);
 }
 
 .logo {
@@ -29,7 +29,7 @@
     'a0 a1 a2 a3'
     'a4 a5 a6 a6'
     'a7 a8 a6 a6';
-  gap: var(--space_05);
+  gap: var(--space_0_5);
 }
 
 .cell {

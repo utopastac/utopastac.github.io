@@ -10,7 +10,9 @@
   z-index: 10;
 
   &[data-open="true"] {
-    width: 25vw;
+    width: 50vw;
+    max-width: 480px;
+    min-width: 300px;
   }
 }
 
@@ -65,9 +67,10 @@
 
 ul.panel {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: var(--space_0_75);
-  padding-left: var(--space_5);
+  padding-left: var(--space_1);
   list-style: none;
   opacity: 0;
   pointer-events: none;
@@ -83,29 +86,17 @@ ul.panel {
     justify-content: space-between;
 
     & span {
-      @mixin fancy;
       display: block;
       color: var(--corner-text-color, var(--color-text));
     }
-  }
-
-  & .submenu {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space_0_75);
-    padding-left: var(--space_2);
-    display: flex;
-    flex-direction: column;
-    border-left: 1px solid color-mix(in srgb, var(--corner-text-color, var(--color-text)) 30%, transparent);
   }
 }
 
 .linkButton {
   @mixin body;
   display: block;
-  padding: var(--space_0_25) var(--space_1);
-  border-radius: 8px;
+  padding: var(--space_0_5) 0;
+  width: 100%;
   border: none;
   background: transparent;
   color: var(--corner-text-color, var(--color-text));
@@ -113,6 +104,6 @@ ul.panel {
   text-align: left;
 
   &:hover {
-    background: color-mix(in srgb, var(--corner-text-color, var(--color-text)) 5%, transparent);
+    text-decoration: underline;
   }
 }

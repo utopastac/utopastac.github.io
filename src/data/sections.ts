@@ -28,7 +28,13 @@ export type SectionData = {
 }
 
 export const SECTIONS: readonly SectionData[] = [
-  { id: 'intro', title: 'intro', backgroundColor: '#f5f5f0', navPlacement: 'hidden' },
+  { 
+    id: 'intro', 
+    title: 'intro',
+    backgroundColor: '#FFFFFF',
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.5)',
+    navPlacement: 'hidden'
+  },
   ...JOBS.map((job) => ({
     id: job.id,
     title: job.company,
@@ -58,13 +64,14 @@ export const SECTIONS: readonly SectionData[] = [
     title: 'Playpress',
     backgroundColor: '#f5f5f0',
     navPlacement: 'top-level',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.5)'
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)'
   },
   {
     id: 'pixel-portraits',
     title: 'Pixel portraits',
     backgroundColor: '#f5f5f0',
     navPlacement: 'top-level',
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)'
   },
   { 
     id: 'outro',
