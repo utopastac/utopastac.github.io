@@ -25,7 +25,7 @@
   .title {
     margin: var(--space_8) 0 var(--space_5);
     flex-shrink: 0;
-    @mixin display;
+    @mixin heading-xl;
     color: var(--section-text-color, var(--color-text));
   }
 
@@ -84,7 +84,7 @@
 
   .modalTitle {
     margin: var(--space_8) 0 var(--space_5);
-    @mixin display;
+    @mixin heading-lg;
   }
 
   .modalList {
@@ -99,15 +99,15 @@
     border-bottom: 1px solid var(--color-border);
 
     .quote {
-      @mixin body-serif;
-      font-style: italic;
+      @mixin body;
       color: var(--color-text);
       line-height: var(--line-height-relaxed);
     }
 
     .cite {
       display: block;
-      @mixin heading-md;
+      @mixin body;
+      font-weight: var(--font-weight-medium);
       color: var(--color-text);
       font-style: normal;
       margin-top: var(--space_2);
