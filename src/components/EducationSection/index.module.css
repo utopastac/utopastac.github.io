@@ -28,7 +28,7 @@
 
   .details {
     margin: 0;
-    @mixin body-serif;
+    @mixin body;
     color: var(--section-text-color, var(--color-text));
     line-height: var(--line-height-relaxed);
   }

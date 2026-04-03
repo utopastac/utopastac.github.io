@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
 /* Typography variables and mixins – @import this in components that use @mixin */
 
 :root {
   /* Font families */
-  --font-sans: "futura-pt", sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   --font-serif: "jaf-lapture", serif;
   --font-deco: "fiona", sans-serif;
   --font-script: "deseo", serif;
@@ -13,7 +15,7 @@
 
   /* Font sizes (1rem = 8px) */
   --font-size-xs: 1.5rem;
-  --font-size-sm: 1.75rem;
+  --font-size-sm: 1.625rem;
   --font-size-base: 2rem;
   --font-size-md: 2.25rem;
   --font-size-lg: 2.5rem;
@@ -24,8 +26,8 @@
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 600;
 
   /* Line heights */
   --line-height-tight: 0.9;
@@ -46,7 +48,7 @@
 }
 
 @define-mixin heading-xl {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
@@ -54,21 +56,21 @@
 }
 
 @define-mixin heading-lg {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
 }
 
 @define-mixin heading-md {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-snug);
 }
 
 @define-mixin heading-sm {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-snug);

@@ -93,7 +93,7 @@ ul.panel {
 }
 
 .linkButton {
-  @mixin body;
+  @mixin body-sm;
   display: block;
   padding: var(--space_0_5) 0;
   width: 100%;

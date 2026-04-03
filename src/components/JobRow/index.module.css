@@ -2,7 +2,7 @@
 
 .rowButton,
 .row {
-  @mixin body;
+  @mixin body-sm;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,7 +37,7 @@
 .company,
 .title {
   white-space: nowrap;
-  @mixin body;
+  @mixin body-sm;
 }
 
 .rowButton.rowSm,
@@ -54,13 +54,13 @@
 .date {
   flex: 0 0 10%;
   text-align: left;
-  font-family: var(--font-serif);
   padding-right: var(--space_1);
 }
 
 .company {
   flex: 0 0 30%;
   text-align: left;
+  font-weight: var(--font-weight-medium);
 }
 
 .title {
