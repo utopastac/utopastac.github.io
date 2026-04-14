@@ -36,6 +36,20 @@ export type JobEntry = {
 
 export const JOBS: readonly JobEntry[] = [
   {
+    id: 'linkedin',
+    date: '2025',
+    jobTitle: 'Principal Product Designer',
+    company: 'LinkedIn',
+    backgroundColor: '#FFFFFF',
+    images: [
+      { src: '/images/linkedin-interventions.jpg' },
+      { src: '/images/linkedin-harassment.jpg' },
+      { src: '/images/linkedin-inform.jpg' },
+    ],
+    description:
+      'As Principal Product Designer in Trust and Safety, I work on experiences that protect members, help teams scale policy and enforcement, and keep the platform trustworthy. I have given talks to the whole design organisation about the future of design, and am an active codebase contributor, helping the trust organisation change how we work.',
+  },
+  {
     id: 'cash-app',
     date: '2024',
     jobTitle: 'Principal Product Designer',
