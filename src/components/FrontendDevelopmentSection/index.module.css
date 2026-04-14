@@ -1,0 +1,78 @@
+@import '@styles/typography.css';
+
+.root {
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+  padding: 10rem;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--space_3);
+  height: 100%;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.mapWrap {
+  position: relative;
+  min-height: 0;
+  margin-left: calc(var(--space-10) * -1);
+  overflow: visible;
+}
+
+.mapCanvas {
+  position: absolute;
+  top: 42%;
+  left: 0;
+  right: 0;
+  height: 175%;
+  transform: translateY(-50%);
+}
+
+.copyColumn {
+  position: sticky;
+  top: var(--space_6);
+  align-self: start;
+  display: flex;
+  align-items: center;
+  min-height: auto;
+}
+
+.copy {
+  @mixin heading-xl;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing-snug);
+  color: var(--color-text);
+  margin: 0;
+  max-width: 24ch;
+}
+
+@media (max-width: 1100px) {
+  .root {
+    padding: var(--space_2);
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: var(--space_1_5);
+  }
+
+  .mapWrap {
+    margin-left: calc(var(--space_2) * -1);
+    min-height: 60vh;
+  }
+
+  .mapCanvas {
+    position: absolute;
+    top: 44%;
+    height: 155%;
+  }
+
+  .copyColumn {
+    position: static;
+    align-items: flex-start;
+  }
+}

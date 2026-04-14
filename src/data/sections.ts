@@ -67,6 +67,13 @@ export const SECTIONS: readonly SectionData[] = [
     navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)'
   },
   {
+    id: 'frontend-development',
+    title: 'Development',
+    backgroundColor: '#FFFFFF',
+    navPlacement: 'top-level',
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)'
+  },
+  {
     id: 'pixel-portraits',
     title: 'Pixel portraits',
     backgroundColor: '#f5f5f0',

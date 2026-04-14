@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
 
 /* Typography variables and mixins – @import this in components that use @mixin */
 
 :root {
   /* Font families */
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  --font-sans: "Geist", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   --font-serif: "jaf-lapture", serif;
   --font-deco: "fiona", sans-serif;
   --font-script: "deseo", serif;
@@ -51,7 +51,7 @@
   font-family: var(--font-sans);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-tight);
 }
 

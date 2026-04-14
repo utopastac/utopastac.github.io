@@ -4,6 +4,7 @@ import { BlurStrips } from '@/components/BlurStrips'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
 import { EndPage } from '@/components/EndPage'
+import { FrontendDevelopmentSection } from '@/components/FrontendDevelopmentSection'
 import { IntroHero } from '@/components/IntroHero'
 import { JobSection } from '@/components/JobSection'
 import { Modal } from '@/components/Modal'
@@ -86,6 +87,8 @@ export function App() {
             content = <EndPage />
           } else if (id === 'playpress') {
             content = <PlaypressSection />
+          } else if (id === 'frontend-development') {
+            content = <FrontendDevelopmentSection />
           } else if (id === 'pixel-portraits') {
             content = <PixelPortraitsSection />
           } else if (isQuotes) {
@@ -120,7 +123,7 @@ export function App() {
             <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg}>
               <div
                 className={
-                  isQuotes || jobId || id === 'pixel-portraits' || id === 'playpress'
+                  isQuotes || jobId || id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
                     ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
                     : styles.sectionContent
                 }
