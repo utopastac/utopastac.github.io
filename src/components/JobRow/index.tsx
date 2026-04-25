@@ -14,9 +14,12 @@ export function JobRow({ date, company, title, asButton = false, onClick, size =
 
   const content = (
     <>
+      
+      <div className={styles.companyContainer}>
+        <span className={styles.company}>{company}</span>
+        <span className={styles.title}>{title}</span>
+      </div>
       <span className={styles.date}>{date}</span>
-      <span className={styles.company}>{company}</span>
-      <span className={styles.title}>{title}</span>
     </>
   )
 

@@ -19,7 +19,7 @@
 .mapWrap {
   position: relative;
   min-height: 0;
-  margin-left: calc(var(--space-10) * -1);
+  margin-left: calc(var(--space_10) * -1);
   overflow: visible;
 }
 

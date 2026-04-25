@@ -32,7 +32,7 @@ export const SECTIONS: readonly SectionData[] = [
     id: 'intro', 
     title: 'intro',
     backgroundColor: '#FFFFFF',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.5)',
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.75)',
     navPlacement: 'hidden'
   },
   ...JOBS.map((job) => ({
