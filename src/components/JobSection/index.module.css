@@ -118,7 +118,7 @@
     .description {
       margin: 0;
       display: block;
-      @mixin body;
+      @mixin body-lg;
       color: var(--section-text-color, var(--color-text));
       line-height: var(--line-height-relaxed);
     }

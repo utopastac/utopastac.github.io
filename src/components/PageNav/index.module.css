@@ -41,7 +41,7 @@
   bottom: 0;
   display: flex;
   align-items: flex-start;
-  padding-left: var(--space_3); /* inset panel from left edge of backdrop */
+  padding-left: var(--space_1); /* inset panel from left edge of backdrop */
   padding-right: var(--space_10);
   overflow-y: scroll;
 
