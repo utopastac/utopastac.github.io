@@ -10,6 +10,8 @@ type ScaledHeroProps = {
   ariaLabel: string
   /** Optional class name merged onto the h1 (e.g. for .line spacing in IntroHero). */
   titleClassName?: string
+  /** Optional class name merged onto the wrapper div (e.g. to override alignment). */
+  wrapperClassName?: string
   children: ReactNode
 }
 
@@ -17,12 +19,13 @@ export function ScaledHero({
   measureText,
   ariaLabel,
   titleClassName,
+  wrapperClassName,
   children,
 }: ScaledHeroProps) {
   const { wrapperRef, measureRef, fontSize } = useFontSizeToFillWidth()
 
   return (
-    <div ref={wrapperRef} className={styles.wrapper}>
+    <div ref={wrapperRef} className={wrapperClassName ? `${styles.wrapper} ${wrapperClassName}` : styles.wrapper}>
       <span
         ref={measureRef}
         className={styles.measure}

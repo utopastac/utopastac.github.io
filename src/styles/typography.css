@@ -1,10 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
-
 /* Typography variables and mixins – @import this in components that use @mixin */
 
 :root {
   /* Font families */
-  --font-sans: "Geist", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
   --font-serif: "jaf-lapture", serif;
   --font-deco: "fiona", sans-serif;
   --font-script: "deseo", serif;
@@ -36,7 +34,10 @@
   --line-height-relaxed: 1.55;
 
   /* Letter spacing */
-  --letter-spacing-tight: -0.025em;
+  --letter-spacing-tight: -0.035em;
+  --letter-spacing-snug: -0.025em;
+  --letter-spacing-normal: -0.015em;
+  --letter-spacing-relaxed: -0.01em;
 }
 
 @define-mixin display {
@@ -60,6 +61,7 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-snug);
 }
 
 @define-mixin heading-md {
@@ -67,6 +69,7 @@
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-snug);
 }
 
 @define-mixin heading-sm {
@@ -74,6 +77,7 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-normal);
 }
 
 @define-mixin body-lg {
@@ -81,6 +85,7 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
 }
 
 @define-mixin body {
@@ -88,6 +93,7 @@
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-relaxed);
 }
 
 @define-mixin body-serif {
@@ -95,6 +101,7 @@
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-relaxed);
 }
 
 @define-mixin body-sm {
@@ -102,6 +109,7 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-relaxed);
 }
 
 @define-mixin caption {
