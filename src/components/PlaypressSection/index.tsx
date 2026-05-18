@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styles from './index.module.css'
 
 const PP2_SRC = '/images/pp-2.jpg'
@@ -16,8 +17,15 @@ const CELL_SOURCES = [
 ]
 
 export function PlaypressSection() {
+  const [pos, setPos] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+  }
+
   return (
-    <div className={styles.root}>
+    <div className={styles.root} onMouseMove={handleMouseMove}>
       <img src="/images/pp-logo.png" alt="Playpress" className={styles.logo} />
       <div className={styles.grid}>
         {CELL_SOURCES.map((src, i) => (
@@ -27,6 +35,13 @@ export function PlaypressSection() {
             </a>
           </div>
         ))}
+      </div>
+      <div
+        className={styles.hoverCard}
+        aria-hidden="true"
+        style={{ left: pos.x, top: pos.y }}
+      >
+        <p className={styles.hoverCardUrl}>playpresstoys.com</p>
       </div>
     </div>
   )

@@ -7,6 +7,10 @@
   width: 100%;
   box-sizing: border-box;
   padding: var(--space_0_5);
+
+  &:hover .hoverCard {
+    opacity: 1;
+  }
 }
 
 .logo {
@@ -51,4 +55,26 @@
     display: block;
     border-radius: 8px;
   }
+}
+
+.hoverCard {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - var(--space_1)));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space_0_75);
+  padding: var(--space_1_5) var(--space_2);
+  width: fit-content;
+  background: var(--color-text);
+  z-index: 2;
+}
+
+.hoverCardUrl {
+  @mixin body-sm;
+  margin: 0;
+  color: var(--color-text-on-dark);
 }
