@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useSpringFollow } from '@/hooks/useSpringFollow'
 import styles from './index.module.css'
 
 const PP2_SRC = '/images/pp-2.jpg'
@@ -17,11 +17,11 @@ const CELL_SOURCES = [
 ]
 
 export function PlaypressSection() {
-  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const { displayPos, setTarget } = useSpringFollow()
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+    setTarget(e.clientX - rect.left, e.clientY - rect.top)
   }
 
   return (
@@ -39,7 +39,7 @@ export function PlaypressSection() {
       <div
         className={styles.hoverCard}
         aria-hidden="true"
-        style={{ left: pos.x, top: pos.y }}
+        style={{ left: displayPos.x, top: displayPos.y }}
       >
         <p className={styles.hoverCardUrl}>playpresstoys.com</p>
       </div>

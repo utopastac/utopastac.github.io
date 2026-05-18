@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useSpringFollow } from '@/hooks/useSpringFollow'
 import styles from './index.module.css'
 
 const PIXEL_PORTRAIT_SRCS = Array.from({ length: 50 }, (_, i) => ({
@@ -7,11 +7,11 @@ const PIXEL_PORTRAIT_SRCS = Array.from({ length: 50 }, (_, i) => ({
 }))
 
 export function PixelPortraitsSection() {
-  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const { displayPos, setTarget } = useSpringFollow()
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+    setTarget(e.clientX - rect.left, e.clientY - rect.top)
   }
 
   return (
@@ -30,7 +30,7 @@ export function PixelPortraitsSection() {
       <div
         className={styles.hoverCard}
         aria-hidden="true"
-        style={{ left: pos.x, top: pos.y }}
+        style={{ left: displayPos.x, top: displayPos.y }}
       >
         <p className={styles.hoverCardUrl}>pixelator.f-90.co.uk</p>
       </div>
