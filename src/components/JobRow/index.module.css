@@ -2,7 +2,7 @@
 
 .rowButton,
 .row {
-  @mixin body-sm;
+  @mixin body;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -11,11 +11,14 @@
   border-radius: 0;
   color: var(--corner-text-color, var(--color-text));
   text-align: left;
-  
+
+  @media (max-width: 720px) {
+    @mixin body-sm;
+  }
 }
 
 .row {
-  border-top: 1px solid color-mix(in srgb, var(--corner-text-color, var(--color-text)) 30%, transparent);
+  /* border-top: 1px solid color-mix(in srgb, var(--corner-text-color, var(--color-text)) 30%, transparent); */
   padding: var(--space_0_25) 0;
 }
 
@@ -25,51 +28,30 @@
   border-radius: 0;
   background: transparent;
   cursor: pointer;
-  border-top: 1px solid color-mix(in srgb, var(--corner-text-color, var(--color-text)) 30%, transparent);
-  padding: var(--space_0_25) 0 var(--space_3) 0;
+  /* border-top: 1px solid color-mix(in srgb, var(--corner-text-color, var(--color-text)) 30%, transparent); */
+  padding: var(--space_1) 0 var(--space_1) 0;
 
   &:hover {
     text-decoration: underline;
   }
 }
 
-.date,
-.company,
-.title {
-  white-space: nowrap;
-  @mixin body;
-}
-
-.rowButton.rowSm,
-.row.rowSm {
-  @mixin body;
-}
-
-.rowSm .date,
-.rowSm .company,
-.rowSm .title {
-  @mixin body-sm;
-}
-
 .companyContainer {
+  display: flex;
   flex: 1 1 0;
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-start;
   gap: var(--space_1);
 
-  @media (max-width: 720px) {
-    display: flex;
+  & .company {
+    flex: 0 0 35%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    & .company {
-      flex: 0 0 35%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    & .title {
-      flex: 1 1 0;
-    }
+  & .title {
+    flex: 1 1 0;
   }
 }
 
@@ -80,6 +62,10 @@
   font-variant-numeric: tabular-nums;
   padding-right: 0;
   margin: 0;
+
+  @media (max-width: 720px) {
+    @mixin body-sm;
+  }
 }
 
 .company {
@@ -91,4 +77,3 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-

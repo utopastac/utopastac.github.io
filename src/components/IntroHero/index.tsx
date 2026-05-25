@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ScaledHero } from '@/components/ScaledHero'
+import { useCursorTilt } from '@/hooks/useCursorTilt'
 import styles from './index.module.css'
 
 const ROTATING_ITEMS = [
@@ -61,27 +62,32 @@ function useRotatingTyping() {
 export function IntroHero() {
   const { displayText: firstLineText, wordIndex } = useRotatingTyping()
   const currentItem = ROTATING_ITEMS[wordIndex]
+  const { enabled: isTiltEnabled, tiltRef } = useCursorTilt()
 
   return (
-    <ScaledHero
-      measureText="DESIGNER"
-      ariaLabel={`${firstLineText || currentItem.word} Designer`}
-      titleClassName={styles.title}
-      wrapperClassName={styles.wrapper}
-    >
-      <span
-        className={styles.line}
-        style={{
-          fontFamily: currentItem.font,
-          ...(currentItem.fontWeight !== undefined && { fontWeight: currentItem.fontWeight }),
-          ...(currentItem.fontStyle !== undefined && { fontStyle: currentItem.fontStyle }),
-          ...(currentItem.color !== undefined && { color: currentItem.color }),
-        }}
-        aria-live="polite"
-      >
-        {firstLineText}
-      </span>
-      <span className={styles.line}>DESIGNER</span>
-    </ScaledHero>
+    <div className={isTiltEnabled ? styles.tiltRoot : undefined}>
+      <div ref={isTiltEnabled ? tiltRef : undefined} className={isTiltEnabled ? styles.tiltPlane : undefined}>
+        <ScaledHero
+          measureText="DESIGNER"
+          ariaLabel={`${firstLineText || currentItem.word} Designer`}
+          titleClassName={styles.title}
+          wrapperClassName={styles.wrapper}
+        >
+          <span
+            className={styles.line}
+            style={{
+              fontFamily: currentItem.font,
+              ...(currentItem.fontWeight !== undefined && { fontWeight: currentItem.fontWeight }),
+              ...(currentItem.fontStyle !== undefined && { fontStyle: currentItem.fontStyle }),
+              ...(currentItem.color !== undefined && { color: currentItem.color }),
+            }}
+            aria-live="polite"
+          >
+            {firstLineText}
+          </span>
+          <span className={styles.line}>DESIGNER</span>
+        </ScaledHero>
+      </div>
+    </div>
   )
 }

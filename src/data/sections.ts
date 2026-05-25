@@ -31,14 +31,15 @@ export const SECTIONS: readonly SectionData[] = [
   { 
     id: 'intro', 
     title: 'intro',
-    backgroundColor: '#FFFFFF',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.75)',
+    backgroundColor: '#F4F4F4',
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
     navPlacement: 'hidden'
   },
   ...JOBS.map((job) => ({
     id: job.id,
     title: job.company,
     backgroundColor: job.backgroundColor,
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
     navPlacement: 'dated-submenu' as const,
     ...(job.textColor != null && { textColor: job.textColor }),
     jobId: job.id,

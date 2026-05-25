@@ -4,7 +4,7 @@ import { JOBS } from '@/data/jobs'
 import { EDUCATION } from '@/data/education'
 import { JobRow } from '@/components/JobRow'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
-import gsap from 'gsap'
+import { scrollToSectionElement } from '@/utils/animateScrollTo'
 import styles from './index.module.css'
 
 export type SectionLink = {
@@ -17,102 +17,57 @@ export type SectionLink = {
 type PageNavProps = {
   sections: SectionLink[]
   navPanelBackgroundColor?: string | null
+  onOpenChange?: (open: boolean) => void
 }
 
 const JOBS_BY_ID = new Map(JOBS.map((job) => [job.id, job]))
 
 function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  const el = document.getElementById(id)
+  if (el) scrollToSectionElement(el)
 }
 
-export function PageNav({ sections, navPanelBackgroundColor }: PageNavProps) {
+export function PageNav({ sections, navPanelBackgroundColor, onOpenChange }: PageNavProps) {
   const sectionCtx = useContext(SectionBackgroundContext)
-  const iconRef = useRef<HTMLButtonElement>(null)
-  const panelRef = useRef<HTMLUListElement>(null)
-  const backdropRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const suppressOpenUntilLeaveRef = useRef(false)
+
+  const close = useCallback(() => {
+    if (!isOpen) return
+    setIsOpen(false)
+    onOpenChange?.(false)
+  }, [isOpen, onOpenChange])
 
   const handleSectionClick = useCallback(
     (id: string, backgroundColor?: string) => {
       sectionCtx?.navigateToSection(id, backgroundColor)
       scrollToSection(id)
+      suppressOpenUntilLeaveRef.current = true
+      close()
     },
-    [sectionCtx]
+    [sectionCtx, close]
   )
 
   const open = useCallback(() => {
-    if (isOpen) return
+    if (suppressOpenUntilLeaveRef.current || isOpen) return
     setIsOpen(true)
-    if (backdropRef.current) {
-      backdropRef.current.style.pointerEvents = 'auto'
-      gsap.fromTo(
-        backdropRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.35, ease: 'power2.out' }
-      )
-    }
-    if (panelRef.current) {
-      panelRef.current.style.pointerEvents = 'auto'
-      gsap.fromTo(
-        panelRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.35, ease: 'power2.out' }
-      )
-    }
-    // if (iconRef.current) {
-    //   gsap.to(iconRef.current, {
-    //     opacity: 0,
-    //     filter: 'blur(6px)',
-    //     duration: 0.25,
-    //     ease: 'power2.in',
-    //   })
-    // }
-  }, [isOpen])
+    onOpenChange?.(true)
+  }, [isOpen, onOpenChange])
 
-  const close = useCallback(() => {
-    if (!isOpen) return
-    if (backdropRef.current) {
-      backdropRef.current.style.pointerEvents = 'none'
-      gsap.to(backdropRef.current, {
-        opacity: 0,
-        duration: 0.25,
-        ease: 'power2.in',
-      })
-    }
-    if (panelRef.current) {
-      gsap.to(panelRef.current, {
-        opacity: 0,
-        // filter: 'blur(8px)',
-        duration: 0.25,
-        ease: 'power2.in',
-        onComplete: () => {
-          if (panelRef.current) panelRef.current.style.pointerEvents = 'none'
-          setIsOpen(false)
-        },
-      })
-    } else {
-      setIsOpen(false)
-    }
-    // if (iconRef.current) {
-    //   gsap.to(iconRef.current, {
-    //     opacity: 1,
-    //     filter: 'blur(0px)',
-    //     duration: 0.3,
-    //     ease: 'power2.out',
-    //   })
-    // }
-  }, [isOpen])
+  const handleMouseLeave = useCallback(() => {
+    suppressOpenUntilLeaveRef.current = false
+    close()
+  }, [close])
 
   return (
     <div
       className={styles.triggerZone}
       data-open={isOpen}
       onMouseEnter={open}
-      onMouseLeave={close}
+      onMouseLeave={handleMouseLeave}
       aria-label="Page sections"
     >
       <div
-        ref={backdropRef}
         className={styles.backdrop}
         aria-hidden
         style={
@@ -123,7 +78,6 @@ export function PageNav({ sections, navPanelBackgroundColor }: PageNavProps) {
       />
       <nav className={styles.root}>
         <button
-          ref={iconRef}
           type="button"
           className={styles.menuIcon}
           aria-expanded={isOpen}
@@ -132,7 +86,6 @@ export function PageNav({ sections, navPanelBackgroundColor }: PageNavProps) {
           <span aria-hidden>☰</span>
         </button>
         <ul
-          ref={panelRef}
           id="page-nav-list"
           className={styles.panel}
           role="list"
@@ -145,7 +98,7 @@ export function PageNav({ sections, navPanelBackgroundColor }: PageNavProps) {
                 const isEducation = id === EDUCATION.id
 
                 const left = job?.date ?? (isEducation ? EDUCATION.date : '')
-                const middle = job?.company ?? (isEducation ? EDUCATION.institution : label)
+                const middle = job?.company ?? (isEducation ? EDUCATION.institutionShort : label)
                 const right = job?.jobTitle ?? (isEducation ? EDUCATION.degreeShort : '')
 
                 return (

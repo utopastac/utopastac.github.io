@@ -151,6 +151,7 @@
     display: block;
     border-radius: var(--space_0_5);
     object-fit: contain;
+    cursor: pointer;
   }
 
   .jobImagesModalCaption {

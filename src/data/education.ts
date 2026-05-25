@@ -20,7 +20,7 @@ export const EDUCATION: EducationEntry = {
   degree: 'BA hons Design for Communication',
   degreeShort: 'Design & typography',
   institution: 'Reading University',
-  institutionShort: 'Reading Uni',
+  institutionShort: 'University',
   date: '2001',
   details: 'I studied typography at the dapartment of Typography and graphic communication. Courses in Economics, Maths and Statistics.',
   backgroundColor: '#b8744c',

@@ -1,16 +1,12 @@
 import type { RefObject } from 'react'
 import { useContext, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ModalContext } from '@/context/ModalContext'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
+import { animateScrollTo, scrollToSectionElement } from '@/utils/animateScrollTo'
 import styles from './index.module.css'
 
-gsap.registerPlugin(ScrollToPlugin)
-
 const PEEK_PX = 50
-const PEEK_DURATION = 0.8
-const PEEK_EASE = 'power2.inOut'
+const PEEK_DURATION_MS = 800
 
 type ScrollDownArrowProps = {
   sectionIds: readonly string[]
@@ -21,6 +17,7 @@ export function ScrollDownArrow({ sectionIds, scrollContainerRef }: ScrollDownAr
   const sectionCtx = useContext(SectionBackgroundContext)
   const modalCtx = useContext(ModalContext)
   const scrollYOnPeekRef = useRef<number | null>(null)
+  const cancelPeekRef = useRef<(() => void) | null>(null)
 
   const isModalOpen = modalCtx?.content != null || modalCtx?.isClosing === true
   if (isModalOpen) return null
@@ -35,21 +32,27 @@ export function ScrollDownArrow({ sectionIds, scrollContainerRef }: ScrollDownAr
   const getScrollY = () =>
     scrollContainerRef?.current ? scrollContainerRef.current.scrollTop : window.scrollY
 
+  const cancelPeek = () => {
+    cancelPeekRef.current?.()
+    cancelPeekRef.current = null
+  }
+
   const handleClick = () => {
     if (!nextId) return
-    gsap.killTweensOf(getScrollTarget())
+    const nextEl = document.getElementById(nextId)
+    if (!nextEl) return
+    cancelPeek()
     scrollYOnPeekRef.current = null
-    document.getElementById(nextId)?.scrollIntoView({ behavior: 'smooth' })
+    scrollToSectionElement(nextEl, scrollContainerRef?.current)
   }
 
   const handleMouseEnter = () => {
     if (isLastSection) return
+    cancelPeek()
     const fromY = getScrollY()
     scrollYOnPeekRef.current = fromY
-    gsap.to(getScrollTarget(), {
-      duration: PEEK_DURATION,
-      ease: PEEK_EASE,
-      scrollTo: { y: fromY + PEEK_PX },
+    cancelPeekRef.current = animateScrollTo(getScrollTarget(), fromY + PEEK_PX, {
+      duration: PEEK_DURATION_MS,
     })
   }
 
@@ -57,10 +60,9 @@ export function ScrollDownArrow({ sectionIds, scrollContainerRef }: ScrollDownAr
     const saved = scrollYOnPeekRef.current
     scrollYOnPeekRef.current = null
     if (saved != null) {
-      gsap.to(getScrollTarget(), {
-        duration: PEEK_DURATION,
-        ease: PEEK_EASE,
-        scrollTo: { y: saved },
+      cancelPeek()
+      cancelPeekRef.current = animateScrollTo(getScrollTarget(), saved, {
+        duration: PEEK_DURATION_MS,
       })
     }
   }

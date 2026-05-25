@@ -15,6 +15,14 @@
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: transform 0.25s ease-out, filter 0.25s ease-out;
+
+  @media (min-width: 640px) {
+    &[data-nav-open="true"] {
+      transform: translateX(-80px);
+      filter: blur(12px);
+    }
+  }
 }
 
 .main {

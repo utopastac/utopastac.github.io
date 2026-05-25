@@ -1,5 +1,18 @@
 @import '@styles/typography.css';
 
+.tiltRoot {
+  perspective: 900px;
+}
+
+.tiltPlane {
+  --hero-tilt-x: 0deg;
+  --hero-tilt-y: 0deg;
+  transform: rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
 .wrapper {
   align-items: flex-start;
   text-align: left;

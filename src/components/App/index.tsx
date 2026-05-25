@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { BlurStrips } from '@/components/BlurStrips'
 import { CornerOverlay } from '@/components/CornerOverlay'
@@ -47,6 +47,8 @@ export function App() {
   const cornerTextColor = activeSection?.textColor ?? 'var(--color-text)'
   const jobMap = new Map(JOBS.map((j) => [j.id, j]))
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [isNavOpen, setIsNavOpen] = useState(false)
+  const handleNavOpenChange = useCallback((open: boolean) => setIsNavOpen(open), [])
 
   return (
     <div
@@ -71,12 +73,14 @@ export function App() {
           navPlacement,
         }))}
         navPanelBackgroundColor={navPanelBackgroundColor}
+        onOpenChange={handleNavOpenChange}
       />
       <div
         ref={scrollContainerRef}
         className={styles.scrollWrapper}
         role="region"
         aria-label="Page content"
+        data-nav-open={isNavOpen}
       >
       <main className={styles.main} style={{ height: `${SECTIONS.length * 100}vh` }}>
         {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }) => {

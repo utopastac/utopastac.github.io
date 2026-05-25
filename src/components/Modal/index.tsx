@@ -20,6 +20,7 @@ export function Modal() {
       className={`${styles.backdrop} ${isClosing ? styles.closing : ''}`}
       role="dialog"
       aria-modal="true"
+      onClick={() => ctx?.closeModal()}
     >
       <div className={styles.panel}>
         <div className={styles.closeButtonFade} aria-hidden />

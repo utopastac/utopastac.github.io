@@ -10,7 +10,6 @@
     "generate-captions": "tsx scripts/generate-image-captions.ts"
   },
   "dependencies": {
-    "gsap": "^3.12.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

@@ -9,6 +9,34 @@ export type JobImage = {
   caption?: string
 }
 
+/** Brand background colors keyed by job id. */
+// export const JOB_COLORS = {
+//   linkedin: '#0077B5',
+//   cashApp: '#0A9172',
+//   personio: '#0D2440',
+//   twitter: '#1DA1F2',
+//   Meta: '#0668E1',
+//   spotify: '#1DB954',
+//   google: '#E8F0FE',
+//   Circles: '#6B5B95',
+//   ms: '#006E51',
+//   agency: '#EAEAE6',
+// } as const
+
+/** Brand background colors keyed by job id. */
+export const JOB_COLORS = {
+  linkedin: '#F4F4F4',
+  cashApp: '#F4F4F4',
+  personio: '#F4F4F4',
+  twitter: '#F4F4F4',
+  Meta: '#F4F4F4',
+  spotify: '#F4F4F4',
+  google: '#F4F4F4',
+  Circles: '#F4F4F4',
+  ms: '#F4F4F4',
+  agency: '#F4F4F4',
+} as const
+
 /** Derives a human-readable caption from an image path for alt/title when caption is not set. */
 export function getCaptionFromPath(src: string): string {
   try {
@@ -40,7 +68,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2025',
     jobTitle: 'Principal Product Designer',
     company: 'LinkedIn',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.linkedin,
     images: [
       { src: '/images/linkedin-interventions.jpg' },
       { src: '/images/linkedin-harassment.jpg' },
@@ -50,11 +78,11 @@ export const JOBS: readonly JobEntry[] = [
       'As Principal Product Designer in Trust and Safety, I work on experiences that protect members, help teams scale policy and enforcement, and keep the platform trustworthy. I have given talks to the whole design organisation about the future of design, and am an active codebase contributor, helping the trust organisation change how we work.',
   },
   {
-    id: 'cash-app',
+    id: 'cashApp',
     date: '2024',
     jobTitle: 'Principal Product Designer',
     company: 'Cash App',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.cashApp,
     images: [
       { src: '/images/Cashapp%20accounts.jpg' },
       { src: '/images/Cashapp%20cg.jpg' },
@@ -69,7 +97,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2023',
     jobTitle: 'Senior Staff Product Designer',
     company: 'Personio',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.personio,
     images: [
       { src: '/images/Personio1.jpg' },
       { src: '/images/Personio2.jpg' },
@@ -86,7 +114,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2021',
     jobTitle: 'Staff Product Designer',
     company: 'Twitter',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.twitter,
     images: [
       { src: '/images/twitter-1.jpg' },
       { src: '/images/twitter-1-1.jpg' },
@@ -101,7 +129,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2020',
     jobTitle: 'Product Design Lead',
     company: 'Meta',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.Meta,
     images: [
       { src: '/images/Meta-1.jpg' },
       { src: '/images/Meta-2.jpg' },
@@ -117,7 +145,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2019',
     jobTitle: 'Principal Product Designer',
     company: 'Spotify',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.spotify,
     images: [
       { src: '/images/Spotify-1.jpg' },
       { src: '/images/spotify-1.png' }
@@ -130,7 +158,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2018',
     jobTitle: 'Lead Interaction Designer',
     company: 'Google',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.google,
     images: [
       { src: '/images/Google-1.jpg' },
       { src: '/images/google-retention.jpg' }
@@ -152,7 +180,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2016',
     jobTitle: 'Founder & Designer',
     company: 'Circles',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.Circles,
     images: [
       { src: '/images/circles-initial.jpg' },
       { src: '/images/circles-onboarding.jpg' },
@@ -169,7 +197,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2013',
     jobTitle: 'Lead Product Designer',
     company: 'M&S',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.ms,
     images: [
       { src: '/images/marks-handbags.jpg' },
       { src: '/images/marks-sparks.jpg' },
@@ -185,7 +213,7 @@ export const JOBS: readonly JobEntry[] = [
     date: '2005',
     jobTitle: 'Various roles',
     company: 'Agency',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: JOB_COLORS.agency,
     images: [
       { src: '/images/agency-a4.jpg' },
       { src: '/images/agency-honda.jpg' },
