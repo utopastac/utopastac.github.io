@@ -12,6 +12,8 @@ const ROTATING_ITEMS = [
 ] as const
 const CHAR_MS = 70
 const PAUSE_MS = 2750
+const FOREGROUND_TILT_DEG = 30
+const BACKGROUND_TILT_DEG = 25
 
 type Phase = 'in' | 'pause' | 'out'
 
@@ -62,32 +64,59 @@ function useRotatingTyping() {
 export function IntroHero() {
   const { displayText: firstLineText, wordIndex } = useRotatingTyping()
   const currentItem = ROTATING_ITEMS[wordIndex]
-  const { enabled: isTiltEnabled, tiltRef } = useCursorTilt()
+  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef } = useCursorTilt({
+    maxTiltDeg: FOREGROUND_TILT_DEG,
+  })
+  const { tiltRef: backgroundTiltRef } = useCursorTilt({
+    maxTiltDeg: BACKGROUND_TILT_DEG,
+    enabled: isTiltEnabled,
+  })
+
+  const firstLineStyle = {
+    fontFamily: currentItem.font,
+    ...(currentItem.fontWeight !== undefined && { fontWeight: currentItem.fontWeight }),
+    ...(currentItem.fontStyle !== undefined && { fontStyle: currentItem.fontStyle }),
+    ...(currentItem.color !== undefined && { color: currentItem.color }),
+  }
+
+  const firstLine = (
+    <span className={styles.line} style={firstLineStyle} aria-live="polite">
+      {firstLineText}
+    </span>
+  )
+
+  const designerLine = <span className={styles.line}>DESIGNER</span>
 
   return (
     <div className={isTiltEnabled ? styles.tiltRoot : undefined}>
-      <div ref={isTiltEnabled ? tiltRef : undefined} className={isTiltEnabled ? styles.tiltPlane : undefined}>
-        <ScaledHero
-          measureText="DESIGNER"
-          ariaLabel={`${firstLineText || currentItem.word} Designer`}
-          titleClassName={styles.title}
-          wrapperClassName={styles.wrapper}
-        >
-          <span
-            className={styles.line}
-            style={{
-              fontFamily: currentItem.font,
-              ...(currentItem.fontWeight !== undefined && { fontWeight: currentItem.fontWeight }),
-              ...(currentItem.fontStyle !== undefined && { fontStyle: currentItem.fontStyle }),
-              ...(currentItem.color !== undefined && { color: currentItem.color }),
-            }}
-            aria-live="polite"
-          >
-            {firstLineText}
-          </span>
-          <span className={styles.line}>DESIGNER</span>
-        </ScaledHero>
-      </div>
+      <ScaledHero
+        measureText="DESIGNER"
+        ariaLabel={`${firstLineText || currentItem.word} Designer`}
+        titleClassName={styles.title}
+        wrapperClassName={styles.wrapper}
+      >
+        {isTiltEnabled ? (
+          <>
+            <div
+              ref={backgroundTiltRef}
+              className={`${styles.backgroundTilt} ${styles.tiltPlane}`}
+            >
+              {firstLine}
+            </div>
+            <div
+              ref={foregroundTiltRef}
+              className={`${styles.foregroundTilt} ${styles.tiltPlane}`}
+            >
+              {designerLine}
+            </div>
+          </>
+        ) : (
+          <>
+            {firstLine}
+            {designerLine}
+          </>
+        )}
+      </ScaledHero>
     </div>
   )
 }

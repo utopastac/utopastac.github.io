@@ -2,6 +2,7 @@
 
 .tiltRoot {
   perspective: 900px;
+  transform-style: preserve-3d;
 }
 
 .tiltPlane {
@@ -18,22 +19,31 @@
   text-align: left;
 }
 
+.backgroundTilt,
+.foregroundTilt {
+  display: block;
+}
+
+.backgroundTilt {
+  position: relative;
+  z-index: 1;
+}
+
+.foregroundTilt {
+  position: relative;
+  z-index: 2;
+}
+
 /* IntroHero-specific: two-line title with .line spacing (used with ScaledHero) */
 .title {
   & .line {
     display: block;
     min-height: 1em;
+  }
 
-    &:first-child {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Pull second line up to cancel font's vertical trim (em-box) so gap is 2px */
-    & + .line {
-      position: relative;
-      z-index: 2;
-      margin-top: calc(2px - 0.3em);
-    }
+  /* Pull second line up to cancel font's vertical trim (em-box) so gap is 2px */
+  & .line + .line,
+  & .tiltPlane + .tiltPlane {
+    margin-top: calc(2px - 0.3em);
   }
 }
