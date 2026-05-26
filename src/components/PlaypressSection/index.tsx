@@ -1,6 +1,8 @@
+import { useCursorTilt } from '@/hooks/useCursorTilt'
 import { useSpringFollow } from '@/hooks/useSpringFollow'
 import styles from './index.module.css'
 
+const BACKGROUND_TILT_DEG = 20
 const PP2_SRC = '/images/pp-2.jpg'
 
 /** 3×3 grid. a0–a4, a6–a7 single; a5 = merged right column (2 rows), pp-2. */
@@ -18,6 +20,11 @@ const CELL_SOURCES = [
 
 export function PlaypressSection() {
   const { displayPos, setTarget } = useSpringFollow()
+  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef } = useCursorTilt()
+  const { tiltRef: backgroundTiltRef } = useCursorTilt({
+    enabled: isTiltEnabled,
+    maxTiltDeg: BACKGROUND_TILT_DEG,
+  })
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -25,9 +32,14 @@ export function PlaypressSection() {
   }
 
   return (
-    <div className={styles.root} onMouseMove={handleMouseMove}>
-      <img src="/images/pp-logo.png" alt="Playpress" className={styles.logo} />
-      <div className={styles.grid}>
+    <div
+      className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}
+      onMouseMove={handleMouseMove}
+    >
+      <div
+        ref={isTiltEnabled ? backgroundTiltRef : undefined}
+        className={isTiltEnabled ? `${styles.grid} ${styles.tiltPlane}` : styles.grid}
+      >
         {CELL_SOURCES.map((src, i) => (
           <div key={i} className={styles.cell} style={{ gridArea: `a${i}` }}>
             <a href="https://playpresstoys.com" target="_blank" rel="noopener noreferrer" className={styles.link}>
@@ -35,6 +47,16 @@ export function PlaypressSection() {
             </a>
           </div>
         ))}
+      </div>
+      <div
+        ref={isTiltEnabled ? foregroundTiltRef : undefined}
+        className={
+          isTiltEnabled
+            ? `${styles.logoLayer} ${styles.foregroundTilt} ${styles.tiltPlane}`
+            : styles.logoLayer
+        }
+      >
+        <img src="/images/pp-logo.png" alt="Playpress" className={styles.logo} />
       </div>
       <div
         className={styles.hoverCard}

@@ -1,5 +1,36 @@
 @import '@styles/typography.css';
 
+.tiltRoot {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.tiltPlane {
+  --hero-tilt-x: 0deg;
+  --hero-tilt-y: 0deg;
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.grid.tiltPlane {
+  z-index: 0;
+  transform: translateZ(-40px) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+}
+
+.logoLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.foregroundTilt.tiltPlane {
+  z-index: 3;
+  transform: translateZ(60px) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+}
+
 .root {
   position: relative;
   height: 100%;
@@ -70,7 +101,7 @@
   padding: var(--space_1_5) var(--space_2);
   width: fit-content;
   background: var(--color-text);
-  z-index: 2;
+  z-index: 4;
 }
 
 .hoverCardUrl {

@@ -1,25 +1,38 @@
 import { useEffect, useRef } from 'react'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
-const DESKTOP_TILT_MEDIA = '(min-width: 640px) and (hover: hover) and (pointer: fine)'
+export const DESKTOP_TILT_MEDIA = '(min-width: 640px) and (hover: hover) and (pointer: fine)'
 const MAX_TILT_DEG = 11
 const LERP_FACTOR = 0.07
 const DEADZONE = 0.015
+
+/** Default cursor influence radius for distance-based tilt falloff (viewport px). */
+export const DEFAULT_MAX_INFLUENCE_RADIUS = 700
 
 type CursorTiltOptions = {
   /** Override desktop detection (e.g. for tests). */
   enabled?: boolean
   /** Maximum tilt angle in degrees. Defaults to 11. */
   maxTiltDeg?: number
+  /** Interpolation speed toward cursor target. Defaults to 0.07. */
+  lerpFactor?: number
+  /**
+   * When set, tilt strength falls off with distance from the cursor.
+   * Full response at the cursor; approaches zero at this radius (viewport px).
+   */
+  maxInfluenceRadius?: number
 }
 
 type TiltLayer = {
   node: HTMLDivElement
   maxTiltDeg: number
+  lerpFactor: number
+  maxInfluenceRadius?: number
   current: { x: number; y: number }
 }
 
 let sharedTarget = { x: 0, y: 0 }
+let sharedMouse = { x: 0, y: 0 }
 const layers = new Set<TiltLayer>()
 let rafId = 0
 let activeHookCount = 0
@@ -32,18 +45,47 @@ function clampUnit(value: number): number {
   return Math.max(-1, Math.min(1, value))
 }
 
+/** Smooth quadratic falloff: 1 at cursor, 0 at maxRadius. */
+function computeDistanceAttenuation(distance: number, maxRadius: number): number {
+  const t = Math.min(1, distance / maxRadius)
+  return 1 - t * t
+}
+
 function resetLayer(layer: TiltLayer) {
   layer.current = { x: 0, y: 0 }
   layer.node.style.setProperty('--hero-tilt-x', '0deg')
   layer.node.style.setProperty('--hero-tilt-y', '0deg')
 }
 
+function computePerCellTarget(layer: TiltLayer): { x: number; y: number } {
+  const maxRadius = layer.maxInfluenceRadius!
+  const rect = layer.node.getBoundingClientRect()
+  const centerX = rect.left + rect.width * 0.5
+  const centerY = rect.top + rect.height * 0.5
+  const dx = sharedMouse.x - centerX
+  const dy = sharedMouse.y - centerY
+  const distance = Math.hypot(dx, dy)
+  const attenuation = computeDistanceAttenuation(distance, maxRadius)
+  // Direction from cursor offset vs this cell; strength from distance falloff only.
+  return {
+    x: applyDeadzone(clampUnit(dx / maxRadius)) * attenuation,
+    y: applyDeadzone(clampUnit(dy / maxRadius)) * attenuation,
+  }
+}
+
 function animate() {
   for (const layer of layers) {
     const current = layer.current
+    // Viewport-centered target suits a single hero layer. Grids pass maxInfluenceRadius:
+    // scaling sharedTarget by cell distance was wrong — viewport target ≈ 0 near screen
+    // center while center cells need strong tilt when the cursor is over them.
+    const { x: targetX, y: targetY } =
+      layer.maxInfluenceRadius !== undefined
+        ? computePerCellTarget(layer)
+        : { x: sharedTarget.x, y: sharedTarget.y }
 
-    current.x += (sharedTarget.x - current.x) * LERP_FACTOR
-    current.y += (sharedTarget.y - current.y) * LERP_FACTOR
+    current.x += (targetX - current.x) * layer.lerpFactor
+    current.y += (targetY - current.y) * layer.lerpFactor
 
     if (Math.abs(sharedTarget.x) < 0.001 && Math.abs(current.x) < 0.001) current.x = 0
     if (Math.abs(sharedTarget.y) < 0.001 && Math.abs(current.y) < 0.001) current.y = 0
@@ -73,6 +115,7 @@ function stopAnimation() {
 function handleMouseMove(event: MouseEvent) {
   const centerX = window.innerWidth / 2
   const centerY = window.innerHeight / 2
+  sharedMouse = { x: event.clientX, y: event.clientY }
   sharedTarget = {
     x: applyDeadzone(clampUnit((event.clientX - centerX) / centerX)),
     y: applyDeadzone(clampUnit((event.clientY - centerY) / centerY)),
@@ -81,6 +124,7 @@ function handleMouseMove(event: MouseEvent) {
 
 function handleMouseLeave() {
   sharedTarget = { x: 0, y: 0 }
+  sharedMouse = { x: 0, y: 0 }
 }
 
 function attachGlobalListeners() {
@@ -92,11 +136,14 @@ function detachGlobalListeners() {
   window.removeEventListener('mousemove', handleMouseMove)
   document.documentElement.removeEventListener('mouseleave', handleMouseLeave)
   sharedTarget = { x: 0, y: 0 }
+  sharedMouse = { x: 0, y: 0 }
 }
 
 export function useCursorTilt({
   enabled: enabledOverride,
   maxTiltDeg = MAX_TILT_DEG,
+  lerpFactor = LERP_FACTOR,
+  maxInfluenceRadius,
 }: CursorTiltOptions = {}) {
   const isDesktopPointer = useMediaQuery(DESKTOP_TILT_MEDIA)
   const enabled = enabledOverride ?? isDesktopPointer
@@ -118,6 +165,8 @@ export function useCursorTilt({
     const layer: TiltLayer = {
       node,
       maxTiltDeg,
+      lerpFactor,
+      maxInfluenceRadius,
       current: { x: 0, y: 0 },
     }
     layerRef.current = layer
@@ -142,7 +191,7 @@ export function useCursorTilt({
         stopAnimation()
       }
     }
-  }, [enabled, maxTiltDeg])
+  }, [enabled, maxTiltDeg, lerpFactor, maxInfluenceRadius])
 
   return { enabled, tiltRef }
 }
