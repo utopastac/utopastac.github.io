@@ -1,11 +1,85 @@
 @import '@styles/typography.css';
 
+.tiltRoot {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
 .root {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  transform-style: preserve-3d;
+}
+
+.tiltPlane {
+  --hero-tilt-x: 0deg;
+  --hero-tilt-y: 0deg;
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.backgroundWord {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.tiltPlane {
+    transform: translateZ(-40px) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  }
+
+  * {
+    pointer-events: none;
+  }
+}
+
+.watermarkWrapper {
+  width: 100%;
+  max-width: 100%;
+  align-items: center;
+}
+
+.watermarkTitle {
+  white-space: nowrap;
+  text-align: center;
+  color: color-mix(
+    in srgb,
+    var(--section-text-color, var(--color-text)) 12%,
+    transparent
+  );
+}
+
+.foregroundTilt {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+
+  &.tiltPlane {
+    transform: translateZ(40px) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  }
 }
 
 .cropWrapper {

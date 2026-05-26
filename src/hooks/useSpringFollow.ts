@@ -5,7 +5,7 @@ interface SpringOptions {
   damping?: number
 }
 
-export function useSpringFollow({ stiffness = 0.015, damping = 0.88 }: SpringOptions = {}) {
+export function useSpringFollow({ stiffness = 0.01, damping = 0.84 }: SpringOptions = {}) {
   const [displayPos, setDisplayPos] = useState({ x: 0, y: 0 })
   const targetRef = useRef({ x: 0, y: 0 })
   const currentRef = useRef({ x: 0, y: 0 })

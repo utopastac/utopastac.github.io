@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './index.module.css'
 
 const CELL_GAP_PX = 2
-const TARGET_CELL_SIZE_PX = 24
+const TARGET_CELL_SIZE_PX = 16
 
 type GridMetrics = {
   columns: number
@@ -11,16 +11,26 @@ type GridMetrics = {
 }
 
 function getGridMetrics(width: number, height: number): GridMetrics {
-  const approxColumns = Math.max(1, Math.ceil(width / TARGET_CELL_SIZE_PX))
-  const approxRows = Math.max(1, Math.ceil(height / TARGET_CELL_SIZE_PX))
-
-  const cellSize = Math.max(
-    (width + CELL_GAP_PX) / approxColumns - CELL_GAP_PX,
-    (height + CELL_GAP_PX) / approxRows - CELL_GAP_PX,
+  let columns = Math.max(
+    1,
+    Math.floor((width + CELL_GAP_PX) / (TARGET_CELL_SIZE_PX + CELL_GAP_PX)),
+  )
+  let rows = Math.max(
+    1,
+    Math.floor((height + CELL_GAP_PX) / (TARGET_CELL_SIZE_PX + CELL_GAP_PX)),
   )
 
-  const columns = Math.max(1, Math.ceil((width + CELL_GAP_PX) / (cellSize + CELL_GAP_PX)))
-  const rows = Math.max(1, Math.ceil((height + CELL_GAP_PX) / (cellSize + CELL_GAP_PX)))
+  const cellSizeFromWidth = (width - (columns - 1) * CELL_GAP_PX) / columns
+  const cellSizeFromHeight = (height - (rows - 1) * CELL_GAP_PX) / rows
+  let cellSize = Math.max(cellSizeFromWidth, cellSizeFromHeight)
+
+  columns = Math.max(1, Math.floor((width + CELL_GAP_PX) / (cellSize + CELL_GAP_PX)))
+  rows = Math.max(1, Math.floor((height + CELL_GAP_PX) / (cellSize + CELL_GAP_PX)))
+
+  cellSize = Math.max(
+    (width - (columns - 1) * CELL_GAP_PX) / columns,
+    (height - (rows - 1) * CELL_GAP_PX) / rows,
+  )
 
   return { columns, rows, cellSize }
 }

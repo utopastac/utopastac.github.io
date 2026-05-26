@@ -4,10 +4,11 @@ import styles from './index.module.css'
 
 const SIZE_ANCHOR_FONT = 'var(--font-display)'
 
-type ScaledHeroProps = {
+type ScaledHeroBaseProps = {
   /** Text used in the hidden measure element to compute scale (e.g. "DESIGNER" or "designer."). */
   measureText: string
-  ariaLabel: string
+  /** Semantic element for the scaled title. Use "div" for decorative watermarks. Defaults to "h1". */
+  as?: 'h1' | 'div'
   /** Optional class name merged onto the h1 (e.g. for .line spacing in IntroHero). */
   titleClassName?: string
   /** Optional class name merged onto the wrapper div (e.g. to override alignment). */
@@ -30,8 +31,13 @@ type ScaledHeroProps = {
   children: ReactNode
 }
 
+type ScaledHeroProps =
+  | (ScaledHeroBaseProps & { as?: 'h1'; ariaLabel: string })
+  | (ScaledHeroBaseProps & { as: 'div'; ariaLabel?: string })
+
 export function ScaledHero({
   measureText,
+  as = 'h1',
   ariaLabel,
   titleClassName,
   wrapperClassName,
@@ -46,11 +52,17 @@ export function ScaledHero({
   const { wrapperRef, measureRef, fontSize } = useFontSizeToFillWidth()
   const titleClass = titleClassName ? `${styles.title} ${titleClassName}` : styles.title
   const titleStyle = fontSize !== null ? { fontSize: `${fontSize}px` } : undefined
+  const TitleTag = as === 'div' ? 'div' : 'h1'
 
   const title = (
-    <h1 className={titleClass} aria-label={ariaLabel} style={titleStyle}>
+    <TitleTag
+      className={titleClass}
+      aria-label={as === 'h1' ? ariaLabel : undefined}
+      aria-hidden={as === 'div' ? true : undefined}
+      style={titleStyle}
+    >
       {children}
-    </h1>
+    </TitleTag>
   )
 
   const reflectionContent = reflectionBlurLayerClassNames ? (
