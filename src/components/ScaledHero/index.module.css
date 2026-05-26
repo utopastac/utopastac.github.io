@@ -21,6 +21,13 @@
   letter-spacing: var(--letter-spacing-tight);
 }
 
+.titleGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .title {
   margin: 0;
   font-family: var(--font-display);

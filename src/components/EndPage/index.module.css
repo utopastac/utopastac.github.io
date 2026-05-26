@@ -1,1 +1,139 @@
-/* EndPage uses ScaledHero for layout; no local styles needed. */
+.endPage {
+  /* Horizon tuning */
+  --horizon-sky: #083d32;
+  --horizon-glow-mid: #1a9472;
+  --horizon-glow: #1a9472;
+  --horizon-floor: #118264;
+  --horizon-floor-deep: #106452;
+  /* Overlap reflection toward main word (em = title font-size on .reflection) */
+  --reflection-overlap: 0.08;
+
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+}
+
+.horizon {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: blur(10px);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  /* Sky above the horizon (behind the main word) */
+  &::before {
+    bottom: 0;
+    height: 50vh;
+    background: linear-gradient(to bottom, var(--horizon-sky) 0%, var(--horizon-glow-mid) 80%, var(--horizon-glow) 100%);
+    z-index: -1;
+    filter: blur(10px);
+  }
+
+  /* Floor below the horizon (behind the reflection) */
+  &::after {
+    top: 0;
+    height: 50vh;
+    background: linear-gradient(to bottom, var(--horizon-floor) 0%, var(--horizon-floor-deep) 100%);
+    z-index: -1;
+    filter: blur(10px);
+  }
+}
+
+.reflection {
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+  margin-top: calc(var(--reflection-overlap) * -1em);
+
+  /* Opacity fade */
+  --reflection-fade-opacity: 0.4;
+  --reflection-fade-mid-stop: 18%;
+  --reflection-fade-end: 62%;
+
+  /* Blur amounts (start → end) */
+  --reflection-blur-start: 2px;
+  --reflection-blur-mid: 7px;
+  --reflection-blur-end: 12px;
+
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  isolation: isolate;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / var(--reflection-fade-opacity)) var(--reflection-fade-mid-stop),
+    rgb(0 0 0 / 0%) var(--reflection-fade-end)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / var(--reflection-fade-opacity)) var(--reflection-fade-mid-stop),
+    rgb(0 0 0 / 0%) var(--reflection-fade-end)
+  );
+}
+
+.reflectionMirror {
+  display: grid;
+  transform: scaleY(-1);
+
+  & > * {
+    grid-area: 1 / 1;
+    display: block;
+    line-height: 1;
+  }
+}
+
+/*
+ * Gradated blur via masked filter (https://stackoverflow.com/questions/67853607)
+ * Each layer applies blur + a mask so only that blur strength shows in its band.
+ * Masks use `to top` to account for the mirror flip.
+ */
+.reflectionBlurSharp {
+  filter: blur(var(--reflection-blur-start));
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 30%, transparent 48%);
+  mask-image: linear-gradient(to top, #000 0%, #000 30%, transparent 48%);
+}
+
+.reflectionBlurMid {
+  filter: blur(var(--reflection-blur-mid));
+  -webkit-mask-image: linear-gradient(to top, transparent 22%, #000 38%, #000 58%, transparent 72%);
+  mask-image: linear-gradient(to top, transparent 22%, #000 38%, #000 58%, transparent 72%);
+}
+
+.reflectionBlurSoft {
+  filter: blur(var(--reflection-blur-end));
+  -webkit-mask-image: linear-gradient(to top, transparent 50%, #000 65%, #000 100%);
+  mask-image: linear-gradient(to top, transparent 50%, #000 65%, #000 100%);
+}

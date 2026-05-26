@@ -53,3 +53,9 @@
   align-items: stretch;
   overflow: visible;
 }
+
+.sectionContentOutro {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}

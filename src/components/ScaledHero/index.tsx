@@ -12,6 +12,21 @@ type ScaledHeroProps = {
   titleClassName?: string
   /** Optional class name merged onto the wrapper div (e.g. to override alignment). */
   wrapperClassName?: string
+  /** Optional class name merged onto the title + reflection group. */
+  titleGroupClassName?: string
+  /** When set, renders a mirrored copy below the title (e.g. EndPage reflection). */
+  reflectionClassName?: string
+  /** Inner wrapper that applies the vertical flip (keeps fade mask on reflectionClassName). */
+  reflectionMirrorClassName?: string
+  /** Optional horizon line rendered between the title and reflection. */
+  reflectionHorizonClassName?: string
+  /** Optional class merged onto the reflected title span (single-layer reflection). */
+  reflectionTextClassName?: string
+  /**
+   * Masked blur layers for gradated reflection blur (Stack Overflow mask-on-filter technique).
+   * Each class is merged onto a duplicate title span inside the mirror wrapper.
+   */
+  reflectionBlurLayerClassNames?: string[]
   children: ReactNode
 }
 
@@ -20,9 +35,40 @@ export function ScaledHero({
   ariaLabel,
   titleClassName,
   wrapperClassName,
+  titleGroupClassName,
+  reflectionClassName,
+  reflectionMirrorClassName,
+  reflectionHorizonClassName,
+  reflectionTextClassName,
+  reflectionBlurLayerClassNames,
   children,
 }: ScaledHeroProps) {
   const { wrapperRef, measureRef, fontSize } = useFontSizeToFillWidth()
+  const titleClass = titleClassName ? `${styles.title} ${titleClassName}` : styles.title
+  const titleStyle = fontSize !== null ? { fontSize: `${fontSize}px` } : undefined
+
+  const title = (
+    <h1 className={titleClass} aria-label={ariaLabel} style={titleStyle}>
+      {children}
+    </h1>
+  )
+
+  const reflectionContent = reflectionBlurLayerClassNames ? (
+    reflectionBlurLayerClassNames.map((layerClassName) => (
+      <span key={layerClassName} className={`${styles.title} ${layerClassName}`} style={titleStyle}>
+        {children}
+      </span>
+    ))
+  ) : (
+    <span
+      className={
+        reflectionTextClassName ? `${styles.title} ${reflectionTextClassName}` : styles.title
+      }
+      style={titleStyle}
+    >
+      {children}
+    </span>
+  )
 
   return (
     <div ref={wrapperRef} className={wrapperClassName ? `${styles.wrapper} ${wrapperClassName}` : styles.wrapper}>
@@ -34,13 +80,25 @@ export function ScaledHero({
       >
         {measureText}
       </span>
-      <h1
-        className={titleClassName ? `${styles.title} ${titleClassName}` : styles.title}
-        aria-label={ariaLabel}
-        style={fontSize !== null ? { fontSize: `${fontSize}px` } : undefined}
-      >
-        {children}
-      </h1>
+      {reflectionClassName ? (
+        <div
+          className={
+            titleGroupClassName
+              ? `${styles.titleGroup} ${titleGroupClassName}`
+              : styles.titleGroup
+          }
+        >
+          {title}
+          {reflectionHorizonClassName ? (
+            <div className={reflectionHorizonClassName} aria-hidden />
+          ) : null}
+          <div className={reflectionClassName} aria-hidden style={titleStyle}>
+            <div className={reflectionMirrorClassName}>{reflectionContent}</div>
+          </div>
+        </div>
+      ) : (
+        title
+      )}
     </div>
   )
 }

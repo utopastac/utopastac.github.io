@@ -129,7 +129,9 @@ export function App() {
                 className={
                   isQuotes || jobId || id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
                     ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
-                    : styles.sectionContent
+                    : id === 'outro'
+                      ? `${styles.sectionContent} ${styles.sectionContentOutro}`
+                      : styles.sectionContent
                 }
               >
                 {content}

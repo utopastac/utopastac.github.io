@@ -84,7 +84,7 @@ export const SECTIONS: readonly SectionData[] = [
   { 
     id: 'outro',
     title: 'outro',
-    backgroundColor: '#106452',
+    backgroundColor: '#083d32',
     textColor: '#FFFFFF',
     navPlacement: 'hidden'
   },
