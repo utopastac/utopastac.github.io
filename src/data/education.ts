@@ -22,7 +22,7 @@ export const EDUCATION: EducationEntry = {
   institution: 'Reading University',
   institutionShort: 'University',
   date: '2001',
-  details: 'I studied typography at the dapartment of Typography and graphic communication. Courses in Economics, Maths and Statistics.',
+  details: 'I studied typography at the department of Typography and graphic communication. Courses in Economics, Maths and Statistics.',
   backgroundColor: '#b8744c',
   textColor: '#f4f1ea',
   navPanelBackgroundColor: 'rgba(255, 255, 255, 0.05)'

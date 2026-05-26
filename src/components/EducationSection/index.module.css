@@ -1,6 +1,91 @@
 @import '@styles/typography.css';
 
+.tiltRoot {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.tiltPlane {
+  --hero-tilt-x: 0deg;
+  --hero-tilt-y: 0deg;
+  transform: rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 80vw;
+  max-width: 80vw;
+  min-height: 100vh;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+}
+
+.backgroundWord {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.backgroundWordInner {
+  width: 100%;
+  height: 100%;
+  /* Inherits down the stack; set on parent section/container to tweak e.g. 0.85 */
+  --education-bg-typography-leading: var(--line-height-tight);
+
+  .measure {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  .backgroundStack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+    line-height: var(--education-bg-typography-leading);
+  }
+
+  .backgroundText {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    font-size: 1em;
+    line-height: var(--education-bg-typography-leading);
+    letter-spacing: var(--letter-spacing-tight);
+    color: color-mix(
+      in srgb,
+      var(--section-text-color, var(--color-text)) 12%,
+      transparent
+    );
+    white-space: nowrap;
+  }
+}
+
+.foregroundTilt {
+  position: relative;
+  z-index: 1;
+}
+
 .root {
+  position: relative;
+  z-index: 1;
   max-width: 42rem;
   margin: 0 auto;
   text-align: left;
