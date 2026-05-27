@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { BlurStrips } from '@/components/BlurStrips'
+import { DotGrid } from '@/components/DotGrid'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
 import { EndPage } from '@/components/EndPage'
@@ -53,12 +54,14 @@ export function App() {
   return (
     <div
       className={styles.root}
+      data-active-section={activeSection?.id}
       style={{
         backgroundColor,
         ['--corner-text-color' as string]: cornerTextColor,
       }}
     >
       <Modal />
+      <DotGrid />
       <BlurStrips />
       <CornerOverlay />
       <ScrollDownArrow
@@ -81,8 +84,13 @@ export function App() {
         role="region"
         aria-label="Page content"
         data-nav-open={isNavOpen}
+        data-active-section={activeSection?.id}
       >
-      <main className={styles.main} style={{ height: `${SECTIONS.length * 100}vh` }}>
+      <main
+        className={styles.main}
+        data-active-section={activeSection?.id}
+        style={{ height: `${SECTIONS.length * 100}vh` }}
+      >
         {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }) => {
           let content: React.ReactNode
           if (id === 'intro') {

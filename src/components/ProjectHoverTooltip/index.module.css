@@ -1,0 +1,32 @@
+@import '@styles/typography.css';
+
+.root {
+  --tooltip-offset-y: var(--space_2);
+  --tooltip-shadow: 0 var(--space_1) var(--space_3) rgb(0 0 0 / 0.25);
+
+  position: absolute;
+  transform: translate(-50%, calc(-100% - var(--tooltip-offset-y)));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space_0_75);
+  padding: var(--space_1_5) var(--space_2);
+  width: fit-content;
+  background: var(--color-text);
+  box-shadow: var(--tooltip-shadow);
+  z-index: 2;
+}
+
+.aboveTilt {
+  z-index: 100;
+  transform: translate(-50%, calc(-100% - var(--tooltip-offset-y))) translateZ(80px);
+}
+
+.label {
+  @mixin body;
+  margin: 0;
+  color: var(--color-text-on-dark);
+}

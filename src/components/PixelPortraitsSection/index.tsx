@@ -1,3 +1,4 @@
+import { ProjectHoverTooltip } from '@/components/ProjectHoverTooltip'
 import { DESKTOP_TILT_MEDIA, useCursorTilt } from '@/hooks/useCursorTilt'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSpringFollow } from '@/hooks/useSpringFollow'
@@ -8,7 +9,7 @@ const PIXEL_PORTRAIT_SRCS = Array.from({ length: 50 }, (_, i) => ({
   alt: `Pixel portrait ${i + 1}`,
 }))
 
-const PORTRAIT_MAX_TILT_DEG = 120
+const PORTRAIT_MAX_TILT_DEG = 135
 const PORTRAIT_LERP_FACTOR = 0.35
 const PORTRAIT_MAX_INFLUENCE_RADIUS = 2000
 
@@ -60,13 +61,11 @@ export function PixelPortraitsSection() {
           ))}
         </div>
       </div>
-      <div
-        className={isTiltEnabled ? `${styles.hoverCard} ${styles.hoverCardAbove}` : styles.hoverCard}
-        aria-hidden="true"
+      <ProjectHoverTooltip
+        label="pixelator.f-90.co.uk"
+        aboveTilt={isTiltEnabled}
         style={{ left: displayPos.x, top: displayPos.y }}
-      >
-        <p className={styles.hoverCardUrl}>pixelator.f-90.co.uk</p>
-      </div>
+      />
     </a>
   )
 }

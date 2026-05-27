@@ -1,3 +1,4 @@
+import { ProjectHoverTooltip } from '@/components/ProjectHoverTooltip'
 import { useCursorTilt } from '@/hooks/useCursorTilt'
 import { useSpringFollow } from '@/hooks/useSpringFollow'
 import styles from './index.module.css'
@@ -32,39 +33,40 @@ export function PlaypressSection() {
   }
 
   return (
-    <div
-      className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}
+    <a
+      href="https://playpresstoys.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={isTiltEnabled ? `${styles.wrapper} ${styles.tiltEnabled}` : styles.wrapper}
       onMouseMove={handleMouseMove}
     >
-      <div
-        ref={isTiltEnabled ? backgroundTiltRef : undefined}
-        className={isTiltEnabled ? `${styles.grid} ${styles.tiltPlane}` : styles.grid}
-      >
-        {CELL_SOURCES.map((src, i) => (
-          <div key={i} className={styles.cell} style={{ gridArea: `a${i}` }}>
-            <a href="https://playpresstoys.com" target="_blank" rel="noopener noreferrer" className={styles.link}>
+      <div className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}>
+        <div
+          ref={backgroundTiltRef}
+          className={isTiltEnabled ? `${styles.grid} ${styles.tiltPlane}` : styles.grid}
+        >
+          {CELL_SOURCES.map((src, i) => (
+            <div key={i} className={styles.cell} style={{ gridArea: `a${i}` }}>
               <img src={src} alt="" className={styles.image} />
-            </a>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
+        <div
+          ref={foregroundTiltRef}
+          className={
+            isTiltEnabled
+              ? `${styles.logoLayer} ${styles.foregroundTilt} ${styles.tiltPlane}`
+              : styles.logoLayer
+          }
+        >
+          <img src="/images/pp-logo.png" alt="Playpress" className={styles.logo} />
+        </div>
       </div>
-      <div
-        ref={isTiltEnabled ? foregroundTiltRef : undefined}
-        className={
-          isTiltEnabled
-            ? `${styles.logoLayer} ${styles.foregroundTilt} ${styles.tiltPlane}`
-            : styles.logoLayer
-        }
-      >
-        <img src="/images/pp-logo.png" alt="Playpress" className={styles.logo} />
-      </div>
-      <div
-        className={styles.hoverCard}
-        aria-hidden="true"
+      <ProjectHoverTooltip
+        label="playpresstoys.com"
+        aboveTilt={isTiltEnabled}
         style={{ left: displayPos.x, top: displayPos.y }}
-      >
-        <p className={styles.hoverCardUrl}>playpresstoys.com</p>
-      </div>
-    </div>
+      />
+    </a>
   )
 }

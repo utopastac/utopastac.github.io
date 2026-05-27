@@ -8,14 +8,29 @@
   flex-direction: column;
   transition: background-color 0.3s ease-out;
   overflow: hidden;
+
+  &[data-active-section='outro'] {
+    overflow: visible;
+  }
 }
 
 .scrollWrapper {
+  position: relative;
+  z-index: 1;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   transition: transform 0.25s ease-out, filter 0.25s ease-out;
+
+  /* visible + auto computes to auto/auto and still clips tilt; clip + margin extends paint box */
+  &[data-active-section='outro'] {
+    overflow-x: visible;
+  }
+
+  &:has(#outro:not(.inactive)) {
+    overflow-x: visible;
+  }
 
   @media (min-width: 640px) {
     &[data-nav-open="true"] {
@@ -30,6 +45,10 @@
   flex-direction: column;
   flex-shrink: 0;
   overflow: clip;
+
+  &[data-active-section='outro'] {
+    overflow: visible;
+  }
 }
 
 .sectionContent {
@@ -56,6 +75,9 @@
 
 .sectionContentOutro {
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
   padding: 0;
-  overflow: hidden;
+  overflow: visible !important;
 }
