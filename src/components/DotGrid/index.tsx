@@ -1,7 +1,7 @@
 import styles from './index.module.css'
 
 /**
- * Fixed full-viewport dot grid rendered behind page content.
+ * Dot grid backdrop for the intro section viewport.
  */
 export function DotGrid() {
   return <div className={styles.grid} aria-hidden />

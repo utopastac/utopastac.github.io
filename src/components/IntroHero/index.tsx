@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { DotGrid } from '@/components/DotGrid'
 import { ScaledHero } from '@/components/ScaledHero'
 import { useCursorTilt } from '@/hooks/useCursorTilt'
 import styles from './index.module.css'
@@ -88,13 +89,15 @@ export function IntroHero() {
   const designerLine = <span className={styles.line}>DESIGNER</span>
 
   return (
-    <div className={isTiltEnabled ? styles.tiltRoot : undefined}>
-      <ScaledHero
-        measureText="DESIGNER"
-        ariaLabel={`${firstLineText || currentItem.word} Designer`}
-        titleClassName={styles.title}
-        wrapperClassName={styles.wrapper}
-      >
+    <div className={styles.root}>
+      <DotGrid />
+      <div className={isTiltEnabled ? styles.tiltRoot : styles.content}>
+        <ScaledHero
+          measureText="DESIGNER"
+          ariaLabel={`${firstLineText || currentItem.word} Designer`}
+          titleClassName={styles.title}
+          wrapperClassName={styles.wrapper}
+        >
         {isTiltEnabled ? (
           <>
             <div
@@ -116,7 +119,8 @@ export function IntroHero() {
             {designerLine}
           </>
         )}
-      </ScaledHero>
+        </ScaledHero>
+      </div>
     </div>
   )
 }

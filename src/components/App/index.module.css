@@ -15,8 +15,6 @@
 }
 
 .scrollWrapper {
-  position: relative;
-  z-index: 1;
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -62,6 +60,13 @@
     @mixin heading-xl;
     margin: 0;
   }
+}
+
+.sectionContentIntro {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
 }
 
 .sectionContentFullHeight {

@@ -1,7 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { BlurStrips } from '@/components/BlurStrips'
-import { DotGrid } from '@/components/DotGrid'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
 import { EndPage } from '@/components/EndPage'
@@ -61,7 +60,6 @@ export function App() {
       }}
     >
       <Modal />
-      <DotGrid />
       <BlurStrips />
       <CornerOverlay />
       <ScrollDownArrow
@@ -93,6 +91,15 @@ export function App() {
       >
         {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }) => {
           let content: React.ReactNode
+          const sectionContentClass =
+            id === 'intro'
+              ? `${styles.sectionContent} ${styles.sectionContentIntro}`
+              : isQuotes || jobId || id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
+                ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
+                : id === 'outro'
+                  ? `${styles.sectionContent} ${styles.sectionContentOutro}`
+                  : styles.sectionContent
+
           if (id === 'intro') {
             content = <IntroHero />
           } else if (id === 'outro') {
@@ -133,15 +140,7 @@ export function App() {
           }
           return (
             <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg}>
-              <div
-                className={
-                  isQuotes || jobId || id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
-                    ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
-                    : id === 'outro'
-                      ? `${styles.sectionContent} ${styles.sectionContentOutro}`
-                      : styles.sectionContent
-                }
-              >
+              <div className={sectionContentClass}>
                 {content}
               </div>
             </Section>
