@@ -1,4 +1,5 @@
 /* Global CSS variables and reset – base rem = 8px */
+@import './styles/breakpoints.css';
 @import './styles/typography.css';
 
 :root {
@@ -87,6 +88,12 @@ html,
 body {
   height: 100%;
   overflow: hidden;
+}
+
+html[data-outro-tilt='true'],
+html[data-outro-tilt='true'] body,
+html[data-outro-tilt='true'] #root {
+  overflow: visible !important;
 }
 
 body {

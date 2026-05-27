@@ -7,18 +7,20 @@ export function CornerOverlay() {
   return (
     <div className={styles.root}>
       <div className={styles.topLeft}>Peter Wright</div>
-      <a
-        className={styles.topRight}
-        href={LINKEDIN_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn
-      </a>
+      <div className={styles.contactLinks}>
+        <a
+          className={styles.topRight}
+          href={LINKEDIN_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+        <a className={styles.bottomRight} href={EMAIL_URL}>
+          Email
+        </a>
+      </div>
       <div className={styles.bottomLeft}>{year}</div>
-      <a className={styles.bottomRight} href={EMAIL_URL}>
-        Email
-      </a>
     </div>
   )
 }

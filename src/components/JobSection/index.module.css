@@ -16,17 +16,43 @@
     height: 100%;
     min-height: 0;
 
-    @media (max-width: 720px) {
+    @media (max-width: 639px) {
       grid-template-columns: 1fr;
       height: auto;
 
+      .imageColumn {
+        order: -1;
+        max-height: 50vh;
+        overflow: hidden;
+
+        .imageStack {
+          position: static;
+          top: auto;
+          left: auto;
+          right: auto;
+          transform: none;
+          max-height: 50vh;
+          overflow: hidden;
+        }
+
+        .image {
+          max-height: 50vh;
+          object-fit: cover;
+        }
+      }
+
       .contentColumn {
+        order: 0;
         max-width: none;
-        height: 100%;
+        width: 100%;
+        height: auto;
         position: static;
         top: auto;
         transform: none;
         align-self: stretch;
+        overflow-y: visible;
+        padding-left: var(--space_2);
+        padding-right: var(--space_2);
       }
     }
   }
@@ -152,6 +178,10 @@
     border-radius: var(--space_0_5);
     object-fit: contain;
     cursor: pointer;
+
+    @media (max-width: 639px) {
+      max-width: 100%;
+    }
   }
 
   .jobImagesModalCaption {

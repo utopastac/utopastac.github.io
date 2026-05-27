@@ -46,7 +46,7 @@ export function PlaypressSection() {
           className={isTiltEnabled ? `${styles.grid} ${styles.tiltPlane}` : styles.grid}
         >
           {CELL_SOURCES.map((src, i) => (
-            <div key={i} className={styles.cell} style={{ gridArea: `a${i}` }}>
+            <div key={i} className={styles.cell}>
               <img src={src} alt="" className={styles.image} />
             </div>
           ))}

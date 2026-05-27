@@ -8,6 +8,7 @@
   justify-content: space-between;
   gap: var(--space_1);
   width: 100%;
+  min-width: 0;
   border-radius: 0;
   color: var(--corner-text-color, var(--color-text));
   text-align: left;
@@ -29,7 +30,7 @@
   background: transparent;
   cursor: pointer;
   /* border-top: 1px solid color-mix(in srgb, var(--corner-text-color, var(--color-text)) 30%, transparent); */
-  padding: var(--space_1) 0 var(--space_1) 0;
+  padding: var(--space_1) 0;
 
   &:hover {
     text-decoration: underline;
@@ -43,20 +44,31 @@
   align-items: flex-end;
   justify-content: flex-start;
   gap: var(--space_1);
+  min-width: 0;
+  overflow: hidden;
 
   & .company {
     flex: 0 0 35%;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   & .title {
     flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
 .date {
-  flex: 0 0 10%;
+  flex: 0 0 auto;
+  flex-shrink: 0;
+  width: auto;
+  white-space: nowrap;
   text-align: left;
   @mixin body;
   font-variant-numeric: tabular-nums;
@@ -73,7 +85,3 @@
   font-weight: var(--font-weight-medium);
 }
 
-.title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}

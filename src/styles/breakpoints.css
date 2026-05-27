@@ -1,0 +1,5 @@
+/* Mobile / desktop boundary — keep px values in sync with `src/constants/breakpoints.ts`. */
+:root {
+  --breakpoint-mobile-max: 639px;
+  --breakpoint-desktop-min: 640px;
+}

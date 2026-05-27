@@ -96,6 +96,11 @@
   mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 
+  @media (max-width: 639px) {
+    width: 80vw;
+    max-width: 80vw;
+  }
+
   .title {
     margin: var(--space_8) 0 var(--space_5);
     flex-shrink: 0;
@@ -155,6 +160,10 @@
   color: var(--color-text);
   margin: 0 auto;
   max-width: 40vw;
+
+  @media (max-width: 639px) {
+    max-width: 100%;
+  }
 
   .modalTitle {
     margin: var(--space_8) 0 var(--space_5);

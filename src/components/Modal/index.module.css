@@ -79,6 +79,11 @@
     overflow: auto;
     padding: var(--space_4) var(--space_3) var(--space_3);
     padding-bottom: 35vh;
+
+    @media (max-width: 639px) {
+      padding-left: var(--space_1);
+      padding-right: var(--space_1);
+    }
   }
 }
 

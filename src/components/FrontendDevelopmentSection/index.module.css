@@ -39,7 +39,8 @@
   inset: 0;
   z-index: 0;
   width: 100vw;
-  height: 100vh;
+  margin-left: calc(50% - 50vw);
+  height: 100%;
   overflow: hidden;
 }
 
@@ -54,6 +55,12 @@
   position: absolute;
   top: 35vh;
   left: 15vw;
+
+  @media (max-width: 639px) {
+    left: 5vw;
+    width: auto;
+    right: 5vw;
+  }
 }
 
 .editor {
@@ -122,7 +129,7 @@
 
 .code {
   margin: 0;
-  padding: var(--space_1_25) var(--space_5) var(--space_1_25) 0;
+  padding: var(--space_1_25) var(--space_1_25) var(--space_1_25) 0;
   font-family: var(--font-code);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
@@ -168,7 +175,7 @@
 @media (max-width: 1100px) {
   .copyBlock {
     align-items: flex-start;
-    padding: var(--space_2);
+    padding-block: var(--space_2);
   }
 
   .editor {

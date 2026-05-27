@@ -14,19 +14,13 @@ import { PlaypressSection } from '@/components/PlaypressSection'
 import { QuotesSection } from '@/components/QuotesSection'
 import { ScrollDownArrow } from '@/components/ScrollDownArrow'
 import { Section } from '@/components/Section'
-import { SimplePage } from '@/components/SimplePage'
 import { EDUCATION } from '@/data/education'
 import { JOBS } from '@/data/jobs'
 import { QUOTES } from '@/data/quotes'
 import { SECTIONS } from '@/data/sections'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import styles from './index.module.css'
 
-const SMALL_VIEWPORT_MEDIA = '(max-width: 639px)'
-
 export function App() {
-  const isSmallViewport = useMediaQuery(SMALL_VIEWPORT_MEDIA)
-
   // Preload all job section images so they don’t jump in when scrolling into view
   useEffect(() => {
     const urls = JOBS.flatMap((job) => (job.images ?? []).map((img) => img.src))
@@ -35,10 +29,6 @@ export function App() {
       img.src = src
     })
   }, [])
-
-  if (isSmallViewport) {
-    return <SimplePage />
-  }
 
   const ctx = useContext(SectionBackgroundContext)
   const backgroundColor = ctx?.backgroundColor ?? 'var(--color-bg)'

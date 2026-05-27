@@ -4,7 +4,8 @@
   z-index: 20;
   pointer-events: none;
 
-  & > * {
+  & > *,
+  & .contactLinks > a {
     position: absolute;
     padding: var(--space_2);
     font-size: var(--font-size-sm);
@@ -45,5 +46,28 @@
   & .bottomRight {
     bottom: 0;
     right: 0;
+  }
+
+  & .contactLinks {
+    display: contents;
+  }
+
+  @media (max-width: 639px) {
+    & .contactLinks {
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      gap: var(--space_1);
+      padding: var(--space_2);
+      pointer-events: auto;
+
+      & .topRight,
+      & .bottomRight {
+        position: static;
+        inset: auto;
+        padding: 0;
+      }
+    }
   }
 }

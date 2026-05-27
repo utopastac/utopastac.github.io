@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
+import { DESKTOP_TILT_MEDIA } from '@/constants/breakpoints'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
-export const DESKTOP_TILT_MEDIA = '(min-width: 640px) and (hover: hover) and (pointer: fine)'
+export { DESKTOP_TILT_MEDIA }
 const MAX_TILT_DEG = 11
 const LERP_FACTOR = 0.07
 const DEADZONE = 0.015
