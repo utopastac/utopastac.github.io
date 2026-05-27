@@ -19,6 +19,8 @@ export type SectionData = {
   textColor?: string
   /** Optional navigation panel background color (rgba value). */
   navPanelBackgroundColor?: string
+  /** Short label shown right-aligned in page nav (top-level sections). */
+  navDescription?: string
   /** When set, this section renders JobSection with the given job id from JOBS. */
   jobId?: string
   /** When set, this section renders EducationSection (id must match EDUCATION.id). */
@@ -59,27 +61,31 @@ export const SECTIONS: readonly SectionData[] = [
     textColor: '#FFFFFF',
     isQuotes: true,
     navPlacement: 'top-level',
+    navDescription: 'Colleague quotes',
   },
   { 
     id: 'playpress',
     title: 'Playpress',
     backgroundColor: '#f5f5f0',
     navPlacement: 'top-level',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)'
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
+    navDescription: 'UK based Toy company',
   },
   {
     id: 'frontend-development',
     title: 'Development',
     backgroundColor: '#FFFFFF',
     navPlacement: 'top-level',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)'
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
+    navDescription: 'Coding experience',
   },
   {
     id: 'pixel-portraits',
     title: 'Pixel portraits',
     backgroundColor: '#f5f5f0',
     navPlacement: 'top-level',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)'
+    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
+    navDescription: 'Pixel art tool',
   },
   { 
     id: 'outro',

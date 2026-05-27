@@ -12,6 +12,7 @@ export type SectionLink = {
   label: string
   backgroundColor?: string
   navPlacement: NavPlacement
+  navDescription?: string
 }
 
 type PageNavProps = {
@@ -118,14 +119,17 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange }: Pag
           <div>
             {sections
               .filter((s) => s.navPlacement === 'top-level')
-              .map(({ id, label, backgroundColor }) => (
+              .map(({ id, label, backgroundColor, navDescription }) => (
                 <li key={id} role="listitem">
                   <button
                     type="button"
                     className={styles.linkButton}
                     onClick={() => handleSectionClick(id, backgroundColor)}
                   >
-                    {label}
+                    <span className={styles.linkLabel}>{label}</span>
+                    {navDescription ? (
+                      <span className={styles.linkDescription}>{navDescription}</span>
+                    ) : null}
                   </button>
                 </li>
               ))}

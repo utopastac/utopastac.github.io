@@ -67,11 +67,12 @@ export function App() {
         scrollContainerRef={scrollContainerRef}
       />
       <PageNav
-        sections={SECTIONS.map(({ id, title, backgroundColor: bg, navPlacement }) => ({
+        sections={SECTIONS.map(({ id, title, backgroundColor: bg, navPlacement, navDescription }) => ({
           id,
           label: title,
           backgroundColor: bg,
           navPlacement,
+          navDescription,
         }))}
         navPanelBackgroundColor={navPanelBackgroundColor}
         onOpenChange={handleNavOpenChange}

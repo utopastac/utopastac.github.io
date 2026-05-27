@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 10vw;
+  width: 5vw;
   height: 100vh;
   z-index: 10;
 }
@@ -94,24 +94,25 @@ ul.panel {
 
   & .gap {
     width: 100%;
-    height: var(--space_1);
+    height: 1px;
+    border-bottom: 1px solid var(--color-text-subtle);
+    margin: var(--space_3) 0 var(--space_1) 0;
   }
 
   & li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    & span {
-      display: block;
-      color: var(--corner-text-color, var(--color-text));
-    }
+    width: 100%;
   }
 }
 
 .linkButton {
   @mixin body;
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space_1);
   padding: var(--space_0_5) 0;
   width: 100%;
   border: none;
@@ -122,5 +123,27 @@ ul.panel {
 
   &:hover {
     text-decoration: underline;
+  }
+
+  & .linkLabel {
+    flex: 0 1 auto;
+    min-width: 0;
+    text-align: left;
+    font-weight: var(--font-weight-medium);
+  }
+
+  & .linkDescription {
+    @mixin body;
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: right;
+  }
+
+  @media (max-width: 720px) {
+    @mixin body-sm;
+
+    & .linkDescription {
+      @mixin body-sm;
+    }
   }
 }
