@@ -15,6 +15,7 @@ const CHAR_MS = 70
 const PAUSE_MS = 2750
 const FOREGROUND_TILT_DEG = 30
 const BACKGROUND_TILT_DEG = 25
+const DOT_GRID_TILT_DEG = 12
 
 type Phase = 'in' | 'pause' | 'out'
 
@@ -72,6 +73,10 @@ export function IntroHero() {
     maxTiltDeg: BACKGROUND_TILT_DEG,
     enabled: isTiltEnabled,
   })
+  const { tiltRef: dotGridTiltRef } = useCursorTilt({
+    maxTiltDeg: DOT_GRID_TILT_DEG,
+    enabled: isTiltEnabled,
+  })
 
   const firstLineStyle = {
     fontFamily: currentItem.font,
@@ -89,38 +94,53 @@ export function IntroHero() {
   const designerLine = <span className={styles.line}>DESIGNER</span>
 
   return (
-    <>
-      <DotGrid />
-      <div className={isTiltEnabled ? styles.tiltRoot : undefined}>
-        <ScaledHero
-          measureText="DESIGNER"
-          ariaLabel={`${firstLineText || currentItem.word} Designer`}
-          titleClassName={styles.title}
-          wrapperClassName={styles.wrapper}
-        >
-          {isTiltEnabled ? (
-            <>
-              <div
-                ref={backgroundTiltRef}
-                className={`${styles.backgroundTilt} ${styles.tiltPlane}`}
-              >
+    <div className={styles.root}>
+      {isTiltEnabled ? (
+        <div className={styles.dotGridScene} aria-hidden>
+          <div
+            ref={dotGridTiltRef}
+            className={`${styles.dotGridTilt} ${styles.tiltPlane}`}
+          >
+            <DotGrid />
+          </div>
+        </div>
+      ) : (
+        <div className={styles.dotGridBackdrop} aria-hidden>
+          <DotGrid />
+        </div>
+      )}
+      <div className={styles.heroScene}>
+        <div className={isTiltEnabled ? styles.tiltRoot : undefined}>
+          <ScaledHero
+            measureText="DESIGNER"
+            ariaLabel={`${firstLineText || currentItem.word} Designer`}
+            titleClassName={styles.title}
+            wrapperClassName={styles.wrapper}
+          >
+            {isTiltEnabled ? (
+              <>
+                <div
+                  ref={backgroundTiltRef}
+                  className={`${styles.backgroundTilt} ${styles.tiltPlane}`}
+                >
+                  {firstLine}
+                </div>
+                <div
+                  ref={foregroundTiltRef}
+                  className={`${styles.foregroundTilt} ${styles.tiltPlane}`}
+                >
+                  {designerLine}
+                </div>
+              </>
+            ) : (
+              <>
                 {firstLine}
-              </div>
-              <div
-                ref={foregroundTiltRef}
-                className={`${styles.foregroundTilt} ${styles.tiltPlane}`}
-              >
                 {designerLine}
-              </div>
-            </>
-          ) : (
-            <>
-              {firstLine}
-              {designerLine}
-            </>
-          )}
-        </ScaledHero>
+              </>
+            )}
+          </ScaledHero>
+        </div>
       </div>
-    </>
+    </div>
   )
 }

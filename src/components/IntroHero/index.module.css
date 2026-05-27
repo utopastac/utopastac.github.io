@@ -1,8 +1,58 @@
 @import '@styles/typography.css';
 
-.tiltRoot {
+.root {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dotGridBackdrop,
+.dotGridScene {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.dotGridScene {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.dotGridTilt {
+  position: absolute;
+  inset: 0;
+
+  &.tiltPlane {
+    --dot-grid-depth: 80px;
+    --dot-grid-perspective: 900px;
+    transform:
+      translateZ(calc(-1 * var(--dot-grid-depth)))
+      scale(calc((var(--dot-grid-perspective) + var(--dot-grid-depth)) / var(--dot-grid-perspective)))
+      rotateX(var(--hero-tilt-y))
+      rotateY(var(--hero-tilt-x));
+    transform-style: preserve-3d;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+.heroScene {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.tiltRoot {
   perspective: 900px;
   transform-style: preserve-3d;
 }
