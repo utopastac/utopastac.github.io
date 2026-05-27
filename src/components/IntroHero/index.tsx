@@ -89,38 +89,38 @@ export function IntroHero() {
   const designerLine = <span className={styles.line}>DESIGNER</span>
 
   return (
-    <div className={styles.root}>
+    <>
       <DotGrid />
-      <div className={isTiltEnabled ? styles.tiltRoot : styles.content}>
+      <div className={isTiltEnabled ? styles.tiltRoot : undefined}>
         <ScaledHero
           measureText="DESIGNER"
           ariaLabel={`${firstLineText || currentItem.word} Designer`}
           titleClassName={styles.title}
           wrapperClassName={styles.wrapper}
         >
-        {isTiltEnabled ? (
-          <>
-            <div
-              ref={backgroundTiltRef}
-              className={`${styles.backgroundTilt} ${styles.tiltPlane}`}
-            >
+          {isTiltEnabled ? (
+            <>
+              <div
+                ref={backgroundTiltRef}
+                className={`${styles.backgroundTilt} ${styles.tiltPlane}`}
+              >
+                {firstLine}
+              </div>
+              <div
+                ref={foregroundTiltRef}
+                className={`${styles.foregroundTilt} ${styles.tiltPlane}`}
+              >
+                {designerLine}
+              </div>
+            </>
+          ) : (
+            <>
               {firstLine}
-            </div>
-            <div
-              ref={foregroundTiltRef}
-              className={`${styles.foregroundTilt} ${styles.tiltPlane}`}
-            >
               {designerLine}
-            </div>
-          </>
-        ) : (
-          <>
-            {firstLine}
-            {designerLine}
-          </>
-        )}
+            </>
+          )}
         </ScaledHero>
       </div>
-    </div>
+    </>
   )
 }
