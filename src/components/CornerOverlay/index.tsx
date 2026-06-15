@@ -1,12 +1,29 @@
+import { Settings } from 'lucide-react'
 import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
 import styles from './index.module.css'
 
-export function CornerOverlay() {
+type CornerOverlayProps = {
+  onSettingsOpen?: () => void
+}
+
+export function CornerOverlay({ onSettingsOpen }: CornerOverlayProps) {
   const year = new Date().getFullYear()
 
   return (
     <div className={styles.root}>
-      <div className={styles.topLeft}>Peter Wright</div>
+      <div className={styles.topLeft}>
+        Peter Wright
+        {onSettingsOpen && (
+          <button
+            type="button"
+            className={styles.settingsButton}
+            onClick={onSettingsOpen}
+            aria-label="Open settings"
+          >
+            <Settings size={14} aria-hidden />
+          </button>
+        )}
+      </div>
       <div className={styles.contactLinks}>
         <a
           className={styles.topRight}

@@ -93,7 +93,7 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
       }
       let maxRatio = 0
       let best: SectionInfo | null = null
-      for (const [node, info] of sectionMap) {
+      for (const [, info] of sectionMap) {
         const r = ratioMap.get(info.id) ?? 0
         if (r > maxRatio) {
           maxRatio = r

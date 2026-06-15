@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { DESKTOP_TILT_MEDIA } from '@/constants/breakpoints'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { SettingsContext } from '@/settings/SettingsContext'
 
 export { DESKTOP_TILT_MEDIA }
 const MAX_TILT_DEG = 11
@@ -32,9 +33,16 @@ type TiltLayer = {
   current: { x: number; y: number }
 }
 
+type PerspectiveRoot = {
+  node: HTMLDivElement
+  currentX: number
+  currentY: number
+}
+
 let sharedTarget = { x: 0, y: 0 }
 let sharedMouse = { x: 0, y: 0 }
 const layers = new Set<TiltLayer>()
+const perspectiveRoots = new Set<PerspectiveRoot>()
 let rafId = 0
 let activeHookCount = 0
 
@@ -97,6 +105,16 @@ function animate() {
     layer.node.style.setProperty('--hero-tilt-y', `${rotateX.toFixed(2)}deg`)
   }
 
+  for (const root of perspectiveRoots) {
+    const rect = root.node.getBoundingClientRect()
+    const targetX = rect.width > 0 ? (sharedMouse.x - rect.left) / rect.width : 0.5
+    const targetY = rect.height > 0 ? (sharedMouse.y - rect.top) / rect.height : 0.5
+    root.currentX += (targetX - root.currentX) * LERP_FACTOR
+    root.currentY += (targetY - root.currentY) * LERP_FACTOR
+    root.node.style.setProperty('--tilt-perspective-x', `${(root.currentX * 100).toFixed(1)}%`)
+    root.node.style.setProperty('--tilt-perspective-y', `${(root.currentY * 100).toFixed(1)}%`)
+  }
+
   rafId = requestAnimationFrame(animate)
 }
 
@@ -126,6 +144,12 @@ function handleMouseMove(event: MouseEvent) {
 function handleMouseLeave() {
   sharedTarget = { x: 0, y: 0 }
   sharedMouse = { x: 0, y: 0 }
+  for (const root of perspectiveRoots) {
+    root.currentX = 0.5
+    root.currentY = 0.5
+    root.node.style.setProperty('--tilt-perspective-x', '50%')
+    root.node.style.setProperty('--tilt-perspective-y', '50%')
+  }
 }
 
 function attachGlobalListeners() {
@@ -147,9 +171,13 @@ export function useCursorTilt({
   maxInfluenceRadius,
 }: CursorTiltOptions = {}) {
   const isDesktopPointer = useMediaQuery(DESKTOP_TILT_MEDIA)
-  const enabled = enabledOverride ?? isDesktopPointer
+  const settingsCtx = useContext(SettingsContext)
+  const reduceMotion = settingsCtx?.settings.reduceMotion ?? false
+  const enabled = !reduceMotion && (enabledOverride ?? isDesktopPointer)
   const tiltRef = useRef<HTMLDivElement>(null)
   const layerRef = useRef<TiltLayer | null>(null)
+  const perspectiveRootRef = useRef<HTMLDivElement>(null)
+  const perspRootRef = useRef<PerspectiveRoot | null>(null)
 
   useEffect(() => {
     const node = tiltRef.current
@@ -194,5 +222,31 @@ export function useCursorTilt({
     }
   }, [enabled, maxTiltDeg, lerpFactor, maxInfluenceRadius])
 
-  return { enabled, tiltRef }
+  useEffect(() => {
+    const node = perspectiveRootRef.current
+    if (!enabled || !node) {
+      if (perspRootRef.current) {
+        perspRootRef.current.node.style.setProperty('--tilt-perspective-x', '50%')
+        perspRootRef.current.node.style.setProperty('--tilt-perspective-y', '50%')
+        perspectiveRoots.delete(perspRootRef.current)
+        perspRootRef.current = null
+      }
+      return
+    }
+
+    const perspRoot: PerspectiveRoot = { node, currentX: 0.5, currentY: 0.5 }
+    perspRootRef.current = perspRoot
+    perspectiveRoots.add(perspRoot)
+
+    return () => {
+      if (perspRootRef.current) {
+        perspRootRef.current.node.style.setProperty('--tilt-perspective-x', '50%')
+        perspRootRef.current.node.style.setProperty('--tilt-perspective-y', '50%')
+        perspectiveRoots.delete(perspRootRef.current)
+        perspRootRef.current = null
+      }
+    }
+  }, [enabled])
+
+  return { enabled, tiltRef, perspectiveRootRef }
 }

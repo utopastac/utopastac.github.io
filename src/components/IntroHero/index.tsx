@@ -17,7 +17,40 @@ const FOREGROUND_TILT_DEG = 30
 const BACKGROUND_TILT_DEG = 25
 const DOT_GRID_TILT_DEG = 12
 
+// Hard cap on blur (px) — scales down proportionally for short words
+const MAX_BLUR_PX = 6
+
 type Phase = 'in' | 'pause' | 'out'
+
+/**
+ * Renders typed text as individual character spans with a blur gradient:
+ * the most recently typed / about-to-be-deleted character is most blurred,
+ * fading to sharp within a window that scales with the word length so short
+ * words never become fully blurred.
+ *
+ * blurWindow  → ~50 % of word length, clamped to [2, ∞)
+ * maxBlurPx   → scales with word length, clamped to [3, MAX_BLUR_PX]
+ */
+function renderTypedText(text: string) {
+  const blurWindow = Math.max(2, Math.round(text.length * 0.5))
+  const maxBlurPx = Math.min(MAX_BLUR_PX, Math.max(3, text.length * 0.75))
+
+  return text.split('').map((char, i) => {
+    const distFromEnd = text.length - 1 - i
+    const blurAmount = distFromEnd >= blurWindow
+      ? 0
+      : maxBlurPx * (1 - distFromEnd / blurWindow)
+    return (
+      <span
+        key={i}
+        className={styles.char}
+        style={blurAmount > 0 ? { filter: `blur(${blurAmount.toFixed(2)}px)` } : undefined}
+      >
+        {char}
+      </span>
+    )
+  })
+}
 
 function useRotatingTyping() {
   const [wordIndex, setWordIndex] = useState(0)
@@ -66,7 +99,7 @@ function useRotatingTyping() {
 export function IntroHero() {
   const { displayText: firstLineText, wordIndex } = useRotatingTyping()
   const currentItem = ROTATING_ITEMS[wordIndex]
-  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef } = useCursorTilt({
+  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef, perspectiveRootRef } = useCursorTilt({
     maxTiltDeg: FOREGROUND_TILT_DEG,
   })
   const { tiltRef: backgroundTiltRef } = useCursorTilt({
@@ -87,7 +120,7 @@ export function IntroHero() {
 
   const firstLine = (
     <span className={styles.line} style={firstLineStyle} aria-live="polite">
-      {firstLineText}
+      {renderTypedText(firstLineText)}
     </span>
   )
 
@@ -110,7 +143,7 @@ export function IntroHero() {
         </div>
       )}
       <div className={styles.heroScene}>
-        <div className={isTiltEnabled ? styles.tiltRoot : undefined}>
+        <div ref={perspectiveRootRef} className={isTiltEnabled ? styles.tiltRoot : undefined}>
           <ScaledHero
             measureText="DESIGNER"
             ariaLabel={`${firstLineText || currentItem.word} Designer`}

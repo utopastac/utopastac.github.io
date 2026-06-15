@@ -1,3 +1,6 @@
+@import '@styles/breakpoints.css';
+@import '@styles/tilt.css';
+
 .wrapper {
   position: relative;
   max-height: 100vh;
@@ -11,7 +14,7 @@
   box-sizing: border-box;
   overflow: hidden;
 
-  @media (max-width: 639px) {
+  @mixin mobile-down {
     padding: 0;
   }
 
@@ -54,7 +57,7 @@
   min-height: 0;
   transform-style: preserve-3d;
 
-  @media (max-width: 639px) {
+  @mixin mobile-down {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(10, 1fr);
     padding: 0 !important;
@@ -70,12 +73,7 @@
 }
 
 .tiltPlane {
-  --hero-tilt-x: 0deg;
-  --hero-tilt-y: 0deg;
-  transform: rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
-  transform-style: preserve-3d;
-  will-change: transform;
-  backface-visibility: hidden;
+  @mixin tilt-plane;
 }
 
 .image {

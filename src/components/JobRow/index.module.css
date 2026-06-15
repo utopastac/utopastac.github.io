@@ -1,3 +1,4 @@
+@import '@styles/breakpoints.css';
 @import '@styles/typography.css';
 
 .rowButton,
@@ -13,14 +14,9 @@
   color: var(--corner-text-color, var(--color-text));
   text-align: left;
 
-  @media (max-width: 720px) {
+  @mixin nav-compact {
     @mixin body-sm;
   }
-}
-
-.row {
-  /* border-top: 1px solid color-mix(in srgb, var(--corner-text-color, var(--color-text)) 30%, transparent); */
-  padding: var(--space_0_25) 0;
 }
 
 .rowButton {
@@ -29,8 +25,7 @@
   border-radius: 0;
   background: transparent;
   cursor: pointer;
-  /* border-top: 1px solid color-mix(in srgb, var(--corner-text-color, var(--color-text)) 30%, transparent); */
-  padding: var(--space_1) 0;
+  padding: var(--space_0_75) 0;
 
   &:hover {
     text-decoration: underline;
@@ -75,13 +70,16 @@
   padding-right: 0;
   margin: 0;
 
-  @media (max-width: 720px) {
+  @mixin nav-compact {
     @mixin body-sm;
   }
+}
+
+.dateHidden {
+  visibility: hidden;
 }
 
 .company {
   text-align: left;
   font-weight: var(--font-weight-medium);
 }
-

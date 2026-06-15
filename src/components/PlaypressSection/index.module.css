@@ -1,14 +1,13 @@
+@import '@styles/breakpoints.css';
+@import '@styles/tilt.css';
+
 .tiltPlane {
-  --hero-tilt-x: 0deg;
-  --hero-tilt-y: 0deg;
-  transform-style: preserve-3d;
-  will-change: transform;
-  backface-visibility: hidden;
+  @mixin tilt-plane;
 }
 
 .grid.tiltPlane {
   z-index: 0;
-  transform: translateZ(-40px) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  @mixin tilt-plane-depth -40px;
 }
 
 .logoLayer {
@@ -21,7 +20,7 @@
 
 .foregroundTilt.tiltPlane {
   z-index: 3;
-  transform: translateZ(60px) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  @mixin tilt-plane-depth 60px;
 }
 
 .wrapper {
@@ -55,8 +54,7 @@
   &.tiltRoot {
     z-index: 0;
     overflow: visible;
-    perspective: 900px;
-    transform-style: preserve-3d;
+    @mixin tilt-root;
   }
 }
 
@@ -76,13 +74,13 @@
   min-height: 0;
   gap: var(--space_0_5);
 
-  @media (max-width: 639px) {
+  @mixin mobile-down {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas: none;
   }
 
-  @media (min-width: 640px) {
+  @mixin desktop-up {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas:
@@ -132,7 +130,7 @@
   min-height: 0;
   min-width: 0;
   overflow: hidden;
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-sm);
 }
 
 .image {
@@ -140,6 +138,5 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
-

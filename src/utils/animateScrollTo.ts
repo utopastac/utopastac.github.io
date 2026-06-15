@@ -20,14 +20,14 @@ export function easePower2InOut(t: number): number {
 }
 
 function getScrollY(target: ScrollTarget): number {
-  return target === window ? window.scrollY : target.scrollTop
+  return target === window ? window.scrollY : (target as HTMLElement).scrollTop
 }
 
 function setScrollY(target: ScrollTarget, y: number): void {
   if (target === window) {
     window.scrollTo(0, y)
   } else {
-    target.scrollTop = y
+    (target as HTMLElement).scrollTop = y
   }
 }
 
@@ -44,16 +44,16 @@ function getScrollParent(element: HTMLElement): ScrollTarget {
 }
 
 export function getScrollViewportHeight(target: ScrollTarget): number {
-  return target === window ? window.innerHeight : target.clientHeight
+  return target === window ? window.innerHeight : (target as HTMLElement).clientHeight
 }
 
 export function getScrollTopForElement(target: ScrollTarget, element: HTMLElement): number {
   if (target === window) {
     return window.scrollY + element.getBoundingClientRect().top
   }
-  const containerRect = target.getBoundingClientRect()
+  const containerRect = (target as HTMLElement).getBoundingClientRect()
   const elementRect = element.getBoundingClientRect()
-  return target.scrollTop + (elementRect.top - containerRect.top)
+  return (target as HTMLElement).scrollTop + (elementRect.top - containerRect.top)
 }
 
 export function getScrollDurationForDistance(

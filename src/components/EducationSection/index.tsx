@@ -63,7 +63,7 @@ export function EducationSection({
   date,
   details,
 }: EducationSectionProps) {
-  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef } = useCursorTilt()
+  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef, perspectiveRootRef } = useCursorTilt()
   const { tiltRef: backgroundTiltRef } = useCursorTilt({
     enabled: isTiltEnabled,
     maxTiltDeg: BACKGROUND_TILT_DEG,
@@ -72,7 +72,7 @@ export function EducationSection({
   const backgroundStackStyle =
     scale !== null ? { fontSize: `${scale.fontSize}px` } : undefined
   return (
-    <div className={isTiltEnabled ? styles.tiltRoot : undefined}>
+    <div ref={perspectiveRootRef} className={isTiltEnabled ? styles.tiltRoot : undefined}>
       <div className={styles.container}>
         <div
           ref={isTiltEnabled ? backgroundTiltRef : undefined}

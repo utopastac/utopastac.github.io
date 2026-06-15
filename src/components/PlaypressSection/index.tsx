@@ -21,7 +21,7 @@ const CELL_SOURCES = [
 
 export function PlaypressSection() {
   const { displayPos, setTarget } = useSpringFollow()
-  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef } = useCursorTilt()
+  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef, perspectiveRootRef } = useCursorTilt()
   const { tiltRef: backgroundTiltRef } = useCursorTilt({
     enabled: isTiltEnabled,
     maxTiltDeg: BACKGROUND_TILT_DEG,
@@ -40,7 +40,7 @@ export function PlaypressSection() {
       className={isTiltEnabled ? `${styles.wrapper} ${styles.tiltEnabled}` : styles.wrapper}
       onMouseMove={handleMouseMove}
     >
-      <div className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}>
+      <div ref={perspectiveRootRef} className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}>
         <div
           ref={backgroundTiltRef}
           className={isTiltEnabled ? `${styles.grid} ${styles.tiltPlane}` : styles.grid}

@@ -29,7 +29,7 @@ const COPY_LINES = [
 ] as const
 
 export function FrontendDevelopmentSection() {
-  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef } = useCursorTilt()
+  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef, perspectiveRootRef } = useCursorTilt()
   const { tiltRef: backgroundTiltRef } = useCursorTilt({
     enabled: isTiltEnabled,
     maxTiltDeg: BACKGROUND_TILT_DEG,
@@ -61,7 +61,7 @@ export function FrontendDevelopmentSection() {
   )
 
   return (
-    <div className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}>
+    <div ref={perspectiveRootRef} className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}>
       <div
         ref={isTiltEnabled ? backgroundTiltRef : undefined}
         className={

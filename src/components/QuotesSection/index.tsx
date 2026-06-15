@@ -19,7 +19,7 @@ const BACKGROUND_TILT_DEG = 20
 
 export function QuotesSection({ quotes, title = 'What people say' }: QuotesSectionProps) {
   const modal = useContext(ModalContext)
-  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef } = useCursorTilt()
+  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef, perspectiveRootRef } = useCursorTilt()
   const { tiltRef: backgroundTiltRef } = useCursorTilt({
     enabled: isTiltEnabled,
     maxTiltDeg: BACKGROUND_TILT_DEG,
@@ -32,7 +32,7 @@ export function QuotesSection({ quotes, title = 'What people say' }: QuotesSecti
   }
 
   return (
-    <div className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}>
+    <div ref={perspectiveRootRef} className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}>
       <div className={styles.container}>
           <div
             ref={isTiltEnabled ? backgroundTiltRef : undefined}

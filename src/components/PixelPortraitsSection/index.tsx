@@ -40,6 +40,7 @@ function PortraitCell({ src, alt, enabled }: PortraitCellProps) {
 export function PixelPortraitsSection() {
   const { displayPos, setTarget } = useSpringFollow()
   const isTiltEnabled = useMediaQuery(DESKTOP_TILT_MEDIA)
+  const { perspectiveRootRef } = useCursorTilt({ enabled: isTiltEnabled })
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -54,7 +55,7 @@ export function PixelPortraitsSection() {
       className={isTiltEnabled ? `${styles.wrapper} ${styles.tiltEnabled}` : styles.wrapper}
       onMouseMove={handleMouseMove}
     >
-      <div className={isTiltEnabled ? `${styles.scene} ${styles.tiltRoot}` : styles.scene}>
+      <div ref={perspectiveRootRef} className={isTiltEnabled ? `${styles.scene} ${styles.tiltRoot}` : styles.scene}>
         <div className={styles.grid}>
           {PIXEL_PORTRAIT_SRCS.map(({ src, alt }, i) => (
             <PortraitCell key={i} src={src} alt={alt} enabled={isTiltEnabled} />

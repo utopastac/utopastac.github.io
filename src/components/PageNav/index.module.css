@@ -1,3 +1,4 @@
+@import '@styles/breakpoints.css';
 @import '@styles/typography.css';
 
 /* Invisible hit area: far right 5% of viewport */
@@ -9,7 +10,12 @@
   height: 100vh;
   z-index: 10;
 
-  @media (max-width: 639px) {
+  &[data-panel-open='true'] .menuIcon {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @mixin mobile-down {
     width: auto;
     height: auto;
     inset: 0 auto auto auto;
@@ -40,17 +46,17 @@
   -webkit-backdrop-filter: blur(35px);
   transition: opacity 0.35s ease-out, transform 0.35s ease-out;
 
-  .triggerZone[data-open="true"] & {
+  &[data-open="true"] {
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
   }
 
-  @media (min-width: 640px) {
-    min-width: 420px;
+  @mixin desktop-up {
+    display: none;
   }
 
-  @media (max-width: 639px) {
+  @mixin mobile-down {
     width: 100vw;
     max-width: 100vw;
   }
@@ -74,11 +80,18 @@
     pointer-events: auto;
   }
 
-  @media (min-width: 640px) {
+  @mixin desktop-up {
     min-width: 420px;
+    top: 50%;
+    bottom: auto;
+    right: var(--space_3);
+    transform: translateY(-50%);
+    max-height: calc(100vh - var(--space_3) * 2);
+    overflow-y: auto;
+    border-radius: var(--radius-lg);
   }
 
-  @media (max-width: 639px) {
+  @mixin mobile-down {
     width: 100vw;
     max-width: 100vw;
     padding-right: var(--space_2);
@@ -102,7 +115,7 @@
     font-size: var(--font-size-xl);
     cursor: pointer;
 
-    @media (max-width: 639px) {
+    @mixin mobile-down {
       top: var(--space_2);
       right: var(--space_2);
       transform: none;
@@ -116,7 +129,7 @@ ul.panel {
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: var(--space_0_75);
+  gap: var(--space_0_5);
   padding: var(--space_8) var(--space_1);
   margin: auto 0;
   list-style: none;
@@ -143,52 +156,5 @@ ul.panel {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-  }
-}
-
-.linkButton {
-  @mixin body;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space_1);
-  padding: var(--space_0_5) 0;
-  width: 100%;
-  border: none;
-  background: transparent;
-  color: var(--corner-text-color, var(--color-text));
-  cursor: pointer;
-  text-align: left;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  & .linkLabel {
-    flex: 0 1 auto;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-align: left;
-    font-weight: var(--font-weight-medium);
-  }
-
-  & .linkDescription {
-    @mixin body;
-    flex: 1 1 auto;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-align: right;
-  }
-
-  @media (max-width: 720px) {
-    @mixin body-sm;
-
-    & .linkDescription {
-      @mixin body-sm;
-    }
   }
 }

@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space_0_5) var(--space_3);
+  min-height: 0;
+  gap: var(--space_2);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--corner-text-color);
+  flex: 0 0 13rem;
+
+  &[for] {
+    cursor: pointer;
+  }
+}
+
+.control {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}

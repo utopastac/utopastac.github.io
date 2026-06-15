@@ -19,22 +19,22 @@
 .cell {
   width: 100%;
   height: 100%;
-  border-radius: 2px;
-  background: #ebedf0;
+  border-radius: var(--radius-xs);
+  background: var(--contrib-level-0);
 
   &[data-level='1'] {
-    background: #baecbf;
+    background: var(--contrib-level-1);
   }
 
   &[data-level='2'] {
-    background: #6dc074;
+    background: var(--contrib-level-2);
   }
 
   &[data-level='3'] {
-    background: #54a258;
+    background: var(--contrib-level-3);
   }
 
   &[data-level='4'] {
-    background: #2e6230;
+    background: var(--contrib-level-4);
   }
 }

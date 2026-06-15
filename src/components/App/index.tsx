@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
+import { SettingsPanel } from '@/settings'
 import { BlurStrips } from '@/components/BlurStrips'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
@@ -39,6 +40,7 @@ export function App() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const handleNavOpenChange = useCallback((open: boolean) => setIsNavOpen(open), [])
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
   return (
     <div
@@ -50,8 +52,17 @@ export function App() {
       }}
     >
       <Modal />
+      <div
+        className={styles.panelOverlay}
+        data-open={isNavOpen || isSettingsOpen}
+        aria-hidden="true"
+        style={{
+          ['--overlay-bg' as string]: navPanelBackgroundColor ?? backgroundColor,
+        }}
+      />
+      <SettingsPanel isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
       <BlurStrips />
-      <CornerOverlay />
+      <CornerOverlay onSettingsOpen={() => setIsSettingsOpen(true)} />
       <ScrollDownArrow
         sectionIds={SECTIONS.map((s) => s.id)}
         scrollContainerRef={scrollContainerRef}
@@ -66,6 +77,7 @@ export function App() {
         }))}
         navPanelBackgroundColor={navPanelBackgroundColor}
         onOpenChange={handleNavOpenChange}
+        panelOpen={isSettingsOpen}
       />
       <div
         ref={scrollContainerRef}
@@ -73,6 +85,7 @@ export function App() {
         role="region"
         aria-label="Page content"
         data-nav-open={isNavOpen}
+        data-settings-open={isSettingsOpen}
         data-active-section={activeSection?.id}
       >
       <main

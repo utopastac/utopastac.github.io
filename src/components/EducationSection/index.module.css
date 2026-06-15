@@ -1,17 +1,13 @@
 @import '@styles/typography.css';
+@import '@styles/tilt.css';
+@import '@styles/layout.css';
 
 .tiltRoot {
-  perspective: 900px;
-  transform-style: preserve-3d;
+  @mixin tilt-root;
 }
 
 .tiltPlane {
-  --hero-tilt-x: 0deg;
-  --hero-tilt-y: 0deg;
-  transform: rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
-  transform-style: preserve-3d;
-  will-change: transform;
-  backface-visibility: hidden;
+  @mixin tilt-plane;
 }
 
 .container {
@@ -26,14 +22,15 @@
 }
 
 .backgroundWord {
-  position: absolute;
+  @mixin full-bleed;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
   z-index: 0;
   pointer-events: none;
+
+  &.tiltPlane {
+    @mixin tilt-plane-depth -30px;
+  }
 }
 
 .backgroundWordInner {
@@ -81,6 +78,10 @@
 .foregroundTilt {
   position: relative;
   z-index: 1;
+
+  &.tiltPlane {
+    @mixin tilt-plane-depth 30px;
+  }
 }
 
 .root {

@@ -27,6 +27,30 @@
   --color-bg: #ffffff;
   --color-border: #e5e7eb;
   --color-accent: #2563eb;
+
+  /* Border radius */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Blur */
+  --blur-light: 12px;
+  --blur-medium: 30px;
+  --blur-heavy: 48px;
+
+  /* Layout */
+  --content-width-wide: 80vw;
+  --nav-blur: 12px;
+
+  /* GitHub contribution colors */
+  --contrib-level-0: #ebedf0;
+  --contrib-level-1: #baecbf;
+  --contrib-level-2: #6dc074;
+  --contrib-level-3: #54a258;
+  --contrib-level-4: #2e6230;
 }
 
 *,
@@ -89,6 +113,7 @@ body {
   height: 100%;
   overflow: hidden;
 }
+
 
 html[data-outro-tilt='true'],
 html[data-outro-tilt='true'] body,

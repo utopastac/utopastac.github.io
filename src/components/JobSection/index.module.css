@@ -1,3 +1,4 @@
+@import '@styles/breakpoints.css';
 @import '@styles/typography.css';
 
 .root {
@@ -16,7 +17,7 @@
     height: 100%;
     min-height: 0;
 
-    @media (max-width: 639px) {
+    @mixin mobile-down {
       grid-template-columns: 1fr;
       height: auto;
 
@@ -179,7 +180,7 @@
     object-fit: contain;
     cursor: pointer;
 
-    @media (max-width: 639px) {
+    @mixin mobile-down {
       max-width: 100%;
     }
   }

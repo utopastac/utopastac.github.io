@@ -1,0 +1,12 @@
+@define-mixin full-bleed {
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+}
+
+@define-mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

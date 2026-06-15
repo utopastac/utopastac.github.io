@@ -1,43 +1,18 @@
+@import '@styles/effects.css';
+
 .blurTop {
-  position: fixed;
+  @mixin blur-fade-strip 20vh 48px;
   top: 0;
-  left: 0;
-  right: 0;
   width: 100vw;
-  height: 20vh;
-  pointer-events: none;
   z-index: 5;
-  background: #ffffff03;
-  backdrop-filter: blur(48px);
-  -webkit-backdrop-filter: blur(48px);
   mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
 }
 
 .blurBottom {
-  /* position: fixed;
+  @mixin blur-fade-strip 28vh 30px;
   bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100vw;
-  height: 35vh;
-  pointer-events: none;
-  z-index: 5;
-  background: rgba(255, 255, 255, 0.01);
-  backdrop-filter: blur(48px);
-  -webkit-backdrop-filter: blur(48px);
-  mask-image: linear-gradient(to top, black 20%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 20%, transparent 100%); */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 28vh;
-  pointer-events: none;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.01);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
   mask-image: linear-gradient(to bottom, transparent 0%, black 80%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 80%);
   mask-size: 100% 100%;

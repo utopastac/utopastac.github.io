@@ -1,8 +1,10 @@
+@import '@styles/breakpoints.css';
 @import '@styles/typography.css';
+@import '@styles/tilt.css';
+@import '@styles/layout.css';
 
 .tiltRoot {
-  perspective: 900px;
-  transform-style: preserve-3d;
+  @mixin tilt-root;
 }
 
 .root {
@@ -23,20 +25,13 @@
 }
 
 .tiltPlane {
-  --hero-tilt-x: 0deg;
-  --hero-tilt-y: 0deg;
-  transform-style: preserve-3d;
-  will-change: transform;
-  backface-visibility: hidden;
+  @mixin tilt-plane;
 }
 
 .backgroundWord {
-  position: absolute;
+  @mixin full-bleed;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
   z-index: 0;
   pointer-events: none;
   display: flex;
@@ -44,7 +39,7 @@
   justify-content: center;
 
   &.tiltPlane {
-    transform: translateZ(-40px) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+    @mixin tilt-plane-depth -40px;
   }
 
   * {
@@ -78,7 +73,7 @@
   pointer-events: auto;
 
   &.tiltPlane {
-    transform: translateZ(40px) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+    @mixin tilt-plane-depth 40px;
   }
 }
 
@@ -96,7 +91,7 @@
   mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 
-  @media (max-width: 639px) {
+  @mixin mobile-down {
     width: 80vw;
     max-width: 80vw;
   }
@@ -161,7 +156,7 @@
   margin: 0 auto;
   max-width: 40vw;
 
-  @media (max-width: 639px) {
+  @mixin mobile-down {
     max-width: 100%;
   }
 

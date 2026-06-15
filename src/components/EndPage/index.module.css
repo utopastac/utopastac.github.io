@@ -1,7 +1,6 @@
 .endPage {
   /* Horizon tuning */
   --horizon-sky: #083d32;
-  --horizon-glow-mid: #1a9472;
   --horizon-glow: #1a9472;
   --horizon-floor: #118264;
   --horizon-floor-deep: #106452;
@@ -39,7 +38,7 @@
   height: 0;
   transform: translateX(-50%);
   pointer-events: none;
-  filter: blur(10px);
+  filter: blur(var(--blur-light));
 
   &::before,
   &::after {
@@ -55,9 +54,9 @@
   &::before {
     bottom: 0;
     height: 50vh;
-    background: linear-gradient(to bottom, var(--horizon-sky) 0%, var(--horizon-glow-mid) 80%, var(--horizon-glow) 100%);
+    background: linear-gradient(to bottom, var(--horizon-sky) 0%, var(--horizon-glow) 80%, var(--horizon-glow) 100%);
     z-index: -1;
-    filter: blur(10px);
+    filter: blur(var(--blur-light));
   }
 
   /* Floor below the horizon (behind the reflection) */
@@ -66,7 +65,7 @@
     height: 50vh;
     background: linear-gradient(to bottom, var(--horizon-floor) 0%, var(--horizon-floor-deep) 100%);
     z-index: -1;
-    filter: blur(10px);
+    filter: blur(var(--blur-light));
   }
 }
 

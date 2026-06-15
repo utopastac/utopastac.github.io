@@ -1,0 +1,23 @@
+@define-mixin tilt-root {
+  perspective: var(--tilt-perspective, 150px);
+  perspective-origin: var(--tilt-perspective-x, 50%) var(--tilt-perspective-y, 50%);
+  transform-style: preserve-3d;
+}
+
+@define-mixin tilt-plane {
+  --hero-tilt-x: 0deg;
+  --hero-tilt-y: 0deg;
+  transform: rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@define-mixin tilt-plane-depth $z {
+  --hero-tilt-x: 0deg;
+  --hero-tilt-y: 0deg;
+  transform: translateZ($z) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}

@@ -1,7 +1,7 @@
 import styles from './index.module.css'
 
 type JobRowProps = {
-  date: string
+  date?: string
   company: string
   title: string
   asButton?: boolean
@@ -9,17 +9,31 @@ type JobRowProps = {
   size?: 'md' | 'sm'
 }
 
-export function JobRow({ date, company, title, asButton = false, onClick, size = 'md' }: JobRowProps) {
+const DATE_COLUMN_SPACER = '2025'
+
+export function JobRow({
+  date,
+  company,
+  title,
+  asButton = false,
+  onClick,
+  size = 'md',
+}: JobRowProps) {
   const sizeClass = size === 'sm' ? styles.rowSm : undefined
+  const showDate = Boolean(date)
 
   const content = (
     <>
-      
       <div className={styles.companyContainer}>
         <span className={styles.company}>{company}</span>
-        <span className={styles.title}>{title}</span>
+        {title ? <span className={styles.title}>{title}</span> : null}
       </div>
-      <span className={styles.date}>{date}</span>
+      <span
+        className={`${styles.date} ${showDate ? '' : styles.dateHidden}`}
+        aria-hidden={showDate ? undefined : true}
+      >
+        {date ?? DATE_COLUMN_SPACER}
+      </span>
     </>
   )
 

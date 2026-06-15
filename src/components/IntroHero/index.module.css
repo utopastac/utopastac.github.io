@@ -1,4 +1,6 @@
 @import '@styles/typography.css';
+@import '@styles/tilt.css';
+@import '@styles/layout.css';
 
 .root {
   position: absolute;
@@ -9,19 +11,15 @@
 
 .dotGridBackdrop,
 .dotGridScene {
-  position: absolute;
+  @mixin full-bleed;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
   z-index: 0;
   pointer-events: none;
 }
 
 .dotGridScene {
-  perspective: 900px;
-  transform-style: preserve-3d;
+  @mixin tilt-root;
 }
 
 .dotGridTilt {
@@ -30,7 +28,7 @@
 
   &.tiltPlane {
     --dot-grid-depth: 80px;
-    --dot-grid-perspective: 900px;
+    --dot-grid-perspective: 150px;
     transform:
       translateZ(calc(-1 * var(--dot-grid-depth)))
       scale(calc((var(--dot-grid-perspective) + var(--dot-grid-depth)) / var(--dot-grid-perspective)))
@@ -53,17 +51,11 @@
 }
 
 .tiltRoot {
-  perspective: 900px;
-  transform-style: preserve-3d;
+  @mixin tilt-root;
 }
 
 .tiltPlane {
-  --hero-tilt-x: 0deg;
-  --hero-tilt-y: 0deg;
-  transform: rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
-  transform-style: preserve-3d;
-  will-change: transform;
-  backface-visibility: hidden;
+  @mixin tilt-plane;
 }
 
 .wrapper {
@@ -82,18 +74,33 @@
 .backgroundTilt {
   position: relative;
   z-index: 1;
+
+  &.tiltPlane {
+    transform: translateZ(var(--tilt-background-z, -30px)) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  }
 }
 
 .foregroundTilt {
   position: relative;
   z-index: 2;
+
+  &.tiltPlane {
+    transform: translateZ(var(--tilt-foreground-z, 30px)) rotateX(var(--hero-tilt-y)) rotateY(var(--hero-tilt-x));
+  }
 }
 
 /* IntroHero-specific: two-line title with .line spacing (used with ScaledHero) */
 .title {
+  transform-style: preserve-3d;
+
   & .line {
     display: block;
     min-height: 1em;
+
+    & .char {
+      display: inline;
+      transition: filter 200ms ease-out;
+    }
   }
 
   /* Pull second line up to cancel font's vertical trim (em-box) so gap is 2px */

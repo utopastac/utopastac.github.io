@@ -1,5 +1,6 @@
 import type { RefObject } from 'react'
 import { useContext, useRef } from 'react'
+import { ArrowDown } from 'lucide-react'
 import { ModalContext } from '@/context/ModalContext'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { animateScrollTo, scrollToSectionElement } from '@/utils/animateScrollTo'
@@ -78,18 +79,7 @@ export function ScrollDownArrow({ sectionIds, scrollContainerRef }: ScrollDownAr
       onMouseLeave={handleMouseLeave}
       aria-label="Scroll to next section"
     >
-      <svg
-        className={styles.icon}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden
-      >
-        <path d="M12 5v14M19 12l-7 7-7-7" />
-      </svg>
+      <ArrowDown className={styles.icon} aria-hidden />
     </button>
   )
 }

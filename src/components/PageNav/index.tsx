@@ -1,4 +1,5 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { Menu } from 'lucide-react'
 import type { NavPlacement } from '@/data/sections'
 import { JOBS } from '@/data/jobs'
 import { EDUCATION } from '@/data/education'
@@ -21,6 +22,7 @@ type PageNavProps = {
   sections: SectionLink[]
   navPanelBackgroundColor?: string | null
   onOpenChange?: (open: boolean) => void
+  panelOpen?: boolean
 }
 
 const JOBS_BY_ID = new Map(JOBS.map((job) => [job.id, job]))
@@ -30,7 +32,7 @@ function scrollToSection(id: string) {
   if (el) scrollToSectionElement(el)
 }
 
-export function PageNav({ sections, navPanelBackgroundColor, onOpenChange }: PageNavProps) {
+export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panelOpen }: PageNavProps) {
   const sectionCtx = useContext(SectionBackgroundContext)
   const isMobile = useMediaQuery(BREAKPOINT_MOBILE_MEDIA)
   const [isOpen, setIsOpen] = useState(false)
@@ -96,23 +98,26 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange }: Pag
   }, [isMobile, isOpen, close])
 
   return (
+    <>
+    <div
+      className={styles.backdrop}
+      data-open={isOpen}
+      aria-hidden
+      style={
+        navPanelBackgroundColor
+          ? ({ '--nav-panel-bg': navPanelBackgroundColor } as React.CSSProperties)
+          : undefined
+      }
+    />
     <div
       ref={triggerZoneRef}
       className={styles.triggerZone}
       data-open={isOpen}
+      data-panel-open={panelOpen}
       onMouseEnter={isMobile ? undefined : open}
       onMouseLeave={isMobile ? undefined : handleMouseLeave}
       aria-label="Page sections"
     >
-      <div
-        className={styles.backdrop}
-        aria-hidden
-        style={
-          navPanelBackgroundColor
-            ? ({ '--nav-panel-bg': navPanelBackgroundColor } as React.CSSProperties)
-            : undefined
-        }
-      />
       <nav className={styles.root}>
         <button
           type="button"
@@ -122,7 +127,7 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange }: Pag
           aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
           onClick={isMobile ? handleMenuClick : undefined}
         >
-          <span aria-hidden>☰</span>
+          <Menu aria-hidden={true} />
         </button>
         <ul
           id="page-nav-list"
@@ -159,21 +164,18 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange }: Pag
               .filter((s) => s.navPlacement === 'top-level')
               .map(({ id, label, backgroundColor, navDescription }) => (
                 <li key={id} role="listitem">
-                  <button
-                    type="button"
-                    className={styles.linkButton}
+                  <JobRow
+                    asButton
+                    company={label}
+                    title={navDescription ?? ''}
                     onClick={() => handleSectionClick(id, backgroundColor)}
-                  >
-                    <span className={styles.linkLabel}>{label}</span>
-                    {navDescription ? (
-                      <span className={styles.linkDescription}>{navDescription}</span>
-                    ) : null}
-                  </button>
+                  />
                 </li>
               ))}
           </div>
         </ul>
       </nav>
     </div>
+    </>
   )
 }
