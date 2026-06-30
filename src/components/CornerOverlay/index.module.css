@@ -33,25 +33,63 @@
   & .topLeft {
     top: 0;
     left: 0;
-    display: flex;
-    align-items: center;
-    gap: var(--space_1);
   }
 
-  & .settingsButton {
+  & .slider {
+    appearance: none;
+    -webkit-appearance: none;
     position: static;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    color: var(--corner-text-color, var(--color-text));
-    cursor: pointer;
-    transition: opacity 0.15s ease;
+    /*
+     * Webkit places the thumb's edge (not center) at the padding value.
+     * 1px padding = 1px gap from inner border at each extreme.
+     */
+    padding: 0 1px;
+    width: 9rem;
+    height: 12px;
+    border-radius: 999px;
+    border: 1px solid var(--corner-text-color, var(--color-text));
+    background: transparent;
+    cursor: ew-resize;
+    flex-shrink: 0;
+    box-sizing: border-box;
 
     &:focus-visible {
       @mixin focus-ring;
+    }
+
+    /* Track fills the inner height (12px - 2×1px border = 10px) */
+    &::-webkit-slider-runnable-track {
+      height: 10px;
+      background: transparent;
+      border-radius: 999px;
+    }
+
+    &::-moz-range-track {
+      height: 10px;
+      background: transparent;
+      border-radius: 999px;
+      border: none;
+    }
+
+    /* Thumb: 16px × 8px filled pill; margin-top: 1px shifts it down for 1px top gap */
+    &::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--corner-text-color, var(--color-text));
+      border: none;
+      margin-top: 1px;
+    }
+
+    &::-moz-range-thumb {
+      appearance: none;
+      width: 16px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--corner-text-color, var(--color-text));
+      border: none;
     }
   }
 
@@ -63,6 +101,9 @@
   & .bottomLeft {
     bottom: 0;
     left: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space_1);
   }
 
   & .bottomRight {

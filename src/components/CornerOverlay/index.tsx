@@ -1,28 +1,15 @@
-import { Settings } from 'lucide-react'
+import { useSettings } from '@/settings/SettingsContext'
 import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
 import styles from './index.module.css'
 
-type CornerOverlayProps = {
-  onSettingsOpen?: () => void
-}
-
-export function CornerOverlay({ onSettingsOpen }: CornerOverlayProps) {
+export function CornerOverlay() {
   const year = new Date().getFullYear()
+  const { settings, update } = useSettings()
 
   return (
     <div className={styles.root}>
       <div className={styles.topLeft}>
         Peter Wright
-        {onSettingsOpen && (
-          <button
-            type="button"
-            className={styles.settingsButton}
-            onClick={onSettingsOpen}
-            aria-label="Open settings"
-          >
-            <Settings size={14} aria-hidden />
-          </button>
-        )}
       </div>
       <div className={styles.contactLinks}>
         <a
@@ -37,7 +24,19 @@ export function CornerOverlay({ onSettingsOpen }: CornerOverlayProps) {
           Email
         </a>
       </div>
-      <div className={styles.bottomLeft}>{year}</div>
+      <div className={styles.bottomLeft}>
+        {year}
+        <input
+          type="range"
+          className={styles.slider}
+          min={0}
+          max={100}
+          step={1}
+          value={settings.animationIntensity}
+          onChange={(e) => update('animationIntensity', Number(e.target.value))}
+          aria-label="Animation intensity"
+        />
+      </div>
     </div>
   )
 }

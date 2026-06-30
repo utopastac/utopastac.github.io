@@ -36,8 +36,7 @@
   transition: transform 0.25s ease-out;
 
   @mixin desktop-up {
-    &[data-nav-open="true"],
-    &[data-settings-open="true"] {
+    &[data-nav-open="true"] {
       transform: translateX(-80px);
     }
   }

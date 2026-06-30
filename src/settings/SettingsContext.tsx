@@ -1,25 +1,17 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 export type Settings = {
-  reduceMotion: boolean
-  tiltPerspective: number
-  tiltForegroundZ: number
-  tiltBackgroundZ: number
-  tiltMaxDeg: number
-  tiltLerpFactor: number
+  animationIntensity: number // 0–100
 }
 
 const TILT_DEFAULTS = {
-  tiltPerspective: 1000,
-  tiltForegroundZ: 30,
-  tiltBackgroundZ: -30,
-  tiltMaxDeg: 11,
-  tiltLerpFactor: 0.07,
+  perspective: 1000,
+  foregroundZ: 30,
+  backgroundZ: -30,
 }
 
 const DEFAULT_SETTINGS: Settings = {
-  reduceMotion: false,
-  ...TILT_DEFAULTS,
+  animationIntensity: 0,
 }
 
 const STORAGE_KEY = 'portfolio-settings'
@@ -47,19 +39,19 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const { tiltPerspective: _p, tiltForegroundZ: _f, tiltBackgroundZ: _b, tiltMaxDeg: _m, tiltLerpFactor: _l, ...persistable } = settings
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(persistable))
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
     } catch {
       // localStorage unavailable
     }
   }, [settings])
 
   useEffect(() => {
+    const t = settings.animationIntensity / 100
     const html = document.documentElement
-    html.dataset.reduceMotion = String(settings.reduceMotion)
-    html.style.setProperty('--tilt-perspective', `${settings.tiltPerspective}px`)
-    html.style.setProperty('--tilt-foreground-z', `${settings.tiltForegroundZ}px`)
-    html.style.setProperty('--tilt-background-z', `${settings.tiltBackgroundZ}px`)
+    html.dataset.reduceMotion = String(settings.animationIntensity === 0)
+    html.style.setProperty('--tilt-perspective', `${TILT_DEFAULTS.perspective}px`)
+    html.style.setProperty('--tilt-foreground-z', `${TILT_DEFAULTS.foregroundZ * t}px`)
+    html.style.setProperty('--tilt-background-z', `${TILT_DEFAULTS.backgroundZ * t}px`)
   }, [settings])
 
   const update = useCallback(<K extends keyof Settings>(key: K, value: Settings[K]) => {

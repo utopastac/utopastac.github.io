@@ -25,7 +25,7 @@
   border-radius: 0;
   background: transparent;
   cursor: pointer;
-  padding: var(--space_0_75) 0;
+  padding: var(--space_0_5) 0;
 
   &:hover {
     text-decoration: underline;

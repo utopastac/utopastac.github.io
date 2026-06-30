@@ -1,9 +1,4 @@
 .endPage {
-  /* Horizon tuning */
-  --horizon-sky: #083d32;
-  --horizon-glow: #1a9472;
-  --horizon-floor: #118264;
-  --horizon-floor-deep: #106452;
   /* Overlap reflection toward main word (em = title font-size on .reflection) */
   --reflection-overlap: 0.08;
 
@@ -30,43 +25,7 @@
 }
 
 .horizon {
-  position: absolute;
-  z-index: 0;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 0;
-  transform: translateX(-50%);
-  pointer-events: none;
-  filter: blur(var(--blur-light));
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
-    pointer-events: none;
-  }
-
-  /* Sky above the horizon (behind the main word) */
-  &::before {
-    bottom: 0;
-    height: 50vh;
-    background: linear-gradient(to bottom, var(--horizon-sky) 0%, var(--horizon-glow) 80%, var(--horizon-glow) 100%);
-    z-index: -1;
-    filter: blur(var(--blur-light));
-  }
-
-  /* Floor below the horizon (behind the reflection) */
-  &::after {
-    top: 0;
-    height: 50vh;
-    background: linear-gradient(to bottom, var(--horizon-floor) 0%, var(--horizon-floor-deep) 100%);
-    z-index: -1;
-    filter: blur(var(--blur-light));
-  }
+  display: none;
 }
 
 .reflection {

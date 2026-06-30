@@ -28,41 +28,6 @@
   @mixin tilt-plane;
 }
 
-.backgroundWord {
-  @mixin full-bleed;
-  top: 0;
-  bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &.tiltPlane {
-    @mixin tilt-plane-depth -40px;
-  }
-
-  * {
-    pointer-events: none;
-  }
-}
-
-.watermarkWrapper {
-  width: 100%;
-  max-width: 100%;
-  align-items: center;
-}
-
-.watermarkTitle {
-  white-space: nowrap;
-  text-align: center;
-  color: color-mix(
-    in srgb,
-    var(--section-text-color, var(--color-text)) 12%,
-    transparent
-  );
-}
-
 .foregroundTilt {
   position: relative;
   z-index: 1;
@@ -80,26 +45,32 @@
 .cropWrapper {
   flex: 1;
   min-height: 0;
-  display: flex;
-  flex-direction: column;
-  width: 70vw;
-  max-width: 70vw;
+  display: grid;
+  grid-template-columns: 1fr 36vw;
+  gap: var(--space_5);
+  width: 80vw;
+  max-width: 80vw;
   margin: 0 auto;
   text-align: left;
   cursor: pointer;
   overflow: hidden;
+  align-items: start;
   mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 
   @mixin mobile-down {
-    width: 80vw;
-    max-width: 80vw;
+    grid-template-columns: 1fr;
+    width: 90vw;
+    max-width: 90vw;
   }
 
-  .title {
-    margin: var(--space_8) 0 var(--space_5);
-    flex-shrink: 0;
-    @mixin heading-xl;
+  .sectionLabel {
+    margin: 0;
+    max-width: 6em;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-tight);
     color: var(--section-text-color, var(--color-text));
   }
 
@@ -107,25 +78,15 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    column-count: 1;
-    column-gap: var(--space_8);
-
-    @media (min-width: 480px) {
-      column-count: 2;
-    }
-
-    @media (min-width: 720px) {
-      column-count: 3;
-    }
+    column-count: 2;
+    column-gap: var(--space_5);
   }
 
   .quoteItem {
     break-inside: avoid;
-    margin-bottom: var(--space_5);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: var(--space_3);
+    padding-bottom: var(--space_3);
+    border-bottom: 1px solid color-mix(in srgb, var(--section-text-color, var(--color-text)) 25%, transparent);
   }
 
   .quote {

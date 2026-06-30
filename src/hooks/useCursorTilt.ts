@@ -172,7 +172,7 @@ export function useCursorTilt({
 }: CursorTiltOptions = {}) {
   const isDesktopPointer = useMediaQuery(DESKTOP_TILT_MEDIA)
   const settingsCtx = useContext(SettingsContext)
-  const reduceMotion = settingsCtx?.settings.reduceMotion ?? false
+  const reduceMotion = (settingsCtx?.settings.animationIntensity ?? 100) === 0
   const enabled = !reduceMotion && (enabledOverride ?? isDesktopPointer)
   const tiltRef = useRef<HTMLDivElement>(null)
   const layerRef = useRef<TiltLayer | null>(null)

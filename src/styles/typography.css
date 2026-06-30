@@ -6,7 +6,7 @@
   --font-serif: "jaf-lapture", serif;
   --font-deco: "fiona", sans-serif;
   --font-script: "deseo", serif;
-  --font-display: futura-pt, sans-serif;
+  --font-display: var(--font-sans);
   --font-fun: "flegrei", sans-serif;
   --font-chunky: "kuhlman-vf", sans-serif;
   --font-mono: "inconsolata", monospace;

@@ -1,6 +1,5 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
-import { SettingsPanel } from '@/settings'
 import { BlurStrips } from '@/components/BlurStrips'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
@@ -22,7 +21,7 @@ import { SECTIONS } from '@/data/sections'
 import styles from './index.module.css'
 
 export function App() {
-  // Preload all job section images so they don’t jump in when scrolling into view
+  // Preload all job section images so they don't jump in when scrolling into view
   useEffect(() => {
     const urls = JOBS.flatMap((job) => (job.images ?? []).map((img) => img.src))
     urls.forEach((src) => {
@@ -40,7 +39,6 @@ export function App() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const handleNavOpenChange = useCallback((open: boolean) => setIsNavOpen(open), [])
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
   return (
     <div
@@ -54,15 +52,14 @@ export function App() {
       <Modal />
       <div
         className={styles.panelOverlay}
-        data-open={isNavOpen || isSettingsOpen}
+        data-open={isNavOpen}
         aria-hidden="true"
         style={{
           ['--overlay-bg' as string]: navPanelBackgroundColor ?? backgroundColor,
         }}
       />
-      <SettingsPanel isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
       <BlurStrips />
-      <CornerOverlay onSettingsOpen={() => setIsSettingsOpen(true)} />
+      <CornerOverlay />
       <ScrollDownArrow
         sectionIds={SECTIONS.map((s) => s.id)}
         scrollContainerRef={scrollContainerRef}
@@ -77,7 +74,7 @@ export function App() {
         }))}
         navPanelBackgroundColor={navPanelBackgroundColor}
         onOpenChange={handleNavOpenChange}
-        panelOpen={isSettingsOpen}
+        panelOpen={false}
       />
       <div
         ref={scrollContainerRef}
@@ -85,7 +82,6 @@ export function App() {
         role="region"
         aria-label="Page content"
         data-nav-open={isNavOpen}
-        data-settings-open={isSettingsOpen}
         data-active-section={activeSection?.id}
       >
       <main

@@ -1,6 +1,5 @@
 @import '@styles/typography.css';
 @import '@styles/tilt.css';
-@import '@styles/layout.css';
 
 .tiltRoot {
   @mixin tilt-root;
@@ -11,111 +10,63 @@
 }
 
 .container {
-  position: relative;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 36vw;
+  gap: var(--space_5);
   width: 80vw;
   max-width: 80vw;
   min-height: 100vh;
   margin: 0 auto;
-  transform-style: preserve-3d;
-}
+  align-items: start;
+  padding-top: var(--space_8);
+  box-sizing: border-box;
 
-.backgroundWord {
-  @mixin full-bleed;
-  top: 0;
-  bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  &.tiltPlane {
-    @mixin tilt-plane-depth -30px;
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    padding-top: var(--space_5);
   }
 }
 
-.backgroundWordInner {
-  width: 100%;
-  height: 100%;
-  /* Inherits down the stack; set on parent section/container to tweak e.g. 0.85 */
-  --education-bg-typography-leading: var(--line-height-tight);
-
-  .measure {
-    position: absolute;
-    visibility: hidden;
-    pointer-events: none;
-    white-space: nowrap;
-    font-family: var(--font-display);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: var(--letter-spacing-tight);
-  }
-
-  .backgroundStack {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0;
-    width: 100%;
-    height: 100%;
-    line-height: var(--education-bg-typography-leading);
-  }
-
-  .backgroundText {
-    margin: 0;
-    font-family: var(--font-display);
-    font-weight: var(--font-weight-bold);
-    font-size: 1em;
-    line-height: var(--education-bg-typography-leading);
-    letter-spacing: var(--letter-spacing-tight);
-    color: color-mix(
-      in srgb,
-      var(--section-text-color, var(--color-text)) 12%,
-      transparent
-    );
-    white-space: nowrap;
-  }
+.sectionLabel {
+  margin: 0;
+  max-width: 6em;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--section-text-color, var(--color-text));
 }
 
-.foregroundTilt {
-  position: relative;
-  z-index: 1;
-
-  &.tiltPlane {
-    @mixin tilt-plane-depth 30px;
-  }
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space_2);
 }
 
-.root {
-  position: relative;
-  z-index: 1;
-  max-width: 42rem;
-  margin: 0 auto;
-  text-align: left;
+.meta {
+  margin: 0;
+  @mixin heading-lg;
+  color: var(--section-text-color, var(--color-text));
+}
 
-  .meta {
-    margin: 0 0 var(--space_0_75);
-    @mixin heading-lg;
-    color: var(--section-text-color, var(--color-text));
-  }
+.date {
+  font-variant-numeric: tabular-nums;
+}
 
-  .date {
-    font-variant-numeric: tabular-nums;
-  }
+.separator {
+  opacity: 0.6;
+  @mixin body;
+}
 
-  .separator {
-    opacity: 0.6;
-    @mixin body;
-  }
+.title {
+  margin: 0;
+  @mixin display;
+  color: var(--section-text-color, var(--color-text));
+}
 
-  .title {
-    margin: 0 0 var(--space_1_5);
-    @mixin display;
-    color: var(--section-text-color, var(--color-text));
-  }
-
-  .details {
-    margin: 0;
-    @mixin body;
-    color: var(--section-text-color, var(--color-text));
-    line-height: var(--line-height-relaxed);
-  }
+.details {
+  margin: 0;
+  @mixin body;
+  color: var(--section-text-color, var(--color-text));
+  line-height: var(--line-height-relaxed);
 }

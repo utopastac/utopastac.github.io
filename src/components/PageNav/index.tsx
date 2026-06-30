@@ -118,17 +118,17 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
       onMouseLeave={isMobile ? undefined : handleMouseLeave}
       aria-label="Page sections"
     >
+      <button
+        type="button"
+        className={styles.menuIcon}
+        aria-expanded={isOpen}
+        aria-controls="page-nav-list"
+        aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
+        onClick={isMobile ? handleMenuClick : undefined}
+      >
+        <Menu aria-hidden={true} />
+      </button>
       <nav className={styles.root}>
-        <button
-          type="button"
-          className={styles.menuIcon}
-          aria-expanded={isOpen}
-          aria-controls="page-nav-list"
-          aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
-          onClick={isMobile ? handleMenuClick : undefined}
-        >
-          <Menu aria-hidden={true} />
-        </button>
         <ul
           id="page-nav-list"
           className={styles.panel}
