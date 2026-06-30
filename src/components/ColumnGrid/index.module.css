@@ -1,11 +1,15 @@
 @import '@styles/breakpoints.css';
+@import '@styles/tilt.css';
 
 .root {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 0;
   pointer-events: none;
   padding: 0 var(--grid-margin);
+  opacity: 0.4;
+
+  @mixin tilt-root;
 }
 
 .grid {
@@ -18,6 +22,10 @@
   @mixin mobile-down {
     grid-template-columns: repeat(5, 1fr);
   }
+}
+
+.tiltPlane {
+  @mixin tilt-plane-depth -60px;
 }
 
 .col {

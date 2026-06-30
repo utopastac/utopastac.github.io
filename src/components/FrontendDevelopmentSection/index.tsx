@@ -14,23 +14,22 @@ export function FrontendDevelopmentSection() {
 
   return (
     <div className={styles.root}>
-      <div className={styles.layout}>
-        <div className={styles.contentColumn}>
-          <h2 className={styles.title}>Development</h2>
-          <p className={styles.subtitle}>Coding experience</p>
-          <p className={styles.description}>{DESCRIPTION}</p>
-        </div>
+      <div className={styles.metaColumn}>
+        <h2 className={styles.title}>Development</h2>
+        <p className={styles.subtitle}>Coding experience</p>
+      </div>
 
+      <p className={styles.descriptionColumn}>{DESCRIPTION}</p>
+
+      <div
+        ref={perspectiveRootRef}
+        className={isTiltEnabled ? `${styles.mapColumn} ${styles.tiltRoot}` : styles.mapColumn}
+      >
         <div
-          ref={perspectiveRootRef}
-          className={isTiltEnabled ? `${styles.mapColumn} ${styles.tiltRoot}` : styles.mapColumn}
+          ref={tiltRef}
+          className={isTiltEnabled ? `${styles.mapWrap} ${styles.tiltPlane}` : styles.mapWrap}
         >
-          <div
-            ref={tiltRef}
-            className={isTiltEnabled ? `${styles.mapWrap} ${styles.tiltPlane}` : styles.mapWrap}
-          >
-            <GitContributionsMap />
-          </div>
+          <GitContributionsMap />
         </div>
       </div>
     </div>

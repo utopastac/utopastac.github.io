@@ -7,7 +7,7 @@
   @mixin tilt-plane;
 }
 
-.grid.tiltPlane {
+.gridTilt {
   z-index: 0;
   @mixin tilt-plane-depth -40px;
 }
@@ -17,114 +17,86 @@
   @mixin tilt-plane-depth 60px;
 }
 
+/* ── Root — mirrors JobSection .root ── */
 .root {
   @mixin page-grid;
-  align-items: stretch;
-  height: 100%;
-  min-height: 0;
+  width: 100%;
+  align-items: start;
+  row-gap: var(--space_4);
+  padding-top: var(--grid-margin);
+  text-align: left;
+}
 
-  .layout {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: subgrid;
-    align-items: start;
-    height: 100%;
-    min-height: 0;
+/* Row 1, cols 2–3 — title + metadata */
+.metaColumn {
+  grid-column: 2 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space_2);
+  padding-top: 0.65rem;
+  min-width: 0;
 
-    @mixin mobile-down {
-      grid-template-columns: 1fr;
-      height: auto;
-
-      .contentColumn {
-        grid-column: 1;
-        padding-top: var(--space_2);
-      }
-
-      .imageColumn {
-        grid-column: 1;
-        height: 60vh;
-        order: -1;
-      }
-    }
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
   }
 
-  .contentColumn {
-    grid-column: 2 / span 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: var(--space_4);
-    min-width: 0;
-    min-height: 0;
+  .company,
+  .type,
+  .location {
+    margin: 0;
+    @mixin heading-lg;
+    line-height: 1;
+    color: var(--section-text-color, var(--color-text));
+  }
+}
 
-    .company {
-      @mixin heading-lg;
-      margin: 0 0 var(--space_1);
-      color: var(--section-text-color, var(--color-text));
-    }
+/* Row 1, cols 4–8 — description */
+.descriptionColumn {
+  grid-column: 4 / span 5;
+  margin: 0;
+  @mixin body-lg;
+  color: var(--section-text-color, var(--color-text));
+  min-width: 0;
 
-    .meta {
-      @mixin heading-lg;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: var(--space_4);
-      color: var(--section-text-color, var(--color-text));
-
-      .separator {
-        @mixin body;
-        margin: 0 var(--space_1);
-        opacity: 0.6;
-      }
-
-      .type,
-      .location {
-        @mixin heading-lg;
-      }
-    }
-
-    .description {
-      margin: 0;
-      @mixin body-lg;
-      color: var(--section-text-color, var(--color-text));
-      line-height: var(--line-height-relaxed);
-    }
-
-    .siteLink {
-      margin-top: var(--space_2);
-      @mixin body;
-      color: var(--section-text-color, var(--color-text));
-      text-decoration: underline;
-      text-underline-offset: 0.2em;
-      opacity: 0.7;
-      width: fit-content;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
   }
 
-    .imageColumn {
-      grid-column: 5 / span 5;
-    position: relative;
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    padding: var(--space_0_5);
-    box-sizing: border-box;
+  .siteLink {
+    @mixin body-lg;
+    color: var(--section-text-color, var(--color-text));
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    opacity: 0.7;
 
-    &:hover [data-project-hover-tooltip] {
+    &:hover {
       opacity: 1;
     }
+  }
+}
 
-    &.tiltEnabled {
-      overflow: visible;
-      transform-style: preserve-3d;
-    }
+/* Row 2, cols 3–8 — image grid */
+.imageColumn {
+  grid-column: 3 / span 6;
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover [data-project-hover-tooltip] {
+    opacity: 1;
+  }
+
+  &.tiltEnabled {
+    overflow: visible;
+    transform-style: preserve-3d;
+  }
+
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
+    height: 50vh;
   }
 }
 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Grid3x3 } from 'lucide-react'
 import { useSettings } from '@/settings/SettingsContext'
 import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
@@ -6,6 +7,17 @@ import styles from './index.module.css'
 export function CornerOverlay() {
   const year = new Date().getFullYear()
   const { settings, update } = useSettings()
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.metaKey && e.key === ';') {
+        e.preventDefault()
+        update('showGrid', !settings.showGrid)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [settings.showGrid, update])
 
   return (
     <div className={styles.root} data-corner-overlay>

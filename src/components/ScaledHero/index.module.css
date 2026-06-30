@@ -17,7 +17,7 @@
   pointer-events: none;
   white-space: nowrap;
   font-family: var(--font-display);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-tight);
 }
 
@@ -31,7 +31,7 @@
 .title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-medium);
   font-size: clamp(2.5rem, 6.5vw, 8rem); /* fallback until JS measures */
   line-height: 1;
   letter-spacing: var(--letter-spacing-tight);

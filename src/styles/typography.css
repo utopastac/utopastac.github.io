@@ -2,43 +2,36 @@
 
 :root {
   /* Font families */
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
-  --font-serif: "jaf-lapture", serif;
-  --font-deco: "fiona", sans-serif;
-  --font-script: "deseo", serif;
+  --font-sans: system-ui, sans-serif;
   --font-display: var(--font-sans);
-  --font-fun: "flegrei", sans-serif;
-  --font-chunky: "kuhlman-vf", sans-serif;
-  --font-mono: "inconsolata", monospace;
+  --font-mono: ui-monospace, "SF Mono", monospace;
 
   /* Font sizes (1rem = 8px) */
-  --font-size-xs: 1.5rem;
-  --font-size-sm: 1.625rem;
-  --font-size-base: 1.9rem;
-  --font-size-md: 2.25rem;
-  --font-size-lg: 2.5rem;
-  --font-size-xl: 3rem;
-  --font-size-2xl: 4.5rem;
-  --font-size-3xl: 7rem;
+  --font-size-xs: 1.5rem;    /*  12px — captions, fine print   */
+  --font-size-sm: 1.75rem;   /*  14px — labels, UI chrome      */
+  --font-size-base: 2rem;    /*  16px — body copy              */
+  --font-size-md: 2.25rem;   /*  18px — subheadings            */
+  --font-size-lg: 2.75rem;   /*  22px — section headers        */
+  --font-size-xl: 3.5rem;    /*  28px — large headings         */
+  --font-size-2xl: 5rem;     /*  40px — large body / numbers   */
+  --font-size-3xl: 9rem;     /*  72px — editorial display      */
 
   /* Font weights */
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
-  --font-weight-semibold: 500;
-  --font-weight-bold: 600;
 
   /* Line heights */
-  --line-height-tight: 0.9;
-  --line-height-snug: 1.2;
-  --line-height-normal: 1.375;
-  --line-height-relaxed: 1.55;
+  --line-height-tight: 0.88;
+  --line-height-snug: 1.15;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
 
   /* Letter spacing */
-  --letter-spacing-tight: -0.035em;
+  --letter-spacing-tight: -0.04em;
   --letter-spacing-snug: -0.025em;
-  --letter-spacing-normal: -0.015em;
-  --letter-spacing-relaxed: -0.01em;
+  --letter-spacing-normal: -0.01em;
+  --letter-spacing-relaxed: 0em;
 }
 
 @define-mixin display {
@@ -50,7 +43,7 @@
 }
 
 @define-mixin heading-xl {
-  font-family: var(--font-sans);
+  font-family: var(--font-display);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-snug);
@@ -68,7 +61,7 @@
 @define-mixin heading-md {
   font-family: var(--font-sans);
   font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
   line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-snug);
 }
@@ -76,7 +69,7 @@
 @define-mixin heading-sm {
   font-family: var(--font-sans);
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
   line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-normal);
 }
@@ -86,7 +79,7 @@
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-snug);
-  letter-spacing: var(--letter-spacing-normal);
+  letter-spacing: var(--letter-spacing-snug);
 }
 
 @define-mixin body {
@@ -94,15 +87,15 @@
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
-  letter-spacing: var(--letter-spacing-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
 }
 
 @define-mixin body-serif {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
-  letter-spacing: var(--letter-spacing-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
 }
 
 @define-mixin body-sm {
@@ -110,7 +103,7 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
-  letter-spacing: var(--letter-spacing-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
 }
 
 @define-mixin caption {
@@ -118,12 +111,13 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-relaxed);
 }
 
 @define-mixin fancy {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-normal);
-  font-style: normal;
+  font-weight: var(--font-weight-light);
   line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-relaxed);
 }

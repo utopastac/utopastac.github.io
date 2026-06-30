@@ -1,5 +1,6 @@
 @import '@styles/breakpoints.css';
 @import '@styles/typography.css';
+@import '@styles/tilt.css';
 
 .root {
   position: relative;
@@ -12,11 +13,35 @@
   }
 }
 
+.tiltRoot {
+  @mixin tilt-root;
+  width: 100%;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--grid-margin);
+    right: calc(var(--grid-margin) + var(--col-span-1) + var(--grid-gutter));
+    height: 1px;
+    background: var(--section-text-color, var(--color-text));
+  }
+}
+
+.tiltPlane {
+  @mixin tilt-plane;
+}
+
 .index {
   position: absolute;
   left: var(--grid-margin);
   top: var(--grid-margin);
-  @mixin body-lg;
+  @mixin heading-lg;
   color: var(--section-text-color, var(--color-text));
   font-variant-numeric: tabular-nums;
   text-align: left;

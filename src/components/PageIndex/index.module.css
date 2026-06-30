@@ -14,7 +14,7 @@
   text-align: center;
   transition: color 0.3s ease-out;
 
-  @mixin display;
+  @mixin heading-lg;
 
   @mixin mobile-down {
     display: none;

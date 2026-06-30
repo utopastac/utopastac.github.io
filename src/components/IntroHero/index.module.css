@@ -9,40 +9,6 @@
   height: 100%;
 }
 
-.dotGridBackdrop,
-.dotGridScene {
-  @mixin full-bleed;
-  top: 0;
-  bottom: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.dotGridScene {
-  @mixin tilt-root;
-}
-
-.dotGridTilt {
-  position: absolute;
-  inset: 0;
-
-  &.tiltPlane {
-    --dot-grid-depth: 80px;
-    --dot-grid-perspective: 150px;
-    transform:
-      translateZ(calc(-1 * var(--dot-grid-depth)))
-      scale(calc((var(--dot-grid-perspective) + var(--dot-grid-depth)) / var(--dot-grid-perspective)))
-      rotateX(var(--hero-tilt-y))
-      rotateY(var(--hero-tilt-x));
-    transform-style: preserve-3d;
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-}
-
-.tiltPlane {
-  @mixin tilt-plane;
-}
 
 .heroScene {
   position: relative;
@@ -93,7 +59,7 @@
 .bio {
   margin: 0;
   font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-medium);
   line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text);

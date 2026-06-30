@@ -7,77 +7,71 @@
   @mixin tilt-plane;
 }
 
+/* ── Root — mirrors JobSection .root ── */
 .root {
   @mixin page-grid;
-  align-items: stretch;
-  height: 100%;
+  width: 100%;
+  align-items: start;
+  row-gap: var(--space_4);
+  padding-top: var(--grid-margin);
+  text-align: left;
+}
+
+/* Row 1, cols 2–3 — title + subtitle */
+.metaColumn {
+  grid-column: 2 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space_2);
+  padding-top: 0.65rem;
+  min-width: 0;
+
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
+  }
+
+  .title,
+  .subtitle {
+    margin: 0;
+    @mixin heading-lg;
+    line-height: 1;
+    color: var(--section-text-color, var(--color-text));
+  }
+
+  .subtitle {
+    opacity: 0.6;
+  }
+}
+
+/* Row 1, cols 4–8 — description */
+.descriptionColumn {
+  grid-column: 4 / span 5;
+  margin: 0;
+  @mixin body-lg;
+  color: var(--section-text-color, var(--color-text));
+  min-width: 0;
+
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
+  }
+}
+
+/* Row 2, cols 3–8 — git contributions map */
+.mapColumn {
+  grid-column: 3 / span 6;
+  position: relative;
+  height: 40vh;
   min-height: 0;
+  overflow: hidden;
 
-  .layout {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: subgrid;
-    align-items: start;
-    height: 100%;
-    min-height: 0;
-
-    @mixin mobile-down {
-      grid-template-columns: 1fr;
-      height: auto;
-
-      .contentColumn {
-        grid-column: 1;
-      }
-
-      .mapColumn {
-        grid-column: 1;
-        height: 50vh;
-        order: -1;
-      }
-    }
+  &.tiltRoot {
+    @mixin tilt-root;
+    overflow: visible;
   }
 
-  .contentColumn {
-    grid-column: 2 / span 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: var(--space_4);
-    min-width: 0;
-    min-height: 0;
-
-    .title {
-      @mixin heading-lg;
-      margin: 0 0 var(--space_1);
-      color: var(--section-text-color, var(--color-text));
-    }
-
-    .subtitle {
-      @mixin heading-lg;
-      margin: 0 0 var(--space_4);
-      color: var(--section-text-color, var(--color-text));
-      opacity: 0.6;
-    }
-
-    .description {
-      margin: 0;
-      @mixin body-lg;
-      color: var(--section-text-color, var(--color-text));
-      line-height: var(--line-height-relaxed);
-    }
-  }
-
-    .mapColumn {
-      grid-column: 5 / span 5;
-    position: relative;
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
-
-    &.tiltRoot {
-      @mixin tilt-root;
-      overflow: visible;
-    }
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
+    height: 30vh;
   }
 }
 

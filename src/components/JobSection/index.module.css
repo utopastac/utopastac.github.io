@@ -7,7 +7,7 @@
   width: 100%;
   align-items: start;
   row-gap: var(--space_4);
-  padding-top: var(--space_4);
+  padding-top: var(--grid-margin);
   text-align: left;
 }
 
@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space_2);
+  padding-top: 0.65rem;
   min-width: 0;
 
   @mixin mobile-down {
@@ -28,6 +29,7 @@
   .title {
     margin: 0;
     @mixin heading-lg;
+    line-height: 1;
     color: var(--section-text-color, var(--color-text));
   }
 

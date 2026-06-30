@@ -28,7 +28,7 @@
   margin: 0;
   max-width: 6em;
   font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-medium);
   line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-tight);
   color: var(--section-text-color, var(--color-text));

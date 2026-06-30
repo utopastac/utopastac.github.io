@@ -172,8 +172,8 @@ export function useCursorTilt({
 }: CursorTiltOptions = {}) {
   const isDesktopPointer = useMediaQuery(DESKTOP_TILT_MEDIA)
   const settingsCtx = useContext(SettingsContext)
-  const reduceMotion = (settingsCtx?.settings.animationIntensity ?? 100) === 0
-  const enabled = !reduceMotion && (enabledOverride ?? isDesktopPointer)
+  const intensity = settingsCtx?.settings.animationIntensity ?? 100
+  const enabled = intensity > 0 && (enabledOverride ?? isDesktopPointer)
   const tiltRef = useRef<HTMLDivElement>(null)
   const layerRef = useRef<TiltLayer | null>(null)
   const perspectiveRootRef = useRef<HTMLDivElement>(null)
@@ -193,7 +193,7 @@ export function useCursorTilt({
 
     const layer: TiltLayer = {
       node,
-      maxTiltDeg,
+      maxTiltDeg: maxTiltDeg * (intensity / 100),
       lerpFactor,
       maxInfluenceRadius,
       current: { x: 0, y: 0 },
@@ -221,6 +221,13 @@ export function useCursorTilt({
       }
     }
   }, [enabled, maxTiltDeg, lerpFactor, maxInfluenceRadius])
+
+  // Live-update the layer's maxTiltDeg as the slider moves without re-registering
+  useEffect(() => {
+    if (layerRef.current) {
+      layerRef.current.maxTiltDeg = maxTiltDeg * (intensity / 100)
+    }
+  }, [intensity, maxTiltDeg])
 
   useEffect(() => {
     const node = perspectiveRootRef.current

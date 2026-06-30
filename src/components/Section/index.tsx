@@ -1,5 +1,6 @@
 import { useCallback, useContext, useRef } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
+import { useCursorTilt } from '@/hooks/useCursorTilt'
 import styles from './index.module.css'
 
 type SectionProps = {
@@ -16,6 +17,7 @@ type SectionProps = {
 export function Section({ id, backgroundColor, index, textColor, navPanelBackgroundColor, children }: SectionProps) {
   const ctx = useContext(SectionBackgroundContext)
   const ref = useRef<HTMLElement>(null)
+  const { enabled: isTiltEnabled, tiltRef, perspectiveRootRef } = useCursorTilt()
 
   const setRef = useCallback(
     (node: HTMLElement | null) => {
@@ -38,12 +40,22 @@ export function Section({ id, backgroundColor, index, textColor, navPanelBackgro
       className={styles.root}
       style={style}
     >
-      {index != null && (
-        <span className={styles.index} aria-hidden>
-          {String(index).padStart(2, '0')}
-        </span>
-      )}
-      {children}
+      <div
+        ref={perspectiveRootRef}
+        className={isTiltEnabled ? styles.tiltRoot : styles.tiltRoot}
+      >
+        <div
+          ref={isTiltEnabled ? tiltRef : undefined}
+          className={isTiltEnabled ? `${styles.inner} ${styles.tiltPlane}` : styles.inner}
+        >
+          {index != null && (
+            <span className={styles.index} aria-hidden>
+              {String(index).padStart(2, '0')}
+            </span>
+          )}
+          {children}
+        </div>
+      </div>
     </section>
   )
 }
