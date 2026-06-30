@@ -1,18 +1,18 @@
 @import '@styles/breakpoints.css';
 @import '@styles/typography.css';
+@import '@styles/grid.css';
 
 .root {
-  width: 100%;
-  max-width: 100vw;
-  margin: 0 auto;
+  @mixin page-grid;
+  align-items: stretch;
   text-align: left;
   height: 100%;
   min-height: 0;
 
   .columns {
+    grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-    gap: var(--space_3);
+    grid-template-columns: subgrid;
     align-items: stretch;
     height: 100%;
     min-height: 0;
@@ -23,6 +23,7 @@
 
       .imageColumn {
         order: -1;
+        grid-column: 1;
         max-height: 50vh;
         overflow: hidden;
 
@@ -44,6 +45,7 @@
 
       .contentColumn {
         order: 0;
+        grid-column: 1;
         max-width: none;
         width: 100%;
         height: auto;
@@ -52,8 +54,6 @@
         transform: none;
         align-self: stretch;
         overflow-y: visible;
-        padding-left: var(--space_2);
-        padding-right: var(--space_2);
       }
     }
   }
@@ -65,6 +65,7 @@
   }
 
   .imageColumn {
+    grid-column: 1 / span 6;
     position: relative;
     min-height: 0;
     overflow: visible;
@@ -93,13 +94,12 @@
   }
 
   .contentColumn {
+    grid-column: 7 / span 3;
     align-self: start;
     position: sticky;
     top: var(--space_6);
-    /* transform: translateY(-50%); */
     display: flex;
     flex-direction: column;
-    max-width: 30vw;
     justify-content: center;
     min-width: 0;
     min-height: 0;

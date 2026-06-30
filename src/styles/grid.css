@@ -1,0 +1,18 @@
+@import './breakpoints.css';
+
+/**
+ * page-grid — apply to any full-width container to snap it to the 10-column
+ * grid. Children use grid-column to place themselves within the tracks.
+ * On mobile the grid collapses to 5 columns.
+ */
+@define-mixin page-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  column-gap: var(--grid-gutter);
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+
+  @mixin mobile-down {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

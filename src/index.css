@@ -45,6 +45,27 @@
   --content-width-wide: 80vw;
   --nav-blur: 12px;
 
+  /* Grid system — 10 columns, matches ColumnGrid overlay */
+  --grid-cols: 10;
+  --grid-margin: var(--space_2);
+  --grid-gutter: var(--space_2);
+  --grid-col-width: calc((100vw - 2 * var(--grid-margin) - (var(--grid-cols) - 1) * var(--grid-gutter)) / var(--grid-cols));
+
+  /* Precomputed column spans: N cols + (N-1) gutters */
+  --col-span-1: var(--grid-col-width);
+  --col-span-2: calc(2 * var(--grid-col-width) + 1 * var(--grid-gutter));
+  --col-span-3: calc(3 * var(--grid-col-width) + 2 * var(--grid-gutter));
+  --col-span-4: calc(4 * var(--grid-col-width) + 3 * var(--grid-gutter));
+  --col-span-5: calc(5 * var(--grid-col-width) + 4 * var(--grid-gutter));
+  --col-span-6: calc(6 * var(--grid-col-width) + 5 * var(--grid-gutter));
+  --col-span-7: calc(7 * var(--grid-col-width) + 6 * var(--grid-gutter));
+
+  /* Column start positions from viewport left edge */
+  --col-start-1: var(--grid-margin);
+  --col-start-2: calc(var(--grid-margin) + 1 * (var(--grid-col-width) + var(--grid-gutter)));
+  --col-start-3: calc(var(--grid-margin) + 2 * (var(--grid-col-width) + var(--grid-gutter)));
+  --col-start-4: calc(var(--grid-margin) + 3 * (var(--grid-col-width) + var(--grid-gutter)));
+
   /* GitHub contribution colors */
   --contrib-level-0: #ebedf0;
   --contrib-level-1: #baecbf;

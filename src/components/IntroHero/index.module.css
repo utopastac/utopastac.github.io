@@ -57,11 +57,11 @@
   inset: 0;
 }
 
-/* Photo — background layer, lower-left */
+/* Photo — background layer, lower-left, snapped to col 1 */
 .photoLayer {
   position: absolute;
   bottom: var(--space_4);
-  left: var(--space_4);
+  left: var(--grid-margin);
   z-index: 1;
   pointer-events: none;
 
@@ -71,16 +71,16 @@
 }
 
 .photoPlaceholder {
-  width: 26vw;
+  width: var(--col-span-2);
   aspect-ratio: 2 / 3;
   background-color: var(--color-border);
 }
 
-/* Bio text — foreground layer */
+/* Bio text — foreground layer, horizontal padding matches grid margin */
 .textLayer {
   position: absolute;
   inset: 0;
-  padding: var(--space_4);
+  padding: var(--space_4) var(--grid-margin);
   z-index: 2;
   display: flex;
   align-items: flex-start;

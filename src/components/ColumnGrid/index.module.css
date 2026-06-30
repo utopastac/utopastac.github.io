@@ -1,0 +1,35 @@
+@import '@styles/breakpoints.css';
+
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  padding: 0 var(--grid-margin);
+}
+
+.grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  gap: var(--grid-gutter);
+
+  @mixin mobile-down {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.col {
+  height: 100%;
+  background: rgba(75, 100, 255, 0.06);
+  border-left: 1px solid rgba(75, 100, 255, 0.15);
+  border-right: 1px solid rgba(75, 100, 255, 0.15);
+
+  /* Hide columns 6–10 on mobile */
+  &:nth-child(n+6) {
+    @mixin mobile-down {
+      display: none;
+    }
+  }
+}

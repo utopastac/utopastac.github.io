@@ -2,6 +2,7 @@
 @import '@styles/typography.css';
 @import '@styles/tilt.css';
 @import '@styles/layout.css';
+@import '@styles/grid.css';
 
 .tiltRoot {
   @mixin tilt-root;
@@ -45,26 +46,16 @@
 .cropWrapper {
   flex: 1;
   min-height: 0;
-  display: grid;
-  grid-template-columns: 1fr 36vw;
-  gap: var(--space_5);
-  width: 80vw;
-  max-width: 80vw;
-  margin: 0 auto;
+  @mixin page-grid;
+  align-items: start;
   text-align: left;
   cursor: pointer;
   overflow: hidden;
-  align-items: start;
   mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 
-  @mixin mobile-down {
-    grid-template-columns: 1fr;
-    width: 90vw;
-    max-width: 90vw;
-  }
-
   .sectionLabel {
+    grid-column: 1 / span 5;
     margin: 0;
     max-width: 6em;
     font-size: var(--font-size-2xl);
@@ -72,14 +63,24 @@
     line-height: var(--line-height-snug);
     letter-spacing: var(--letter-spacing-tight);
     color: var(--section-text-color, var(--color-text));
+
+    @mixin mobile-down {
+      grid-column: 1 / span 5;
+    }
   }
 
   .list {
+    grid-column: 6 / span 5;
     margin: 0;
     padding: 0;
     list-style: none;
     column-count: 2;
     column-gap: var(--space_5);
+
+    @mixin mobile-down {
+      grid-column: 1 / span 5;
+      column-count: 1;
+    }
   }
 
   .quoteItem {

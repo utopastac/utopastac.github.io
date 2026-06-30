@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { BlurStrips } from '@/components/BlurStrips'
+import { ColumnGrid } from '@/components/ColumnGrid'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
 import { EndPage } from '@/components/EndPage'
@@ -50,6 +51,7 @@ export function App() {
       }}
     >
       <Modal />
+      <ColumnGrid />
       <div
         className={styles.panelOverlay}
         data-open={isNavOpen}
