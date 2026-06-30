@@ -48,8 +48,9 @@
   /* Grid system — 10 columns, matches ColumnGrid overlay */
   --grid-cols: 10;
   --grid-margin: var(--space_2);
+  --grid-margin-right: var(--space_6);
   --grid-gutter: var(--space_3);
-  --grid-col-width: calc((100vw - 2 * var(--grid-margin) - (var(--grid-cols) - 1) * var(--grid-gutter)) / var(--grid-cols));
+  --grid-col-width: calc((100vw - var(--grid-margin) - var(--grid-margin-right) - (var(--grid-cols) - 1) * var(--grid-gutter)) / var(--grid-cols));
 
   /* Precomputed column spans: N cols + (N-1) gutters */
   --col-span-1: var(--grid-col-width);

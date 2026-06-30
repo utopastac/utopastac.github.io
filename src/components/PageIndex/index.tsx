@@ -6,7 +6,7 @@ import styles from './index.module.css'
 export function PageIndex() {
   const ctx = useContext(SectionBackgroundContext)
   const idx = SECTIONS.findIndex((s) => s.id === ctx?.activeSectionId)
-  const label = idx >= 0 ? String(idx + 1).padStart(2, '0') : '01'
+  const label = idx >= 0 ? String(idx).padStart(2, '0') : '00'
 
   return (
     <div className={styles.root} aria-hidden>

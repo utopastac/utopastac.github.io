@@ -27,28 +27,6 @@
   text-align: left;
 }
 
-/* Row 1, cols 2–3 — title + metadata */
-.metaColumn {
-  grid-column: 2 / span 2;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space_2);
-  padding-top: 0.65rem;
-  min-width: 0;
-
-  @mixin mobile-down {
-    grid-column: 1 / span 5;
-  }
-
-  .company,
-  .type,
-  .location {
-    margin: 0;
-    @mixin heading-lg;
-    line-height: 1;
-    color: var(--section-text-color, var(--color-text));
-  }
-}
 
 /* Row 1, cols 4–8 — description */
 .descriptionColumn {

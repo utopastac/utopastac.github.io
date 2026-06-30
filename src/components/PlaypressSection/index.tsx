@@ -1,3 +1,4 @@
+import { MetaColumn } from '@/components/MetaColumn'
 import { ProjectHoverTooltip } from '@/components/ProjectHoverTooltip'
 import { useCursorTilt } from '@/hooks/useCursorTilt'
 import { useSpringFollow } from '@/hooks/useSpringFollow'
@@ -34,14 +35,13 @@ export function PlaypressSection() {
 
   return (
     <div className={styles.root}>
-      <div className={styles.metaColumn}>
-        <h2 className={styles.company}>Playpress</h2>
-        <span className={styles.type}>Toy company</span>
-        <span className={styles.location}>UK based</span>
-      </div>
+      <MetaColumn items={[
+        { label: 'Playpress' },
+        { label: 'Toy design' }
+      ]} />
 
       <p className={styles.descriptionColumn}>
-        Playpress makes beautifully designed cardboard play sets for children — encouraging imaginative, screen-free play through thoughtful, sustainable design.{' '}
+        At Playpress, I design and make beautifully designed sustainable cardboard play sets for children.{' '}
         <a
           href="https://playpresstoys.com"
           target="_blank"

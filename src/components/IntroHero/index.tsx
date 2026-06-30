@@ -1,32 +1,41 @@
+import { JOBS } from '@/data/jobs'
+import { scrollToSectionElement } from '@/utils/animateScrollTo'
 import { useCursorTilt } from '@/hooks/useCursorTilt'
 import styles from './index.module.css'
 
 const FOREGROUND_TILT_DEG = 20
-const BACKGROUND_TILT_DEG = 15
+
+function scrollToSection(id: string) {
+  const el = document.getElementById(id)
+  if (el) scrollToSectionElement(el)
+}
 
 export function IntroHero() {
-  const { enabled: isTiltEnabled, tiltRef: foregroundTiltRef, perspectiveRootRef } = useCursorTilt({ maxTiltDeg: FOREGROUND_TILT_DEG })
-  const { tiltRef: backgroundTiltRef } = useCursorTilt({ maxTiltDeg: BACKGROUND_TILT_DEG, enabled: isTiltEnabled })
+  const { enabled: isTiltEnabled, tiltRef, perspectiveRootRef } = useCursorTilt({ maxTiltDeg: FOREGROUND_TILT_DEG })
 
   return (
     <div className={styles.root}>
-      <div className={styles.heroScene}>
-        <div ref={perspectiveRootRef} className={isTiltEnabled ? styles.tiltRoot : styles.tiltRoot}>
-          <div
-            ref={isTiltEnabled ? backgroundTiltRef : undefined}
-            className={isTiltEnabled ? `${styles.photoLayer} ${styles.tiltBackground}` : styles.photoLayer}
-            aria-hidden
-          >
-            <div className={styles.photoPlaceholder} />
-          </div>
-          <div
-            ref={isTiltEnabled ? foregroundTiltRef : undefined}
-            className={isTiltEnabled ? `${styles.textLayer} ${styles.tiltForeground}` : styles.textLayer}
-          >
-            <p className={styles.bio}>
-              [Principal, product, toy, strategy, ai] Designer.
-            </p>
-          </div>
+      <div ref={perspectiveRootRef} className={styles.tiltRoot}>
+        <div
+          ref={isTiltEnabled ? tiltRef : undefined}
+          className={isTiltEnabled ? `${styles.content} ${styles.tiltPlane}` : styles.content}
+        >
+          <p className={styles.bio}>
+            Designer.
+          </p>
+          <nav className={styles.companyList} aria-label="Jump to company section">
+            {JOBS.map((job, i) => (
+              <button
+                key={job.id}
+                type="button"
+                className={styles.companyRow}
+                onClick={() => scrollToSection(job.id)}
+              >
+                <span className={styles.companyIndex}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={styles.companyName}>{job.company}</span>
+              </button>
+            ))}
+          </nav>
         </div>
       </div>
     </div>

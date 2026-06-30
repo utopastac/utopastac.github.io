@@ -1,3 +1,4 @@
+import { MetaColumn } from '@/components/MetaColumn'
 import { ProjectHoverTooltip } from '@/components/ProjectHoverTooltip'
 import { DESKTOP_TILT_MEDIA, useCursorTilt } from '@/hooks/useCursorTilt'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -48,25 +49,44 @@ export function PixelPortraitsSection() {
   }
 
   return (
-    <a
-      href="https://pixelator.f-90.co.uk"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={isTiltEnabled ? `${styles.wrapper} ${styles.tiltEnabled}` : styles.wrapper}
-      onMouseMove={handleMouseMove}
-    >
-      <div ref={perspectiveRootRef} className={isTiltEnabled ? `${styles.scene} ${styles.tiltRoot}` : styles.scene}>
-        <div className={styles.grid}>
-          {PIXEL_PORTRAIT_SRCS.map(({ src, alt }, i) => (
-            <PortraitCell key={i} src={src} alt={alt} enabled={isTiltEnabled} />
-          ))}
+    <div className={styles.root}>
+      <MetaColumn items={[
+        { label: 'Pixelator' },
+        { label: 'Personal project' },
+      ]} />
+
+      <p className={styles.descriptionColumn}>
+        A React-based interface for creating and sharing pixel art projects.{' '}
+        <a
+          href="https://pixelator.f-90.co.uk"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.siteLink}
+        >
+          pixelator.f-90.co.uk ↗
+        </a>
+      </p>
+
+      <a
+        href="https://pixelator.f-90.co.uk"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={isTiltEnabled ? `${styles.imageColumn} ${styles.tiltEnabled}` : styles.imageColumn}
+        onMouseMove={handleMouseMove}
+      >
+        <div ref={perspectiveRootRef} className={isTiltEnabled ? `${styles.scene} ${styles.tiltRoot}` : styles.scene}>
+          <div className={styles.grid}>
+            {PIXEL_PORTRAIT_SRCS.map(({ src, alt }, i) => (
+              <PortraitCell key={i} src={src} alt={alt} enabled={isTiltEnabled} />
+            ))}
+          </div>
         </div>
-      </div>
-      <ProjectHoverTooltip
-        label="pixelator.f-90.co.uk"
-        aboveTilt={isTiltEnabled}
-        style={{ left: displayPos.x, top: displayPos.y }}
-      />
-    </a>
+        <ProjectHoverTooltip
+          label="pixelator.f-90.co.uk"
+          aboveTilt={isTiltEnabled}
+          style={{ left: displayPos.x, top: displayPos.y }}
+        />
+      </a>
+    </div>
   )
 }

@@ -1,6 +1,8 @@
 @import '@styles/typography.css';
 @import '@styles/tilt.css';
-@import '@styles/layout.css';
+@import '@styles/grid.css';
+@import '@styles/effects.css';
+@import '@styles/breakpoints.css';
 
 .root {
   position: absolute;
@@ -9,58 +11,87 @@
   height: 100%;
 }
 
-
-.heroScene {
-  position: relative;
-  z-index: 1;
+.tiltRoot {
+  @mixin tilt-root;
   width: 100%;
   height: 100%;
 }
 
-.tiltRoot {
-  @mixin tilt-root;
-  position: absolute;
-  inset: 0;
+.tiltPlane {
+  @mixin tilt-plane;
 }
 
-/* Photo — background layer, lower-left, snapped to col 2 */
-.photoLayer {
-  position: absolute;
-  bottom: var(--space_4);
-  left: var(--col-start-2);
-  z-index: 1;
-  pointer-events: none;
-
-  &.tiltBackground {
-    @mixin tilt-plane-depth -30px;
-  }
-}
-
-.photoPlaceholder {
-  width: var(--col-span-2);
-  aspect-ratio: 2 / 3;
-  background-color: var(--color-border);
-}
-
-/* Bio text — foreground layer, left edge aligned to col 2 */
-.textLayer {
-  position: absolute;
-  inset: 0;
-  padding: var(--space_4) var(--grid-margin) var(--space_4) var(--col-start-2);
-  z-index: 2;
-  display: flex;
-  align-items: flex-start;
-
-  &.tiltForeground {
-    @mixin tilt-plane-depth 30px;
-  }
+.content {
+  @mixin page-grid;
+  align-items: start;
+  grid-template-rows: 1fr;
+  padding-top: var(--grid-margin);
+  width: 100%;
+  height: 100%;
 }
 
 .bio {
+  grid-column: 2 / span 4;
+  align-self: start;
   margin: 0;
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text);
+
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
+    font-size: var(--font-size-xl);
+  }
+}
+
+.companyList {
+  grid-column: 7 / span 3;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--space_4);
+
+  @mixin mobile-down {
+    display: none;
+  }
+}
+
+.companyRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--grid-gutter);
+  padding: var(--space_0_75) 0;
+  border-bottom: 1px solid currentColor;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  color: var(--color-text);
+  text-align: left;
+  width: 100%;
+  transition: opacity 0.15s ease-out;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:focus-visible {
+    @mixin focus-ring;
+  }
+}
+
+.companyIndex {
+  @mixin body-lg;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  width: var(--grid-col-width);
+}
+
+.companyName {
+  @mixin body-lg;
+  flex: 1;
+  text-align: left;
 }

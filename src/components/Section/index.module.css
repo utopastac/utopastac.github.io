@@ -8,8 +8,22 @@
   min-height: 100vh;
   box-sizing: border-box;
 
+  &:first-child {
+    margin-top: 20vh;
+  }
+
   & + & {
     margin-top: 20vh;
+  }
+
+  &:last-child {
+    & .inner::before {
+      display: none;
+    }
+
+    & .index {
+      display: none;
+    }
   }
 }
 
@@ -27,7 +41,7 @@
     position: absolute;
     top: 0;
     left: var(--grid-margin);
-    right: calc(var(--grid-margin) + var(--col-span-1) + var(--grid-gutter));
+    right: var(--grid-margin-right);
     height: 1px;
     background: var(--section-text-color, var(--color-text));
   }

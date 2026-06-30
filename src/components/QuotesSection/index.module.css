@@ -1,115 +1,58 @@
 @import '@styles/breakpoints.css';
 @import '@styles/typography.css';
-@import '@styles/tilt.css';
-@import '@styles/layout.css';
 @import '@styles/grid.css';
 
-.tiltRoot {
-  @mixin tilt-root;
-}
-
+/* ── Root — mirrors JobSection .root ── */
 .root {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-.container {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  transform-style: preserve-3d;
-}
-
-.tiltPlane {
-  @mixin tilt-plane;
-}
-
-.foregroundTilt {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  pointer-events: auto;
-
-  &.tiltPlane {
-    @mixin tilt-plane-depth 40px;
-  }
-}
-
-.cropWrapper {
-  flex: 1;
-  min-height: 0;
   @mixin page-grid;
+  width: 100%;
   align-items: start;
+  padding-top: var(--grid-margin);
   text-align: left;
+}
+
+/* Cols 4–9 — quotes list */
+.list {
+  grid-column: 5 / span 4;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  column-count: 2;
+  column-gap: var(--space_5);
   cursor: pointer;
-  overflow: hidden;
-  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 
-  .sectionLabel {
-    grid-column: 2 / span 4;
-    margin: 0;
-    max-width: 6em;
-    font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--line-height-snug);
-    letter-spacing: var(--letter-spacing-tight);
-    color: var(--section-text-color, var(--color-text));
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
+    column-count: 1;
+  }
+}
 
-    @mixin mobile-down {
-      grid-column: 1 / span 5;
-    }
+.quoteItem {
+  break-inside: avoid;
+  margin-bottom: var(--space_3);
+  padding-bottom: var(--space_3);
+  border-bottom: 1px solid color-mix(in srgb, var(--section-text-color, var(--color-text)) 25%, transparent);
+}
+
+.quote {
+  margin: 0 0 var(--space_0_75);
+  @mixin body;
+  color: var(--section-text-color, var(--color-text));
+  line-height: var(--line-height-relaxed);
+
+  &::before {
+    content: '"';
   }
 
-  .list {
-    grid-column: 5 / span 5;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    column-count: 2;
-    column-gap: var(--space_5);
-
-    @mixin mobile-down {
-      grid-column: 1 / span 5;
-      column-count: 1;
-    }
+  &::after {
+    content: '"';
   }
+}
 
-  .quoteItem {
-    break-inside: avoid;
-    margin-bottom: var(--space_3);
-    padding-bottom: var(--space_3);
-    border-bottom: 1px solid color-mix(in srgb, var(--section-text-color, var(--color-text)) 25%, transparent);
-  }
-
-  .quote {
-    margin: 0 0 var(--space_0_75);
-    @mixin body;
-    color: var(--section-text-color, var(--color-text));
-    line-height: var(--line-height-relaxed);
-
-    &::before {
-      content: '"';
-    }
-
-    &::after {
-      content: '"';
-    }
-  }
-
-  .cite {
-    @mixin caption;
-    color: var(--section-text-color, var(--color-text));
-    font-style: normal;
-  }
+.cite {
+  @mixin caption;
+  color: var(--section-text-color, var(--color-text));
+  font-style: normal;
 }
 
 /* Modal-only: full list, single column, scrollable */

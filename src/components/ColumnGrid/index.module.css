@@ -6,7 +6,8 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  padding: 0 var(--grid-margin);
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin-right);
   opacity: 0.4;
 
   @mixin tilt-root;

@@ -1,4 +1,5 @@
 import { GitContributionsMap } from '@/components/GitContributionsMap'
+import { MetaColumn } from '@/components/MetaColumn'
 import { useCursorTilt } from '@/hooks/useCursorTilt'
 import styles from './index.module.css'
 
@@ -14,10 +15,10 @@ export function FrontendDevelopmentSection() {
 
   return (
     <div className={styles.root}>
-      <div className={styles.metaColumn}>
-        <h2 className={styles.title}>Development</h2>
-        <p className={styles.subtitle}>Coding experience</p>
-      </div>
+      <MetaColumn items={[
+        { label: 'Development' },
+        { label: 'Coding experience', dimmed: true },
+      ]} />
 
       <p className={styles.descriptionColumn}>{DESCRIPTION}</p>
 

@@ -20,21 +20,21 @@
   width: 100%;
   height: 100%;
   border-radius: var(--radius-xs);
-  background: var(--contrib-level-0);
+  background: color-mix(in srgb, var(--section-text-color, var(--color-text)) 8%, transparent);
 
   &[data-level='1'] {
-    background: var(--contrib-level-1);
+    background: color-mix(in srgb, var(--section-text-color, var(--color-text)) 20%, transparent);
   }
 
   &[data-level='2'] {
-    background: var(--contrib-level-2);
+    background: color-mix(in srgb, var(--section-text-color, var(--color-text)) 40%, transparent);
   }
 
   &[data-level='3'] {
-    background: var(--contrib-level-3);
+    background: color-mix(in srgb, var(--section-text-color, var(--color-text)) 65%, transparent);
   }
 
   &[data-level='4'] {
-    background: var(--contrib-level-4);
+    background: color-mix(in srgb, var(--section-text-color, var(--color-text)) 90%, transparent);
   }
 }

@@ -97,7 +97,7 @@ export function App() {
           const sectionContentClass =
             id === 'intro'
               ? `${styles.sectionContent} ${styles.sectionContentIntro}`
-              : isQuotes || id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
+              : id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
                 ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
                 : id === 'outro'
                   ? `${styles.sectionContent} ${styles.sectionContentOutro}`
@@ -142,7 +142,7 @@ export function App() {
             content = <h1>{title}</h1>
           }
           return (
-            <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg} index={sectionIdx + 1}>
+            <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg} index={sectionIdx}>
               <div className={sectionContentClass}>
                 {content}
               </div>

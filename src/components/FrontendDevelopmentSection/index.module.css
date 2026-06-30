@@ -12,36 +12,11 @@
   @mixin page-grid;
   width: 100%;
   align-items: start;
-  row-gap: var(--space_4);
+  row-gap: var(--grid-margin);
   padding-top: var(--grid-margin);
   text-align: left;
 }
 
-/* Row 1, cols 2–3 — title + subtitle */
-.metaColumn {
-  grid-column: 2 / span 2;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space_2);
-  padding-top: 0.65rem;
-  min-width: 0;
-
-  @mixin mobile-down {
-    grid-column: 1 / span 5;
-  }
-
-  .title,
-  .subtitle {
-    margin: 0;
-    @mixin heading-lg;
-    line-height: 1;
-    color: var(--section-text-color, var(--color-text));
-  }
-
-  .subtitle {
-    opacity: 0.6;
-  }
-}
 
 /* Row 1, cols 4–8 — description */
 .descriptionColumn {

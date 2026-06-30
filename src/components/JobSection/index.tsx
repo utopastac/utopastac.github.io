@@ -1,5 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { ModalContext } from '@/context/ModalContext'
+import { MetaColumn } from '@/components/MetaColumn'
 import type { JobImage } from '@/data/jobs'
 import { getCaptionFromPath } from '@/data/jobs'
 import { JOB_IMAGE_CAPTIONS } from '@/data/job-image-captions.generated'
@@ -34,11 +35,11 @@ export function JobSection({
 
   return (
     <article className={styles.root}>
-      <div className={styles.metaColumn}>
-        <p className={styles.date}>{date}</p>
-        <h1 className={styles.company}>{company}</h1>
-        <h2 className={styles.title}>{jobTitle}</h2>
-      </div>
+      <MetaColumn items={[
+        { label: date, numeric: true },
+        { label: company },
+        { label: jobTitle },
+      ]} />
       <p className={styles.descriptionColumn}>{description}</p>
       {hasImages && (() => {
         const img = images![0]

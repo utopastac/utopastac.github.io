@@ -57,8 +57,8 @@ export const SECTIONS: readonly SectionData[] = [
   {
     id: 'quotes',
     title: 'What people say',
-    backgroundColor: '#000000',
-    textColor: '#FFFFFF',
+    backgroundColor: '#D2B9CE',
+    textColor: '#000000',
     isQuotes: true,
     navPlacement: 'top-level',
     navDescription: 'Colleague quotes',
@@ -74,7 +74,7 @@ export const SECTIONS: readonly SectionData[] = [
   {
     id: 'frontend-development',
     title: 'Development',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FCF7C8',
     navPlacement: 'top-level',
     navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
     navDescription: 'Coding experience',
