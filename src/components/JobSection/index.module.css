@@ -4,151 +4,65 @@
 
 .root {
   @mixin page-grid;
-  align-items: stretch;
+  width: 100%;
+  align-items: start;
+  row-gap: var(--space_4);
+  padding-top: var(--space_4);
   text-align: left;
-  height: 100%;
-  min-height: 0;
+}
 
-  .columns {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: subgrid;
-    align-items: stretch;
-    height: 100%;
-    min-height: 0;
+/* Row 1, cols 2–3 — company, date, job title */
+.metaColumn {
+  grid-column: 2 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space_2);
+  min-width: 0;
 
-    @mixin mobile-down {
-      grid-template-columns: 1fr;
-      height: auto;
-
-      .imageColumn {
-        order: -1;
-        grid-column: 1;
-        max-height: 50vh;
-        overflow: hidden;
-
-        .imageStack {
-          position: static;
-          top: auto;
-          left: auto;
-          right: auto;
-          transform: none;
-          max-height: 50vh;
-          overflow: hidden;
-        }
-
-        .image {
-          max-height: 50vh;
-          object-fit: cover;
-        }
-      }
-
-      .contentColumn {
-        order: 0;
-        grid-column: 1;
-        max-width: none;
-        width: 100%;
-        height: auto;
-        position: static;
-        top: auto;
-        transform: none;
-        align-self: stretch;
-        overflow-y: visible;
-      }
-    }
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
   }
 
-  .singleColumn {
-    max-width: 64rem;
-    margin: 0 auto;
-    height: 100%;
+  .date,
+  .company,
+  .title {
+    margin: 0;
+    @mixin heading-lg;
+    color: var(--section-text-color, var(--color-text));
   }
 
-  .imageColumn {
-    grid-column: 1 / span 6;
-    position: relative;
-    min-height: 0;
-    overflow: visible;
-    cursor: pointer;
+  .date {
+    font-variant-numeric: tabular-nums;
+  }
+}
 
-    .imageStack {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      width: 100%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      z-index: 0;
-    }
+/* Row 1, cols 4–8 — description */
+.descriptionColumn {
+  grid-column: 4 / span 5;
+  margin: 0;
+  @mixin body-lg;
+  color: var(--section-text-color, var(--color-text));
+  min-width: 0;
 
-    .image {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: var(--space_0_5);
-      object-fit: cover;
-    }
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
+  }
+}
+
+/* Row 2, cols 3–8 — first image, auto-placed below text */
+.imageColumn {
+  grid-column: 3 / span 6;
+  margin-top: var(--space_4);
+  cursor: pointer;
+
+  .image {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
-  .contentColumn {
-    grid-column: 7 / span 3;
-    align-self: start;
-    position: sticky;
-    top: var(--space_6);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 0;
-    min-height: 0;
-    overflow-y: auto;
-
-    .meta {
-      @mixin heading-lg;
-      color: var(--section-text-color, var(--color-text));
-    }
-
-    .date {
-      font-variant-numeric: tabular-nums;
-    }
-
-    .companyContainer {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex;
-      @mixin heading-xl;
-      margin-bottom: var(--space_4);
-      color: var(--section-text-color, var(--color-text));
-
-      .separator {
-        @mixin body;
-        margin: 0 var(--space_1);
-        opacity: 0.6;
-      }
-    }
-
-    .company {
-      @mixin heading-lg;
-      margin-bottom: var(--space_1);
-      color: var(--section-text-color, var(--color-text));
-    }
-
-    .title {
-      margin: 0 0;
-      @mixin heading-lg;
-      color: var(--section-text-color, var(--color-text));
-    }
-
-    .description {
-      margin: 0;
-      display: block;
-      @mixin body-lg;
-      color: var(--section-text-color, var(--color-text));
-      line-height: var(--line-height-relaxed);
-    }
+  @mixin mobile-down {
+    grid-column: 1 / span 5;
   }
 }
 

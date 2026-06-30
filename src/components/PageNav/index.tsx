@@ -61,7 +61,9 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
     onOpenChange?.(true)
   }, [isOpen, onOpenChange])
 
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = useCallback((e: React.MouseEvent) => {
+    const related = e.relatedTarget as Element | null
+    if (related?.closest('[data-corner-overlay]')) return
     suppressOpenUntilLeaveRef.current = false
     close()
   }, [close])
@@ -126,7 +128,7 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
         aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
         onClick={isMobile ? handleMenuClick : undefined}
       >
-        <Menu aria-hidden={true} />
+        <Menu aria-hidden={true} size={14} />
       </button>
       <nav className={styles.root}>
         <ul

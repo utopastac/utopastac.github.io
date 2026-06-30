@@ -12,21 +12,22 @@
 
 .container {
   @mixin page-grid;
+  width: 100%;
   min-height: 100vh;
   align-items: start;
-  padding-top: var(--space_8);
+  padding-top: var(--space_4);
   box-sizing: border-box;
 
   @mixin mobile-down {
-    padding-top: var(--space_5);
+    padding-top: var(--space_3);
   }
 }
 
 .sectionLabel {
-  grid-column: 1 / span 5;
+  grid-column: 2 / span 4;
   margin: 0;
   max-width: 6em;
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-tight);
@@ -38,7 +39,7 @@
 }
 
 .content {
-  grid-column: 6 / span 5;
+  grid-column: 7 / span 3;
   display: flex;
   flex-direction: column;
   gap: var(--space_2);

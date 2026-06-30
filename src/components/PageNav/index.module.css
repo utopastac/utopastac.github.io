@@ -1,12 +1,13 @@
 @import '@styles/breakpoints.css';
 @import '@styles/typography.css';
+@import '@styles/grid.css';
 
-/* Invisible hit area: far right 5% of viewport */
+/* Invisible hit area: covers the full reserved right column + margin */
 .triggerZone {
   position: fixed;
   top: 0;
   right: 0;
-  width: 5vw;
+  width: calc(var(--grid-col-width) + var(--grid-margin));
   height: 100vh;
   z-index: 10;
 
@@ -63,8 +64,8 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 50vw;
-  max-width: 540px;
+  /* Cover right from viewport edge to left edge of col 6 */
+  width: calc(var(--col-span-5) + var(--grid-margin));
   height: 100vh;
   opacity: 0;
   transform: translateX(40px);
@@ -94,12 +95,12 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 50vw;
-  max-width: 540px;
+  /* Exactly 5 grid columns wide, right edge flush with grid margin */
+  width: var(--col-span-5);
   bottom: 0;
   display: flex;
   align-items: flex-start;
-  padding-left: var(--space_3);
+  padding-left: var(--grid-gutter);
   padding-right: var(--space_10);
   overflow-y: scroll;
   pointer-events: none;
@@ -109,19 +110,17 @@
   }
 
   @mixin desktop-up {
-    min-width: 420px;
     top: 50%;
     bottom: auto;
-    right: var(--space_3);
+    right: var(--grid-margin);
     transform: translateY(-50%);
-    max-height: calc(100vh - var(--space_3) * 2);
+    max-height: calc(100vh - var(--grid-margin) * 2);
     overflow-y: auto;
     border-radius: var(--radius-lg);
   }
 
   @mixin mobile-down {
     width: 100vw;
-    max-width: 100vw;
     padding-right: var(--space_2);
   }
 }

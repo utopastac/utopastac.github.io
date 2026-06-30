@@ -5,6 +5,7 @@ import styles from './index.module.css'
 type SectionProps = {
   id: string
   backgroundColor: string
+  index?: number
   /** Optional text color for section content (sets --section-text-color). */
   textColor?: string
   /** Optional navigation panel background color (rgba value). */
@@ -12,11 +13,9 @@ type SectionProps = {
   children: React.ReactNode
 }
 
-export function Section({ id, backgroundColor, textColor, navPanelBackgroundColor, children }: SectionProps) {
+export function Section({ id, backgroundColor, index, textColor, navPanelBackgroundColor, children }: SectionProps) {
   const ctx = useContext(SectionBackgroundContext)
   const ref = useRef<HTMLElement>(null)
-  const isActive = ctx?.activeSectionId === id
-  const isInactive = ctx?.activeSectionId != null && !isActive
 
   const setRef = useCallback(
     (node: HTMLElement | null) => {
@@ -36,9 +35,14 @@ export function Section({ id, backgroundColor, textColor, navPanelBackgroundColo
     <section
       ref={setRef}
       id={id}
-      className={`${styles.root} ${isInactive ? styles.inactive : ''}`}
+      className={styles.root}
       style={style}
     >
+      {index != null && (
+        <span className={styles.index} aria-hidden>
+          {String(index).padStart(2, '0')}
+        </span>
+      )}
       {children}
     </section>
   )

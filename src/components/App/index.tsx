@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
+import { useSettings } from '@/settings/SettingsContext'
 import { BlurStrips } from '@/components/BlurStrips'
 import { ColumnGrid } from '@/components/ColumnGrid'
 import { CornerOverlay } from '@/components/CornerOverlay'
@@ -31,6 +32,7 @@ export function App() {
     })
   }, [])
 
+  const { settings } = useSettings()
   const ctx = useContext(SectionBackgroundContext)
   const backgroundColor = ctx?.backgroundColor ?? 'var(--color-bg)'
   const navPanelBackgroundColor = ctx?.navPanelBackgroundColor ?? null
@@ -51,7 +53,7 @@ export function App() {
       }}
     >
       <Modal />
-      <ColumnGrid />
+      {settings.showGrid && <ColumnGrid />}
       <div
         className={styles.panelOverlay}
         data-open={isNavOpen}
@@ -89,14 +91,13 @@ export function App() {
       <main
         className={styles.main}
         data-active-section={activeSection?.id}
-        style={{ height: `${SECTIONS.length * 100}vh` }}
       >
-        {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }) => {
+        {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }, sectionIdx) => {
           let content: React.ReactNode
           const sectionContentClass =
             id === 'intro'
               ? `${styles.sectionContent} ${styles.sectionContentIntro}`
-              : isQuotes || jobId || id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
+              : isQuotes || id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
                 ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
                 : id === 'outro'
                   ? `${styles.sectionContent} ${styles.sectionContentOutro}`
@@ -141,7 +142,7 @@ export function App() {
             content = <h1>{title}</h1>
           }
           return (
-            <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg}>
+            <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg} index={sectionIdx + 1}>
               <div className={sectionContentClass}>
                 {content}
               </div>

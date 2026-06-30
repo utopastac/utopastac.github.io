@@ -34,8 +34,16 @@ export function JobSection({
 
   return (
     <article className={styles.root}>
-      <div className={hasImages ? styles.columns : styles.singleColumn}>
-        {hasImages && (
+      <div className={styles.metaColumn}>
+        <p className={styles.date}>{date}</p>
+        <h1 className={styles.company}>{company}</h1>
+        <h2 className={styles.title}>{jobTitle}</h2>
+      </div>
+      <p className={styles.descriptionColumn}>{description}</p>
+      {hasImages && (() => {
+        const img = images![0]
+        const alt = JOB_IMAGE_CAPTIONS[img.src] ?? img.caption ?? getCaptionFromPath(img.src)
+        return (
           <div
             className={styles.imageColumn}
             onClick={openImagesModal}
@@ -44,35 +52,16 @@ export function JobSection({
             tabIndex={0}
             aria-label={`View all images for ${company}`}
           >
-            <div className={styles.imageStack}>
-              {images!.map((img) => {
-                const alt = JOB_IMAGE_CAPTIONS[img.src] ?? img.caption ?? getCaptionFromPath(img.src)
-                return (
-                  <img
-                    key={img.src}
-                    className={styles.image}
-                    src={img.src}
-                    alt={alt}
-                    title={alt}
-                    loading="lazy"
-                  />
-                )
-              })}
-            </div>
+            <img
+              className={styles.image}
+              src={img.src}
+              alt={alt}
+              title={alt}
+              loading="lazy"
+            />
           </div>
-        )}
-        <div className={styles.contentColumn}>
-          <h1 className={styles.company}>{company}</h1>
-          <div className={styles.companyContainer}>
-            <p className={styles.meta}>
-              <span className={styles.date}>{date}</span>
-            </p>
-            <span className={styles.separator}>/</span>
-            <h2 className={styles.title}>{jobTitle}</h2>
-          </div>
-          <p className={styles.description}>{description}</p>
-        </div>
-      </div>
+        )
+      })()}
     </article>
   )
 }

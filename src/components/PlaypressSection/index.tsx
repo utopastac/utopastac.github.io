@@ -6,7 +6,7 @@ import styles from './index.module.css'
 const BACKGROUND_TILT_DEG = 20
 const PP2_SRC = '/images/pp-2.jpg'
 
-/** 3×3 grid. a0–a4, a6–a7 single; a5 = merged right column (2 rows), pp-2. */
+/** 4×3 grid. a0–a5 single; a6 = merged right column (2 rows), pp-2. */
 const CELL_SOURCES = [
   '/images/pp-1.jpg',
   '/images/pp-3.jpg',
@@ -33,40 +33,67 @@ export function PlaypressSection() {
   }
 
   return (
-    <a
-      href="https://playpresstoys.com"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={isTiltEnabled ? `${styles.wrapper} ${styles.tiltEnabled}` : styles.wrapper}
-      onMouseMove={handleMouseMove}
-    >
-      <div ref={perspectiveRootRef} className={isTiltEnabled ? `${styles.root} ${styles.tiltRoot}` : styles.root}>
-        <div
-          ref={backgroundTiltRef}
-          className={isTiltEnabled ? `${styles.grid} ${styles.tiltPlane}` : styles.grid}
+    <div className={styles.root}>
+      <div className={styles.layout}>
+        <div className={styles.contentColumn}>
+          <h2 className={styles.company}>Playpress</h2>
+          <div className={styles.meta}>
+            <span className={styles.type}>Toy company</span>
+            <span className={styles.separator}>/</span>
+            <span className={styles.location}>UK based</span>
+          </div>
+          <p className={styles.description}>
+            Playpress makes beautifully designed cardboard play sets for children — encouraging imaginative, screen-free play through thoughtful, sustainable design.
+          </p>
+          <a
+            href="https://playpresstoys.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.siteLink}
+          >
+            playpresstoys.com ↗
+          </a>
+        </div>
+
+        <a
+          href="https://playpresstoys.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={isTiltEnabled ? `${styles.imageColumn} ${styles.tiltEnabled}` : styles.imageColumn}
+          onMouseMove={handleMouseMove}
         >
-          {CELL_SOURCES.map((src, i) => (
-            <div key={i} className={styles.cell}>
-              <img src={src} alt="" className={styles.image} />
+          <div
+            ref={perspectiveRootRef}
+            className={isTiltEnabled ? `${styles.imageRoot} ${styles.tiltRoot}` : styles.imageRoot}
+          >
+            <div
+              ref={backgroundTiltRef}
+              className={isTiltEnabled ? `${styles.grid} ${styles.tiltPlane}` : styles.grid}
+            >
+              {CELL_SOURCES.map((src, i) => (
+                <div key={i} className={styles.cell}>
+                  <img src={src} alt="" className={styles.image} />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div
-          ref={foregroundTiltRef}
-          className={
-            isTiltEnabled
-              ? `${styles.logoLayer} ${styles.foregroundTilt} ${styles.tiltPlane}`
-              : styles.logoLayer
-          }
-        >
-          <img src="/images/pp-logo.png" alt="Playpress" className={styles.logo} />
-        </div>
+            <div
+              ref={foregroundTiltRef}
+              className={
+                isTiltEnabled
+                  ? `${styles.logoLayer} ${styles.foregroundTilt} ${styles.tiltPlane}`
+                  : styles.logoLayer
+              }
+            >
+              <img src="/images/pp-logo.png" alt="Playpress" className={styles.logo} />
+            </div>
+          </div>
+          <ProjectHoverTooltip
+            label="playpresstoys.com"
+            aboveTilt={isTiltEnabled}
+            style={{ left: displayPos.x, top: displayPos.y }}
+          />
+        </a>
       </div>
-      <ProjectHoverTooltip
-        label="playpresstoys.com"
-        aboveTilt={isTiltEnabled}
-        style={{ left: displayPos.x, top: displayPos.y }}
-      />
-    </a>
+    </div>
   )
 }

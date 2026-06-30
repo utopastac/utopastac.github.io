@@ -3,134 +3,147 @@
 
 .root {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: var(--grid-margin);
+  width: var(--grid-col-width);
+  height: 100vh;
   z-index: 20;
   pointer-events: none;
-
-  & > *,
-  & .contactLinks > a {
-    position: absolute;
-    padding: var(--space_2);
-    font-size: var(--font-size-sm);
-    color: var(--corner-text-color, var(--color-text));
-    pointer-events: auto;
-
-    &:focus-visible {
-      @mixin focus-ring;
-    }
-  }
-
-  & a {
-    color: var(--corner-text-color, var(--color-text));
-    text-decoration: underline;
-    font-weight: var(--font-weight-medium);
-
-    &:hover {
-      color: var(--corner-accent-color, var(--color-accent));
-    }
-  }
-
-  & .topLeft {
-    top: 0;
-    left: 0;
-  }
-
-  & .slider {
-    appearance: none;
-    -webkit-appearance: none;
-    position: static;
-    /*
-     * Webkit places the thumb's edge (not center) at the padding value.
-     * 1px padding = 1px gap from inner border at each extreme.
-     */
-    padding: 0 1px;
-    width: 9rem;
-    height: 12px;
-    border-radius: 999px;
-    border: 1px solid var(--corner-text-color, var(--color-text));
-    background: transparent;
-    cursor: ew-resize;
-    flex-shrink: 0;
-    box-sizing: border-box;
-
-    &:focus-visible {
-      @mixin focus-ring;
-    }
-
-    /* Track fills the inner height (12px - 2×1px border = 10px) */
-    &::-webkit-slider-runnable-track {
-      height: 10px;
-      background: transparent;
-      border-radius: 999px;
-    }
-
-    &::-moz-range-track {
-      height: 10px;
-      background: transparent;
-      border-radius: 999px;
-      border: none;
-    }
-
-    /* Thumb: 16px × 8px filled pill; margin-top: 1px shifts it down for 1px top gap */
-    &::-webkit-slider-thumb {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 16px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--corner-text-color, var(--color-text));
-      border: none;
-      margin-top: 1px;
-    }
-
-    &::-moz-range-thumb {
-      appearance: none;
-      width: 16px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--corner-text-color, var(--color-text));
-      border: none;
-    }
-  }
-
-  & .topRight {
-    top: 0;
-    right: 0;
-  }
-
-  & .bottomLeft {
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    gap: var(--space_1);
-  }
-
-  & .bottomRight {
-    bottom: 0;
-    right: 0;
-  }
-
-  & .contactLinks {
-    display: contents;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: var(--space_2) 0;
+  box-sizing: border-box;
 
   @mixin mobile-down {
-    & .contactLinks {
-      display: flex;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      gap: var(--space_1);
-      padding: var(--space_2);
-      pointer-events: auto;
+    display: none;
+  }
+}
 
-      & .topRight,
-      & .bottomRight {
-        position: static;
-        inset: auto;
-        padding: 0;
-      }
-    }
+.topGroup,
+.bottomGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space_2);
+}
+
+.name,
+.year {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: var(--font-size-sm);
+  color: var(--corner-text-color, var(--color-text));
+  transition: color 0.3s ease-out;
+}
+
+.name {
+  font-weight: var(--font-weight-bold);
+}
+
+.year {
+  font-variant-numeric: tabular-nums;
+}
+
+.link {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: var(--font-size-sm);
+  color: var(--corner-text-color, var(--color-text));
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  font-weight: var(--font-weight-medium);
+  pointer-events: auto;
+  transition: color 0.3s ease-out;
+
+  &:hover {
+    color: var(--corner-accent-color, var(--color-accent));
+  }
+
+  &:focus-visible {
+    @mixin focus-ring;
+  }
+}
+
+.gridToggle {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  color: var(--corner-text-color, var(--color-text));
+  opacity: 0.4;
+  transition: opacity 0.2s ease-out, color 0.3s ease-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &[data-active='true'] {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    @mixin focus-ring;
+  }
+}
+
+.slider {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 1px 0;
+  width: 12px;
+  height: 9rem;
+  border-radius: 999px;
+  border: 1px solid var(--corner-text-color, var(--color-text));
+  background: transparent;
+  cursor: ns-resize;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  pointer-events: auto;
+  transition: border-color 0.3s ease-out;
+
+  &:focus-visible {
+    @mixin focus-ring;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 10px;
+    background: transparent;
+    border-radius: 999px;
+  }
+
+  &::-moz-range-track {
+    width: 10px;
+    background: transparent;
+    border-radius: 999px;
+    border: none;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 8px;
+    height: 16px;
+    border-radius: 999px;
+    background: var(--corner-text-color, var(--color-text));
+    border: none;
+    margin-left: 1px;
+    transition: background 0.3s ease-out;
+  }
+
+  &::-moz-range-thumb {
+    appearance: none;
+    width: 8px;
+    height: 16px;
+    border-radius: 999px;
+    background: var(--corner-text-color, var(--color-text));
+    border: none;
+    transition: background 0.3s ease-out;
   }
 }

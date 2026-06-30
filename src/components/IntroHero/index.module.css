@@ -57,11 +57,11 @@
   inset: 0;
 }
 
-/* Photo — background layer, lower-left, snapped to col 1 */
+/* Photo — background layer, lower-left, snapped to col 2 */
 .photoLayer {
   position: absolute;
   bottom: var(--space_4);
-  left: var(--grid-margin);
+  left: var(--col-start-2);
   z-index: 1;
   pointer-events: none;
 
@@ -76,11 +76,11 @@
   background-color: var(--color-border);
 }
 
-/* Bio text — foreground layer, horizontal padding matches grid margin */
+/* Bio text — foreground layer, left edge aligned to col 2 */
 .textLayer {
   position: absolute;
   inset: 0;
-  padding: var(--space_4) var(--grid-margin);
+  padding: var(--space_4) var(--grid-margin) var(--space_4) var(--col-start-2);
   z-index: 2;
   display: flex;
   align-items: flex-start;
@@ -92,7 +92,7 @@
 
 .bio {
   margin: 0;
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-tight);

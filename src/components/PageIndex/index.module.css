@@ -1,0 +1,22 @@
+@import '@styles/breakpoints.css';
+@import '@styles/typography.css';
+
+.root {
+  position: fixed;
+  left: var(--grid-margin);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: var(--col-span-1);
+  color: var(--corner-text-color, var(--color-text));
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  transition: color 0.3s ease-out;
+
+  @mixin display;
+
+  @mixin mobile-down {
+    display: none;
+  }
+}

@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 
 export type Settings = {
   animationIntensity: number // 0–100
+  showGrid: boolean
 }
 
 const TILT_DEFAULTS = {
@@ -12,6 +13,7 @@ const TILT_DEFAULTS = {
 
 const DEFAULT_SETTINGS: Settings = {
   animationIntensity: 0,
+  showGrid: false,
 }
 
 const STORAGE_KEY = 'portfolio-settings'

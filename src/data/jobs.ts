@@ -25,16 +25,16 @@ export type JobImage = {
 
 /** Brand background colors keyed by job id. */
 export const JOB_COLORS = {
-  linkedin: '#F4F4F4',
-  cashApp: '#F4F4F4',
-  personio: '#F4F4F4',
-  twitter: '#F4F4F4',
-  Meta: '#F4F4F4',
-  spotify: '#F4F4F4',
-  google: '#F4F4F4',
-  Circles: '#F4F4F4',
-  ms: '#F4F4F4',
-  agency: '#F4F4F4',
+  linkedin: '#FFFFFF',
+  cashApp: '#FFFFFF',
+  personio: '#FFFFFF',
+  twitter: '#FFFFFF',
+  Meta: '#FFFFFF',
+  spotify: '#FFFFFF',
+  google: '#FFFFFF',
+  Circles: '#FFFFFF',
+  ms: '#FFFFFF',
+  agency: '#FFFFFF',
 } as const
 
 /** Derives a human-readable caption from an image path for alt/title when caption is not set. */

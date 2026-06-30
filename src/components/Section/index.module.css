@@ -1,18 +1,29 @@
+@import '@styles/breakpoints.css';
+@import '@styles/typography.css';
+
 .root {
+  position: relative;
   width: 100vw;
-  height: 100vh;
   min-height: 100vh;
-  max-height: 100vh;
-  flex: 0 0 100vh;
   box-sizing: border-box;
-  transition: opacity 0.4s ease-out;
 
-  &.inactive {
-    opacity: 0;
-    pointer-events: none;
+  & + & {
+    margin-top: 20vh;
   }
+}
 
-  &:not(.inactive) {
-    opacity: 1;
+.index {
+  position: absolute;
+  left: var(--grid-margin);
+  top: var(--grid-margin);
+  @mixin body-lg;
+  color: var(--section-text-color, var(--color-text));
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+  pointer-events: none;
+  z-index: 1;
+
+  @mixin mobile-down {
+    display: none;
   }
 }

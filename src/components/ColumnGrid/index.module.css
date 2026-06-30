@@ -22,9 +22,9 @@
 
 .col {
   height: 100%;
-  background: rgba(75, 100, 255, 0.06);
-  border-left: 1px solid rgba(75, 100, 255, 0.15);
-  border-right: 1px solid rgba(75, 100, 255, 0.15);
+  background: transparent;
+  border-left: 1px solid var(--color-text-subtle);
+  border-right: 1px solid var(--color-text-subtle);
 
   /* Hide columns 6–10 on mobile */
   &:nth-child(n+6) {

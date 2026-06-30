@@ -1,4 +1,6 @@
 @import '@styles/breakpoints.css';
+@import '@styles/typography.css';
+@import '@styles/grid.css';
 @import '@styles/tilt.css';
 
 .tiltPlane {
@@ -10,42 +12,123 @@
   @mixin tilt-plane-depth -40px;
 }
 
-.logoLayer {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  transform-style: preserve-3d;
-}
-
 .foregroundTilt.tiltPlane {
   z-index: 3;
   @mixin tilt-plane-depth 60px;
 }
 
-.wrapper {
-  position: relative;
-  display: block;
+.root {
+  @mixin page-grid;
+  align-items: stretch;
   height: 100%;
   min-height: 0;
-  width: 100%;
-  box-sizing: border-box;
-  padding: var(--space_0_5);
-  text-decoration: none;
-  color: inherit;
-  overflow: hidden;
 
-  &:hover [data-project-hover-tooltip] {
-    opacity: 1;
+  .layout {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: start;
+    height: 100%;
+    min-height: 0;
+
+    @mixin mobile-down {
+      grid-template-columns: 1fr;
+      height: auto;
+
+      .contentColumn {
+        grid-column: 1;
+        padding-top: var(--space_2);
+      }
+
+      .imageColumn {
+        grid-column: 1;
+        height: 60vh;
+        order: -1;
+      }
+    }
   }
 
-  &.tiltEnabled {
-    overflow: visible;
-    transform-style: preserve-3d;
+  .contentColumn {
+    grid-column: 2 / span 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: var(--space_4);
+    min-width: 0;
+    min-height: 0;
+
+    .company {
+      @mixin heading-lg;
+      margin: 0 0 var(--space_1);
+      color: var(--section-text-color, var(--color-text));
+    }
+
+    .meta {
+      @mixin heading-lg;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: var(--space_4);
+      color: var(--section-text-color, var(--color-text));
+
+      .separator {
+        @mixin body;
+        margin: 0 var(--space_1);
+        opacity: 0.6;
+      }
+
+      .type,
+      .location {
+        @mixin heading-lg;
+      }
+    }
+
+    .description {
+      margin: 0;
+      @mixin body-lg;
+      color: var(--section-text-color, var(--color-text));
+      line-height: var(--line-height-relaxed);
+    }
+
+    .siteLink {
+      margin-top: var(--space_2);
+      @mixin body;
+      color: var(--section-text-color, var(--color-text));
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+      opacity: 0.7;
+      width: fit-content;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+    .imageColumn {
+      grid-column: 5 / span 5;
+    position: relative;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: var(--space_0_5);
+    box-sizing: border-box;
+
+    &:hover [data-project-hover-tooltip] {
+      opacity: 1;
+    }
+
+    &.tiltEnabled {
+      overflow: visible;
+      transform-style: preserve-3d;
+    }
   }
 }
 
-.root {
+.imageRoot {
   position: relative;
   height: 100%;
   min-height: 0;
@@ -56,6 +139,14 @@
     overflow: visible;
     @mixin tilt-root;
   }
+}
+
+.logoLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transform-style: preserve-3d;
 }
 
 .logo {
@@ -77,52 +168,25 @@
   @mixin mobile-down {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-template-areas: none;
   }
 
   @mixin desktop-up {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas:
       'a0 a1 a2 a3'
       'a4 a5 a6 a6'
       'a7 a8 a6 a6';
 
-    .cell:nth-child(1) {
-      grid-area: a0;
-    }
-
-    .cell:nth-child(2) {
-      grid-area: a1;
-    }
-
-    .cell:nth-child(3) {
-      grid-area: a2;
-    }
-
-    .cell:nth-child(4) {
-      grid-area: a3;
-    }
-
-    .cell:nth-child(5) {
-      grid-area: a4;
-    }
-
-    .cell:nth-child(6) {
-      grid-area: a5;
-    }
-
-    .cell:nth-child(7) {
-      grid-area: a6;
-    }
-
-    .cell:nth-child(8) {
-      grid-area: a7;
-    }
-
-    .cell:nth-child(9) {
-      grid-area: a8;
-    }
+    .cell:nth-child(1) { grid-area: a0; }
+    .cell:nth-child(2) { grid-area: a1; }
+    .cell:nth-child(3) { grid-area: a2; }
+    .cell:nth-child(4) { grid-area: a3; }
+    .cell:nth-child(5) { grid-area: a4; }
+    .cell:nth-child(6) { grid-area: a5; }
+    .cell:nth-child(7) { grid-area: a6; }
+    .cell:nth-child(8) { grid-area: a7; }
+    .cell:nth-child(9) { grid-area: a8; }
   }
 }
 
