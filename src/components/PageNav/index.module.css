@@ -152,7 +152,8 @@
 
   @mixin mobile-down {
     width: 100vw;
-    padding-right: var(--space_2);
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin-right);
   }
 }
 
@@ -163,6 +164,11 @@ ul.panel {
   gap: var(--space_0_5);
   padding: var(--space_8) var(--space_1);
   margin: auto 0;
+
+  @mixin mobile-down {
+    padding-left: 0;
+    padding-right: 0;
+  }
   list-style: none;
   opacity: 0;
   transform: translateX(40px);
