@@ -42,7 +42,8 @@
 
   @mixin mobile-down {
     grid-column: 1 / span 6;
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space_10);
   }
 }
 
