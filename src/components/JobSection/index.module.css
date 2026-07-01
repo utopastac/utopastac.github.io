@@ -1,6 +1,7 @@
 @import '@styles/breakpoints.css';
 @import '@styles/typography.css';
 @import '@styles/grid.css';
+@import '@styles/tilt.css';
 
 .root {
   @mixin page-grid;
@@ -21,7 +22,7 @@
   min-width: 0;
 
   @mixin mobile-down {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
   }
 }
 
@@ -31,14 +32,23 @@
   margin-top: var(--space_4);
   cursor: pointer;
 
+  &.tiltRoot {
+    @mixin tilt-root;
+    overflow: visible;
+  }
+
   .image {
     width: 100%;
     height: auto;
     display: block;
+
+    &.tiltPlane {
+      @mixin tilt-plane;
+    }
   }
 
   @mixin mobile-down {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
   }
 }
 

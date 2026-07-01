@@ -9,6 +9,10 @@
   align-items: start;
   padding-top: var(--grid-margin);
   text-align: left;
+
+  @mixin mobile-down {
+    row-gap: var(--space_4);
+  }
 }
 
 /* Cols 4–9 — quotes list */
@@ -22,8 +26,9 @@
   cursor: pointer;
 
   @mixin mobile-down {
-    grid-column: 1 / span 5;
-    column-count: 1;
+    grid-column: 1 / span 6;
+    column-count: 2;
+    column-gap: var(--space_3);
   }
 }
 

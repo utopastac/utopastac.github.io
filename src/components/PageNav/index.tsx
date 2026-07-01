@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { Menu } from 'lucide-react'
+import { Grid3x3, Menu } from 'lucide-react'
 import type { NavPlacement } from '@/data/sections'
+import { useSettings } from '@/settings/SettingsContext'
 import { JOBS } from '@/data/jobs'
 import { EDUCATION } from '@/data/education'
 import { JobRow } from '@/components/JobRow'
@@ -35,6 +36,7 @@ function scrollToSection(id: string) {
 export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panelOpen }: PageNavProps) {
   const sectionCtx = useContext(SectionBackgroundContext)
   const isMobile = useMediaQuery(BREAKPOINT_MOBILE_MEDIA)
+  const { settings, update } = useSettings()
   const [isOpen, setIsOpen] = useState(false)
   const suppressOpenUntilLeaveRef = useRef(false)
   const triggerZoneRef = useRef<HTMLDivElement>(null)
@@ -130,6 +132,18 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
       >
         <Menu aria-hidden={true} size={14} />
       </button>
+      {isMobile && (
+        <button
+          type="button"
+          className={styles.gridToggle}
+          data-active={settings.showGrid}
+          onClick={() => update('showGrid', !settings.showGrid)}
+          aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
+          aria-pressed={settings.showGrid}
+        >
+          <Grid3x3 aria-hidden size={14} />
+        </button>
+      )}
       <nav className={styles.root}>
         <ul
           id="page-nav-list"

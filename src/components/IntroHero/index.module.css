@@ -41,7 +41,7 @@
   color: var(--color-text);
 
   @mixin mobile-down {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
     font-size: var(--font-size-xl);
   }
 }
@@ -54,7 +54,9 @@
   padding-bottom: var(--space_4);
 
   @mixin mobile-down {
-    display: none;
+    grid-column: 1 / span 6;
+    align-self: start;
+    padding-bottom: var(--space_2);
   }
 }
 
@@ -88,6 +90,10 @@
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
   width: var(--grid-col-width);
+
+  @mixin mobile-down {
+    width: var(--col-span-2);
+  }
 }
 
 .companyName {

@@ -21,6 +21,15 @@ export function CornerOverlay() {
 
   return (
     <div className={styles.root} data-corner-overlay>
+      <div className={styles.mobileHeader}>
+        <span className={styles.mobileName}>Peter Wright</span>
+        <span className={styles.mobileSep}>/</span>
+        <span className={styles.mobileYear}>{year}</span>
+        <span className={styles.mobileSep}>/</span>
+        <a className={styles.mobileLink} href={EMAIL_URL}>Email</a>
+        <span className={styles.mobileSep}>/</span>
+        <a className={styles.mobileLink} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
       <div className={styles.topGroup}>
         <a
           className={styles.link}

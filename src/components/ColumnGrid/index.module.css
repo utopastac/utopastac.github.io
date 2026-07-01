@@ -21,7 +21,7 @@
   gap: var(--grid-gutter);
 
   @mixin mobile-down {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
@@ -35,8 +35,8 @@
   border-left: 1px solid var(--color-text-subtle);
   border-right: 1px solid var(--color-text-subtle);
 
-  /* Hide columns 6–10 on mobile */
-  &:nth-child(n+6) {
+  /* Hide columns 7–10 on mobile */
+  &:nth-child(n+7) {
     @mixin mobile-down {
       display: none;
     }

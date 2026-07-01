@@ -1,6 +1,7 @@
 import { useCallback, useContext } from 'react'
 import { ModalContext } from '@/context/ModalContext'
 import { MetaColumn } from '@/components/MetaColumn'
+import { useCursorTilt } from '@/hooks/useCursorTilt'
 import type { JobImage } from '@/data/jobs'
 import { getCaptionFromPath } from '@/data/jobs'
 import { JOB_IMAGE_CAPTIONS } from '@/data/job-image-captions.generated'
@@ -27,6 +28,7 @@ export function JobSection({
 }: JobSectionProps) {
   const modal = useContext(ModalContext)
   const hasImages = images && images.length > 0
+  const { enabled: isTiltEnabled, tiltRef, perspectiveRootRef } = useCursorTilt()
 
   const openImagesModal = useCallback(() => {
     if (!hasImages) return
@@ -46,7 +48,8 @@ export function JobSection({
         const alt = JOB_IMAGE_CAPTIONS[img.src] ?? img.caption ?? getCaptionFromPath(img.src)
         return (
           <div
-            className={styles.imageColumn}
+            ref={perspectiveRootRef}
+            className={isTiltEnabled ? `${styles.imageColumn} ${styles.tiltRoot}` : styles.imageColumn}
             onClick={openImagesModal}
             onKeyDown={(e) => e.key === 'Enter' && openImagesModal()}
             role="button"
@@ -54,7 +57,8 @@ export function JobSection({
             aria-label={`View all images for ${company}`}
           >
             <img
-              className={styles.image}
+              ref={isTiltEnabled ? tiltRef : undefined}
+              className={isTiltEnabled ? `${styles.image} ${styles.tiltPlane}` : styles.image}
               src={img.src}
               alt={alt}
               title={alt}
