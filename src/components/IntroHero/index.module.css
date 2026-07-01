@@ -92,7 +92,7 @@
   width: var(--grid-col-width);
 
   @mixin mobile-down {
-    width: var(--col-span-2);
+    width: calc((100% - 2 * var(--grid-gutter)) / 3);
   }
 }
 
