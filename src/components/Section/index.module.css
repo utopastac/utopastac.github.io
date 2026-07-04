@@ -54,7 +54,7 @@
 .index {
   position: absolute;
   left: var(--grid-margin);
-  top: var(--grid-margin);
+  top: calc(var(--grid-margin) + 0.65rem);
   @mixin heading-lg;
   color: var(--section-text-color, var(--color-text));
   font-variant-numeric: tabular-nums;

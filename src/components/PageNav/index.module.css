@@ -2,7 +2,7 @@
 @import '@styles/typography.css';
 @import '@styles/grid.css';
 
-/* Invisible hit area: covers the full reserved right column + margin */
+/* Menu button and nav panel container */
 .triggerZone {
   position: fixed;
   top: 0;
@@ -10,6 +10,11 @@
   width: calc(var(--grid-col-width) + var(--grid-margin));
   height: 100vh;
   z-index: 10;
+  pointer-events: none;
+
+  &[data-open='true'] {
+    pointer-events: auto;
+  }
 
   &[data-panel-open='true'] .menuIcon {
     opacity: 0;
@@ -32,13 +37,13 @@
     color: var(--corner-text-color, var(--color-text));
     font-size: var(--font-size-xl);
     cursor: pointer;
+    pointer-events: auto;
 
     @mixin mobile-down {
       top: 0;
       right: 0;
       transform: none;
       z-index: 21;
-      pointer-events: auto;
       padding: var(--space_2) var(--space_2) 0;
       height: auto;
     }
@@ -48,13 +53,11 @@
     width: auto;
     height: auto;
     inset: 0 auto auto auto;
-    pointer-events: none;
 
     &[data-open='true'] {
       inset: 0 0 0 auto;
       width: 100vw;
       height: 100vh;
-      pointer-events: auto;
     }
   }
 }

@@ -124,7 +124,8 @@
   }
 }
 
-.gridToggle {
+.gridToggle,
+.imagesToggle {
   appearance: none;
   background: transparent;
   border: none;

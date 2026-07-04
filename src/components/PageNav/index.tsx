@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { Grid3x3, Menu } from 'lucide-react'
+import { Grid3x3, Menu, X } from 'lucide-react'
 import type { NavPlacement } from '@/data/sections'
 import { useSettings } from '@/settings/SettingsContext'
 import { JOBS } from '@/data/jobs'
@@ -38,7 +38,6 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
   const isMobile = useMediaQuery(BREAKPOINT_MOBILE_MEDIA)
   const { settings, update } = useSettings()
   const [isOpen, setIsOpen] = useState(false)
-  const suppressOpenUntilLeaveRef = useRef(false)
   const triggerZoneRef = useRef<HTMLDivElement>(null)
 
   const close = useCallback(() => {
@@ -51,27 +50,12 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
     (id: string, backgroundColor?: string) => {
       sectionCtx?.navigateToSection(id, backgroundColor)
       scrollToSection(id)
-      suppressOpenUntilLeaveRef.current = true
       close()
     },
     [sectionCtx, close]
   )
 
-  const open = useCallback(() => {
-    if (suppressOpenUntilLeaveRef.current || isOpen) return
-    setIsOpen(true)
-    onOpenChange?.(true)
-  }, [isOpen, onOpenChange])
-
-  const handleMouseLeave = useCallback((e: React.MouseEvent) => {
-    const related = e.relatedTarget as Element | null
-    if (related?.closest('[data-corner-overlay]')) return
-    suppressOpenUntilLeaveRef.current = false
-    close()
-  }, [close])
-
   const handleMenuClick = useCallback(() => {
-    suppressOpenUntilLeaveRef.current = false
     if (isOpen) {
       close()
       return
@@ -81,7 +65,7 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
   }, [isOpen, close, onOpenChange])
 
   useEffect(() => {
-    if (!isMobile || !isOpen) return
+    if (!isOpen) return
 
     const handlePointerDown = (event: PointerEvent) => {
       const target = event.target
@@ -99,7 +83,7 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
       document.removeEventListener('pointerdown', handlePointerDown)
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isMobile, isOpen, close])
+  }, [isOpen, close])
 
   return (
     <>
@@ -118,8 +102,6 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
       className={styles.triggerZone}
       data-open={isOpen}
       data-panel-open={panelOpen}
-      onMouseEnter={isMobile ? undefined : open}
-      onMouseLeave={isMobile ? undefined : handleMouseLeave}
       aria-label="Page sections"
     >
       <button
@@ -128,9 +110,9 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
         aria-expanded={isOpen}
         aria-controls="page-nav-list"
         aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
-        onClick={isMobile ? handleMenuClick : undefined}
+        onClick={handleMenuClick}
       >
-        <Menu aria-hidden={true} size={14} />
+        {isOpen ? <X aria-hidden={true} size={14} /> : <Menu aria-hidden={true} size={14} />}
       </button>
       {isMobile && (
         <button

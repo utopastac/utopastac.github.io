@@ -8,7 +8,7 @@
   pointer-events: none;
   padding-left: var(--grid-margin);
   padding-right: var(--grid-margin-right);
-  opacity: 0.4;
+  opacity: 0.3;
 
   @mixin tilt-root;
 }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Grid3x3 } from 'lucide-react'
+import { Grid3x3, Images } from 'lucide-react'
 import { useSettings } from '@/settings/SettingsContext'
 import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
 import styles from './index.module.css'
@@ -14,10 +14,14 @@ export function CornerOverlay() {
         e.preventDefault()
         update('showGrid', !settings.showGrid)
       }
+      if (e.metaKey && e.key === "'") {
+        e.preventDefault()
+        update('showImages', !settings.showImages)
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [settings.showGrid, update])
+  }, [settings.showGrid, settings.showImages, update])
 
   return (
     <div className={styles.root} data-corner-overlay>
@@ -44,6 +48,16 @@ export function CornerOverlay() {
         </a>
       </div>
       <div className={styles.bottomGroup}>
+        <button
+          type="button"
+          className={styles.imagesToggle}
+          data-active={settings.showImages}
+          onClick={() => update('showImages', !settings.showImages)}
+          aria-label={settings.showImages ? 'Hide images' : 'Show all images'}
+          aria-pressed={settings.showImages}
+        >
+          <Images aria-hidden size={14} />
+        </button>
         <button
           type="button"
           className={styles.gridToggle}
