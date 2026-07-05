@@ -1,0 +1,73 @@
+@import '@styles/effects.css';
+
+@define-mixin icon-control-surface {
+  --icon-color: var(--corner-text-color, var(--color-text));
+
+  margin: 0 calc(-1 * var(--radius-xs)) 0 0;
+  border-radius: var(--radius-xs);
+  color: color-mix(in srgb, var(--icon-color) 70%, transparent);
+  background: transparent;
+  transition:
+    color 0.2s ease-out,
+    background 0.2s ease-out;
+
+  &:hover {
+    background: color-mix(in srgb, var(--icon-color) 12%, transparent);
+  }
+
+  &:hover:not([data-active='true']) {
+    color: color-mix(in srgb, var(--icon-color) 80%, transparent);
+  }
+
+  &[data-active='true'] {
+    color: var(--icon-color);
+    background: color-mix(in srgb, var(--icon-color) 12%, transparent);
+  }
+}
+
+.button {
+  @mixin icon-control-surface;
+
+  appearance: none;
+  border: none;
+  padding: var(--space_0_5);
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+
+  &:focus-visible {
+    @mixin focus-ring;
+  }
+}
+
+.compound {
+  @mixin icon-control-surface;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space_1);
+  padding: var(--space_0_5);
+  pointer-events: auto;
+}
+
+.compoundButton {
+  appearance: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+
+  &:focus-visible {
+    @mixin focus-ring;
+  }
+}

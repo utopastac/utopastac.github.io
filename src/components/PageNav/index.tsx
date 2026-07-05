@@ -4,12 +4,12 @@ import type { NavPlacement } from '@/data/sections'
 import { useSettings } from '@/settings/SettingsContext'
 import { JOBS } from '@/data/jobs'
 import { EDUCATION } from '@/data/education'
+import { CornerIconButton } from '@/components/CornerIconButton'
 import { JobRow } from '@/components/JobRow'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { BREAKPOINT_MOBILE_MEDIA } from '@/constants/breakpoints'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { scrollToSectionElement } from '@/utils/animateScrollTo'
-import { Tooltip } from '@/components/Tooltip'
 import styles from './index.module.css'
 
 export type SectionLink = {
@@ -106,18 +106,16 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
       aria-label="Page sections"
     >
       <div className={styles.menuWrapper}>
-        <Tooltip label={isOpen ? 'Close' : 'Menu'}>
-          <button
-            type="button"
-            className={styles.menuIcon}
-            aria-expanded={isOpen}
-            aria-controls="page-nav-list"
-            aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
-            onClick={handleMenuClick}
-          >
-            {isOpen ? <X aria-hidden={true} size={14} /> : <Menu aria-hidden={true} size={14} />}
-          </button>
-        </Tooltip>
+        <CornerIconButton
+          label={isOpen ? 'Close' : 'Menu'}
+          active={isOpen}
+          aria-expanded={isOpen}
+          aria-controls="page-nav-list"
+          aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
+          onClick={handleMenuClick}
+        >
+          {isOpen ? <X aria-hidden size={14} /> : <Menu aria-hidden size={14} />}
+        </CornerIconButton>
       </div>
       {isMobile && (
         <button

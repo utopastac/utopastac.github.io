@@ -2,14 +2,19 @@ import { useEffect, useRef } from 'react'
 import { Grid3x3, Images, SquareGanttChart } from 'lucide-react'
 import { useSettings } from '@/settings/SettingsContext'
 import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
+import { CornerIconButton } from '@/components/CornerIconButton'
 import { Kbd } from '@/components/Kbd'
-import { Tooltip } from '@/components/Tooltip'
+import { TiltControl } from '@/components/TiltControl'
 import styles from './index.module.css'
+
+const DEFAULT_TILT_INTENSITY = 100
 
 export function CornerOverlay() {
   const year = new Date().getFullYear()
   const { settings, update } = useSettings()
-  const prevIntensityRef = useRef<number>(100)
+  const prevIntensityRef = useRef<number>(
+    settings.animationIntensity > 0 ? settings.animationIntensity : DEFAULT_TILT_INTENSITY,
+  )
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -60,48 +65,45 @@ export function CornerOverlay() {
         </a>
       </div>
       <div className={styles.bottomGroup}>
-        <Tooltip label={settings.showImages
-          ? <>Text layout <Kbd>⌘</Kbd><Kbd>'</Kbd></>
-          : <>Image layout <Kbd>⌘</Kbd><Kbd>'</Kbd></>
-        }>
-          <button
-            type="button"
-            className={styles.imagesToggle}
-            data-active={settings.showImages}
-            onClick={() => update('showImages', !settings.showImages)}
-            aria-label={settings.showImages ? 'Switch to text layout' : 'Switch to image layout'}
-            aria-pressed={settings.showImages}
-          >
-            {settings.showImages
-              ? <SquareGanttChart aria-hidden size={14} />
-              : <Images aria-hidden size={14} />
+        <CornerIconButton
+          label={settings.showImages
+            ? <>Text layout <Kbd>⌘</Kbd><Kbd>'</Kbd></>
+            : <>Image layout <Kbd>⌘</Kbd><Kbd>'</Kbd></>
+          }
+          active={settings.showImages}
+          onClick={() => update('showImages', !settings.showImages)}
+          aria-label={settings.showImages ? 'Switch to text layout' : 'Switch to image layout'}
+          aria-pressed={settings.showImages}
+        >
+          {settings.showImages
+            ? <SquareGanttChart aria-hidden size={14} />
+            : <Images aria-hidden size={14} />
+          }
+        </CornerIconButton>
+        <CornerIconButton
+          label={<>Grid <Kbd>⌘</Kbd><Kbd>;</Kbd></>}
+          active={settings.showGrid}
+          onClick={() => update('showGrid', !settings.showGrid)}
+          aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
+          aria-pressed={settings.showGrid}
+        >
+          <Grid3x3 aria-hidden size={14} />
+        </CornerIconButton>
+        <TiltControl
+          intensity={settings.animationIntensity}
+          onToggle={() => {
+            if (settings.animationIntensity > 0) {
+              prevIntensityRef.current = settings.animationIntensity
+              update('animationIntensity', 0)
+            } else {
+              update('animationIntensity', prevIntensityRef.current)
             }
-          </button>
-        </Tooltip>
-        <Tooltip label={<>Grid <Kbd>⌘</Kbd><Kbd>;</Kbd></>}>
-          <button
-            type="button"
-            className={styles.gridToggle}
-            data-active={settings.showGrid}
-            onClick={() => update('showGrid', !settings.showGrid)}
-            aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
-            aria-pressed={settings.showGrid}
-          >
-            <Grid3x3 aria-hidden size={14} />
-          </button>
-        </Tooltip>
-        <Tooltip label={<>Tilt <Kbd>⌘</Kbd><Kbd>.</Kbd></>}>
-          <input
-            type="range"
-            className={styles.slider}
-            min={0}
-            max={100}
-            step={1}
-            value={settings.animationIntensity}
-            onChange={(e) => update('animationIntensity', Number(e.target.value))}
-            aria-label="Animation intensity"
-          />
-        </Tooltip>
+          }}
+          onIntensityChange={(value) => {
+            prevIntensityRef.current = value
+            update('animationIntensity', value)
+          }}
+        />
         <span className={styles.year}>{year}</span>
         <span className={styles.name}>Peter Wright</span>
       </div>

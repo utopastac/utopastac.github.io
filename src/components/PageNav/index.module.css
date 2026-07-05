@@ -41,30 +41,14 @@
   transform: translateY(-50%);
   z-index: 1;
   pointer-events: auto;
+  padding: 0 var(--space_2);
   transition: opacity 0.2s ease-out;
 
   @mixin mobile-down {
     top: 0;
     transform: none;
     z-index: 21;
-  }
-}
-
-.menuIcon {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 var(--space_2);
-  height: var(--space_2_5);
-  border: none;
-  background: transparent;
-  color: var(--corner-text-color, var(--color-text));
-  cursor: pointer;
-  pointer-events: auto;
-
-  @mixin mobile-down {
     padding: var(--space_2) var(--space_2) 0;
-    height: auto;
   }
 }
 
