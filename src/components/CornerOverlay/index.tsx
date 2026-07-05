@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Grid3x3, Images } from 'lucide-react'
+import { Grid3x3, Images, SquareGanttChart } from 'lucide-react'
 import { useSettings } from '@/settings/SettingsContext'
 import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
 import { Kbd } from '@/components/Kbd'
@@ -60,16 +60,22 @@ export function CornerOverlay() {
         </a>
       </div>
       <div className={styles.bottomGroup}>
-        <Tooltip label={<>Images <Kbd>⌘</Kbd><Kbd>'</Kbd></>}>
+        <Tooltip label={settings.showImages
+          ? <>Text layout <Kbd>⌘</Kbd><Kbd>'</Kbd></>
+          : <>Image layout <Kbd>⌘</Kbd><Kbd>'</Kbd></>
+        }>
           <button
             type="button"
             className={styles.imagesToggle}
             data-active={settings.showImages}
             onClick={() => update('showImages', !settings.showImages)}
-            aria-label={settings.showImages ? 'Hide images' : 'Show all images'}
+            aria-label={settings.showImages ? 'Switch to text layout' : 'Switch to image layout'}
             aria-pressed={settings.showImages}
           >
-            <Images aria-hidden size={14} />
+            {settings.showImages
+              ? <SquareGanttChart aria-hidden size={14} />
+              : <Images aria-hidden size={14} />
+            }
           </button>
         </Tooltip>
         <Tooltip label={<>Grid <Kbd>⌘</Kbd><Kbd>;</Kbd></>}>

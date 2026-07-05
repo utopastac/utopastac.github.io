@@ -10,6 +10,18 @@ import {
 export type ModalContent = ReactNode
 
 const CLOSE_ANIMATION_MS = 200
+const SCROLL_CONTAINER_SELECTOR = '[aria-label="Page content"]'
+
+function getScrollContainer(): HTMLElement | null {
+  return document.querySelector<HTMLElement>(SCROLL_CONTAINER_SELECTOR)
+}
+
+function restoreScrollPosition(el: HTMLElement, top: number) {
+  el.scrollTop = top
+  requestAnimationFrame(() => {
+    el.scrollTop = top
+  })
+}
 
 export type ModalContextValue = {
   /** Currently shown modal content, or null if closed. */
@@ -28,6 +40,7 @@ export function ModalProvider({ children }: { children: ReactNode }) {
   const [content, setContent] = useState<ModalContent | null>(null)
   const [isClosing, setIsClosing] = useState(false)
   const previousActiveElement = useRef<HTMLElement | null>(null)
+  const savedScrollRef = useRef<{ el: HTMLElement; top: number } | null>(null)
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const openModal = useCallback((next: ModalContent) => {
@@ -48,14 +61,23 @@ export function ModalProvider({ children }: { children: ReactNode }) {
       closeTimeoutRef.current = null
       setContent(null)
       setIsClosing(false)
-      if (previousActiveElement.current?.focus) {
-        previousActiveElement.current.focus()
+      const saved = savedScrollRef.current
+      previousActiveElement.current?.focus({ preventScroll: true })
+      if (saved) {
+        restoreScrollPosition(saved.el, saved.top)
+        savedScrollRef.current = null
       }
     }, CLOSE_ANIMATION_MS)
   }, [content, isClosing])
 
   useEffect(() => {
     if (!content) return
+
+    const scrollEl = getScrollContainer()
+    if (scrollEl) {
+      savedScrollRef.current = { el: scrollEl, top: scrollEl.scrollTop }
+    }
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeModal()
     }
@@ -66,6 +88,10 @@ export function ModalProvider({ children }: { children: ReactNode }) {
       document.removeEventListener('keydown', handleEscape)
       document.body.style.overflow = ''
       document.documentElement.style.overflow = ''
+      const saved = savedScrollRef.current
+      if (saved) {
+        restoreScrollPosition(saved.el, saved.top)
+      }
     }
   }, [content, closeModal])
 
