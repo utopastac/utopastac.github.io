@@ -9,6 +9,7 @@ import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { BREAKPOINT_MOBILE_MEDIA } from '@/constants/breakpoints'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { scrollToSectionElement } from '@/utils/animateScrollTo'
+import { Tooltip } from '@/components/Tooltip'
 import styles from './index.module.css'
 
 export type SectionLink = {
@@ -104,16 +105,20 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
       data-panel-open={panelOpen}
       aria-label="Page sections"
     >
-      <button
-        type="button"
-        className={styles.menuIcon}
-        aria-expanded={isOpen}
-        aria-controls="page-nav-list"
-        aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
-        onClick={handleMenuClick}
-      >
-        {isOpen ? <X aria-hidden={true} size={14} /> : <Menu aria-hidden={true} size={14} />}
-      </button>
+      <div className={styles.menuWrapper}>
+        <Tooltip label={isOpen ? 'Close' : 'Menu'}>
+          <button
+            type="button"
+            className={styles.menuIcon}
+            aria-expanded={isOpen}
+            aria-controls="page-nav-list"
+            aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
+            onClick={handleMenuClick}
+          >
+            {isOpen ? <X aria-hidden={true} size={14} /> : <Menu aria-hidden={true} size={14} />}
+          </button>
+        </Tooltip>
+      </div>
       {isMobile && (
         <button
           type="button"

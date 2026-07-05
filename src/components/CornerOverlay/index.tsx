@@ -1,12 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Grid3x3, Images } from 'lucide-react'
 import { useSettings } from '@/settings/SettingsContext'
 import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
+import { Kbd } from '@/components/Kbd'
+import { Tooltip } from '@/components/Tooltip'
 import styles from './index.module.css'
 
 export function CornerOverlay() {
   const year = new Date().getFullYear()
   const { settings, update } = useSettings()
+  const prevIntensityRef = useRef<number>(100)
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -18,10 +21,19 @@ export function CornerOverlay() {
         e.preventDefault()
         update('showImages', !settings.showImages)
       }
+      if (e.metaKey && e.key === '.') {
+        e.preventDefault()
+        if (settings.animationIntensity > 0) {
+          prevIntensityRef.current = settings.animationIntensity
+          update('animationIntensity', 0)
+        } else {
+          update('animationIntensity', prevIntensityRef.current)
+        }
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [settings.showGrid, settings.showImages, update])
+  }, [settings.showGrid, settings.showImages, settings.animationIntensity, update])
 
   return (
     <div className={styles.root} data-corner-overlay>
@@ -48,36 +60,42 @@ export function CornerOverlay() {
         </a>
       </div>
       <div className={styles.bottomGroup}>
-        <button
-          type="button"
-          className={styles.imagesToggle}
-          data-active={settings.showImages}
-          onClick={() => update('showImages', !settings.showImages)}
-          aria-label={settings.showImages ? 'Hide images' : 'Show all images'}
-          aria-pressed={settings.showImages}
-        >
-          <Images aria-hidden size={14} />
-        </button>
-        <button
-          type="button"
-          className={styles.gridToggle}
-          data-active={settings.showGrid}
-          onClick={() => update('showGrid', !settings.showGrid)}
-          aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
-          aria-pressed={settings.showGrid}
-        >
-          <Grid3x3 aria-hidden size={14} />
-        </button>
-        <input
-          type="range"
-          className={styles.slider}
-          min={0}
-          max={100}
-          step={1}
-          value={settings.animationIntensity}
-          onChange={(e) => update('animationIntensity', Number(e.target.value))}
-          aria-label="Animation intensity"
-        />
+        <Tooltip label={<>Images <Kbd>⌘</Kbd><Kbd>'</Kbd></>}>
+          <button
+            type="button"
+            className={styles.imagesToggle}
+            data-active={settings.showImages}
+            onClick={() => update('showImages', !settings.showImages)}
+            aria-label={settings.showImages ? 'Hide images' : 'Show all images'}
+            aria-pressed={settings.showImages}
+          >
+            <Images aria-hidden size={14} />
+          </button>
+        </Tooltip>
+        <Tooltip label={<>Grid <Kbd>⌘</Kbd><Kbd>;</Kbd></>}>
+          <button
+            type="button"
+            className={styles.gridToggle}
+            data-active={settings.showGrid}
+            onClick={() => update('showGrid', !settings.showGrid)}
+            aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
+            aria-pressed={settings.showGrid}
+          >
+            <Grid3x3 aria-hidden size={14} />
+          </button>
+        </Tooltip>
+        <Tooltip label={<>Tilt <Kbd>⌘</Kbd><Kbd>.</Kbd></>}>
+          <input
+            type="range"
+            className={styles.slider}
+            min={0}
+            max={100}
+            step={1}
+            value={settings.animationIntensity}
+            onChange={(e) => update('animationIntensity', Number(e.target.value))}
+            aria-label="Animation intensity"
+          />
+        </Tooltip>
         <span className={styles.year}>{year}</span>
         <span className={styles.name}>Peter Wright</span>
       </div>

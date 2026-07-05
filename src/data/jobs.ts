@@ -9,6 +9,7 @@ export type JobImage = {
   caption?: string
 }
 
+
 /** Brand background colors keyed by job id. */
 // export const JOB_COLORS = {
 //   linkedin: '#0077B5',

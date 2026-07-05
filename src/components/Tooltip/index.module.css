@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  & .label {
+    position: absolute;
+    right: calc(100% + var(--space_1_5));
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-size: var(--font-size-xs);
+    color: var(--corner-bg-color, var(--color-bg));
+    background: var(--corner-text-color, var(--color-text));
+    display: flex;
+    align-items: center;
+    gap: var(--space_0_5);
+    padding: var(--space_0_5) var(--space_0_75);
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-out;
+  }
+
+  &:hover .label {
+    opacity: 1;
+  }
+}

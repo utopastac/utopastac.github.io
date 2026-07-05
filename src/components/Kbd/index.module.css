@@ -1,0 +1,10 @@
+.root {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-style: normal;
+  font-weight: var(--font-weight-normal);
+  line-height: 1;
+  padding: 0.15em 0.3em;
+  background: color-mix(in srgb, currentColor 15%, transparent);
+  border-radius: var(--radius-xs);
+}

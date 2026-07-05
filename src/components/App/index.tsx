@@ -3,7 +3,6 @@ import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { useSettings } from '@/settings/SettingsContext'
 import { BlurStrips } from '@/components/BlurStrips'
 import { ColumnGrid } from '@/components/ColumnGrid'
-import { ImageGallery } from '@/components/ImageGallery'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { EducationSection } from '@/components/EducationSection'
 import { EndPage } from '@/components/EndPage'
@@ -51,6 +50,7 @@ export function App() {
       style={{
         backgroundColor,
         ['--corner-text-color' as string]: cornerTextColor,
+        ['--corner-bg-color' as string]: backgroundColor,
       }}
     >
       <Modal />
@@ -89,72 +89,68 @@ export function App() {
         data-nav-open={isNavOpen}
         data-active-section={activeSection?.id}
       >
-        {settings.showImages ? (
-          <ImageGallery />
-        ) : (
-          <main
-            className={styles.main}
-            data-active-section={activeSection?.id}
-          >
-            {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }, sectionIdx) => {
-              let content: React.ReactNode
-              const sectionContentClass =
-                id === 'intro'
-                  ? `${styles.sectionContent} ${styles.sectionContentIntro}`
-                  : id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
-                    ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
-                    : id === 'outro'
-                      ? `${styles.sectionContent} ${styles.sectionContentOutro}`
-                      : styles.sectionContent
+        <main
+          className={styles.main}
+          data-active-section={activeSection?.id}
+        >
+          {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }, sectionIdx) => {
+            let content: React.ReactNode
+            const sectionContentClass =
+              id === 'intro'
+                ? `${styles.sectionContent} ${styles.sectionContentIntro}`
+                : id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
+                  ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
+                  : id === 'outro'
+                    ? `${styles.sectionContent} ${styles.sectionContentOutro}`
+                    : styles.sectionContent
 
-              if (id === 'intro') {
-                content = <IntroHero />
-              } else if (id === 'outro') {
-                content = <EndPage />
-              } else if (id === 'playpress') {
-                content = <PlaypressSection />
-              } else if (id === 'frontend-development') {
-                content = <FrontendDevelopmentSection />
-              } else if (id === 'pixel-portraits') {
-                content = <PixelPortraitsSection />
-              } else if (isQuotes) {
-                content = <QuotesSection quotes={QUOTES} title={title} />
-              } else if (educationId) {
-                content = (
-                  <EducationSection
-                    date={EDUCATION.date}
-                    degree={EDUCATION.degree}
-                    details={EDUCATION.details}
-                    institution={EDUCATION.institution}
-                  />
-                )
-              } else if (jobId) {
-                const job = jobMap.get(jobId)
-                content = job ? (
-                  <JobSection
-                    jobId={jobId}
-                    company={job.company}
-                    date={job.date}
-                    description={job.description}
-                    jobTitle={job.jobTitle}
-                    images={job.images}
-                  />
-                ) : (
-                  <h1>{title}</h1>
-                )
-              } else {
-                content = <h1>{title}</h1>
-              }
-              return (
-                <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg} index={sectionIdx}>
-                  <div className={sectionContentClass}>
-                    {content}
-                  </div>
-                </Section>
+            if (id === 'intro') {
+              content = <IntroHero />
+            } else if (id === 'outro') {
+              content = <EndPage />
+            } else if (id === 'playpress') {
+              content = <PlaypressSection />
+            } else if (id === 'frontend-development') {
+              content = <FrontendDevelopmentSection />
+            } else if (id === 'pixel-portraits') {
+              content = <PixelPortraitsSection />
+            } else if (isQuotes) {
+              content = <QuotesSection quotes={QUOTES} title={title} />
+            } else if (educationId) {
+              content = (
+                <EducationSection
+                  date={EDUCATION.date}
+                  degree={EDUCATION.degree}
+                  details={EDUCATION.details}
+                  institution={EDUCATION.institution}
+                />
               )
-            })}
-          </main>
-        )}
+            } else if (jobId) {
+              const job = jobMap.get(jobId)
+              content = job ? (
+                <JobSection
+                  jobId={jobId}
+                  company={job.company}
+                  date={job.date}
+                  description={job.description}
+                  jobTitle={job.jobTitle}
+                  images={job.images}
+                />
+              ) : (
+                <h1>{title}</h1>
+              )
+            } else {
+              content = <h1>{title}</h1>
+            }
+            return (
+              <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg} index={sectionIdx}>
+                <div className={sectionContentClass}>
+                  {content}
+                </div>
+              </Section>
+            )
+          })}
+        </main>
       </div>
     </div>
   )
