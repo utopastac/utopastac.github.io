@@ -1,11 +1,11 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { Grid3x3, Menu, X } from 'lucide-react'
+import { useCallback, useContext, useEffect, useRef } from 'react'
+import { Grid3x3 } from 'lucide-react'
 import type { NavPlacement } from '@/data/sections'
 import { useSettings } from '@/settings/SettingsContext'
 import { JOBS } from '@/data/jobs'
 import { EDUCATION } from '@/data/education'
-import { CornerIconButton } from '@/components/CornerIconButton'
 import { JobRow } from '@/components/JobRow'
+import { ThemeControl } from '@/components/ThemeControl'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
 import { BREAKPOINT_MOBILE_MEDIA } from '@/constants/breakpoints'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -23,7 +23,8 @@ export type SectionLink = {
 type PageNavProps = {
   sections: SectionLink[]
   navPanelBackgroundColor?: string | null
-  onOpenChange?: (open: boolean) => void
+  open: boolean
+  onOpenChange: (open: boolean) => void
   panelOpen?: boolean
 }
 
@@ -34,18 +35,16 @@ function scrollToSection(id: string) {
   if (el) scrollToSectionElement(el)
 }
 
-export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panelOpen }: PageNavProps) {
+export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange, panelOpen }: PageNavProps) {
   const sectionCtx = useContext(SectionBackgroundContext)
   const isMobile = useMediaQuery(BREAKPOINT_MOBILE_MEDIA)
   const { settings, update } = useSettings()
-  const [isOpen, setIsOpen] = useState(false)
   const triggerZoneRef = useRef<HTMLDivElement>(null)
 
   const close = useCallback(() => {
-    if (!isOpen) return
-    setIsOpen(false)
-    onOpenChange?.(false)
-  }, [isOpen, onOpenChange])
+    if (!open) return
+    onOpenChange(false)
+  }, [open, onOpenChange])
 
   const handleSectionClick = useCallback(
     (id: string, backgroundColor?: string) => {
@@ -56,21 +55,14 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
     [sectionCtx, close]
   )
 
-  const handleMenuClick = useCallback(() => {
-    if (isOpen) {
-      close()
-      return
-    }
-    setIsOpen(true)
-    onOpenChange?.(true)
-  }, [isOpen, close, onOpenChange])
-
   useEffect(() => {
-    if (!isOpen) return
+    if (!open) return
 
     const handlePointerDown = (event: PointerEvent) => {
       const target = event.target
-      if (!(target instanceof Node) || triggerZoneRef.current?.contains(target)) return
+      if (!(target instanceof Node)) return
+      if (triggerZoneRef.current?.contains(target)) return
+      if (target instanceof Element && target.closest('[data-page-nav-menu]')) return
       close()
     }
 
@@ -84,13 +76,13 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
       document.removeEventListener('pointerdown', handlePointerDown)
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isOpen, close])
+  }, [open, close])
 
   return (
     <>
     <div
       className={styles.backdrop}
-      data-open={isOpen}
+      data-open={open}
       aria-hidden
       style={
         navPanelBackgroundColor
@@ -101,33 +93,27 @@ export function PageNav({ sections, navPanelBackgroundColor, onOpenChange, panel
     <div
       ref={triggerZoneRef}
       className={styles.triggerZone}
-      data-open={isOpen}
+      data-open={open}
       data-panel-open={panelOpen}
       aria-label="Page sections"
     >
-      <div className={styles.menuWrapper}>
-        <CornerIconButton
-          label={isOpen ? 'Close' : 'Menu'}
-          active={isOpen}
-          aria-expanded={isOpen}
-          aria-controls="page-nav-list"
-          aria-label={isOpen ? 'Close page sections menu' : 'Open page sections menu'}
-          onClick={handleMenuClick}
-        >
-          {isOpen ? <X aria-hidden size={14} /> : <Menu aria-hidden size={14} />}
-        </CornerIconButton>
-      </div>
       {isMobile && (
-        <button
-          type="button"
-          className={styles.gridToggle}
-          data-active={settings.showGrid}
-          onClick={() => update('showGrid', !settings.showGrid)}
-          aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
-          aria-pressed={settings.showGrid}
-        >
-          <Grid3x3 aria-hidden size={14} />
-        </button>
+        <div className={styles.mobileControls}>
+          <button
+            type="button"
+            className={styles.gridToggle}
+            data-active={settings.showGrid}
+            onClick={() => update('showGrid', !settings.showGrid)}
+            aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
+            aria-pressed={settings.showGrid}
+          >
+            <Grid3x3 aria-hidden size={14} />
+          </button>
+          <ThemeControl
+            colorScheme={settings.colorScheme}
+            onChange={(colorScheme) => update('colorScheme', colorScheme)}
+          />
+        </div>
       )}
       <nav className={styles.root}>
         <ul

@@ -1,0 +1,22 @@
+@import '@styles/effects.css';
+
+.root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  backdrop-filter: blur(var(--cursor-blur-amount, 12px));
+  -webkit-backdrop-filter: blur(var(--cursor-blur-amount, 12px));
+  mask-image: radial-gradient(
+    circle calc(var(--cursor-blur-radius, 120px) * 1.4) at var(--cursor-blur-x, 50vw) var(--cursor-blur-y, 50vh),
+    transparent 0%,
+    transparent 55%,
+    black 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle calc(var(--cursor-blur-radius, 120px) * 1.4) at var(--cursor-blur-x, 50vw) var(--cursor-blur-y, 50vh),
+    transparent 0%,
+    transparent 55%,
+    black 100%
+  );
+}

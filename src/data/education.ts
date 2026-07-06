@@ -23,7 +23,7 @@ export const EDUCATION: EducationEntry = {
   institutionShort: 'University',
   date: '2001',
   details: 'I studied typography at the department of Typography and graphic communication. Courses in Economics, Maths and Statistics.',
-  backgroundColor: '#b8744c',
-  textColor: '#f4f1ea',
-  navPanelBackgroundColor: 'rgba(255, 255, 255, 0.05)'
+  backgroundColor: 'var(--color-section-education)',
+  textColor: 'var(--color-section-education-text)',
+  navPanelBackgroundColor: 'var(--color-nav-panel-education)',
 }

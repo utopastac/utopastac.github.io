@@ -1,0 +1,79 @@
+/* Semantic color tokens — light defaults, dark via system preference or data-theme */
+
+@define-mixin color-scheme-light {
+  color-scheme: light;
+
+  --color-text: #1a1a1a;
+  --color-text-muted: #6b7280;
+  --color-text-subtle: #a3a3a3;
+  --color-text-on-dark: #f5f5f0;
+  --color-bg: #ffffff;
+  --color-border: #e5e7eb;
+  --color-accent: #2563eb;
+
+  --contrib-level-0: #ebedf0;
+  --contrib-level-1: #baecbf;
+  --contrib-level-2: #6dc074;
+  --contrib-level-3: #54a258;
+  --contrib-level-4: #2e6230;
+
+  /* Section backgrounds */
+  --color-section-intro: #f4f4f4;
+  --color-section-surface: #ffffff;
+  --color-section-neutral: #f5f5f0;
+  --color-section-quotes: #d2b9ce;
+  --color-section-frontend: #fcf7c8;
+  --color-section-education: #b8744c;
+  --color-section-quotes-text: #000000;
+  --color-section-education-text: #f4f1ea;
+  --color-nav-panel: rgb(255 255 255 / 0.7);
+  --color-nav-panel-education: rgb(255 255 255 / 0.05);
+}
+
+@define-mixin color-scheme-dark {
+  color-scheme: dark;
+
+  --color-text: #ecece8;
+  --color-text-muted: #9ca3af;
+  --color-text-subtle: #6b7280;
+  --color-text-on-dark: #141414;
+  --color-bg: #141413;
+  --color-border: #2e2e2c;
+  --color-accent: #60a5fa;
+
+  --contrib-level-0: #161b22;
+  --contrib-level-1: #0e4429;
+  --contrib-level-2: #006d32;
+  --contrib-level-3: #26a641;
+  --contrib-level-4: #39d353;
+
+  /* Section backgrounds */
+  --color-section-intro: #1c1c1b;
+  --color-section-surface: #181817;
+  --color-section-neutral: #1a1a19;
+  --color-section-quotes: #3d3544;
+  --color-section-frontend: #2a2818;
+  --color-section-education: #7a4a32;
+  --color-section-quotes-text: #ecece8;
+  --color-section-education-text: #f4f1ea;
+  --color-nav-panel: rgb(20 20 19 / 0.75);
+  --color-nav-panel-education: rgb(255 255 255 / 0.05);
+}
+
+:root {
+  @mixin color-scheme-light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @mixin color-scheme-dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  @mixin color-scheme-dark;
+}
+
+:root[data-theme='light'] {
+  @mixin color-scheme-light;
+}

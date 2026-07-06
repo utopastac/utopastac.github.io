@@ -1,10 +1,16 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
+export type ColorScheme = 'system' | 'light' | 'dark'
+
 export type Settings = {
   animationIntensity: number // 0–100
+  blurIntensity: number // 0–100
   showGrid: boolean
   showImages: boolean
+  colorScheme: ColorScheme
 }
+
+const COLOR_SCHEMES: readonly ColorScheme[] = ['system', 'light', 'dark']
 
 const TILT_DEFAULTS = {
   perspective: 1000,
@@ -12,10 +18,18 @@ const TILT_DEFAULTS = {
   backgroundZ: -30,
 }
 
+const BLUR_DEFAULTS = {
+  minRadius: 48,
+  maxRadius: 300,
+  amount: 24,
+}
+
 const DEFAULT_SETTINGS: Settings = {
   animationIntensity: 0,
+  blurIntensity: 0,
   showGrid: false,
   showImages: false,
+  colorScheme: 'system',
 }
 
 const STORAGE_KEY = 'portfolio-settings'
@@ -24,9 +38,22 @@ function loadSettings(): Settings {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (!stored) return DEFAULT_SETTINGS
-    return { ...DEFAULT_SETTINGS, ...(JSON.parse(stored) as Partial<Settings>) }
+    const parsed = JSON.parse(stored) as Partial<Settings>
+    const colorScheme = COLOR_SCHEMES.includes(parsed.colorScheme as ColorScheme)
+      ? (parsed.colorScheme as ColorScheme)
+      : DEFAULT_SETTINGS.colorScheme
+    return { ...DEFAULT_SETTINGS, ...parsed, colorScheme }
   } catch {
     return DEFAULT_SETTINGS
+  }
+}
+
+function applyColorScheme(colorScheme: ColorScheme) {
+  const html = document.documentElement
+  if (colorScheme === 'system') {
+    delete html.dataset.theme
+  } else {
+    html.dataset.theme = colorScheme
   }
 }
 
@@ -39,7 +66,11 @@ type SettingsContextValue = {
 export const SettingsContext = createContext<SettingsContextValue | null>(null)
 
 export function SettingsProvider({ children }: { children: React.ReactNode }) {
-  const [settings, setSettings] = useState<Settings>(loadSettings)
+  const [settings, setSettings] = useState<Settings>(() => {
+    const loaded = loadSettings()
+    applyColorScheme(loaded.colorScheme)
+    return loaded
+  })
 
   useEffect(() => {
     try {
@@ -50,12 +81,22 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
   }, [settings])
 
   useEffect(() => {
+    applyColorScheme(settings.colorScheme)
+  }, [settings.colorScheme])
+
+  useEffect(() => {
     const t = settings.animationIntensity / 100
+    const blurT = settings.blurIntensity / 100
     const html = document.documentElement
     html.dataset.reduceMotion = String(settings.animationIntensity === 0)
     html.style.setProperty('--tilt-perspective', `${TILT_DEFAULTS.perspective}px`)
     html.style.setProperty('--tilt-foreground-z', `${TILT_DEFAULTS.foregroundZ * t}px`)
     html.style.setProperty('--tilt-background-z', `${TILT_DEFAULTS.backgroundZ * t}px`)
+    html.style.setProperty('--cursor-blur-amount', `${BLUR_DEFAULTS.amount}px`)
+    html.style.setProperty(
+      '--cursor-blur-radius',
+      `${BLUR_DEFAULTS.minRadius + (BLUR_DEFAULTS.maxRadius - BLUR_DEFAULTS.minRadius) * blurT}px`,
+    )
   }, [settings])
 
   const update = useCallback(<K extends keyof Settings>(key: K, value: Settings[K]) => {

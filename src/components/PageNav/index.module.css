@@ -16,11 +16,6 @@
     pointer-events: auto;
   }
 
-  &[data-panel-open='true'] .menuWrapper {
-    opacity: 0;
-    pointer-events: none;
-  }
-
   @mixin mobile-down {
     width: auto;
     height: auto;
@@ -34,21 +29,20 @@
   }
 }
 
-.menuWrapper {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  pointer-events: auto;
-  padding: 0 var(--space_2);
-  transition: opacity 0.2s ease-out;
+.mobileControls {
+  display: none;
 
   @mixin mobile-down {
-    top: 0;
-    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space_0_5);
+    position: fixed;
+    top: calc(var(--space_2) + var(--space_2_5) + var(--space_1));
+    right: 0;
+    padding: 0 var(--space_2);
+    pointer-events: auto;
     z-index: 21;
-    padding: var(--space_2) var(--space_2) 0;
   }
 }
 
@@ -59,17 +53,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    position: fixed;
-    top: calc(var(--space_2) + var(--space_2_5) + var(--space_1));
-    right: 0;
-    padding: 0 var(--space_2);
     height: var(--space_2_5);
     border: none;
     background: transparent;
     color: var(--corner-text-color, var(--color-text));
     cursor: pointer;
-    pointer-events: auto;
-    z-index: 21;
     opacity: 0.4;
     transition: opacity 0.2s ease-out;
 

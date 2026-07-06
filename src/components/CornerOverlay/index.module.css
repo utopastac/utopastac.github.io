@@ -75,6 +75,16 @@
   }
 }
 
+.menuButton,
+.mobileMenu {
+  pointer-events: auto;
+}
+
+.mobileMenu {
+  display: inline-flex;
+  align-items: center;
+}
+
 .topGroup,
 .bottomGroup {
   display: flex;
@@ -85,6 +95,13 @@
   @mixin mobile-down {
     display: none;
   }
+}
+
+.iconGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space_0_5);
 }
 
 .name,

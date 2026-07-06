@@ -1,5 +1,6 @@
 /* Global CSS variables and reset – base rem = 8px */
 @import './styles/breakpoints.css';
+@import './styles/colors.css';
 @import './styles/typography.css';
 
 :root {
@@ -18,15 +19,6 @@
   --space_6: 6rem;
   --space_8: 8rem;
   --space_10: 10rem;
-
-  /* Colors */
-  --color-text: #1a1a1a;
-  --color-text-muted: #6b7280;
-  --color-text-subtle: #a3a3a3;
-  --color-text-on-dark: #f5f5f0;
-  --color-bg: #ffffff;
-  --color-border: #e5e7eb;
-  --color-accent: #2563eb;
 
   /* Border radius */
   --radius-xs: 2px;
@@ -66,13 +58,6 @@
   --col-start-2: calc(var(--grid-margin) + 1 * (var(--grid-col-width) + var(--grid-gutter)));
   --col-start-3: calc(var(--grid-margin) + 2 * (var(--grid-col-width) + var(--grid-gutter)));
   --col-start-4: calc(var(--grid-margin) + 3 * (var(--grid-col-width) + var(--grid-gutter)));
-
-  /* GitHub contribution colors */
-  --contrib-level-0: #ebedf0;
-  --contrib-level-1: #baecbf;
-  --contrib-level-2: #6dc074;
-  --contrib-level-3: #54a258;
-  --contrib-level-4: #2e6230;
 }
 
 *,

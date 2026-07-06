@@ -33,15 +33,15 @@ export const SECTIONS: readonly SectionData[] = [
   { 
     id: 'intro', 
     title: 'intro',
-    backgroundColor: '#F4F4F4',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
+    backgroundColor: 'var(--color-section-intro)',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
     navPlacement: 'hidden'
   },
   ...JOBS.map((job) => ({
     id: job.id,
     title: job.company,
     backgroundColor: job.backgroundColor,
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
     navPlacement: 'dated-submenu' as const,
     ...(job.textColor != null && { textColor: job.textColor }),
     jobId: job.id,
@@ -57,8 +57,8 @@ export const SECTIONS: readonly SectionData[] = [
   {
     id: 'quotes',
     title: 'What people say',
-    backgroundColor: '#D2B9CE',
-    textColor: '#000000',
+    backgroundColor: 'var(--color-section-quotes)',
+    textColor: 'var(--color-section-quotes-text)',
     isQuotes: true,
     navPlacement: 'top-level',
     navDescription: 'Colleague quotes',
@@ -66,31 +66,31 @@ export const SECTIONS: readonly SectionData[] = [
   { 
     id: 'playpress',
     title: 'Playpress',
-    backgroundColor: '#f5f5f0',
+    backgroundColor: 'var(--color-section-neutral)',
     navPlacement: 'top-level',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
     navDescription: 'UK based Toy company',
   },
   {
     id: 'frontend-development',
     title: 'Development',
-    backgroundColor: '#FCF7C8',
+    backgroundColor: 'var(--color-section-frontend)',
     navPlacement: 'top-level',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
     navDescription: 'Coding experience',
   },
   {
     id: 'pixel-portraits',
     title: 'Pixel portraits',
-    backgroundColor: '#f5f5f0',
+    backgroundColor: 'var(--color-section-neutral)',
     navPlacement: 'top-level',
-    navPanelBackgroundColor: 'rgba(255, 255, 255, 0.7)',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
     navDescription: 'Pixel art tool',
   },
   { 
     id: 'outro',
     title: 'outro',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'var(--color-section-surface)',
     navPlacement: 'hidden'
   },
 ] as const

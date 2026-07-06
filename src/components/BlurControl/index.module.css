@@ -1,0 +1,62 @@
+@import '@styles/effects.css';
+
+.value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 3ch;
+  text-align: center;
+}
+
+.slider {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  appearance: none;
+  -webkit-appearance: none;
+  width: 8px;
+  height: 9rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: ns-resize;
+  box-sizing: border-box;
+
+  &:focus-visible {
+    @mixin focus-ring;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 8px;
+    background: transparent;
+    border-radius: var(--radius-full);
+  }
+
+  &::-moz-range-track {
+    width: 8px;
+    background: transparent;
+    border-radius: var(--radius-full);
+    border: none;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 8px;
+    height: 16px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+    border: none;
+    transition: background 0.3s ease-out;
+  }
+
+  &::-moz-range-thumb {
+    appearance: none;
+    width: 8px;
+    height: 16px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+    border: none;
+    transition: background 0.3s ease-out;
+  }
+}

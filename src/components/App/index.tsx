@@ -4,6 +4,7 @@ import { useSettings } from '@/settings/SettingsContext'
 import { BlurStrips } from '@/components/BlurStrips'
 import { ColumnGrid } from '@/components/ColumnGrid'
 import { CornerOverlay } from '@/components/CornerOverlay'
+import { CursorBlurOverlay } from '@/components/CursorBlurOverlay'
 import { EducationSection } from '@/components/EducationSection'
 import { EndPage } from '@/components/EndPage'
 import { FrontendDevelopmentSection } from '@/components/FrontendDevelopmentSection'
@@ -64,7 +65,11 @@ export function App() {
         }}
       />
       <BlurStrips />
-      <CornerOverlay />
+      <CursorBlurOverlay />
+      <CornerOverlay
+        isNavOpen={isNavOpen}
+        onMenuToggle={() => setIsNavOpen((open) => !open)}
+      />
       <ScrollDownArrow
         sectionIds={SECTIONS.map((s) => s.id)}
         scrollContainerRef={scrollContainerRef}
@@ -78,6 +83,7 @@ export function App() {
           navDescription,
         }))}
         navPanelBackgroundColor={navPanelBackgroundColor}
+        open={isNavOpen}
         onOpenChange={handleNavOpenChange}
         panelOpen={false}
       />
