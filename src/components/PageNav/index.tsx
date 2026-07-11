@@ -1,14 +1,9 @@
 import { useCallback, useContext, useEffect, useRef } from 'react'
-import { Grid3x3 } from 'lucide-react'
 import type { NavPlacement } from '@/data/sections'
-import { useSettings } from '@/settings/SettingsContext'
 import { JOBS } from '@/data/jobs'
 import { EDUCATION } from '@/data/education'
 import { JobRow } from '@/components/JobRow'
-import { ThemeControl } from '@/components/ThemeControl'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
-import { BREAKPOINT_MOBILE_MEDIA } from '@/constants/breakpoints'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { scrollToSectionElement } from '@/utils/animateScrollTo'
 import styles from './index.module.css'
 
@@ -37,8 +32,6 @@ function scrollToSection(id: string) {
 
 export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange, panelOpen }: PageNavProps) {
   const sectionCtx = useContext(SectionBackgroundContext)
-  const isMobile = useMediaQuery(BREAKPOINT_MOBILE_MEDIA)
-  const { settings, update } = useSettings()
   const triggerZoneRef = useRef<HTMLDivElement>(null)
 
   const close = useCallback(() => {
@@ -97,24 +90,6 @@ export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange,
       data-panel-open={panelOpen}
       aria-label="Page sections"
     >
-      {isMobile && (
-        <div className={styles.mobileControls}>
-          <button
-            type="button"
-            className={styles.gridToggle}
-            data-active={settings.showGrid}
-            onClick={() => update('showGrid', !settings.showGrid)}
-            aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
-            aria-pressed={settings.showGrid}
-          >
-            <Grid3x3 aria-hidden size={14} />
-          </button>
-          <ThemeControl
-            colorScheme={settings.colorScheme}
-            onChange={(colorScheme) => update('colorScheme', colorScheme)}
-          />
-        </div>
-      )}
       <nav className={styles.root}>
         <ul
           id="page-nav-list"

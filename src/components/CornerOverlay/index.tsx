@@ -5,7 +5,7 @@ import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
 import { CornerIconButton } from '@/components/CornerIconButton'
 import { BlurControl } from '@/components/BlurControl'
 import { Kbd } from '@/components/Kbd'
-import { ThemeControl, nextColorScheme } from '@/components/ThemeControl'
+import { ThemeControl, toggleColorScheme } from '@/components/ThemeControl'
 import { TiltControl } from '@/components/TiltControl'
 import styles from './index.module.css'
 
@@ -85,7 +85,7 @@ export function CornerOverlay({ isNavOpen, onMenuToggle }: CornerOverlayProps) {
       }
       if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'd') {
         e.preventDefault()
-        update('colorScheme', nextColorScheme(settings.colorScheme))
+        update('colorScheme', toggleColorScheme(settings.colorScheme))
       }
       if (e.metaKey && e.key === '\\') {
         e.preventDefault()
@@ -103,15 +103,31 @@ export function CornerOverlay({ isNavOpen, onMenuToggle }: CornerOverlayProps) {
         <span className={styles.mobileSep}>/</span>
         <span className={styles.mobileYear}>{year}</span>
         <span className={styles.mobileSep}>/</span>
-        <NavMenuButton
-          isOpen={isNavOpen}
-          onToggle={onMenuToggle}
-          className={styles.mobileMenu}
-        />
-        <span className={styles.mobileSep}>/</span>
         <a className={styles.mobileLink} href={EMAIL_URL}>Email</a>
         <span className={styles.mobileSep}>/</span>
         <a className={styles.mobileLink} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <div className={styles.mobileRightColumn}>
+        <NavMenuButton
+          isOpen={isNavOpen}
+          onToggle={onMenuToggle}
+          className={styles.mobileMenuTop}
+        />
+        <div className={styles.mobileIconGroup}>
+          <CornerIconButton
+            label={<>Grid <Kbd>⌘</Kbd><Kbd>;</Kbd></>}
+            active={settings.showGrid}
+            onClick={() => update('showGrid', !settings.showGrid)}
+            aria-label={settings.showGrid ? 'Hide grid' : 'Show grid'}
+            aria-pressed={settings.showGrid}
+          >
+            <Grid3x3 aria-hidden size={14} />
+          </CornerIconButton>
+          <ThemeControl
+            colorScheme={settings.colorScheme}
+            onChange={(colorScheme) => update('colorScheme', colorScheme)}
+          />
+        </div>
       </div>
       <div className={styles.topGroup}>
         <NavMenuButton

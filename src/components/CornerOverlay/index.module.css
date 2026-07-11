@@ -75,14 +75,43 @@
   }
 }
 
-.menuButton,
-.mobileMenu {
+.menuButton {
   pointer-events: auto;
 }
 
-.mobileMenu {
-  display: inline-flex;
+.mobileRightColumn {
+  display: none;
+
+  @mixin mobile-down {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space_1);
+    position: fixed;
+    top: var(--space_2);
+    right: var(--space_2);
+    pointer-events: auto;
+    z-index: 22;
+  }
+}
+
+.mobileMenuTop,
+.mobileIconGroup {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+}
+
+.mobileIconGroup {
+  gap: var(--space_1);
+
+  & button {
+    margin-right: 0;
+  }
+}
+
+.mobileMenuTop button {
+  margin-right: 0;
 }
 
 .topGroup,

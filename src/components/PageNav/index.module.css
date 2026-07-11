@@ -29,48 +29,6 @@
   }
 }
 
-.mobileControls {
-  display: none;
-
-  @mixin mobile-down {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: var(--space_0_5);
-    position: fixed;
-    top: calc(var(--space_2) + var(--space_2_5) + var(--space_1));
-    right: 0;
-    padding: 0 var(--space_2);
-    pointer-events: auto;
-    z-index: 21;
-  }
-}
-
-.gridToggle {
-  display: none;
-
-  @mixin mobile-down {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    height: var(--space_2_5);
-    border: none;
-    background: transparent;
-    color: var(--corner-text-color, var(--color-text));
-    cursor: pointer;
-    opacity: 0.4;
-    transition: opacity 0.2s ease-out;
-
-    &:hover {
-      opacity: 0.8;
-    }
-
-    &[data-active='true'] {
-      opacity: 1;
-    }
-  }
-}
-
 /* Blurs the background behind the nav when panel is open; slides in from the right */
 .backdrop {
   position: fixed;
