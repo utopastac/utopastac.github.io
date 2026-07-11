@@ -1,3 +1,5 @@
+@import '@styles/breakpoints.css';
+
 .root {
   position: relative;
   display: flex;
@@ -24,5 +26,11 @@
 
   &:hover .label {
     opacity: 1;
+  }
+
+  @mixin mobile-down {
+    & .label {
+      display: none;
+    }
   }
 }
