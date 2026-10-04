@@ -52,11 +52,11 @@ export function PixelPortraitsSection() {
     <div className={styles.root}>
       <MetaColumn items={[
         { label: 'Pixelator' },
-        { label: 'Personal project' },
+        { label: 'Web & iOS' },
       ]} />
 
       <p className={styles.descriptionColumn}>
-        A React-based interface for creating and sharing pixel art projects.{' '}
+        A pixel art editor for creating and sharing drawings — on the web and as an iOS app.{' '}
         <a
           href="https://pixelator.f-90.co.uk"
           target="_blank"
