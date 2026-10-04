@@ -70,12 +70,12 @@
 .tabs {
   display: flex;
   align-items: baseline;
-  gap: var(--space_1_5);
+  gap: var(--space_3);
   margin-bottom: var(--space_0_5);
 }
 
 .tab {
-  @mixin body-lg;
+  @mixin body-xl;
   padding: 0;
   border: none;
   background: none;
