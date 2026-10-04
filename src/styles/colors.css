@@ -26,6 +26,7 @@
   --color-section-education: #b8744c;
   --color-section-quotes-text: #000000;
   --color-section-education-text: #f4f1ea;
+  --color-numo-band: #bccfe6;
   --color-nav-panel: rgb(255 255 255 / 0.7);
   --color-nav-panel-education: rgb(255 255 255 / 0.05);
 }
@@ -56,6 +57,7 @@
   --color-section-education: #7a4a32;
   --color-section-quotes-text: #ecece8;
   --color-section-education-text: #f4f1ea;
+  --color-numo-band: #3d4a5c;
   --color-nav-panel: rgb(20 20 19 / 0.75);
   --color-nav-panel-education: rgb(255 255 255 / 0.05);
 }

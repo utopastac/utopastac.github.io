@@ -12,6 +12,7 @@ import { IntroHero } from '@/components/IntroHero'
 import { JobSection } from '@/components/JobSection'
 import { Modal } from '@/components/Modal'
 import { PageNav } from '@/components/PageNav'
+import { NumoSection } from '@/components/NumoSection'
 import { PixelPortraitsSection } from '@/components/PixelPortraitsSection'
 import { PlaypressSection } from '@/components/PlaypressSection'
 import { QuotesSection } from '@/components/QuotesSection'
@@ -104,7 +105,7 @@ export function App() {
             const sectionContentClass =
               id === 'intro'
                 ? `${styles.sectionContent} ${styles.sectionContentIntro}`
-                : id === 'pixel-portraits' || id === 'playpress' || id === 'frontend-development'
+                : id === 'pixel-portraits' || id === 'numo' || id === 'playpress' || id === 'frontend-development'
                   ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
                   : id === 'outro'
                     ? `${styles.sectionContent} ${styles.sectionContentOutro}`
@@ -120,6 +121,8 @@ export function App() {
               content = <FrontendDevelopmentSection />
             } else if (id === 'pixel-portraits') {
               content = <PixelPortraitsSection />
+            } else if (id === 'numo') {
+              content = <NumoSection />
             } else if (isQuotes) {
               content = <QuotesSection quotes={QUOTES} title={title} />
             } else if (educationId) {

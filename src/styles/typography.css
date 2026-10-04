@@ -13,6 +13,7 @@
   --font-size-md: 2.25rem;   /*  18px — subheadings            */
   --font-size-lg: 2.75rem;   /*  22px — section headers        */
   --font-size-xl: 3.5rem;    /*  28px — large headings         */
+  --font-size-1_5xl: 4rem;   /*  32px — intermediate large     */
   --font-size-2xl: 5rem;     /*  40px — large body / numbers   */
   --font-size-3xl: 9rem;     /*  72px — editorial display      */
 
@@ -72,6 +73,14 @@
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-snug);
   letter-spacing: var(--letter-spacing-normal);
+}
+
+@define-mixin body-xl {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-1_5xl);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--letter-spacing-snug);
 }
 
 @define-mixin body-lg {
