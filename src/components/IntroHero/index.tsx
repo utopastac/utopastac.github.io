@@ -11,12 +11,13 @@ type TabId = 'resume' | 'personal'
 type LinkItem = {
   id: string
   label: string
+  iconSrc?: string
 }
 
 const PERSONAL_LINKS: readonly LinkItem[] = [
-  { id: 'playpress', label: 'Playpress' },
-  { id: 'pixel-portraits', label: 'Pixelator' },
-  { id: 'numo', label: 'Numo' },
+  { id: 'playpress', label: 'Playpress', iconSrc: '/images/playpress-pete.svg' },
+  { id: 'pixel-portraits', label: 'Pixelator', iconSrc: '/images/pixelator-icon.png' },
+  { id: 'numo', label: 'Numo', iconSrc: '/images/numo-icon.png' },
 ]
 
 const TABS: readonly { id: TabId; label: string }[] = [
@@ -74,7 +75,13 @@ export function IntroHero() {
                   className={styles.companyRow}
                   onClick={() => scrollToSection(link.id)}
                 >
-                  <span className={styles.companyIndex}>{String(i + 1).padStart(2, '0')}</span>
+                  <span className={styles.companyIndex}>
+                    {link.iconSrc ? (
+                      <img src={link.iconSrc} alt="" className={styles.companyIcon} />
+                    ) : (
+                      String(i + 1).padStart(2, '0')
+                    )}
+                  </span>
                   <span className={styles.companyName}>{link.label}</span>
                 </button>
               ))}

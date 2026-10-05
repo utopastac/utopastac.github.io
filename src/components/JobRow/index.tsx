@@ -6,10 +6,16 @@ type JobRowProps = {
   title: string
   asButton?: boolean
   onClick?: () => void
-  size?: 'md' | 'sm'
+  size?: 'lg' | 'md' | 'sm'
 }
 
 const DATE_COLUMN_SPACER = '2025'
+
+const SIZE_CLASS = {
+  lg: styles.rowLg,
+  md: undefined,
+  sm: styles.rowSm,
+} as const
 
 export function JobRow({
   date,
@@ -19,7 +25,7 @@ export function JobRow({
   onClick,
   size = 'md',
 }: JobRowProps) {
-  const sizeClass = size === 'sm' ? styles.rowSm : undefined
+  const sizeClass = SIZE_CLASS[size]
   const showDate = Boolean(date)
 
   const content = (

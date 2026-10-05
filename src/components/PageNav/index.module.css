@@ -34,8 +34,8 @@
   position: fixed;
   top: 0;
   right: 0;
-  /* Cover right from viewport edge to left edge of col 6 */
-  width: calc(var(--col-span-5) + var(--grid-margin));
+  /* Cover right from viewport edge across the nav panel */
+  width: calc(var(--col-span-7) + var(--grid-margin));
   height: 100vh;
   opacity: 0;
   transform: translateX(40px);
@@ -65,27 +65,33 @@
   position: fixed;
   top: 0;
   right: 0;
-  /* Exactly 5 grid columns wide, right edge flush with grid margin */
-  width: var(--col-span-5);
+  /* Wide enough for body-lg company / title / date without truncation */
+  width: var(--col-span-7);
   bottom: 0;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
   padding-left: var(--grid-gutter);
   padding-right: var(--space_10);
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   pointer-events: none;
+  -webkit-overflow-scrolling: touch;
 
   .triggerZone[data-open="true"] & {
     pointer-events: auto;
   }
 
   @mixin desktop-up {
-    top: 50%;
-    bottom: auto;
-    right: var(--grid-margin);
-    transform: translateY(-50%);
-    max-height: calc(100vh - var(--grid-margin) * 2);
-    overflow-y: auto;
+    top: var(--grid-margin);
+    /* Snap to page grid: columns 4–10 */
+    left: var(--col-start-4);
+    right: auto;
+    bottom: var(--grid-margin);
+    width: var(--col-span-7);
+    padding-left: 0;
+    padding-right: 0;
     border-radius: var(--radius-lg);
   }
 
@@ -102,7 +108,14 @@ ul.panel {
   flex-direction: column;
   gap: var(--space_0_5);
   padding: var(--space_8) var(--space_1);
-  margin: auto 0;
+  /* Center when short; collapses to allow scroll when tall */
+  margin-block: auto;
+
+  @mixin desktop-up {
+    /* No horizontal padding — row tracks align to page grid columns */
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   @mixin mobile-down {
     padding-left: 0;

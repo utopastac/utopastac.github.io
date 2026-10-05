@@ -19,6 +19,42 @@
   }
 }
 
+.rowLg {
+  @mixin desktop-up {
+    @mixin body-lg;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    row-gap: 0;
+    align-items: baseline;
+    justify-content: stretch;
+
+    & .companyContainer {
+      display: contents;
+    }
+
+    & .company {
+      grid-column: 1 / span 2;
+      flex: none;
+      width: auto;
+    }
+
+    & .title {
+      grid-column: 3 / span 4;
+      flex: none;
+      width: auto;
+    }
+
+    & .date {
+      @mixin body-lg;
+      grid-column: 7 / span 1;
+      flex: none;
+      width: auto;
+      text-align: left;
+    }
+  }
+}
+
 .rowButton {
   border: none;
   outline: none;
@@ -29,6 +65,12 @@
 
   &:hover {
     text-decoration: underline;
+  }
+
+  &.rowLg {
+    @mixin desktop-up {
+      padding: var(--space_0_75) 0;
+    }
   }
 }
 
@@ -81,5 +123,5 @@
 
 .company {
   text-align: left;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-normal);
 }

@@ -14,7 +14,7 @@ type QuotesSectionProps = {
   title?: string
 }
 
-export function QuotesSection({ quotes, title = 'What people say' }: QuotesSectionProps) {
+export function QuotesSection({ quotes, title = 'Testimonials' }: QuotesSectionProps) {
   const modal = useContext(ModalContext)
 
   const openFullQuotes = () => {

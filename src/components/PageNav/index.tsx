@@ -111,6 +111,7 @@ export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange,
                   <li key={id} role="listitem">
                     <JobRow
                       asButton
+                      size="lg"
                       date={left}
                       company={middle}
                       title={right}
@@ -128,6 +129,7 @@ export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange,
                 <li key={id} role="listitem">
                   <JobRow
                     asButton
+                    size="lg"
                     company={label}
                     title={navDescription ?? ''}
                     onClick={() => handleSectionClick(id, backgroundColor)}

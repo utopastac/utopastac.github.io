@@ -111,7 +111,7 @@
 
 .companyRow {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--grid-gutter);
   padding: var(--space_0_75) 0;
   border-bottom: 1px solid currentColor;
@@ -138,11 +138,21 @@
   @mixin body-lg;
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
   width: var(--grid-col-width);
 
   @mixin mobile-down {
     width: calc((100% - 2 * var(--grid-gutter)) / 3);
   }
+}
+
+.companyIcon {
+  width: var(--font-size-2xl);
+  height: var(--font-size-2xl);
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  display: block;
 }
 
 .companyName {
