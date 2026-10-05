@@ -56,7 +56,7 @@ export function App() {
       }}
     >
       <Modal />
-      {settings.showGrid && <ColumnGrid />}
+      {settings.showGrid && <ColumnGrid navOpen={isNavOpen} />}
       <div
         className={styles.panelOverlay}
         data-open={isNavOpen}

@@ -3,11 +3,20 @@ import styles from './index.module.css'
 
 const COLS = 10
 
-export function ColumnGrid() {
+type ColumnGridProps = {
+  navOpen?: boolean
+}
+
+export function ColumnGrid({ navOpen = false }: ColumnGridProps) {
   const { enabled: isTiltEnabled, tiltRef, perspectiveRootRef } = useCursorTilt()
 
   return (
-    <div ref={perspectiveRootRef} className={styles.root} aria-hidden>
+    <div
+      ref={perspectiveRootRef}
+      className={styles.root}
+      data-nav-open={navOpen ? true : undefined}
+      aria-hidden
+    >
       <div
         ref={isTiltEnabled ? tiltRef : undefined}
         className={isTiltEnabled ? `${styles.grid} ${styles.tiltPlane}` : styles.grid}
