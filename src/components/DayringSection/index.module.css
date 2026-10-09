@@ -86,7 +86,7 @@
   height: 100%;
   padding: var(--space_4) var(--space_2) 0;
   border-radius: var(--radius-xl);
-  background: var(--color-numo-band);
+  background: var(--color-dayring-band);
   overflow: hidden;
   transform-style: preserve-3d;
 }

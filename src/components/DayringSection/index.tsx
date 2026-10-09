@@ -5,11 +5,11 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSpringFollow } from '@/hooks/useSpringFollow'
 import styles from './index.module.css'
 
-const NUMO_URL = 'https://numo.f-90.co.uk'
-const HERO_VIDEO = '/images/numo-hero.mp4'
-const HERO_POSTER = '/images/numo-hero-poster.jpg'
+const DAYRING_URL = 'https://dayring.f-90.co.uk'
+const HERO_VIDEO = '/images/dayring-hero.mp4'
+const HERO_POSTER = '/images/dayring-hero-poster.jpg'
 
-export function NumoSection() {
+export function DayringSection() {
   const { displayPos, setTarget } = useSpringFollow()
   const isTiltEnabled = useMediaQuery(DESKTOP_TILT_MEDIA)
   const { tiltRef, perspectiveRootRef } = useCursorTilt({ enabled: isTiltEnabled })
@@ -22,24 +22,24 @@ export function NumoSection() {
   return (
     <div className={styles.root}>
       <MetaColumn items={[
-        { label: 'Numo' },
+        { label: 'Dayring' },
         { label: 'Personal project' },
       ]} />
 
       <p className={styles.descriptionColumn}>
         A minimalist iOS numbers tracker for daily goals — calories, water, workouts, and more.{' '}
         <a
-          href={NUMO_URL}
+          href={DAYRING_URL}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.siteLink}
         >
-          numo.f-90.co.uk ↗
+          dayring.f-90.co.uk ↗
         </a>
       </p>
 
       <a
-        href={NUMO_URL}
+        href={DAYRING_URL}
         target="_blank"
         rel="noopener noreferrer"
         className={isTiltEnabled ? `${styles.mediaColumn} ${styles.tiltEnabled}` : styles.mediaColumn}
@@ -66,12 +66,12 @@ export function NumoSection() {
                 playsInline
                 preload="metadata"
                 disableRemotePlayback
-                aria-label="Numo app demo on iPhone"
+                aria-label="Dayring app demo on iPhone"
               />
               <img
                 className={styles.poster}
                 src={HERO_POSTER}
-                alt="Numo counter screen on iPhone"
+                alt="Dayring counter screen on iPhone"
                 width={390}
                 height={844}
               />
@@ -79,7 +79,7 @@ export function NumoSection() {
           </div>
         </div>
         <ProjectHoverTooltip
-          label="numo.f-90.co.uk"
+          label="dayring.f-90.co.uk"
           aboveTilt={isTiltEnabled}
           style={{ left: displayPos.x, top: displayPos.y }}
         />
