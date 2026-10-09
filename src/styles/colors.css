@@ -27,6 +27,8 @@
   --color-section-quotes-text: #000000;
   --color-section-education-text: #f4f1ea;
   --color-dayring-band: #bccfe6;
+  --color-empires-band: #d9ccff;
+  --color-doodloop-band: #e6d9c8;
   --color-nav-panel: rgb(255 255 255 / 0.7);
   --color-nav-panel-education: rgb(255 255 255 / 0.05);
 }
@@ -58,6 +60,8 @@
   --color-section-quotes-text: #ecece8;
   --color-section-education-text: #f4f1ea;
   --color-dayring-band: #3d4a5c;
+  --color-empires-band: #3c2d5c;
+  --color-doodloop-band: #3f3830;
   --color-nav-panel: rgb(20 20 19 / 0.75);
   --color-nav-panel-education: rgb(255 255 255 / 0.05);
 }

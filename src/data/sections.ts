@@ -1,6 +1,6 @@
 /**
  * Section data: single source of truth for section content, title, background, etc.
- * Includes intro, one section per job (from JOBS), education, quotes, playpress, pixel-portraits, dayring, outro.
+ * Includes intro, one section per job (from JOBS), education, quotes, playpress, pixel-portraits, dayring, empires, doodloop, outro.
  * navPlacement controls how each section appears in the page nav (or if at all).
  */
 
@@ -94,6 +94,22 @@ export const SECTIONS: readonly SectionData[] = [
     navPlacement: 'top-level',
     navPanelBackgroundColor: 'var(--color-nav-panel)',
     navDescription: 'Numbers tracker',
+  },
+  {
+    id: 'empires',
+    title: 'Empires',
+    backgroundColor: 'var(--color-section-neutral)',
+    navPlacement: 'top-level',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
+    navDescription: 'Party word game',
+  },
+  {
+    id: 'doodloop',
+    title: 'Doodloop',
+    backgroundColor: 'var(--color-section-neutral)',
+    navPlacement: 'top-level',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
+    navDescription: 'Drawing relay',
   },
   { 
     id: 'outro',

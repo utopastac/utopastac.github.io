@@ -18,6 +18,8 @@ const PERSONAL_LINKS: readonly LinkItem[] = [
   { id: 'playpress', label: 'Playpress', iconSrc: '/images/playpress-pete.svg' },
   { id: 'pixel-portraits', label: 'Pixelator', iconSrc: '/images/pixelator-icon.png' },
   { id: 'dayring', label: 'Dayring', iconSrc: '/images/dayring-icon.png' },
+  { id: 'empires', label: 'Empires', iconSrc: '/images/empires-icon.png' },
+  { id: 'doodloop', label: 'Doodloop', iconSrc: '/images/doodloop-icon.png' },
 ]
 
 const TABS: readonly { id: TabId; label: string }[] = [

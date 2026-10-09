@@ -1,0 +1,108 @@
+@import '@styles/breakpoints.css';
+@import '@styles/typography.css';
+@import '@styles/grid.css';
+@import '@styles/tilt.css';
+
+.root {
+  @mixin page-grid;
+  width: 100%;
+  align-items: start;
+  row-gap: var(--space_4);
+  padding-top: var(--grid-margin);
+  text-align: left;
+}
+
+.descriptionColumn {
+  grid-column: 4 / span 5;
+  margin: 0;
+  @mixin body-lg;
+  color: var(--section-text-color, var(--color-text));
+  min-width: 0;
+
+  @mixin mobile-down {
+    grid-column: 1 / span 6;
+  }
+
+  .siteLink {
+    @mixin body-lg;
+    color: var(--section-text-color, var(--color-text));
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.mediaColumn {
+  grid-column: 3 / span 6;
+  position: relative;
+  height: 60vh;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover [data-project-hover-tooltip] {
+    opacity: 1;
+  }
+
+  &.tiltEnabled {
+    transform-style: preserve-3d;
+  }
+
+  @mixin mobile-down {
+    grid-column: 1 / span 6;
+    height: 50vh;
+  }
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+
+  &.tiltRoot {
+    z-index: 0;
+    overflow: visible;
+    @mixin tilt-root;
+  }
+}
+
+.tiltPlane {
+  @mixin tilt-plane;
+}
+
+.band {
+  container-type: size;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  padding: var(--space_4) var(--space_2) 0;
+  border-radius: var(--radius-xl);
+  background: var(--color-empires-band);
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.device {
+  width: min(100cqi, calc(100cqh * 460 / 1000));
+  height: auto;
+  max-height: 100%;
+  aspect-ratio: 460 / 1000;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
+  background: var(--color-bg);
+  box-shadow: 0 16px 48px rgb(0 0 0 / 0.12);
+}
+
+.screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}

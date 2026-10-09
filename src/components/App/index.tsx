@@ -13,6 +13,8 @@ import { JobSection } from '@/components/JobSection'
 import { Modal } from '@/components/Modal'
 import { PageNav } from '@/components/PageNav'
 import { DayringSection } from '@/components/DayringSection'
+import { DoodloopSection } from '@/components/DoodloopSection'
+import { EmpiresSection } from '@/components/EmpiresSection'
 import { PixelPortraitsSection } from '@/components/PixelPortraitsSection'
 import { PlaypressSection } from '@/components/PlaypressSection'
 import { QuotesSection } from '@/components/QuotesSection'
@@ -105,7 +107,7 @@ export function App() {
             const sectionContentClass =
               id === 'intro'
                 ? `${styles.sectionContent} ${styles.sectionContentIntro}`
-                : id === 'pixel-portraits' || id === 'dayring' || id === 'playpress' || id === 'frontend-development'
+                : id === 'pixel-portraits' || id === 'dayring' || id === 'playpress' || id === 'frontend-development' || id === 'empires' || id === 'doodloop'
                   ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
                   : id === 'outro'
                     ? `${styles.sectionContent} ${styles.sectionContentOutro}`
@@ -123,6 +125,10 @@ export function App() {
               content = <PixelPortraitsSection />
             } else if (id === 'dayring') {
               content = <DayringSection />
+            } else if (id === 'empires') {
+              content = <EmpiresSection />
+            } else if (id === 'doodloop') {
+              content = <DoodloopSection />
             } else if (isQuotes) {
               content = <QuotesSection quotes={QUOTES} title={title} />
             } else if (educationId) {
