@@ -159,7 +159,7 @@ const ABOUT_SECTIONS: readonly SectionData[] = [
 export const LANES: readonly LaneData[] = [
   { id: 'work', label: 'Work', introWord: 'Designer.', sections: [bookend('work', 'intro'), ...WORK_SECTIONS, bookend('work', 'outro')] },
   { id: 'personal', label: 'Personal', introWord: 'Builder.', sections: [bookend('personal', 'intro'), ...PERSONAL_SECTIONS, bookend('personal', 'outro')] },
-  { id: 'about', label: 'Profile', introWord: 'Connector.', sections: [bookend('about', 'intro'), ...ABOUT_SECTIONS, bookend('about', 'outro')] },
+  { id: 'about', label: 'Profile', introWord: 'Problem solver.', sections: [bookend('about', 'intro'), ...ABOUT_SECTIONS, bookend('about', 'outro')] },
 ]
 
 export const SECTIONS: readonly SectionData[] = LANES.flatMap((lane) => lane.sections)
