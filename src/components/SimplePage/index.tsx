@@ -13,7 +13,7 @@ export function SimplePage() {
         Peter Wright / {year}
       </p>
       <div className={styles.titleWrapper}>
-        <h1 className={styles.title}>Principal designer.</h1>
+        <h1 className={styles.title}>Principal designer</h1>
         <div className={styles.workExperience}>
           {JOBS.map((job) => (
             <JobRow

@@ -173,7 +173,7 @@ export function App() {
         />
       )
     }
-    if (section.kind === 'outro') return <EndPage />
+    if (section.kind === 'outro') return <EndPage word={lane.outroWord} />
     if (section.id === 'playpress') return <PlaypressSection />
     if (section.id === 'frontend-development') return <FrontendDevelopmentSection />
     if (section.id === 'pixel-portraits') return <PixelPortraitsSection />

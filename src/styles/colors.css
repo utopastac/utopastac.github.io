@@ -25,9 +25,12 @@
   --color-section-frontend: #b8c99e;
   --color-section-education: #b8744c;
   --color-section-summary: #0a0a0a;
+  --color-section-creator: #4a4d52;
+  --color-section-teammate: #c9d1d8;
   --color-section-quotes-text: #000000;
   --color-section-education-text: #f4f1ea;
   --color-section-summary-text: #f5f5f0;
+  --color-section-creator-text: #f4f1ea;
   --color-dayring-band: #bccfe6;
   --color-pixelator-band: #bce6cc;
   --color-empires-band: #d9ccff;
@@ -63,9 +66,12 @@
   --color-section-frontend: #334032;
   --color-section-education: #7a4a32;
   --color-section-summary: #050505;
+  --color-section-creator: #2a2c30;
+  --color-section-teammate: #2e3134;
   --color-section-quotes-text: #ecece8;
   --color-section-education-text: #f4f1ea;
   --color-section-summary-text: #f5f5f0;
+  --color-section-creator-text: #f4f1ea;
   --color-dayring-band: #3d4a5c;
   --color-pixelator-band: #2f4a3c;
   --color-empires-band: #3c2d5c;

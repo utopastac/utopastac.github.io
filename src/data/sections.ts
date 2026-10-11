@@ -42,17 +42,31 @@ export type LaneData = {
   label: string
   /** Display word on that lane’s intro screen. */
   introWord: string
+  /** Display word on that lane’s outro screen. */
+  outroWord: string
   sections: readonly SectionData[]
+}
+
+const OUTRO_BACKGROUNDS: Record<LaneId, string> = {
+  work: 'var(--color-section-surface)',
+  personal: 'var(--color-section-creator)',
+  about: 'var(--color-section-teammate)',
+}
+
+const OUTRO_TEXT_COLORS: Partial<Record<LaneId, string>> = {
+  personal: 'var(--color-section-creator-text)',
 }
 
 function bookend(laneId: LaneId, kind: 'intro' | 'outro'): SectionData {
   const isIntro = kind === 'intro'
+  const textColor = !isIntro ? OUTRO_TEXT_COLORS[laneId] : undefined
   return {
     id: `${laneId}-${kind}`,
     title: kind,
-    backgroundColor: isIntro ? 'var(--color-section-intro)' : 'var(--color-section-surface)',
+    backgroundColor: isIntro ? 'var(--color-section-intro)' : OUTRO_BACKGROUNDS[laneId],
     navPlacement: 'hidden',
     kind,
+    ...(textColor != null && { textColor }),
     ...(isIntro ? { navPanelBackgroundColor: 'var(--color-nav-panel)' } : {}),
   }
 }
@@ -157,9 +171,9 @@ const ABOUT_SECTIONS: readonly SectionData[] = [
 ]
 
 export const LANES: readonly LaneData[] = [
-  { id: 'work', label: 'Work', introWord: 'Designer.', sections: [bookend('work', 'intro'), ...WORK_SECTIONS, bookend('work', 'outro')] },
-  { id: 'personal', label: 'Personal', introWord: 'Builder.', sections: [bookend('personal', 'intro'), ...PERSONAL_SECTIONS, bookend('personal', 'outro')] },
-  { id: 'about', label: 'Profile', introWord: 'Problem solver.', sections: [bookend('about', 'intro'), ...ABOUT_SECTIONS, bookend('about', 'outro')] },
+  { id: 'work', label: 'Work', introWord: 'Designer', outroWord: 'Maker', sections: [bookend('work', 'intro'), ...WORK_SECTIONS, bookend('work', 'outro')] },
+  { id: 'personal', label: 'Personal', introWord: 'Builder', outroWord: 'Creator', sections: [bookend('personal', 'intro'), ...PERSONAL_SECTIONS, bookend('personal', 'outro')] },
+  { id: 'about', label: 'Profile', introWord: 'Problem solver', outroWord: 'Mentor', sections: [bookend('about', 'intro'), ...ABOUT_SECTIONS, bookend('about', 'outro')] },
 ]
 
 export const SECTIONS: readonly SectionData[] = LANES.flatMap((lane) => lane.sections)

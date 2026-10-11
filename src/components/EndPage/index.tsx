@@ -1,12 +1,16 @@
 import { ScaledHero } from '@/components/ScaledHero'
 import styles from './index.module.css'
 
-export function EndPage() {
+type EndPageProps = {
+  word: string
+}
+
+export function EndPage({ word }: EndPageProps) {
   return (
     <div className={styles.endPage}>
       <ScaledHero
         measureText="I make stuff."
-        ariaLabel="I make stuff."
+        ariaLabel={word}
         titleClassName={styles.title}
         titleGroupClassName={styles.titleGroup}
         reflectionHorizonClassName={styles.horizon}
@@ -18,7 +22,7 @@ export function EndPage() {
           styles.reflectionBlurSoft,
         ]}
       >
-        Maker.
+        {word}
       </ScaledHero>
     </div>
   )

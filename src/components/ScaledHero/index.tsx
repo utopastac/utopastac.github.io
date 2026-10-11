@@ -5,7 +5,7 @@ import styles from './index.module.css'
 const SIZE_ANCHOR_FONT = 'var(--font-display)'
 
 type ScaledHeroBaseProps = {
-  /** Text used in the hidden measure element to compute scale (e.g. "DESIGNER" or "designer."). */
+  /** Text used in the hidden measure element to compute scale (e.g. "DESIGNER" or "designer"). */
   measureText: string
   /** Semantic element for the scaled title. Use "div" for decorative watermarks. Defaults to "h1". */
   as?: 'h1' | 'div'
