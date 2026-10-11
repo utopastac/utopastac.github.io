@@ -6,7 +6,8 @@ import { useSpringFollow } from '@/hooks/useSpringFollow'
 import styles from './index.module.css'
 
 const EMPIRES_URL = 'https://empires.f-90.co.uk'
-const HERO_SRC = '/images/empires-hero.png'
+const HERO_VIDEO = '/images/empires-hero.mp4'
+const HERO_POSTER = '/images/empires-hero-poster.jpg'
 
 export function EmpiresSection() {
   const { displayPos, setTarget } = useSpringFollow()
@@ -53,12 +54,26 @@ export function EmpiresSection() {
             className={isTiltEnabled ? `${styles.band} ${styles.tiltPlane}` : styles.band}
           >
             <div className={styles.device}>
+              <video
+                className={styles.video}
+                src={HERO_VIDEO}
+                poster={HERO_POSTER}
+                width={780}
+                height={1696}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                disableRemotePlayback
+                aria-label="Empires app demo on iPhone"
+              />
               <img
-                className={styles.screen}
-                src={HERO_SRC}
+                className={styles.poster}
+                src={HERO_POSTER}
                 alt="Empires home screen on iPhone"
-                width={460}
-                height={1000}
+                width={780}
+                height={1696}
               />
             </div>
           </div>

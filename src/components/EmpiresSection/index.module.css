@@ -94,19 +94,36 @@
 }
 
 .device {
-  width: min(100cqi, calc(100cqh * 460 / 1000));
+  width: min(100cqi, calc(100cqh * 780 / 1696));
   height: auto;
   max-height: 100%;
-  aspect-ratio: 460 / 1000;
+  aspect-ratio: 780 / 1696;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   overflow: hidden;
   background: var(--color-bg);
   box-shadow: 0 16px 48px rgb(0 0 0 / 0.12);
 }
 
-.screen {
+.video {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.poster {
+  display: none;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+
+  .poster {
+    display: block;
+  }
 }
