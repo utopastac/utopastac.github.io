@@ -18,27 +18,33 @@
   left: var(--col-start-2);
   display: flex;
   align-items: baseline;
-  gap: var(--space_4);
-  padding: var(--space_1) 0;
   pointer-events: auto;
   color: var(--corner-text-color, var(--color-text));
 
   @mixin mobile-down {
     top: var(--space_2);
     left: var(--grid-margin);
-    gap: var(--space_2);
   }
 }
 
 .tab {
   @mixin body-xl;
-  padding: 0;
+  /* Padding (not gap) keeps hit targets contiguous so peek doesn't clear between items */
+  padding: var(--space_1) calc(var(--space_4) / 2);
   border: none;
   background: none;
   color: inherit;
   opacity: 0.35;
   white-space: nowrap;
   transition: opacity 0.15s ease-out;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
 
   @mixin can-hover {
     &:hover {
@@ -65,5 +71,14 @@
 
   @mixin mobile-down {
     font-size: var(--font-size-lg);
+    padding-inline: calc(var(--space_2) / 2);
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
   }
 }

@@ -1,3 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2">
-  <circle cx="16" cy="16" r="14"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="P">
+  <style>
+    .bg { fill: #1a1a1a; }
+    .fg { fill: #f5f5f0; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #ecece8; }
+      .fg { fill: #141413; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="8"/>
+  <path
+    class="fg"
+    d="M10.5 7h7.1c4.35 0 7.15 2.45 7.15 6.15 0 3.7-2.8 6.15-7.15 6.15H13.9V25h-3.4V7Zm3.4 3.05v6.2h3.55c2.25 0 3.7-1.25 3.7-3.1s-1.45-3.1-3.7-3.1H13.9Z"
+  />
 </svg>

@@ -21,7 +21,12 @@ export function LaneNav({ lanes, activeId, onChange, onPeek }: LaneNavProps) {
             aria-current={lane.id === activeId ? 'true' : undefined}
             onClick={() => onChange(lane.id)}
             onMouseEnter={() => onPeek?.(lane.id === activeId ? null : lane.id)}
-            onMouseLeave={() => onPeek?.(null)}
+            onMouseLeave={(event) => {
+              const next = event.relatedTarget
+              // Moving into a sibling tab — keep peek; only clear when leaving the nav
+              if (next instanceof Node && event.currentTarget.parentElement?.contains(next)) return
+              onPeek?.(null)
+            }}
           >
             {lane.label}
           </button>
