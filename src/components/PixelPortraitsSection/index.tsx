@@ -5,43 +5,14 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useSpringFollow } from '@/hooks/useSpringFollow'
 import styles from './index.module.css'
 
-const PIXEL_PORTRAIT_SRCS = Array.from({ length: 50 }, (_, i) => ({
-  src: `/images/p${i + 1}.PNG`,
-  alt: `Pixel portrait ${i + 1}`,
-}))
-
-const PORTRAIT_MAX_TILT_DEG = 200
-const PORTRAIT_LERP_FACTOR = 0.35
-const PORTRAIT_MAX_INFLUENCE_RADIUS = 2000
-
-type PortraitCellProps = {
-  src: string
-  alt: string
-  enabled: boolean
-}
-
-function PortraitCell({ src, alt, enabled }: PortraitCellProps) {
-  const { tiltRef } = useCursorTilt({
-    enabled,
-    maxTiltDeg: PORTRAIT_MAX_TILT_DEG,
-    lerpFactor: PORTRAIT_LERP_FACTOR,
-    maxInfluenceRadius: PORTRAIT_MAX_INFLUENCE_RADIUS,
-  })
-
-  return (
-    <div
-      ref={enabled ? tiltRef : undefined}
-      className={enabled ? `${styles.cell} ${styles.tiltPlane}` : styles.cell}
-    >
-      <img src={src} alt={alt} className={styles.image} />
-    </div>
-  )
-}
+const PIXELATOR_URL = 'https://pixelator.f-90.co.uk'
+const HERO_VIDEO = '/images/pixelator-hero.mp4'
+const HERO_POSTER = '/images/pixelator-hero-poster.jpg'
 
 export function PixelPortraitsSection() {
   const { displayPos, setTarget } = useSpringFollow()
   const isTiltEnabled = useMediaQuery(DESKTOP_TILT_MEDIA)
-  const { perspectiveRootRef } = useCursorTilt({ enabled: isTiltEnabled })
+  const { tiltRef, perspectiveRootRef } = useCursorTilt({ enabled: isTiltEnabled })
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -58,7 +29,7 @@ export function PixelPortraitsSection() {
       <p className={styles.descriptionColumn}>
         A pixel art editor for creating and sharing drawings — on the web and as an iOS app.{' '}
         <a
-          href="https://pixelator.f-90.co.uk"
+          href={PIXELATOR_URL}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.siteLink}
@@ -68,17 +39,43 @@ export function PixelPortraitsSection() {
       </p>
 
       <a
-        href="https://pixelator.f-90.co.uk"
+        href={PIXELATOR_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className={isTiltEnabled ? `${styles.imageColumn} ${styles.tiltEnabled}` : styles.imageColumn}
+        className={isTiltEnabled ? `${styles.mediaColumn} ${styles.tiltEnabled}` : styles.mediaColumn}
         onMouseMove={handleMouseMove}
       >
-        <div ref={perspectiveRootRef} className={isTiltEnabled ? `${styles.scene} ${styles.tiltRoot}` : styles.scene}>
-          <div className={styles.grid}>
-            {PIXEL_PORTRAIT_SRCS.map(({ src, alt }, i) => (
-              <PortraitCell key={i} src={src} alt={alt} enabled={isTiltEnabled} />
-            ))}
+        <div
+          ref={perspectiveRootRef}
+          className={isTiltEnabled ? `${styles.scene} ${styles.tiltRoot}` : styles.scene}
+        >
+          <div
+            ref={tiltRef}
+            className={isTiltEnabled ? `${styles.band} ${styles.tiltPlane}` : styles.band}
+          >
+            <div className={styles.device}>
+              <video
+                className={styles.video}
+                src={HERO_VIDEO}
+                poster={HERO_POSTER}
+                width={780}
+                height={1696}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                disableRemotePlayback
+                aria-label="Pixelator app demo on iPhone"
+              />
+              <img
+                className={styles.poster}
+                src={HERO_POSTER}
+                alt="Pixelator editor on iPhone"
+                width={780}
+                height={1696}
+              />
+            </div>
           </div>
         </div>
         <ProjectHoverTooltip

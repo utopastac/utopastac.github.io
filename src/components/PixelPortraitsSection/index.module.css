@@ -39,15 +39,14 @@
   }
 }
 
-/* Row 2, cols 3–8 — portrait grid */
-.imageColumn {
+/* Row 2, cols 3–8 — video in coloured band */
+.mediaColumn {
   grid-column: 3 / span 6;
   position: relative;
-  aspect-ratio: 10 / 5;
+  height: 60vh;
   display: block;
   text-decoration: none;
   color: inherit;
-  overflow: hidden;
 
   @mixin can-hover {
     &:hover [data-project-hover-tooltip] {
@@ -56,59 +55,77 @@
   }
 
   &.tiltEnabled {
-    overflow: visible;
     transform-style: preserve-3d;
   }
 
   @mixin mobile-down {
     grid-column: 1 / span 6;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
+    height: 50vh;
   }
 }
 
 .scene {
+  position: relative;
   width: 100%;
   height: 100%;
+  min-height: 0;
 
   &.tiltRoot {
-    position: relative;
     z-index: 0;
     overflow: visible;
-    perspective: 650px;
-    transform-style: preserve-3d;
+    @mixin tilt-root;
   }
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 2px;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-
-  @mixin mobile-down {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-  }
-}
-
-.cell {
-  min-width: 0;
-  min-height: 0;
-  transform-style: preserve-3d;
 }
 
 .tiltPlane {
   @mixin tilt-plane;
 }
 
-.image {
+.band {
+  container-type: size;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
+  padding: var(--space_4) var(--space_2) 0;
+  border-radius: var(--radius-xl);
+  background: var(--color-pixelator-band);
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.device {
+  width: min(100cqi, calc(100cqh * 780 / 1696));
+  height: auto;
+  max-height: 100%;
+  aspect-ratio: 780 / 1696;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
   background: var(--color-bg);
+  box-shadow: 0 16px 48px rgb(0 0 0 / 0.12);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.poster {
+  display: none;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    display: none;
+  }
+
+  .poster {
+    display: block;
+  }
 }

@@ -42,11 +42,6 @@ const FULL_BLEED_SECTION_IDS = new Set([
   'admin-ui',
 ])
 
-/** Horizontal peek when hovering a non-active lane tab (matches ScrollDownArrow). */
-const LANE_PEEK_PX = 50
-/** Keep in sync with `--lane-slide-duration` in index.css */
-const LANE_SLIDE_DURATION_MS = 720
-
 function laneIntroLinks(lane: LaneData) {
   return lane.sections
     .filter((section) => section.navPlacement !== 'hidden')
@@ -95,29 +90,12 @@ export function App() {
   const laneScrollRefs = useRef<Partial<Record<LaneId, HTMLDivElement | null>>>({})
   const activeScrollRef = useRef<HTMLDivElement | null>(null)
   const skipLaneSyncRef = useRef(false)
-  const laneAnimatingRef = useRef(false)
-  const laneAnimateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [activeLane, setActiveLane] = useState<LaneId>(() => laneIdFromHash())
   const activeLaneRef = useRef(activeLane)
   activeLaneRef.current = activeLane
-  const [lanePeekPx, setLanePeekPx] = useState(0)
   const handleNavOpenChange = useCallback((open: boolean) => setIsNavOpen(open), [])
   const laneIndex = Math.max(0, LANES.findIndex((lane) => lane.id === activeLane))
-
-  const beginLaneTransition = useCallback(() => {
-    setLanePeekPx(0)
-    laneAnimatingRef.current = true
-    if (laneAnimateTimerRef.current != null) clearTimeout(laneAnimateTimerRef.current)
-    laneAnimateTimerRef.current = setTimeout(() => {
-      laneAnimatingRef.current = false
-      laneAnimateTimerRef.current = null
-    }, LANE_SLIDE_DURATION_MS)
-  }, [])
-
-  useEffect(() => () => {
-    if (laneAnimateTimerRef.current != null) clearTimeout(laneAnimateTimerRef.current)
-  }, [])
 
   useEffect(() => {
     activeScrollRef.current = laneScrollRefs.current[activeLane] ?? null
@@ -148,50 +126,24 @@ export function App() {
     const syncFromUrl = () => {
       const id = laneIdFromHash()
       if (activeLaneRef.current === id) return
-      beginLaneTransition()
       setActiveLane(id)
     }
     window.addEventListener('popstate', syncFromUrl)
     return () => window.removeEventListener('popstate', syncFromUrl)
-  }, [beginLaneTransition])
+  }, [])
 
   const selectLane = useCallback((laneId: LaneId) => {
-    if (laneId === activeLaneRef.current) {
-      setLanePeekPx(0)
-      return
-    }
-    beginLaneTransition()
+    if (laneId === activeLaneRef.current) return
     setActiveLane(laneId)
-  }, [beginLaneTransition])
-
-  const handleLanePeek = useCallback((laneId: LaneId | null) => {
-    // Ignore hover peek while the lane slide is running — mouseleave/enter
-    // during the transition fights the page-change animation and jitters.
-    if (laneAnimatingRef.current) return
-    if (laneId == null) {
-      setLanePeekPx(0)
-      return
-    }
-    const hovered = LANES.findIndex((lane) => lane.id === laneId)
-    const active = LANES.findIndex((lane) => lane.id === activeLaneRef.current)
-    if (hovered < 0 || active < 0 || hovered === active) {
-      setLanePeekPx(0)
-      return
-    }
-    setLanePeekPx(-Math.sign(hovered - active) * LANE_PEEK_PX)
   }, [])
 
   const handleSelectSection = useCallback((id: string) => {
     skipLaneSyncRef.current = true
     const laneId = laneIdForSection(id)
     if (!laneId) return
-    if (laneId === activeLaneRef.current) {
-      setLanePeekPx(0)
-      return
-    }
-    beginLaneTransition()
+    if (laneId === activeLaneRef.current) return
     setActiveLane(laneId)
-  }, [beginLaneTransition])
+  }, [])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -293,7 +245,7 @@ export function App() {
         isNavOpen={isNavOpen}
         onMenuToggle={() => setIsNavOpen((open) => !open)}
       />
-      <LaneNav lanes={LANES} activeId={activeLane} onChange={selectLane} onPeek={handleLanePeek} />
+      <LaneNav lanes={LANES} activeId={activeLane} onChange={selectLane} />
       <ScrollDownArrow
         sectionIds={(LANES.find((lane) => lane.id === activeLane) ?? LANES[0]).sections.map((section) => section.id)}
         scrollContainerRef={activeScrollRef}
@@ -320,7 +272,6 @@ export function App() {
           className={styles.track}
           style={{
             ['--lane-index' as string]: laneIndex,
-            ['--lane-peek' as string]: `${lanePeekPx}px`,
           }}
         >
           {LANES.map((lane) => (

@@ -45,7 +45,7 @@
   display: flex;
   height: 100%;
   width: 300vw;
-  transform: translate3d(calc(var(--lane-index) * -100vw + var(--lane-peek, 0px)), 0, 0);
+  transform: translate3d(calc(var(--lane-index) * -100vw), 0, 0);
   transition: transform var(--lane-slide-duration) var(--lane-slide-ease);
   will-change: transform;
 

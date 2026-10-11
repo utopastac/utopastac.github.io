@@ -29,7 +29,6 @@
 
 .tab {
   @mixin body-xl;
-  /* Padding (not gap) keeps hit targets contiguous so peek doesn't clear between items */
   padding: var(--space_1) calc(var(--space_4) / 2);
   border: none;
   background: none;
