@@ -24,13 +24,17 @@
   --color-section-quotes: #d2b9ce;
   --color-section-frontend: #b8c99e;
   --color-section-education: #b8744c;
+  --color-section-summary: #0a0a0a;
   --color-section-quotes-text: #000000;
   --color-section-education-text: #f4f1ea;
+  --color-section-summary-text: #f5f5f0;
   --color-dayring-band: #bccfe6;
   --color-empires-band: #d9ccff;
   --color-doodloop-band: #e6d9c8;
+  --color-admin-ui-band: #c8d4e0;
   --color-nav-panel: rgb(255 255 255 / 0.7);
   --color-nav-panel-education: rgb(255 255 255 / 0.05);
+  --color-nav-panel-summary: rgb(255 255 255 / 0.05);
 }
 
 @define-mixin color-scheme-dark {
@@ -57,13 +61,17 @@
   --color-section-quotes: #3d3544;
   --color-section-frontend: #334032;
   --color-section-education: #7a4a32;
+  --color-section-summary: #050505;
   --color-section-quotes-text: #ecece8;
   --color-section-education-text: #f4f1ea;
+  --color-section-summary-text: #f5f5f0;
   --color-dayring-band: #3d4a5c;
   --color-empires-band: #3c2d5c;
   --color-doodloop-band: #3f3830;
+  --color-admin-ui-band: #2f3a45;
   --color-nav-panel: rgb(20 20 19 / 0.75);
   --color-nav-panel-education: rgb(255 255 255 / 0.05);
+  --color-nav-panel-summary: rgb(255 255 255 / 0.05);
 }
 
 :root {

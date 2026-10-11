@@ -1,0 +1,24 @@
+@import '@styles/breakpoints.css';
+@import '@styles/typography.css';
+@import '@styles/grid.css';
+
+.root {
+  @mixin page-grid;
+  width: 100%;
+  align-items: start;
+  row-gap: var(--space_4);
+  padding-top: var(--grid-margin);
+  text-align: left;
+}
+
+.contentColumn {
+  grid-column: 4 / span 5;
+  margin: 0;
+  @mixin body-lg;
+  color: var(--section-text-color, var(--color-text));
+  min-width: 0;
+
+  @mixin mobile-down {
+    grid-column: 1 / span 6;
+  }
+}

@@ -38,8 +38,10 @@
     overflow: visible;
   }
 
-  &:hover [data-project-hover-tooltip] {
-    opacity: 1;
+  @mixin can-hover {
+    &:hover [data-project-hover-tooltip] {
+      opacity: 1;
+    }
   }
 
   & [data-project-hover-tooltip] {
@@ -58,13 +60,23 @@
   }
 }
 
+.imageFrame {
+  width: 100%;
+
+  &.tiltPlane {
+    @mixin tilt-plane;
+  }
+}
+
 .image {
   width: 100%;
   height: auto;
   display: block;
 
-  &.tiltPlane {
-    @mixin tilt-plane;
+  &.imageCropped {
+    height: 52vh;
+    object-fit: cover;
+    object-position: top center;
   }
 }
 

@@ -36,6 +36,9 @@
   /* Layout */
   --content-width-wide: 80vw;
   --nav-blur: 12px;
+  --lane-nav-clearance: 14rem;
+  --lane-slide-duration: 0.72s;
+  --lane-slide-ease: cubic-bezier(0.76, 0, 0.18, 1);
 
   /* Grid system — 10 columns, matches ColumnGrid overlay */
   --grid-cols: 10;
@@ -114,6 +117,12 @@ a {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+@media (max-width: 639px) {
+  :root {
+    --lane-nav-clearance: 20rem;
+  }
 }
 
 html,

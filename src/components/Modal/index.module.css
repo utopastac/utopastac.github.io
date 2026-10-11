@@ -64,9 +64,11 @@
     cursor: pointer;
     transition: background-color 0.15s ease, color 0.15s ease;
 
-    &:hover {
-      background: var(--color-text);
-      color: var(--color-bg);
+    @mixin can-hover {
+      &:hover {
+        background: var(--color-text);
+        color: var(--color-bg);
+      }
     }
   }
 

@@ -16,6 +16,13 @@
   }
 }
 
+/* Hover UI only on desktop viewports with a fine pointer (no sticky touch hover). */
+@define-mixin can-hover {
+  @media (min-width: 640px) and (hover: hover) and (pointer: fine) {
+    @mixin-content;
+  }
+}
+
 @define-mixin nav-compact {
   @media (max-width: 720px) {
     @mixin-content;

@@ -27,7 +27,6 @@ export function JobImagesModalContent({ jobId }: JobImagesModalContentProps) {
                 className={styles.jobImagesModalImage}
                 src={img.src}
                 alt={caption}
-                title={caption}
                 loading="lazy"
               />
               <figcaption className={styles.jobImagesModalCaption}>

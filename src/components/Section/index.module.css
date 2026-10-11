@@ -7,6 +7,7 @@
   width: 100vw;
   min-height: 100vh;
   box-sizing: border-box;
+  scroll-margin-top: var(--lane-nav-clearance);
 
   &:first-child {
     margin-top: 20vh;

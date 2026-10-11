@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Grid3x3, Images, Menu, SquareGanttChart, X } from 'lucide-react'
 import { useSettings } from '@/settings/SettingsContext'
-import { EMAIL_URL, LINKEDIN_URL } from '../../data/links'
+import { CV_FILENAME, CV_URL, EMAIL_URL, LINKEDIN_URL } from '../../data/links'
 import { CornerIconButton } from '@/components/CornerIconButton'
 import { BlurControl } from '@/components/BlurControl'
 import { Kbd } from '@/components/Kbd'
@@ -106,6 +106,8 @@ export function CornerOverlay({ isNavOpen, onMenuToggle }: CornerOverlayProps) {
         <a className={styles.mobileLink} href={EMAIL_URL}>Email</a>
         <span className={styles.mobileSep}>/</span>
         <a className={styles.mobileLink} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span className={styles.mobileSep}>/</span>
+        <a className={styles.mobileLink} href={CV_URL} download={CV_FILENAME}>CV</a>
       </div>
       <div className={styles.mobileRightColumn}>
         <NavMenuButton
@@ -142,6 +144,9 @@ export function CornerOverlay({ isNavOpen, onMenuToggle }: CornerOverlayProps) {
           rel="noopener noreferrer"
         >
           LinkedIn
+        </a>
+        <a className={styles.link} href={CV_URL} download={CV_FILENAME}>
+          CV
         </a>
         <a className={styles.link} href={EMAIL_URL}>
           Email

@@ -48,12 +48,13 @@ export function getScrollViewportHeight(target: ScrollTarget): number {
 }
 
 export function getScrollTopForElement(target: ScrollTarget, element: HTMLElement): number {
+  const scrollMarginTop = Number.parseFloat(getComputedStyle(element).scrollMarginTop) || 0
   if (target === window) {
-    return window.scrollY + element.getBoundingClientRect().top
+    return window.scrollY + element.getBoundingClientRect().top - scrollMarginTop
   }
   const containerRect = (target as HTMLElement).getBoundingClientRect()
   const elementRect = element.getBoundingClientRect()
-  return (target as HTMLElement).scrollTop + (elementRect.top - containerRect.top)
+  return (target as HTMLElement).scrollTop + (elementRect.top - containerRect.top) - scrollMarginTop
 }
 
 export function getScrollDurationForDistance(

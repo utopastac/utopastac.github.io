@@ -70,8 +70,10 @@
   font-weight: var(--font-weight-medium);
   transition: color 0.3s ease-out;
 
-  &:hover {
-    color: var(--corner-accent-color, var(--color-accent));
+  @mixin can-hover {
+    &:hover {
+      color: var(--corner-accent-color, var(--color-accent));
+    }
   }
 }
 
@@ -161,8 +163,10 @@
   pointer-events: auto;
   transition: color 0.3s ease-out;
 
-  &:hover {
-    color: var(--corner-accent-color, var(--color-accent));
+  @mixin can-hover {
+    &:hover {
+      color: var(--corner-accent-color, var(--color-accent));
+    }
   }
 
   &:focus-visible {

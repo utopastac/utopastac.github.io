@@ -19,6 +19,7 @@ type JobSectionProps = {
   company: string
   description: string
   images?: readonly JobImage[]
+  cropPreview?: boolean
 }
 
 export function JobSection({
@@ -28,6 +29,7 @@ export function JobSection({
   company,
   description,
   images,
+  cropPreview = false,
 }: JobSectionProps) {
   const modal = useContext(ModalContext)
   const { settings } = useSettings()
@@ -93,14 +95,17 @@ export function JobSection({
           tabIndex={0}
           aria-label={`View all images for ${company}`}
         >
-          <img
+          <div
             ref={isTiltEnabled ? tiltRef : undefined}
-            className={isTiltEnabled ? `${styles.image} ${styles.tiltPlane}` : styles.image}
-            src={firstImg.src}
-            alt={firstAlt}
-            title={firstAlt}
-            loading="lazy"
-          />
+            className={isTiltEnabled ? `${styles.imageFrame} ${styles.tiltPlane}` : styles.imageFrame}
+          >
+            <img
+              className={cropPreview ? `${styles.image} ${styles.imageCropped}` : styles.image}
+              src={firstImg.src}
+              alt={firstAlt}
+              loading="lazy"
+            />
+          </div>
           <ProjectHoverTooltip
             aboveTilt={isTiltEnabled}
             style={{ left: displayPos.x, top: displayPos.y }}

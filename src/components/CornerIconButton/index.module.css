@@ -1,3 +1,4 @@
+@import '@styles/breakpoints.css';
 @import '@styles/effects.css';
 
 @define-mixin icon-control-surface {
@@ -11,12 +12,14 @@
     color 0.2s ease-out,
     background 0.2s ease-out;
 
-  &:hover {
-    background: color-mix(in srgb, var(--icon-color) 12%, transparent);
-  }
+  @mixin can-hover {
+    &:hover {
+      background: color-mix(in srgb, var(--icon-color) 12%, transparent);
+    }
 
-  &:hover:not([data-active='true']) {
-    color: color-mix(in srgb, var(--icon-color) 80%, transparent);
+    &:hover:not([data-active='true']) {
+      color: color-mix(in srgb, var(--icon-color) 80%, transparent);
+    }
   }
 
   &[data-active='true'] {

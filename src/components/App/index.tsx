@@ -1,17 +1,21 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { SectionBackgroundContext } from '@/context/SectionBackgroundContext'
+import { ModalContext } from '@/context/ModalContext'
 import { useSettings } from '@/settings/SettingsContext'
 import { BlurStrips } from '@/components/BlurStrips'
 import { ColumnGrid } from '@/components/ColumnGrid'
 import { CornerOverlay } from '@/components/CornerOverlay'
 import { CursorBlurOverlay } from '@/components/CursorBlurOverlay'
+import { AboutSummarySection } from '@/components/AboutSummarySection'
 import { EducationSection } from '@/components/EducationSection'
 import { EndPage } from '@/components/EndPage'
 import { FrontendDevelopmentSection } from '@/components/FrontendDevelopmentSection'
 import { IntroHero } from '@/components/IntroHero'
 import { JobSection } from '@/components/JobSection'
+import { LaneNav } from '@/components/LaneNav'
 import { Modal } from '@/components/Modal'
 import { PageNav } from '@/components/PageNav'
+import { AdminUiSection } from '@/components/AdminUiSection'
 import { DayringSection } from '@/components/DayringSection'
 import { DoodloopSection } from '@/components/DoodloopSection'
 import { EmpiresSection } from '@/components/EmpiresSection'
@@ -20,14 +24,56 @@ import { PlaypressSection } from '@/components/PlaypressSection'
 import { QuotesSection } from '@/components/QuotesSection'
 import { ScrollDownArrow } from '@/components/ScrollDownArrow'
 import { Section } from '@/components/Section'
+import { ABOUT_SUMMARY } from '@/data/about'
 import { EDUCATION } from '@/data/education'
 import { JOBS } from '@/data/jobs'
 import { QUOTES } from '@/data/quotes'
-import { SECTIONS } from '@/data/sections'
+import { LANES, SECTIONS, laneIdForSection, type LaneData, type LaneId, type SectionData } from '@/data/sections'
+import { hashForLane, laneIdFromHash } from '@/utils/laneHash'
 import styles from './index.module.css'
 
+const FULL_BLEED_SECTION_IDS = new Set([
+  'playpress',
+  'frontend-development',
+  'pixel-portraits',
+  'dayring',
+  'empires',
+  'doodloop',
+  'admin-ui',
+])
+
+/** Horizontal peek when hovering a non-active lane tab (matches ScrollDownArrow). */
+const LANE_PEEK_PX = 50
+
+function laneIntroLinks(lane: LaneData) {
+  return lane.sections
+    .filter((section) => section.navPlacement !== 'hidden')
+    .map((section) => ({ id: section.id, label: section.title }))
+}
+
+function sectionContentClass(section: SectionData) {
+  if (section.kind === 'intro') return `${styles.sectionContent} ${styles.sectionContentIntro}`
+  if (section.kind === 'outro') return `${styles.sectionContent} ${styles.sectionContentOutro}`
+  if (FULL_BLEED_SECTION_IDS.has(section.id)) return `${styles.sectionContent} ${styles.sectionContentFullHeight}`
+  return styles.sectionContent
+}
+
+function mostVisibleSectionId(laneEl: HTMLElement): string | null {
+  const laneRect = laneEl.getBoundingClientRect()
+  let bestId: string | null = null
+  let bestVisible = 0
+  for (const section of laneEl.querySelectorAll<HTMLElement>('section[id]')) {
+    const rect = section.getBoundingClientRect()
+    const visible = Math.min(rect.bottom, laneRect.bottom) - Math.max(rect.top, laneRect.top)
+    if (visible > bestVisible) {
+      bestVisible = visible
+      bestId = section.id
+    }
+  }
+  return bestId
+}
+
 export function App() {
-  // Preload all job section images so they don't jump in when scrolling into view
   useEffect(() => {
     const urls = JOBS.flatMap((job) => (job.images ?? []).map((img) => img.src))
     urls.forEach((src) => {
@@ -38,14 +84,153 @@ export function App() {
 
   const { settings } = useSettings()
   const ctx = useContext(SectionBackgroundContext)
+  const modal = useContext(ModalContext)
   const backgroundColor = ctx?.backgroundColor ?? 'var(--color-bg)'
   const navPanelBackgroundColor = ctx?.navPanelBackgroundColor ?? null
-  const activeSection = SECTIONS.find((s) => s.id === ctx?.activeSectionId)
+  const activeSection = SECTIONS.find((section) => section.id === ctx?.activeSectionId)
   const cornerTextColor = activeSection?.textColor ?? 'var(--color-text)'
-  const jobMap = new Map(JOBS.map((j) => [j.id, j]))
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const jobMap = new Map(JOBS.map((job) => [job.id, job]))
+  const laneScrollRefs = useRef<Partial<Record<LaneId, HTMLDivElement | null>>>({})
+  const activeScrollRef = useRef<HTMLDivElement | null>(null)
+  const skipLaneSyncRef = useRef(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
+  const [activeLane, setActiveLane] = useState<LaneId>(() => laneIdFromHash())
+  const [lanePeekPx, setLanePeekPx] = useState(0)
   const handleNavOpenChange = useCallback((open: boolean) => setIsNavOpen(open), [])
+  const laneIndex = Math.max(0, LANES.findIndex((lane) => lane.id === activeLane))
+
+  useEffect(() => {
+    activeScrollRef.current = laneScrollRefs.current[activeLane] ?? null
+  })
+
+  useEffect(() => {
+    if (skipLaneSyncRef.current) {
+      skipLaneSyncRef.current = false
+      return
+    }
+    const laneEl = laneScrollRefs.current[activeLane]
+    if (!laneEl) return
+    const id = mostVisibleSectionId(laneEl)
+    if (id) ctx?.setActiveSection(id)
+  }, [activeLane, ctx])
+
+  useEffect(() => {
+    const next = hashForLane(activeLane)
+    if (window.location.hash === next) return
+    if (!window.location.hash) {
+      window.history.replaceState(null, '', next)
+      return
+    }
+    window.history.pushState(null, '', next)
+  }, [activeLane])
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const id = laneIdFromHash()
+      setActiveLane((current) => (current === id ? current : id))
+    }
+    window.addEventListener('popstate', syncFromUrl)
+    return () => window.removeEventListener('popstate', syncFromUrl)
+  }, [])
+
+  const selectLane = useCallback((laneId: LaneId) => {
+    setLanePeekPx(0)
+    setActiveLane(laneId)
+  }, [])
+
+  const handleLanePeek = useCallback((laneId: LaneId | null) => {
+    if (laneId == null) {
+      setLanePeekPx(0)
+      return
+    }
+    const hovered = LANES.findIndex((lane) => lane.id === laneId)
+    const active = LANES.findIndex((lane) => lane.id === activeLane)
+    if (hovered < 0 || active < 0 || hovered === active) {
+      setLanePeekPx(0)
+      return
+    }
+    setLanePeekPx(-Math.sign(hovered - active) * LANE_PEEK_PX)
+  }, [activeLane])
+
+  const handleSelectSection = useCallback((id: string) => {
+    skipLaneSyncRef.current = true
+    const laneId = laneIdForSection(id)
+    if (laneId) setActiveLane(laneId)
+  }, [])
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (modal?.content || modal?.isClosing) return
+      const target = event.target
+      if (target instanceof HTMLElement) {
+        const tag = target.tagName
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || target.isContentEditable) return
+      }
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return
+      event.preventDefault()
+      const index = LANES.findIndex((lane) => lane.id === activeLane)
+      const next = event.key === 'ArrowRight' ? LANES[index + 1] : LANES[index - 1]
+      if (next) selectLane(next.id)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [activeLane, modal?.content, modal?.isClosing, selectLane])
+
+  const renderSectionBody = (section: SectionData, lane: LaneData) => {
+    if (section.kind === 'intro') {
+      return (
+        <IntroHero
+          word={lane.introWord}
+          links={laneIntroLinks(lane)}
+          listLabel={`Jump to ${lane.label.toLowerCase()}`}
+        />
+      )
+    }
+    if (section.kind === 'outro') return <EndPage />
+    if (section.id === 'playpress') return <PlaypressSection />
+    if (section.id === 'frontend-development') return <FrontendDevelopmentSection />
+    if (section.id === 'pixel-portraits') return <PixelPortraitsSection />
+    if (section.id === 'dayring') return <DayringSection />
+    if (section.id === 'empires') return <EmpiresSection />
+    if (section.id === 'doodloop') return <DoodloopSection />
+    if (section.id === 'admin-ui') return <AdminUiSection />
+    if (section.isQuotes) return <QuotesSection quotes={QUOTES} title={section.title} />
+    if (section.isSummary) {
+      return (
+        <AboutSummarySection
+          title={ABOUT_SUMMARY.title}
+          label={ABOUT_SUMMARY.label}
+          summary={ABOUT_SUMMARY.summary}
+        />
+      )
+    }
+    if (section.educationId) {
+      return (
+        <EducationSection
+          date={EDUCATION.date}
+          degree={EDUCATION.degree}
+          details={EDUCATION.details}
+          institution={EDUCATION.institution}
+        />
+      )
+    }
+    if (section.jobId) {
+      const job = jobMap.get(section.jobId)
+      if (!job) return <h1>{section.title}</h1>
+      return (
+        <JobSection
+          jobId={section.jobId}
+          company={job.company}
+          date={job.date}
+          description={job.description}
+          jobTitle={job.jobTitle}
+          images={job.images}
+          cropPreview={job.cropPreview}
+        />
+      )
+    }
+    return <h1>{section.title}</h1>
+  }
 
   return (
     <div
@@ -73,9 +258,10 @@ export function App() {
         isNavOpen={isNavOpen}
         onMenuToggle={() => setIsNavOpen((open) => !open)}
       />
+      <LaneNav lanes={LANES} activeId={activeLane} onChange={selectLane} onPeek={handleLanePeek} />
       <ScrollDownArrow
-        sectionIds={SECTIONS.map((s) => s.id)}
-        scrollContainerRef={scrollContainerRef}
+        sectionIds={(LANES.find((lane) => lane.id === activeLane) ?? LANES[0]).sections.map((section) => section.id)}
+        scrollContainerRef={activeScrollRef}
       />
       <PageNav
         sections={SECTIONS.map(({ id, title, backgroundColor: bg, navPlacement, navDescription }) => ({
@@ -89,83 +275,50 @@ export function App() {
         open={isNavOpen}
         onOpenChange={handleNavOpenChange}
         panelOpen={false}
+        onSelectSection={handleSelectSection}
       />
       <div
-        ref={scrollContainerRef}
-        className={styles.scrollWrapper}
-        role="region"
-        aria-label="Page content"
+        className={styles.viewport}
         data-nav-open={isNavOpen}
-        data-active-section={activeSection?.id}
       >
-        <main
-          className={styles.main}
-          data-active-section={activeSection?.id}
+        <div
+          className={styles.track}
+          style={{
+            ['--lane-index' as string]: laneIndex,
+            ['--lane-peek' as string]: `${lanePeekPx}px`,
+          }}
         >
-          {SECTIONS.map(({ id, backgroundColor: bg, textColor, navPanelBackgroundColor: navPanelBg, title, jobId, educationId, isQuotes }, sectionIdx) => {
-            let content: React.ReactNode
-            const sectionContentClass =
-              id === 'intro'
-                ? `${styles.sectionContent} ${styles.sectionContentIntro}`
-                : id === 'pixel-portraits' || id === 'dayring' || id === 'playpress' || id === 'frontend-development' || id === 'empires' || id === 'doodloop'
-                  ? `${styles.sectionContent} ${styles.sectionContentFullHeight}`
-                  : id === 'outro'
-                    ? `${styles.sectionContent} ${styles.sectionContentOutro}`
-                    : styles.sectionContent
-
-            if (id === 'intro') {
-              content = <IntroHero />
-            } else if (id === 'outro') {
-              content = <EndPage />
-            } else if (id === 'playpress') {
-              content = <PlaypressSection />
-            } else if (id === 'frontend-development') {
-              content = <FrontendDevelopmentSection />
-            } else if (id === 'pixel-portraits') {
-              content = <PixelPortraitsSection />
-            } else if (id === 'dayring') {
-              content = <DayringSection />
-            } else if (id === 'empires') {
-              content = <EmpiresSection />
-            } else if (id === 'doodloop') {
-              content = <DoodloopSection />
-            } else if (isQuotes) {
-              content = <QuotesSection quotes={QUOTES} title={title} />
-            } else if (educationId) {
-              content = (
-                <EducationSection
-                  date={EDUCATION.date}
-                  degree={EDUCATION.degree}
-                  details={EDUCATION.details}
-                  institution={EDUCATION.institution}
-                />
-              )
-            } else if (jobId) {
-              const job = jobMap.get(jobId)
-              content = job ? (
-                <JobSection
-                  jobId={jobId}
-                  company={job.company}
-                  date={job.date}
-                  description={job.description}
-                  jobTitle={job.jobTitle}
-                  images={job.images}
-                />
-              ) : (
-                <h1>{title}</h1>
-              )
-            } else {
-              content = <h1>{title}</h1>
-            }
-            return (
-              <Section key={id} id={id} backgroundColor={bg} textColor={textColor} navPanelBackgroundColor={navPanelBg} index={sectionIdx}>
-                <div className={sectionContentClass}>
-                  {content}
-                </div>
-              </Section>
-            )
-          })}
-        </main>
+          {LANES.map((lane) => (
+            <div
+              key={lane.id}
+              ref={(node) => {
+                laneScrollRefs.current[lane.id] = node
+              }}
+              className={styles.lane}
+              data-lane={lane.id}
+              data-lane-scroll
+              data-active={lane.id === activeLane}
+              aria-label={`${lane.label} content`}
+            >
+              <main className={styles.main} data-active-section={activeSection?.id}>
+                {lane.sections.map((section, sectionIdx) => (
+                  <Section
+                    key={section.id}
+                    id={section.id}
+                    backgroundColor={section.backgroundColor}
+                    textColor={section.textColor}
+                    navPanelBackgroundColor={section.navPanelBackgroundColor}
+                    index={sectionIdx}
+                  >
+                    <div className={sectionContentClass(section)}>
+                      {renderSectionBody(section, lane)}
+                    </div>
+                  </Section>
+                ))}
+              </main>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

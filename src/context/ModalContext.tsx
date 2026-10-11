@@ -10,7 +10,7 @@ import {
 export type ModalContent = ReactNode
 
 const CLOSE_ANIMATION_MS = 200
-const SCROLL_CONTAINER_SELECTOR = '[aria-label="Page content"]'
+const SCROLL_CONTAINER_SELECTOR = '[data-lane-scroll][data-active="true"], [data-lane-scroll]'
 
 function getScrollContainer(): HTMLElement | null {
   return document.querySelector<HTMLElement>(SCROLL_CONTAINER_SELECTOR)

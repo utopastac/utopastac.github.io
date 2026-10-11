@@ -1,9 +1,11 @@
 /**
  * Section data: single source of truth for section content, title, background, etc.
- * Includes intro, one section per job (from JOBS), education, quotes, playpress, pixel-portraits, dayring, empires, doodloop, outro.
+ * Three lanes sit side by side: Work, Personal, and About.
+ * Each lane is a vertical stack with the same intro and outro around its pages.
  * navPlacement controls how each section appears in the page nav (or if at all).
  */
 
+import { ABOUT_SUMMARY } from '@/data/about'
 import { EDUCATION } from '@/data/education'
 import { JOBS } from '@/data/jobs'
 
@@ -27,57 +29,52 @@ export type SectionData = {
   educationId?: string
   /** When true, this section renders QuotesSection. */
   isQuotes?: boolean
+  /** When true, this section renders AboutSummarySection. */
+  isSummary?: boolean
+  /** Intro and outro are repeated at the ends of every lane. */
+  kind?: 'intro' | 'outro'
 }
 
-export const SECTIONS: readonly SectionData[] = [
-  { 
-    id: 'intro', 
-    title: 'intro',
-    backgroundColor: 'var(--color-section-intro)',
-    navPanelBackgroundColor: 'var(--color-nav-panel)',
-    navPlacement: 'hidden'
-  },
-  ...JOBS.map((job) => ({
-    id: job.id,
-    title: job.company,
-    backgroundColor: job.backgroundColor,
-    navPanelBackgroundColor: 'var(--color-nav-panel)',
-    navPlacement: 'dated-submenu' as const,
-    ...(job.textColor != null && { textColor: job.textColor }),
-    jobId: job.id,
-  })),
+export type LaneId = 'work' | 'personal' | 'about'
+
+export type LaneData = {
+  id: LaneId
+  label: string
+  /** Display word on that lane’s intro screen. */
+  introWord: string
+  sections: readonly SectionData[]
+}
+
+function bookend(laneId: LaneId, kind: 'intro' | 'outro'): SectionData {
+  const isIntro = kind === 'intro'
+  return {
+    id: `${laneId}-${kind}`,
+    title: kind,
+    backgroundColor: isIntro ? 'var(--color-section-intro)' : 'var(--color-section-surface)',
+    navPlacement: 'hidden',
+    kind,
+    ...(isIntro ? { navPanelBackgroundColor: 'var(--color-nav-panel)' } : {}),
+  }
+}
+
+const WORK_SECTIONS: readonly SectionData[] = JOBS.map((job) => ({
+  id: job.id,
+  title: job.company,
+  backgroundColor: job.backgroundColor,
+  navPanelBackgroundColor: 'var(--color-nav-panel)',
+  navPlacement: 'dated-submenu' as const,
+  ...(job.textColor != null && { textColor: job.textColor }),
+  jobId: job.id,
+}))
+
+const PERSONAL_SECTIONS: readonly SectionData[] = [
   {
-    id: EDUCATION.id,
-    title: 'Education',
-    backgroundColor: EDUCATION.backgroundColor,
-    textColor: EDUCATION.textColor,
-    educationId: EDUCATION.id,
-    navPlacement: 'dated-submenu',
-  },
-  {
-    id: 'quotes',
-    title: 'Testimonials',
-    backgroundColor: 'var(--color-section-quotes)',
-    textColor: 'var(--color-section-quotes-text)',
-    isQuotes: true,
-    navPlacement: 'top-level',
-    navDescription: 'Colleague quotes',
-  },
-  { 
     id: 'playpress',
     title: 'Playpress',
     backgroundColor: 'var(--color-section-neutral)',
     navPlacement: 'top-level',
     navPanelBackgroundColor: 'var(--color-nav-panel)',
     navDescription: 'UK based Toy company',
-  },
-  {
-    id: 'frontend-development',
-    title: 'Development',
-    backgroundColor: 'var(--color-section-frontend)',
-    navPlacement: 'top-level',
-    navPanelBackgroundColor: 'var(--color-nav-panel)',
-    navDescription: 'Coding experience',
   },
   {
     id: 'pixel-portraits',
@@ -111,10 +108,62 @@ export const SECTIONS: readonly SectionData[] = [
     navPanelBackgroundColor: 'var(--color-nav-panel)',
     navDescription: 'Drawing relay',
   },
-  { 
-    id: 'outro',
-    title: 'outro',
-    backgroundColor: 'var(--color-section-surface)',
-    navPlacement: 'hidden'
+  {
+    id: 'admin-ui',
+    title: 'Admin UI',
+    backgroundColor: 'var(--color-section-neutral)',
+    navPlacement: 'top-level',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
+    navDescription: 'Component library',
   },
-] as const
+]
+
+const ABOUT_SECTIONS: readonly SectionData[] = [
+  {
+    id: ABOUT_SUMMARY.id,
+    title: ABOUT_SUMMARY.title,
+    backgroundColor: ABOUT_SUMMARY.backgroundColor,
+    navPanelBackgroundColor: ABOUT_SUMMARY.navPanelBackgroundColor,
+    ...(ABOUT_SUMMARY.textColor != null && { textColor: ABOUT_SUMMARY.textColor }),
+    isSummary: true,
+    navPlacement: 'top-level',
+    navDescription: ABOUT_SUMMARY.label,
+  },
+  {
+    id: EDUCATION.id,
+    title: 'Education',
+    backgroundColor: EDUCATION.backgroundColor,
+    textColor: EDUCATION.textColor,
+    educationId: EDUCATION.id,
+    navPlacement: 'dated-submenu',
+  },
+  {
+    id: 'frontend-development',
+    title: 'Development',
+    backgroundColor: 'var(--color-section-frontend)',
+    navPlacement: 'top-level',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
+    navDescription: 'Coding experience',
+  },
+  {
+    id: 'quotes',
+    title: 'Testimonials',
+    backgroundColor: 'var(--color-section-quotes)',
+    textColor: 'var(--color-section-quotes-text)',
+    isQuotes: true,
+    navPlacement: 'top-level',
+    navDescription: 'Colleague quotes',
+  },
+]
+
+export const LANES: readonly LaneData[] = [
+  { id: 'work', label: 'Work', introWord: 'Designer.', sections: [bookend('work', 'intro'), ...WORK_SECTIONS, bookend('work', 'outro')] },
+  { id: 'personal', label: 'Personal', introWord: 'Builder.', sections: [bookend('personal', 'intro'), ...PERSONAL_SECTIONS, bookend('personal', 'outro')] },
+  { id: 'about', label: 'About', introWord: 'Collaborator.', sections: [bookend('about', 'intro'), ...ABOUT_SECTIONS, bookend('about', 'outro')] },
+]
+
+export const SECTIONS: readonly SectionData[] = LANES.flatMap((lane) => lane.sections)
+
+export function laneIdForSection(sectionId: string): LaneId | undefined {
+  return LANES.find((lane) => lane.sections.some((section) => section.id === sectionId))?.id
+}

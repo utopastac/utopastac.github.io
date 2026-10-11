@@ -31,8 +31,10 @@
     text-underline-offset: 0.2em;
     opacity: 0.7;
 
-    &:hover {
-      opacity: 1;
+    @mixin can-hover {
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
@@ -47,8 +49,10 @@
   color: inherit;
   overflow: hidden;
 
-  &:hover [data-project-hover-tooltip] {
-    opacity: 1;
+  @mixin can-hover {
+    &:hover [data-project-hover-tooltip] {
+      opacity: 1;
+    }
   }
 
   &.tiltEnabled {

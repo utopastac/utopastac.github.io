@@ -61,6 +61,8 @@ export type JobEntry = {
   textColor?: string
   /** Optional list of images for the left column; caption is used for alt, title, and modal caption. */
   images?: readonly JobImage[]
+  /** Crop the preview image. The full frame stays available in the gallery. */
+  cropPreview?: boolean
 }
 
 export const JOBS: readonly JobEntry[] = [
@@ -199,6 +201,7 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Lead Product Designer',
     company: 'M&S',
     backgroundColor: JOB_COLORS.ms,
+    cropPreview: true,
     images: [
       { src: '/images/marks-handbags.jpg' },
       { src: '/images/marks-sparks.jpg' },
@@ -215,6 +218,7 @@ export const JOBS: readonly JobEntry[] = [
     jobTitle: 'Various roles',
     company: 'Agency',
     backgroundColor: JOB_COLORS.agency,
+    cropPreview: true,
     images: [
       { src: '/images/agency-a4.jpg' },
       { src: '/images/agency-honda.jpg' },

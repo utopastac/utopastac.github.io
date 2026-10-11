@@ -1,3 +1,4 @@
+@import '@styles/breakpoints.css';
 @import '@styles/typography.css';
 @import '@styles/effects.css';
 
@@ -21,9 +22,11 @@
   cursor: pointer;
   transition: color 0.2s ease, transform 0.2s ease;
 
-  &:hover {
-    color: var(--color-accent);
-    transform: translateX(-50%) translateY(2px);
+  @mixin can-hover {
+    &:hover {
+      color: var(--color-accent);
+      transform: translateX(-50%) translateY(2px);
+    }
   }
 
   &:focus-visible {

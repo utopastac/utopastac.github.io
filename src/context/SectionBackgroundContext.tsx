@@ -17,6 +17,8 @@ type SectionBackgroundContextValue = {
   unregisterSection: (id: string) => void
   /** Call when navigating to a section (e.g. nav click) so that section stays active until scroll settles. */
   navigateToSection: (id: string, color?: string, navPanelBackgroundColor?: string) => void
+  /** Set the active section without pinning it against later scroll updates. */
+  setActiveSection: (id: string) => void
 }
 
 export const SectionBackgroundContext = createContext<SectionBackgroundContextValue | null>(null)
@@ -54,34 +56,51 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
     }
   }, [])
 
-  const navigateToSection = useCallback((id: string, color?: string, navPanelBg?: string) => {
+  const applySection = useCallback((id: string, color?: string, navPanelBg?: string) => {
     for (const info of sectionMapRef.current.values()) {
       if (info.id === id) {
-        pinnedSectionIdRef.current = id
         setBackgroundColor(info.color)
         setNavPanelBackgroundColor(info.navPanelBackgroundColor ?? null)
         setActiveSectionId(id)
-        return
+        return true
       }
     }
-    pinnedSectionIdRef.current = id
     if (color) setBackgroundColor(color)
     if (navPanelBg) setNavPanelBackgroundColor(navPanelBg)
     else setNavPanelBackgroundColor(null)
     setActiveSectionId(id)
+    return false
   }, [])
+
+  const setActiveSection = useCallback((id: string) => {
+    pinnedSectionIdRef.current = null
+    applySection(id)
+  }, [applySection])
+
+  const navigateToSection = useCallback((id: string, color?: string, navPanelBg?: string) => {
+    pinnedSectionIdRef.current = id
+    applySection(id, color, navPanelBg)
+  }, [applySection])
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver((entries) => {
       const sectionMap = sectionMapRef.current
       const ratioMap = ratioMapRef.current
       const pinnedId = pinnedSectionIdRef.current
-      for (const entry of entries) {
-        const info = sectionMap.get(entry.target as HTMLElement)
-        if (info) {
-          const ratio = entry.isIntersecting ? entry.intersectionRatio : 0
-          ratioMap.set(info.id, ratio)
+      for (const [node, info] of sectionMap) {
+        const lane = node.closest('[data-lane]')
+        if (lane && lane.getAttribute('data-active') !== 'true') {
+          ratioMap.set(info.id, 0)
         }
+      }
+      for (const entry of entries) {
+        const node = entry.target as HTMLElement
+        const info = sectionMap.get(node)
+        if (!info) continue
+        const lane = node.closest('[data-lane]')
+        const laneActive = !lane || lane.getAttribute('data-active') === 'true'
+        const ratio = entry.isIntersecting && laneActive ? entry.intersectionRatio : 0
+        ratioMap.set(info.id, ratio)
       }
       if (pinnedId !== null) {
         const pinnedRatio = ratioMap.get(pinnedId) ?? 0
@@ -123,6 +142,7 @@ export function SectionBackgroundProvider({ children }: { children: ReactNode })
     registerSection,
     unregisterSection,
     navigateToSection,
+    setActiveSection,
   }
 
   return (

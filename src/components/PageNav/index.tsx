@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useRef } from 'react'
 import type { NavPlacement } from '@/data/sections'
+import { laneIdForSection } from '@/data/sections'
 import { JOBS } from '@/data/jobs'
 import { EDUCATION } from '@/data/education'
 import { JobRow } from '@/components/JobRow'
@@ -21,6 +22,7 @@ type PageNavProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   panelOpen?: boolean
+  onSelectSection?: (id: string) => void
 }
 
 const JOBS_BY_ID = new Map(JOBS.map((job) => [job.id, job]))
@@ -30,7 +32,7 @@ function scrollToSection(id: string) {
   if (el) scrollToSectionElement(el)
 }
 
-export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange, panelOpen }: PageNavProps) {
+export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange, panelOpen, onSelectSection }: PageNavProps) {
   const sectionCtx = useContext(SectionBackgroundContext)
   const triggerZoneRef = useRef<HTMLDivElement>(null)
 
@@ -41,11 +43,22 @@ export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange,
 
   const handleSectionClick = useCallback(
     (id: string, backgroundColor?: string) => {
+      onSelectSection?.(id)
       sectionCtx?.navigateToSection(id, backgroundColor)
       scrollToSection(id)
       close()
     },
-    [sectionCtx, close]
+    [sectionCtx, close, onSelectSection]
+  )
+
+  const workSections = sections.filter(
+    (s) => s.navPlacement === 'dated-submenu' && laneIdForSection(s.id) === 'work',
+  )
+  const personalSections = sections.filter(
+    (s) => s.navPlacement === 'top-level' && laneIdForSection(s.id) === 'personal',
+  )
+  const aboutSections = sections.filter(
+    (s) => s.navPlacement !== 'hidden' && laneIdForSection(s.id) === 'about',
   )
 
   useEffect(() => {
@@ -97,46 +110,62 @@ export function PageNav({ sections, navPanelBackgroundColor, open, onOpenChange,
           role="list"
         >
           <div role="listitem">
-            {sections
-              .filter((s) => s.navPlacement === 'dated-submenu')
-              .map(({ id, label, backgroundColor }) => {
-                const job = JOBS_BY_ID.get(id)
-                const isEducation = id === EDUCATION.id
-
-                const left = job?.date ?? (isEducation ? EDUCATION.date : '')
-                const middle = job?.company ?? (isEducation ? EDUCATION.institutionShort : label)
-                const right = job?.jobTitle ?? (isEducation ? EDUCATION.degreeShort : '')
-
-                return (
-                  <li key={id} role="listitem">
-                    <JobRow
-                      asButton
-                      size="lg"
-                      date={left}
-                      company={middle}
-                      title={right}
-                      onClick={() => handleSectionClick(id, backgroundColor)}
-                    />
-                  </li>
-                )
-              })}
-          </div>
-          <div className={styles.gap} />
-          <div>
-            {sections
-              .filter((s) => s.navPlacement === 'top-level')
-              .map(({ id, label, backgroundColor, navDescription }) => (
+            {workSections.map(({ id, backgroundColor }) => {
+              const job = JOBS_BY_ID.get(id)
+              return (
                 <li key={id} role="listitem">
                   <JobRow
                     asButton
                     size="lg"
-                    company={label}
-                    title={navDescription ?? ''}
+                    date={job?.date ?? ''}
+                    company={job?.company ?? ''}
+                    title={job?.jobTitle ?? ''}
                     onClick={() => handleSectionClick(id, backgroundColor)}
                   />
                 </li>
-              ))}
+              )
+            })}
           </div>
+          {personalSections.length > 0 && (
+            <>
+              <div className={styles.gap} />
+              <div>
+                {personalSections.map(({ id, label, backgroundColor, navDescription }) => (
+                  <li key={id} role="listitem">
+                    <JobRow
+                      asButton
+                      size="lg"
+                      company={label}
+                      title={navDescription ?? ''}
+                      onClick={() => handleSectionClick(id, backgroundColor)}
+                    />
+                  </li>
+                ))}
+              </div>
+            </>
+          )}
+          {aboutSections.length > 0 && (
+            <>
+              <div className={styles.gap} />
+              <div>
+                {aboutSections.map(({ id, label, backgroundColor, navDescription }) => {
+                  const isEducation = id === EDUCATION.id
+                  return (
+                    <li key={id} role="listitem">
+                      <JobRow
+                        asButton
+                        size="lg"
+                        date={isEducation ? EDUCATION.date : undefined}
+                        company={isEducation ? EDUCATION.institutionShort : label}
+                        title={isEducation ? EDUCATION.degreeShort : (navDescription ?? '')}
+                        onClick={() => handleSectionClick(id, backgroundColor)}
+                      />
+                    </li>
+                  )
+                })}
+              </div>
+            </>
+          )}
         </ul>
       </nav>
     </div>

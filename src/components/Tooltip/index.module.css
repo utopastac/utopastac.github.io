@@ -24,8 +24,10 @@
     transition: opacity 0.15s ease-out;
   }
 
-  &:hover .label {
-    opacity: 1;
+  @mixin can-hover {
+    &:hover .label {
+      opacity: 1;
+    }
   }
 
   @mixin mobile-down {

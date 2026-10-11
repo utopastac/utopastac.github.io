@@ -28,11 +28,10 @@
   overflow: hidden;
 }
 
-.scrollWrapper {
+.viewport {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   transition: transform 0.25s ease-out;
 
   @mixin desktop-up {
@@ -40,6 +39,28 @@
       transform: translateX(-80px);
     }
   }
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  width: 300vw;
+  transform: translate3d(calc(var(--lane-index) * -100vw + var(--lane-peek, 0px)), 0, 0);
+  transition: transform var(--lane-slide-duration) var(--lane-slide-ease);
+  will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.lane {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .main {
