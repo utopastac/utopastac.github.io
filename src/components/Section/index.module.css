@@ -57,11 +57,17 @@
   left: var(--grid-margin);
   top: calc(var(--grid-margin) + 0.65rem);
   @mixin heading-lg;
+  line-height: 1;
   color: var(--section-text-color, var(--color-text));
   font-variant-numeric: tabular-nums;
   text-align: left;
   pointer-events: none;
   z-index: 1;
+
+  /* Nudge intro index toward display-word cap height (partial optical align) */
+  .root[data-kind='intro'] & {
+    top: calc(var(--grid-margin) + 0.65rem + 1.25rem);
+  }
 
   @mixin mobile-down {
     display: none;

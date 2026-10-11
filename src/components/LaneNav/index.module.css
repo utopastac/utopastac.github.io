@@ -24,7 +24,7 @@
   color: var(--corner-text-color, var(--color-text));
 
   @mixin mobile-down {
-    top: var(--space_8);
+    top: var(--space_2);
     left: var(--grid-margin);
     gap: var(--space_2);
   }

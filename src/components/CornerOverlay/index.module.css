@@ -29,14 +29,20 @@
 
 .mobileHeader {
   display: none;
+}
 
+.root[data-nav-open='true'] {
   @mixin mobile-down {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: var(--space_1);
-    pointer-events: auto;
+    .mobileHeader {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: var(--space_1);
+      pointer-events: auto;
+      position: relative;
+      z-index: 21;
+    }
   }
 }
 

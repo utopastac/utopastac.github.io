@@ -97,17 +97,17 @@ export function CornerOverlay({ isNavOpen, onMenuToggle }: CornerOverlayProps) {
   }, [settings.showGrid, settings.showImages, settings.animationIntensity, settings.blurIntensity, settings.colorScheme, onMenuToggle, update])
 
   return (
-    <div className={styles.root} data-corner-overlay>
-      <div className={styles.mobileHeader}>
+    <div className={styles.root} data-corner-overlay data-nav-open={isNavOpen}>
+      <div className={styles.mobileHeader} aria-hidden={!isNavOpen}>
         <span className={styles.mobileName}>Peter Wright</span>
         <span className={styles.mobileSep}>/</span>
         <span className={styles.mobileYear}>{year}</span>
         <span className={styles.mobileSep}>/</span>
-        <a className={styles.mobileLink} href={EMAIL_URL}>Email</a>
+        <a className={styles.mobileLink} href={EMAIL_URL} tabIndex={isNavOpen ? undefined : -1}>Email</a>
         <span className={styles.mobileSep}>/</span>
-        <a className={styles.mobileLink} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a className={styles.mobileLink} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" tabIndex={isNavOpen ? undefined : -1}>LinkedIn</a>
         <span className={styles.mobileSep}>/</span>
-        <a className={styles.mobileLink} href={CV_URL} download={CV_FILENAME}>CV</a>
+        <a className={styles.mobileLink} href={CV_URL} download={CV_FILENAME} tabIndex={isNavOpen ? undefined : -1}>CV</a>
       </div>
       <div className={styles.mobileRightColumn}>
         <NavMenuButton

@@ -7,6 +7,8 @@ type SectionProps = {
   id: string
   backgroundColor: string
   index?: number
+  /** Intro sections use a larger optical offset so the index aligns with display headings. */
+  kind?: 'intro' | 'outro'
   /** Optional text color for section content (sets --section-text-color). */
   textColor?: string
   /** Optional navigation panel background color (rgba value). */
@@ -14,7 +16,7 @@ type SectionProps = {
   children: React.ReactNode
 }
 
-export function Section({ id, backgroundColor, index, textColor, navPanelBackgroundColor, children }: SectionProps) {
+export function Section({ id, backgroundColor, index, kind, textColor, navPanelBackgroundColor, children }: SectionProps) {
   const ctx = useContext(SectionBackgroundContext)
   const ref = useRef<HTMLElement>(null)
   const { enabled: isTiltEnabled, tiltRef, perspectiveRootRef } = useCursorTilt()
@@ -38,6 +40,7 @@ export function Section({ id, backgroundColor, index, textColor, navPanelBackgro
       ref={setRef}
       id={id}
       className={styles.root}
+      data-kind={kind}
       style={style}
     >
       <div
