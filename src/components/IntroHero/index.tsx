@@ -6,6 +6,7 @@ const FOREGROUND_TILT_DEG = 20
 
 const LINK_ICONS: Readonly<Record<string, string>> = {
   playpress: '/images/playpress-pete.svg',
+  skypainter: '/images/skypainter-icon.png',
   'pixel-portraits': '/images/pixelator-icon.png',
   dayring: '/images/dayring-icon.png',
   empires: '/images/empires-icon.png',

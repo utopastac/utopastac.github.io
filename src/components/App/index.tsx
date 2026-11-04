@@ -21,6 +21,7 @@ import { DoodloopSection } from '@/components/DoodloopSection'
 import { EmpiresSection } from '@/components/EmpiresSection'
 import { PixelPortraitsSection } from '@/components/PixelPortraitsSection'
 import { PlaypressSection } from '@/components/PlaypressSection'
+import { SkypainterSection } from '@/components/SkypainterSection'
 import { QuotesSection } from '@/components/QuotesSection'
 import { ScrollDownArrow } from '@/components/ScrollDownArrow'
 import { Section } from '@/components/Section'
@@ -35,6 +36,7 @@ import styles from './index.module.css'
 const FULL_BLEED_SECTION_IDS = new Set([
   'playpress',
   'frontend-development',
+  'skypainter',
   'pixel-portraits',
   'dayring',
   'empires',
@@ -176,6 +178,7 @@ export function App() {
     if (section.kind === 'outro') return <EndPage word={lane.outroWord} />
     if (section.id === 'playpress') return <PlaypressSection />
     if (section.id === 'frontend-development') return <FrontendDevelopmentSection />
+    if (section.id === 'skypainter') return <SkypainterSection />
     if (section.id === 'pixel-portraits') return <PixelPortraitsSection />
     if (section.id === 'dayring') return <DayringSection />
     if (section.id === 'empires') return <EmpiresSection />
