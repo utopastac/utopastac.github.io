@@ -91,6 +91,14 @@ const PERSONAL_SECTIONS: readonly SectionData[] = [
     navDescription: 'UK based Toy company',
   },
   {
+    id: 'aubital',
+    title: 'Aubital',
+    backgroundColor: 'var(--color-section-neutral)',
+    navPlacement: 'top-level',
+    navPanelBackgroundColor: 'var(--color-nav-panel)',
+    navDescription: 'Web and iOS app',
+  },
+  {
     id: 'pixel-portraits',
     title: 'Pixel portraits',
     backgroundColor: 'var(--color-section-neutral)',

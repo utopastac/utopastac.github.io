@@ -16,6 +16,7 @@ import { LaneNav } from '@/components/LaneNav'
 import { Modal } from '@/components/Modal'
 import { PageNav } from '@/components/PageNav'
 import { AdminUiSection } from '@/components/AdminUiSection'
+import { AubitalSection } from '@/components/AubitalSection'
 import { DayringSection } from '@/components/DayringSection'
 import { DoodloopSection } from '@/components/DoodloopSection'
 import { EmpiresSection } from '@/components/EmpiresSection'
@@ -36,6 +37,7 @@ import styles from './index.module.css'
 const FULL_BLEED_SECTION_IDS = new Set([
   'playpress',
   'frontend-development',
+  'aubital',
   'skypainter',
   'pixel-portraits',
   'dayring',
@@ -178,6 +180,7 @@ export function App() {
     if (section.kind === 'outro') return <EndPage word={lane.outroWord} />
     if (section.id === 'playpress') return <PlaypressSection />
     if (section.id === 'frontend-development') return <FrontendDevelopmentSection />
+    if (section.id === 'aubital') return <AubitalSection />
     if (section.id === 'skypainter') return <SkypainterSection />
     if (section.id === 'pixel-portraits') return <PixelPortraitsSection />
     if (section.id === 'dayring') return <DayringSection />
